@@ -1,6 +1,23 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import type { Image } from 'sanity'
 
+// SEO metadata interface
+export interface SEO {
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: Image & { alt?: string }
+  canonicalUrl?: string
+  noIndex?: boolean
+  keywords?: string[]
+}
+
+// Image reference for write operations
+export interface ImageReference {
+  _type: 'image'
+  asset: { _type: 'reference'; _ref: string }
+  alt?: string
+}
+
 export interface Author {
   name: string
   slug?: { current: string }
@@ -28,6 +45,7 @@ export interface Post {
   excerpt?: string
   body?: PortableTextBlock[]
   readTime?: number
+  seo?: SEO
 }
 
 export interface PostCard {
@@ -68,4 +86,45 @@ export interface ImageBlock {
   }
   alt?: string
   caption?: string
+}
+
+// =============================================================================
+// Input types for write operations (used by agents)
+// =============================================================================
+
+// Post input for create/update operations
+export interface PostInput {
+  _type: 'post'
+  _id?: string
+  title: string
+  slug: { _type: 'slug'; current: string }
+  author?: { _type: 'reference'; _ref: string }
+  mainImage?: ImageReference
+  categories?: Array<{ _type: 'reference'; _ref: string; _key: string }>
+  publishedAt?: string
+  excerpt?: string
+  body?: PortableTextBlock[]
+  readTime?: number
+  seo?: SEO
+}
+
+// Author input for create/update operations
+export interface AuthorInput {
+  _type: 'author'
+  _id?: string
+  name: string
+  slug: { _type: 'slug'; current: string }
+  image?: ImageReference
+  bio?: string
+  role?: string
+}
+
+// Category input for create/update operations
+export interface CategoryInput {
+  _type: 'category'
+  _id?: string
+  title: string
+  slug: { _type: 'slug'; current: string }
+  description?: string
+  color?: string
 }

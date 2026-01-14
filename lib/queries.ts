@@ -50,8 +50,16 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   publishedAt,
   readTime,
   mainImage,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage,
+    canonicalUrl,
+    noIndex,
+    keywords
+  },
   "author": author->{name, image, role, bio},
-  "categories": categories[]->{title, slug, color}
+  "categories": categories[]->{_id, title, slug, color}
 }`
 
 // Get all slugs for static generation
@@ -94,4 +102,52 @@ export const searchPostsQuery = `*[_type == "post" && (
   mainImage,
   "author": author->{name, image, role},
   "categories": categories[]->{title, slug, color}
+}`
+
+// =============================================================================
+// Queries for CRUD Operations (used by agents)
+// =============================================================================
+
+// Get single post by ID with full details
+export const postByIdQuery = `*[_type == "post" && _id == $id][0] {
+  _id,
+  title,
+  slug,
+  body,
+  excerpt,
+  publishedAt,
+  readTime,
+  mainImage,
+  seo,
+  "author": author->{_id, name, image, role, bio},
+  "categories": categories[]->{_id, title, slug, color}
+}`
+
+// Get all authors
+export const authorsQuery = `*[_type == "author"] | order(name asc) {
+  _id,
+  name,
+  slug,
+  image,
+  bio,
+  role
+}`
+
+// Get author by ID
+export const authorByIdQuery = `*[_type == "author" && _id == $id][0]`
+
+// Get category by ID
+export const categoryByIdQuery = `*[_type == "category" && _id == $id][0]`
+
+// Get all posts with SEO fields for audit
+export const postsForSEOAuditQuery = `*[_type == "post"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  mainImage,
+  body,
+  seo,
+  "author": author->{name},
+  "categories": categories[]->{title}
 }`
