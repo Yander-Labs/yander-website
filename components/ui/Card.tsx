@@ -12,13 +12,13 @@ export function Card({ children, className, hover = false, variant = "default" }
   return (
     <div
       className={cn(
-        "bg-white rounded-xl border border-[#E4E7EC]",
+        "bg-white rounded-[12px] border border-[#e5e5e5]",
         {
-          "shadow-card": variant === "default",
-          "shadow-elevated": variant === "elevated",
+          "shadow-subtle": variant === "default",
+          "shadow-card": variant === "elevated",
           "": variant === "outlined",
         },
-        hover && "transition-all duration-150 hover:shadow-elevated hover:-translate-y-0.5 hover:border-gray-300",
+        hover && "transition-all duration-150 hover:shadow-card hover:-translate-y-0.5 hover:border-gray-300",
         className
       )}
     >

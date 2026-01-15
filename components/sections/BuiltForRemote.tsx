@@ -46,7 +46,9 @@ const signals = [
 
 export function BuiltForRemote() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/70 border-y border-[#E4E7EC]">
+    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative">
+      {/* Peec.ai signature gradient overlay */}
+      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
@@ -80,9 +82,9 @@ export function BuiltForRemote() {
           <AnimatedSection direction="right" delay={0.2}>
             <div className="relative">
               {/* Main Card */}
-              <div className="bg-white rounded-2xl border border-[#E4E7EC] shadow-elevated overflow-hidden">
+              <div className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden">
                 {/* Card Header */}
-                <div className="px-5 py-4 border-b border-[#E4E7EC] bg-gradient-to-r from-gray-50 via-white to-gray-50">
+                <div className="px-5 py-4 border-b border-[#e5e5e5] bg-gradient-to-r from-gray-50 via-white to-gray-50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -102,7 +104,7 @@ export function BuiltForRemote() {
                   {signals.map((signal) => (
                     <div
                       key={signal.title}
-                      className={`group relative overflow-hidden rounded-xl border transition-all duration-200 hover:shadow-md ${
+                      className={`group relative overflow-hidden rounded-lg border transition-all duration-200 hover:shadow-subtle ${
                         signal.type === "success"
                           ? "bg-gradient-to-r from-emerald-50 to-emerald-50/30 border-emerald-100 hover:border-emerald-200"
                           : signal.type === "warning"
@@ -126,12 +128,12 @@ export function BuiltForRemote() {
                           <div className="flex items-start gap-3">
                             {/* Icon with glow */}
                             <div
-                              className={`relative w-9 h-9 rounded-xl flex items-center justify-center ${
+                              className={`relative w-9 h-9 rounded-lg flex items-center justify-center ${
                                 signal.type === "success"
-                                  ? "bg-emerald-100 shadow-lg shadow-emerald-500/20"
+                                  ? "bg-emerald-100"
                                   : signal.type === "warning"
-                                  ? "bg-amber-100 shadow-lg shadow-amber-500/20"
-                                  : "bg-blue-100 shadow-lg shadow-blue-500/20"
+                                  ? "bg-amber-100"
+                                  : "bg-blue-100"
                               }`}
                             >
                               <signal.icon
@@ -224,7 +226,7 @@ export function BuiltForRemote() {
                 </div>
 
                 {/* Card Footer */}
-                <div className="px-5 py-3 border-t border-[#E4E7EC] bg-gray-50/50">
+                <div className="px-5 py-3 border-t border-[#e5e5e5] bg-gray-50/50">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-400">3 new signals today</span>
                     <button className="text-gray-600 font-medium hover:text-gray-900 transition-colors flex items-center gap-1">

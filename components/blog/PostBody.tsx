@@ -129,7 +129,7 @@ const components: Partial<PortableTextReactComponents> = {
         <figure className="my-8">
           <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-100">
             <Image
-              src={urlFor(value).width(1200).url()}
+              src={urlFor(value).width(1200).auto('format').url()}
               alt={value.alt || ''}
               fill
               className="object-cover"

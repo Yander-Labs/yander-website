@@ -227,6 +227,7 @@ SANITY_TOKEN=your_token node scripts/upload-image-to-sanity.mjs path/to/image.jp
 | `/manage-category` | CRUD for categories |
 | `/seo-audit` | Analyze SEO health |
 | `/generate-image` | Generate AI images with Replicate |
+| `/add-inline-image` | Add screenshot or AI image to post body |
 
 ## AI Image Generation
 
@@ -245,11 +246,11 @@ if (!hasReplicateAccess()) {
   console.log('Set REPLICATE_API_TOKEN first')
 }
 
-// Generate blog header from title
+// Generate blog header from title (uses nano-banana-pro by default)
 const mainImage = await generateBlogImage(
   'Post Title',
   'professional', // style: professional | abstract | illustration | photography
-  'flux-schnell'  // model: flux-schnell | flux-pro | sdxl
+  'nano-banana-pro'  // model (optional, defaults to best quality)
 )
 
 // Generate OG image for social sharing
@@ -268,11 +269,15 @@ await updatePost(postId, { mainImage })
 
 ### Models
 
-| Model | Speed | Quality | Cost |
-|-------|-------|---------|------|
-| `flux-schnell` | ~2s | Good | ~$0.003 |
-| `flux-pro` | ~10s | Excellent | ~$0.05 |
-| `sdxl` | ~5s | Very Good | ~$0.01 |
+| Model | Speed | Quality | Cost | Notes |
+|-------|-------|---------|------|-------|
+| `nano-banana-pro` | ~5s | **Best** | ~$0.02 | **Recommended default** |
+| `imagen-4-ultra` | ~15s | Ultra | ~$0.08 | Highest quality |
+| `imagen-4` | ~8s | Excellent | ~$0.04 | Google flagship |
+| `imagen-4-fast` | ~3s | Very Good | ~$0.01 | Fast + cheap |
+| `flux-schnell` | ~2s | Good | ~$0.003 | Fastest, cheapest |
+| `flux-pro` | ~10s | Excellent | ~$0.05 | Good alternative |
+| `sdxl` | ~5s | Very Good | ~$0.01 | Stability AI |
 
 ### Styles
 

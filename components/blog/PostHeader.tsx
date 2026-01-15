@@ -22,10 +22,6 @@ function formatDate(dateString?: string) {
 }
 
 export function PostHeader({ post }: PostHeaderProps) {
-  const imageUrl = post.mainImage
-    ? urlFor(post.mainImage).width(1200).height(600).url()
-    : null
-
   return (
     <header className="pt-28 pb-8">
       <Container>
@@ -71,7 +67,7 @@ export function PostHeader({ post }: PostHeaderProps) {
           <div className="flex items-center gap-3">
             {post.author?.image ? (
               <Image
-                src={urlFor(post.author.image).width(40).height(40).url()}
+                src={urlFor(post.author.image).width(40).height(40).auto('format').url()}
                 alt={post.author.name}
                 width={40}
                 height={40}
@@ -108,19 +104,6 @@ export function PostHeader({ post }: PostHeaderProps) {
             </div>
           )}
         </div>
-
-        {/* Featured Image */}
-        {imageUrl && (
-          <div className="relative aspect-[2/1] mt-8 rounded-2xl overflow-hidden bg-gray-100">
-            <Image
-              src={imageUrl}
-              alt={post.mainImage?.alt || post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
       </Container>
     </header>
   )

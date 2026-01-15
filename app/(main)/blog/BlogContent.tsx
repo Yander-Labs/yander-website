@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection'
-import { BlogCard } from '@/components/blog/BlogCard'
+import { BlogTable } from '@/components/blog/BlogTable'
 import { BlogSearch } from '@/components/blog/BlogSearch'
 import { CategoryFilter } from '@/components/blog/CategoryFilter'
 import { Pagination } from '@/components/blog/Pagination'
@@ -41,10 +40,13 @@ export function BlogContent({
   }, [initialPosts, searchQuery])
 
   return (
-    <div className="space-y-8">
-      {/* Search and Filters */}
-      <div className="flex flex-col md:flex-row gap-4 md:items-center">
-        <div className="flex-1 max-w-md">
+    <div className="space-y-6">
+      {/* Header row: Title + Search + Filters */}
+      <div className="flex flex-col md:flex-row gap-4 md:items-end">
+        <h1 className="font-serif text-7xl md:text-8xl text-gray-900 flex-shrink-0">
+          Blog
+        </h1>
+        <div className="flex-1 max-w-sm">
           <BlogSearch
             value={searchQuery}
             onChange={setSearchQuery}
@@ -56,27 +58,21 @@ export function BlogContent({
 
       {/* Results count */}
       {searchQuery && (
-        <p className="text-sm text-gray-500">
+        <p className="text-[13px] text-gray-500">
           {filteredPosts.length} {filteredPosts.length === 1 ? 'result' : 'results'} for &quot;{searchQuery}&quot;
         </p>
       )}
 
-      {/* Posts Grid */}
+      {/* Posts Table */}
       {filteredPosts.length > 0 ? (
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post) => (
-            <StaggerItem key={post._id}>
-              <BlogCard post={post} />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+        <BlogTable posts={filteredPosts} />
       ) : (
-        <div className="py-16 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
-            <FileText className="w-8 h-8 text-gray-400" />
+        <div className="py-12 text-center">
+          <div className="w-10 h-10 rounded bg-gray-100 flex items-center justify-center mx-auto mb-3">
+            <FileText className="w-5 h-5 text-gray-400" />
           </div>
-          <h3 className="font-semibold text-gray-900 mb-2">No posts found</h3>
-          <p className="text-sm text-gray-500">
+          <h3 className="font-medium text-gray-900 text-sm mb-1">No posts found</h3>
+          <p className="text-[13px] text-gray-500">
             {searchQuery
               ? 'Try adjusting your search or filters'
               : 'Check back later for new content'}
@@ -86,7 +82,7 @@ export function BlogContent({
 
       {/* Pagination - only show when not searching */}
       {!searchQuery && totalPages > 1 && (
-        <div className="pt-8">
+        <div className="pt-4">
           <Pagination currentPage={currentPage} totalPages={totalPages} />
         </div>
       )}

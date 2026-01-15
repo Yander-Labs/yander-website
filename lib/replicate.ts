@@ -10,7 +10,18 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 })
 
-export type ImageModel = 'flux-schnell' | 'flux-pro' | 'sdxl'
+export type ImageModel =
+  // Google models (recommended)
+  | 'nano-banana-pro'   // Best overall - state-of-the-art quality
+  | 'nano-banana'       // Standard Google model
+  | 'imagen-4-ultra'    // Highest quality Google model
+  | 'imagen-4'          // Google flagship model
+  | 'imagen-4-fast'     // Fast Google model
+  // Flux models
+  | 'flux-schnell'      // Fast, cheap
+  | 'flux-pro'          // High quality
+  // Other
+  | 'sdxl'              // Stability AI
 
 export interface GenerateImageOptions {
   model?: ImageModel
@@ -20,15 +31,31 @@ export interface GenerateImageOptions {
 }
 
 const MODEL_IDS: Record<ImageModel, `${string}/${string}`> = {
+  // Google models
+  'nano-banana-pro': 'google/nano-banana-pro',
+  'nano-banana': 'google/nano-banana',
+  'imagen-4-ultra': 'google/imagen-4-ultra',
+  'imagen-4': 'google/imagen-4',
+  'imagen-4-fast': 'google/imagen-4-fast',
+  // Flux models
   'flux-schnell': 'black-forest-labs/flux-schnell',
   'flux-pro': 'black-forest-labs/flux-pro',
+  // Other
   'sdxl': 'stability-ai/sdxl',
 }
 
 // Model info for documentation
-export const MODEL_INFO: Record<ImageModel, { speed: string; quality: string; cost: string }> = {
+export const MODEL_INFO: Record<ImageModel, { speed: string; quality: string; cost: string; recommended?: boolean }> = {
+  // Google models
+  'nano-banana-pro': { speed: '~5s', quality: 'Best Overall', cost: '~$0.02', recommended: true },
+  'nano-banana': { speed: '~4s', quality: 'Excellent', cost: '~$0.015' },
+  'imagen-4-ultra': { speed: '~15s', quality: 'Ultra', cost: '~$0.08' },
+  'imagen-4': { speed: '~8s', quality: 'Excellent', cost: '~$0.04' },
+  'imagen-4-fast': { speed: '~3s', quality: 'Very Good', cost: '~$0.01' },
+  // Flux models
   'flux-schnell': { speed: '~2s', quality: 'Good', cost: '~$0.003' },
   'flux-pro': { speed: '~10s', quality: 'Excellent', cost: '~$0.05' },
+  // Other
   'sdxl': { speed: '~5s', quality: 'Very Good', cost: '~$0.01' },
 }
 
@@ -72,7 +99,7 @@ export async function generateImage(
 ): Promise<Buffer> {
   requireReplicateAccess()
 
-  const model = options.model || 'flux-schnell'
+  const model = options.model || 'nano-banana-pro'
   const width = options.width || 1200
   const height = options.height || 630
 
@@ -149,27 +176,32 @@ export async function generateAndUploadImage(
 // Blog Image Helpers
 // =============================================================================
 
-export type BlogImageStyle = 'professional' | 'abstract' | 'illustration' | 'photography'
+export type BlogImageStyle = 'yander' | 'professional' | 'abstract' | 'illustration' | 'photography'
 
 const STYLE_PROMPTS: Record<BlogImageStyle, string> = {
+  // Yander brand style - flat illustration with grainy texture and sketchy line edges
+  yander: 'flat 2D illustration style, grainy film texture, sketchy hairy pen stroke outlines, rough textured edges on all shapes, monochrome grayscale with subtle blue-gray tones, risograph print aesthetic, conceptual metaphorical imagery, minimalist playful style like Notion illustrations, editorial illustration, no 3D no photorealistic',
   professional: 'professional, clean, modern business style, subtle gradients, corporate aesthetic, minimalist',
   abstract: 'abstract geometric shapes, vibrant colors, modern art style, dynamic composition',
   illustration: 'digital illustration, flat design, friendly and approachable, warm colors',
   photography: 'photorealistic, natural lighting, high quality stock photo style, authentic',
 }
 
+// Default style for all Yander brand images
+export const DEFAULT_STYLE: BlogImageStyle = 'yander'
+
 /**
  * Generate a blog header image based on post title.
  * Automatically creates an appropriate prompt and uploads to Sanity.
  *
  * @param postTitle - Title of the blog post (used for prompt generation)
- * @param style - Visual style for the image
- * @param model - Replicate model to use (default: flux-schnell)
+ * @param style - Visual style for the image (default: yander)
+ * @param model - Replicate model to use (default: nano-banana-pro)
  */
 export async function generateBlogImage(
   postTitle: string,
-  style: BlogImageStyle = 'professional',
-  model: ImageModel = 'flux-schnell'
+  style: BlogImageStyle = DEFAULT_STYLE,
+  model: ImageModel = 'nano-banana-pro'
 ): Promise<ImageReference> {
   const prompt = `Blog header image for article titled "${postTitle}". ${STYLE_PROMPTS[style]}. No text or letters in the image. 16:9 aspect ratio. High quality, visually appealing.`
 
@@ -193,13 +225,13 @@ export async function generateBlogImage(
  * Uses 1200x630 dimensions per social media requirements.
  *
  * @param postTitle - Title of the blog post
- * @param style - Visual style for the image
+ * @param style - Visual style for the image (default: yander)
  * @param model - Replicate model to use
  */
 export async function generateOGImage(
   postTitle: string,
-  style: BlogImageStyle = 'professional',
-  model: ImageModel = 'flux-schnell'
+  style: BlogImageStyle = DEFAULT_STYLE,
+  model: ImageModel = 'nano-banana-pro'
 ): Promise<ImageReference> {
   const prompt = `Social media preview image for article "${postTitle}". ${STYLE_PROMPTS[style]}. Bold, eye-catching, optimized for social sharing. No text. 1200x630 aspect ratio.`
 
@@ -237,9 +269,61 @@ export async function generateCustomImage(
   const uniqueFilename = filename.replace(/(\.[^.]+)$/, `-${Date.now()}$1`)
 
   return generateAndUploadImage(prompt, uniqueFilename, altText, {
-    model: 'flux-schnell',
+    model: 'nano-banana-pro',
     width: 1200,
     height: 630,
     ...options,
   })
+}
+
+// =============================================================================
+// Yander Brand Image Generation
+// =============================================================================
+
+/**
+ * Generate a Yander-branded inline image for blog posts.
+ * Uses optimized prompting for nano-banana-pro with monochrome black/white style.
+ *
+ * Follows nano-banana-pro best practices:
+ * - Natural language prompts (no tag spam)
+ * - Structure: [Subject] [Action] in [Location]. [Composition]. [Lighting]. [Style]
+ *
+ * @param subject - What the image should depict (e.g., "team collaboration dashboard")
+ * @param context - Additional context for the scene (optional)
+ * @param filename - Base filename (timestamp added automatically)
+ * @param altText - Alt text for accessibility
+ */
+export async function generateYanderImage(
+  subject: string,
+  context: string = '',
+  filename: string,
+  altText: string
+): Promise<ImageReference> {
+  // Build optimized prompt for flat illustration with grainy texture and sketchy edges
+  const styleDescription = 'flat 2D illustration, grainy film texture, sketchy hairy pen stroke outlines, rough textured edges, monochrome grayscale with subtle blue-gray background'
+  const compositionNote = 'Centered composition, simple clean background'
+  const artDirection = 'Risograph print aesthetic, editorial illustration style like Notion, minimalist playful, conceptual metaphor'
+
+  const contextPart = context ? ` ${context}.` : ''
+
+  const prompt = `${subject}${contextPart} ${compositionNote}. ${styleDescription}. ${artDirection}. No 3D, no photorealistic, no text or letters in the image.`
+
+  const uniqueFilename = filename.replace(/(\.[^.]+)$/, `-${Date.now()}$1`)
+
+  return generateAndUploadImage(prompt, uniqueFilename, altText, {
+    model: 'nano-banana-pro',
+    width: 1200,
+    height: 630,
+  })
+}
+
+/**
+ * Build a Yander-styled prompt from a concept description.
+ * Utility for scripts that need to create custom prompts with brand consistency.
+ *
+ * @param concept - The core concept to visualize
+ * @returns Formatted prompt string with Yander brand styling
+ */
+export function buildYanderPrompt(concept: string): string {
+  return `${concept}. Wide angle composition, centered subject. Soft diffused studio lighting, subtle shadows. ${STYLE_PROMPTS.yander}. No text or letters in the image.`
 }

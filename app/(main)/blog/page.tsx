@@ -4,7 +4,6 @@ import { sanityFetch } from '@/lib/sanity'
 import { paginatedPostsQuery, categoriesQuery, postsByCategoryQuery } from '@/lib/queries'
 import type { PostCard, Category, PaginatedPosts } from '@/lib/types'
 import { Container } from '@/components/ui/Container'
-import { BlogHero } from '@/components/blog/BlogHero'
 import { BlogContent } from './BlogContent'
 
 export const metadata: Metadata = {
@@ -51,10 +50,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const totalPages = Math.ceil(total / POSTS_PER_PAGE)
 
   return (
-    <main className="min-h-screen bg-white">
-      <BlogHero />
-
-      <section className="py-12">
+    <main className="min-h-screen bg-white pt-28">
+      <section className="py-8">
         <Container>
           <Suspense fallback={<BlogContentSkeleton />}>
             <BlogContent
@@ -73,28 +70,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
 function BlogContentSkeleton() {
   return (
-    <div className="space-y-8">
-      {/* Search and filter skeleton */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="h-12 bg-gray-100 rounded-xl animate-pulse flex-1 max-w-md" />
-        <div className="flex gap-2">
+    <div className="space-y-6">
+      {/* Header row skeleton */}
+      <div className="flex flex-col md:flex-row gap-4 md:items-end">
+        <div className="h-20 w-32 bg-gray-100 rounded animate-pulse" />
+        <div className="h-8 bg-gray-100 rounded animate-pulse flex-1 max-w-sm" />
+        <div className="flex gap-1.5">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-10 w-20 bg-gray-100 rounded-full animate-pulse" />
+            <div key={i} className="h-8 w-16 bg-gray-100 rounded animate-pulse" />
           ))}
         </div>
       </div>
 
-      {/* Cards skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-[#E4E7EC] overflow-hidden">
-            <div className="aspect-[16/10] bg-gray-100 animate-pulse" />
-            <div className="p-5 space-y-3">
-              <div className="h-4 w-16 bg-gray-100 rounded-full animate-pulse" />
-              <div className="h-6 bg-gray-100 rounded animate-pulse" />
-              <div className="h-4 bg-gray-100 rounded animate-pulse w-3/4" />
-            </div>
-          </div>
+      {/* Table skeleton */}
+      <div className="hidden md:block rounded border border-[#e5e5e5] overflow-hidden">
+        <div className="bg-[#fafafa] h-8 border-b border-[#f0f0f0]" />
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-14 border-b border-[#f5f5f5] last:border-b-0 animate-pulse bg-white" />
         ))}
       </div>
     </div>

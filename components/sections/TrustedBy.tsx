@@ -1,55 +1,44 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
 
-const companiesRow1 = [
-  { name: "Dimer Health", id: "dimer" },
-  { name: "Eraser", id: "eraser" },
-  { name: "Liqid", id: "liqid" },
-  { name: "Seamless.AI", id: "seamless" },
-];
-
-const companiesRow2 = [
-  { name: "Radisson", id: "radisson" },
-  { name: "Montblanc", id: "montblanc" },
-  { name: "Mind Lab Pro", id: "mindlab" },
-  { name: "Lokai", id: "lokai" },
+const companies = [
+  { name: "Dimer Health", logo: "/logos/imgi_8_Frame_277132765_1765364669731-3olcNXaP.png" },
+  { name: "Viaduct", logo: "/logos/imgi_9_Layer_1_1765364669731-CXFrdHhN.png" },
+  { name: "Eraser", logo: "/logos/imgi_10_Eraser_idS7vosxyg_1_1_1765364669732-BkOMPqIq.png" },
+  { name: "Liqid", logo: "/logos/imgi_11_LIQID_idalCP1jMO_1_1_1765364669732-RqQKDu9T.png" },
+  { name: "Seamless.AI", logo: "/logos/imgi_12_Seamless_AI_Logo_1_1765364669732-CEQ3A-Wa.png" },
+  { name: "Radisson Hotels", logo: "/logos/imgi_13_Radisson_Hotel_idRe5QavwV_0_1_1765364669732-R3ZAbgZj.png" },
+  { name: "Montblanc", logo: "/logos/imgi_14_Montblanc_1765364669732-CO9W13yj.png" },
+  { name: "MindLabPro", logo: "/logos/imgi_15_mindlablogo_(1)_1765364669732-D_nZU-aU.png" },
+  { name: "Lokai", logo: "/logos/imgi_16_Lokai_Black_Logo_(1)_(1)_1765364669733-C8tLLeDZ.png" },
 ];
 
 export function TrustedBy() {
   return (
-    <section className="py-16 md:py-20 border-y border-[#E4E7EC] bg-gray-50/50">
-      <Container size="narrow">
+    <section className="py-10 md:py-12 border-y border-[#E4E7EC] bg-gray-50/30">
+      <Container>
         <AnimatedSection>
-          <p className="text-center text-xs text-gray-400 uppercase tracking-[0.1em] mb-10">
+          <p className="text-center text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-6">
             Trusted by the teams behind
           </p>
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-              {companiesRow1.map((company, index) => (
-                <div key={company.id} className="flex items-center gap-12">
-                  <span className="text-gray-300 hover:text-gray-500 transition-colors duration-150 text-base font-medium tracking-tight grayscale hover:grayscale-0">
-                    {company.name}
-                  </span>
-                  {index < companiesRow1.length - 1 && (
-                    <span className="hidden md:block h-4 w-px bg-gray-200" />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-              {companiesRow2.map((company, index) => (
-                <div key={company.id} className="flex items-center gap-12">
-                  <span className="text-gray-300 hover:text-gray-500 transition-colors duration-150 text-base font-medium tracking-tight grayscale hover:grayscale-0">
-                    {company.name}
-                  </span>
-                  {index < companiesRow2.length - 1 && (
-                    <span className="hidden md:block h-4 w-px bg-gray-200" />
-                  )}
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-10">
+            {companies.map((company) => (
+              <div
+                key={company.name}
+                className="opacity-30 hover:opacity-50 transition-opacity duration-200"
+              >
+                <Image
+                  src={company.logo}
+                  alt={company.name}
+                  width={120}
+                  height={24}
+                  className="h-4 md:h-5 w-auto object-contain grayscale"
+                />
+              </div>
+            ))}
           </div>
         </AnimatedSection>
       </Container>

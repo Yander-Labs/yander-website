@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
+import { useWaitlistModal } from "./ui/WaitlistModal";
 
 interface NavigationProps {
   showBanner?: boolean;
@@ -20,6 +22,7 @@ export function Navigation({
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(showBanner);
+  const { openModal } = useWaitlistModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,13 +39,13 @@ export function Navigation({
         <div className="fixed top-0 left-0 right-0 z-[60] bg-gray-900 text-white">
           <Container>
             <div className="flex items-center justify-center py-2.5 relative">
-              <a
-                href={bannerLink}
+              <button
+                onClick={openModal}
                 className="flex items-center gap-2 text-sm font-medium hover:text-gray-200 transition-colors"
               >
                 <span>{bannerText}</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </button>
               <button
                 onClick={() => setBannerVisible(false)}
                 className="absolute right-0 p-1 hover:bg-white/10 rounded-md transition-colors"
@@ -68,8 +71,15 @@ export function Navigation({
         <Container>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <Link href="/" className="text-xl font-semibold text-gray-900 tracking-tight">
-                Yander
+              <Link href="/" className="flex items-center text-gray-900">
+                <Image
+                  src="/logo.svg"
+                  alt="Yander"
+                  width={120}
+                  height={35}
+                  className="h-7 w-auto"
+                  priority
+                />
               </Link>
               <div className="hidden md:block h-5 w-px bg-gray-200" />
               <span className="hidden md:block text-sm text-gray-500">
@@ -87,7 +97,7 @@ export function Navigation({
               <Button variant="ghost" size="sm">
                 Book a Demo
               </Button>
-              <Button variant="primary" size="sm">
+              <Button variant="primary" size="sm" onClick={openModal}>
                 Join Waitlist
               </Button>
             </div>

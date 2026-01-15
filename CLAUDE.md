@@ -55,6 +55,40 @@ export function Component({ className }: ComponentProps) {
 - Typography: `font-serif` for headings, `font-sans` (default) for body
 - Section padding: `py-20 md:py-28`
 
+### Anti-AI-Slop Design Rules
+
+**Never Use:**
+- Inter, Roboto, Open Sans, Arial for body text (we use Instrument Serif + Inter)
+- Purple gradients on white backgrounds
+- Generic card layouts with uniform rounded corners
+- Evenly-distributed color palettes
+- Predictable 12-column grid layouts
+
+**Always Use:**
+- CSS variables for all colors (defined in globals.css)
+- Minimum 3x size jumps for typography hierarchy
+- One distinctive, memorable element per design
+- Asymmetric layouts with intentional negative space
+- High-impact entrance animations over scattered micro-interactions
+
+**For Infographics:**
+- Use geometric patterns or gradient meshes for backgrounds
+- Apply dramatic shadows and layered transparencies
+- Editorial/magazine aesthetic with serif headers
+- Data visualization should tell a story, not just display numbers
+
+**For Bento Grids:**
+- Break the grid with at least one oversized element
+- Use `lg:col-span-2` or `lg:row-span-2` for visual hierarchy
+- Add micro-interactions on hover states
+- Generous negative space OR controlled density - never mediocre middle ground
+
+**Yander's Aesthetic Direction: "Refined Clarity"**
+- **Editorial sophistication** - Serif headlines (Instrument Serif), thoughtful whitespace
+- **Data-driven confidence** - Clear metrics, sparkline visualizations
+- **Premium minimalism** - Grayscale palette with strategic accent colors
+- **Trustworthy professionalism** - Subtle shadows, refined borders, no gimmicks
+
 ### Sanity Integration
 ```typescript
 import { client, urlFor, sanityFetch } from "@/lib/sanity"

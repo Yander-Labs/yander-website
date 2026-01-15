@@ -97,14 +97,16 @@ function ScoreCell({ score, inverted = false, trend }: { score: number; inverted
 
 export function Dashboard() {
   return (
-    <section className="py-16 md:py-24 relative bg-grid-fine">
+    <section className="py-16 md:py-24 relative bg-[#fafafa]">
+      {/* Peec.ai signature gradient overlay */}
+      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection>
           <div className="relative max-w-5xl mx-auto">
             {/* Main Dashboard Card */}
-            <div className="bg-white rounded-2xl border border-[#E4E7EC] shadow-elevated overflow-hidden">
+            <div className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden">
               {/* Header with gradient */}
-              <div className="px-6 py-4 border-b border-[#E4E7EC] bg-gradient-to-r from-gray-50 via-white to-gray-50">
+              <div className="px-6 py-4 border-b border-[#e5e5e5] bg-gradient-to-r from-gray-50 via-white to-gray-50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
@@ -124,7 +126,7 @@ export function Dashboard() {
               </div>
 
               {/* Stats Row */}
-              <div className="px-6 py-3 border-b border-[#E4E7EC] bg-gray-50/50">
+              <div className="px-6 py-3 border-b border-[#e5e5e5] bg-gray-50/50">
                 <div className="flex items-center gap-6 text-xs">
                   <div className="flex items-center gap-2">
                     <span className="text-gray-400">Team Size:</span>
@@ -145,7 +147,7 @@ export function Dashboard() {
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-[#E4E7EC] bg-gray-50/30">
+                    <tr className="border-b border-[#e5e5e5] bg-gray-50/30">
                       <th className="text-left px-6 py-3.5 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
                         Employee
                       </th>
@@ -224,9 +226,9 @@ export function Dashboard() {
             </div>
 
             {/* Enhanced Floating Detail Card */}
-            <div className="absolute -bottom-8 right-4 md:right-8 w-72 bg-white rounded-2xl border border-[#E4E7EC] shadow-2xl p-5 hidden md:block">
-              {/* Glow effect */}
-              <div className="absolute -inset-px bg-gradient-to-br from-red-500/20 via-transparent to-amber-500/20 rounded-2xl blur-sm -z-10" />
+            <div className="absolute -bottom-8 right-4 md:right-8 w-72 bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.08)_0px_8px_16px_0px] p-5 hidden md:block">
+              {/* Subtle glow effect */}
+              <div className="absolute -inset-px bg-gradient-to-br from-red-500/10 via-transparent to-amber-500/10 rounded-[12px] blur-sm -z-10" />
 
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -316,7 +318,7 @@ export function Dashboard() {
 
             {/* AI Status Indicator */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <div className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-full border border-[#E4E7EC] shadow-lg">
+              <div className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-full border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px]">
                 <div className="relative">
                   <div className="w-2 h-2 rounded-full bg-emerald-500" />
                   <div className="absolute inset-0 w-2 h-2 rounded-full bg-emerald-500 animate-ping" />

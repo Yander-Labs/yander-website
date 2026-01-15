@@ -36,7 +36,9 @@ function StarRating() {
 
 export function Testimonials() {
   return (
-    <section className="py-20 md:py-28 divider-dashed">
+    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative">
+      {/* Peec.ai signature gradient overlay */}
+      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="03" centered>Testimonials</SectionLabel>
@@ -48,7 +50,7 @@ export function Testimonials() {
         <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {testimonials.map((testimonial) => (
             <StaggerItem key={testimonial.name}>
-              <div className="bg-white rounded-xl p-6 border border-[#E4E7EC] shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-150 h-full flex flex-col">
+              <div className="bg-white rounded-[12px] p-6 border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-150 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <StarRating />
                   <Quote className="w-5 h-5 text-gray-200" />
@@ -56,7 +58,7 @@ export function Testimonials() {
                 <blockquote className="text-sm text-gray-600 leading-relaxed flex-grow">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
-                <div className="mt-6 pt-4 border-t border-[#E4E7EC] flex items-center gap-3">
+                <div className="mt-6 pt-4 border-t border-[#e5e5e5] flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center text-white text-sm font-medium">
                     {testimonial.avatar}
                   </div>

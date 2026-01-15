@@ -1,25 +1,26 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./ui/Container";
 import { Twitter, Linkedin, Mail } from "lucide-react";
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "#" },
-    { label: "How It Works", href: "#" },
-    { label: "Integrations", href: "#" },
-    { label: "Pricing", href: "#" },
+    { label: "Features", href: "#", comingSoon: true },
+    { label: "How It Works", href: "#", comingSoon: true },
+    { label: "Integrations", href: "#", comingSoon: true },
+    { label: "Pricing", href: "#", comingSoon: true },
   ],
   company: [
-    { label: "About", href: "#" },
+    { label: "About", href: "#", comingSoon: true },
     { label: "Blog", href: "/blog" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Careers", href: "#", comingSoon: true },
+    { label: "Contact", href: "#", comingSoon: true },
   ],
   resources: [
-    { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Documentation", href: "#", comingSoon: true },
+    { label: "Help Center", href: "#", comingSoon: true },
+    { label: "Privacy Policy", href: "#", comingSoon: true },
+    { label: "Terms of Service", href: "#", comingSoon: true },
   ],
 };
 
@@ -37,9 +38,15 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
             {/* Brand Column */}
             <div className="col-span-2 md:col-span-1">
-              <a href="#" className="text-xl font-semibold text-gray-900 tracking-tight">
-                Yander
-              </a>
+              <Link href="/" className="flex items-center text-gray-900">
+                <Image
+                  src="/logo.svg"
+                  alt="Yander"
+                  width={120}
+                  height={35}
+                  className="h-7 w-auto"
+                />
+              </Link>
               <p className="mt-4 text-sm text-gray-500 max-w-xs">
                 Build stronger remote teams. Keep clients longer. Get live insights on engagement, workload, and sentiment.
               </p>
@@ -65,12 +72,21 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.product.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    {link.comingSoon ? (
+                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
+                        {link.label}
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
+                          Soon
+                        </span>
+                      </span>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -84,7 +100,14 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    {link.href.startsWith('/') ? (
+                    {link.comingSoon ? (
+                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
+                        {link.label}
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
+                          Soon
+                        </span>
+                      </span>
+                    ) : link.href.startsWith('/') ? (
                       <Link
                         href={link.href}
                         className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
@@ -112,12 +135,21 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    {link.comingSoon ? (
+                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
+                        {link.label}
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
+                          Soon
+                        </span>
+                      </span>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -132,15 +164,18 @@ export function Footer() {
               &copy; {new Date().getFullYear()} Yander. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+              <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
                 Privacy
-              </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
                 Terms
-              </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
                 Cookies
-              </a>
+                <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>
+              </span>
             </div>
           </div>
         </div>

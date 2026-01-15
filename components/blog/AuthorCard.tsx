@@ -10,19 +10,19 @@ interface AuthorCardProps {
 
 export function AuthorCard({ author }: AuthorCardProps) {
   return (
-    <div className="bg-gray-50 rounded-2xl p-6 border border-[#E4E7EC]">
+    <div className="bg-gray-50/70 rounded-lg p-6 border border-[#e5e5e5]">
       <div className="flex items-start gap-4">
         {/* Avatar */}
         {author.image ? (
           <Image
-            src={urlFor(author.image).width(80).height(80).url()}
+            src={urlFor(author.image).width(80).height(80).auto('format').url()}
             alt={author.name}
             width={80}
             height={80}
-            className="rounded-xl flex-shrink-0"
+            className="rounded-lg flex-shrink-0"
           />
         ) : (
-          <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-emerald-400 to-blue-500 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+          <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-emerald-400 to-blue-500 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
             {author.name?.charAt(0) || 'A'}
           </div>
         )}

@@ -15,19 +15,26 @@ Comprehensive guide for AI agents performing content operations on the Yander we
 | `/manage-category` | CRUD for categories | Yes |
 | `/seo-audit` | Analyze SEO health | No |
 | `/generate-image` | Generate AI images | Yes (Replicate + Sanity) |
+| `/add-inline-image` | Add screenshot or AI image to post body | Yes (Sanity + optionally Replicate) |
 
 ### Required Setup
 
 ```bash
-# Set tokens for write operations
-export SANITY_TOKEN=your_write_token
-export REPLICATE_API_TOKEN=your_replicate_token
+# Tokens should be in .env.local (already configured)
+# Get Sanity token from: https://www.sanity.io/manage → Project → API → Tokens
+# Get Replicate token from: https://replicate.com/account/api-tokens
+```
 
-# Get Sanity token from:
-# https://www.sanity.io/manage → Project → API → Tokens
+### Running Standalone Scripts
 
-# Get Replicate token from:
-# https://replicate.com/account/api-tokens
+Next.js automatically loads `.env.local` during `npm run dev` and `npm run build`.
+For standalone scripts, import the env loader first:
+
+```typescript
+import '@/lib/env'  // Load .env.local variables
+import { screenshotAndUpload } from '@/lib/screenshot'
+
+// Now SANITY_TOKEN and REPLICATE_API_TOKEN are available
 ```
 
 ## Architecture Overview
@@ -36,11 +43,13 @@ export REPLICATE_API_TOKEN=your_replicate_token
 
 ```
 lib/
+├── env.ts            # Environment loader for standalone scripts
 ├── sanity.ts         # Read client (public)
 ├── sanity-write.ts   # Write client (requires token)
 ├── sanity-crud.ts    # CRUD helper functions
 ├── seo-utils.ts      # SEO generation and audit
 ├── replicate.ts      # AI image generation
+├── screenshot.ts     # Puppeteer screenshot utility
 ├── queries.ts        # GROQ queries
 └── types.ts          # TypeScript interfaces
 
@@ -58,7 +67,8 @@ sanity/schemaTypes/
 ├── manage-author.md  # Author management skill
 ├── manage-category.md # Category management skill
 ├── seo-audit.md      # SEO audit skill
-└── generate-image.md # AI image generation skill
+├── generate-image.md # AI image generation skill
+└── add-inline-image.md # Inline body images skill
 ```
 
 ### Data Flow
@@ -234,9 +244,12 @@ Generate blog images using Replicate AI and upload directly to Sanity.
 
 | Model | Speed | Quality | Cost | Best For |
 |-------|-------|---------|------|----------|
-| `flux-schnell` | ~2s | Good | ~$0.003 | Testing, drafts |
-| `flux-pro` | ~10s | Excellent | ~$0.05 | Production images |
-| `sdxl` | ~5s | Very Good | ~$0.01 | Balanced option |
+| `nano-banana-pro` | ~5s | **Best** | ~$0.02 | **Recommended default** |
+| `imagen-4-ultra` | ~15s | Ultra | ~$0.08 | Highest quality needs |
+| `imagen-4` | ~8s | Excellent | ~$0.04 | Google flagship |
+| `imagen-4-fast` | ~3s | Very Good | ~$0.01 | Fast + cheap |
+| `flux-schnell` | ~2s | Good | ~$0.003 | Testing, fastest |
+| `flux-pro` | ~10s | Excellent | ~$0.05 | Good alternative |
 
 ### Available Styles
 
@@ -253,11 +266,10 @@ Generate blog images using Replicate AI and upload directly to Sanity.
 import { generateBlogImage } from '@/lib/replicate'
 import { updatePost } from '@/lib/sanity-crud'
 
-// Generate from post title
+// Generate from post title (uses nano-banana-pro by default)
 const imageRef = await generateBlogImage(
   'Post Title Here',
-  'professional', // style
-  'flux-schnell'  // model
+  'professional' // style: professional | abstract | illustration | photography
 )
 
 // Attach to post
@@ -305,18 +317,151 @@ if (!hasReplicateAccess()) {
 
 | Scenario | Model | Cost |
 |----------|-------|------|
+| 1 blog image | nano-banana-pro | ~$0.02 |
 | 1 blog image | flux-schnell | ~$0.003 |
-| 1 blog image | flux-pro | ~$0.05 |
+| 10 blog posts | nano-banana-pro | ~$0.20 |
 | 10 blog posts | flux-schnell | ~$0.03 |
-| 10 blog posts | flux-pro | ~$0.50 |
 
 ### Best Practices
 
-1. Use `flux-schnell` for testing and drafts
-2. Use `flux-pro` for final production images
+1. Use `nano-banana-pro` as default (best quality/speed balance)
+2. Use `flux-schnell` for quick testing
 3. Always provide descriptive alt text
 4. Generated images are 1200x630px (optimal for blog/OG)
 5. Avoid requesting text in images (AI text rendering is unreliable)
+
+## Inline Body Content Images
+
+Add screenshots and AI-generated images directly into blog post body content.
+
+### Screenshot External Websites
+
+Use Puppeteer to capture screenshots for tutorials, documentation, and references.
+
+```typescript
+import { screenshotInlineImage, insertInlineImage, getPostBySlug } from '@/lib/sanity-crud'
+
+// Get the post
+const post = await getPostBySlug('post-slug')
+
+// Take screenshot and create image block
+const imageBlock = await screenshotInlineImage(
+  'https://example.com/dashboard',
+  'Example dashboard screenshot',
+  'Figure 1: The dashboard interface'
+)
+
+// Insert at end of post body
+await insertInlineImage(post._id, imageBlock)
+
+// Or insert at specific position (e.g., after 3rd paragraph)
+await insertInlineImage(post._id, imageBlock, 3)
+```
+
+### Screenshot Options
+
+```typescript
+interface ScreenshotOptions {
+  width?: number        // Viewport width (default: 1200)
+  height?: number       // Viewport height (default: 630)
+  fullPage?: boolean    // Capture full scrollable page
+  selector?: string     // Capture specific element only
+  waitFor?: number      // Wait ms after page load
+  deviceScale?: number  // Retina scaling (default: 2)
+}
+
+// Examples
+await screenshotInlineImage(url, alt, caption, { fullPage: true })
+await screenshotInlineImage(url, alt, caption, { selector: '.main-content' })
+await screenshotInlineImage(url, alt, caption, { waitFor: 3000 })
+```
+
+### Generate AI Inline Images
+
+Create conceptual illustrations using nano-banana-pro.
+
+```typescript
+import { generateInlineImage, insertInlineImage, getPostBySlug } from '@/lib/sanity-crud'
+
+const post = await getPostBySlug('post-slug')
+
+// Generate AI image and create block
+const imageBlock = await generateInlineImage(
+  'Abstract visualization of data flowing through connected nodes',
+  'Data flow visualization',
+  'Figure 2: How engagement data flows through the system'
+)
+
+await insertInlineImage(post._id, imageBlock)
+```
+
+### Creating Posts with Mixed Inline Images
+
+```typescript
+import {
+  createTextBlock,
+  createListBlock,
+  generateInlineImage,
+  screenshotInlineImage,
+  createPost,
+  generateSlug
+} from '@/lib/sanity-crud'
+
+const body = [
+  createTextBlock('Introduction', 'h2'),
+  createTextBlock('This article explains data visualization...'),
+
+  // AI-generated conceptual image
+  await generateInlineImage(
+    'Modern analytics dashboard with charts showing engagement',
+    'Analytics dashboard visualization',
+    'Figure 1: Example engagement analytics'
+  ),
+
+  createTextBlock('Real-World Example', 'h2'),
+  createTextBlock('Here is how it looks in practice...'),
+
+  // Screenshot of external site
+  await screenshotInlineImage(
+    'https://analytics.google.com/analytics/web/',
+    'Google Analytics dashboard',
+    'Figure 2: Google Analytics interface',
+    { waitFor: 2000 }
+  ),
+
+  createTextBlock('Key takeaways:', 'h3'),
+  ...createListBlock([
+    'Visualization helps understanding',
+    'Real examples build credibility',
+    'Mixed media keeps readers engaged'
+  ], 'bullet')
+]
+
+await createPost({
+  _type: 'post',
+  title: 'Understanding Data Visualization',
+  slug: generateSlug('understanding-data-visualization'),
+  body,
+  // ... other fields
+})
+```
+
+### When to Use Each Type
+
+| Type | Best For |
+|------|----------|
+| **Screenshots** | Real product UI, external website references, tutorial steps, before/after comparisons |
+| **AI Images** | Conceptual illustrations, abstract visualizations, decorative headers, mood imagery |
+
+### Cleanup
+
+Close the browser when done with multiple screenshots:
+
+```typescript
+import { closeBrowser } from '@/lib/screenshot'
+
+await closeBrowser()
+```
 
 ## Error Handling
 

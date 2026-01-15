@@ -77,9 +77,10 @@ export interface CodeBlock {
   filename?: string
 }
 
-// Image block type for portable text
+// Image block type for portable text (inline images in body content)
 export interface ImageBlock {
   _type: 'image'
+  _key: string  // Required for Portable Text array items
   asset: {
     _ref: string
     _type: 'reference'

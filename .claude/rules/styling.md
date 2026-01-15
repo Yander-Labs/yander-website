@@ -1,5 +1,46 @@
 # Styling Rules
 
+## Anti-AI-Slop Design Principles
+
+**CRITICAL:** Avoid generic "AI slop" aesthetics. Claude tends to converge toward safe, on-distribution outputs. Combat this by:
+
+### Never Use
+- Inter, Roboto, Arial as the primary typeface (we use Instrument Serif + Inter)
+- Purple/blue gradients on white backgrounds
+- Uniform card layouts with identical rounded corners
+- Evenly-distributed, timid color palettes
+- Predictable 12-column grids with equal spacing
+
+### Always Use
+- **Dramatic typography hierarchy** - Minimum 3x size jumps (14px → 48px)
+- **Asymmetric layouts** - Break grids with oversized elements
+- **Intentional whitespace** - Use it as a design element
+- **High-impact animations** - One orchestrated reveal > many micro-interactions
+- **Distinctive backgrounds** - Mesh gradients, noise textures, patterns
+
+### Anti-Slop Utilities (globals.css)
+```css
+.text-display        /* Serif with -0.03em tracking */
+.text-editorial      /* Italic serif for emphasis */
+.bg-noise            /* Subtle noise texture */
+.bg-mesh-gradient    /* Multi-color radial blend */
+.animate-reveal      /* Entrance with blur + scale */
+.hover-lift          /* Lift + shadow on hover */
+.hover-lift-sm       /* Subtle variant */
+.glass               /* Glassmorphism effect */
+.shadow-dramatic     /* Strong hero shadow */
+.glow-emerald/blue/amber /* Accent glows */
+.stagger-1 to .stagger-6 /* Animation delays */
+```
+
+### Yander's Aesthetic: "Refined Clarity"
+- Editorial sophistication (Instrument Serif headlines)
+- Data-driven confidence (sparklines, metrics)
+- Premium minimalism (grayscale + strategic accents)
+- Trustworthy professionalism (subtle shadows, refined borders)
+
+---
+
 ## Tailwind v4 Theme
 
 Theme variables defined in `app/globals.css` under `@theme`:

@@ -1,282 +1,213 @@
 "use client";
 
-import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
+import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { SectionLabel } from "../ui/SectionLabel";
+import { MiniChart } from "../ui/MiniChart";
 import {
   MessageSquare,
-  Clock,
   Calendar,
-  Mic2,
-  Heart,
-  AlertTriangle,
-  TrendingUp,
-  Zap,
-  Users,
-  Lightbulb,
+  Video,
+  ArrowRight,
   Sparkles,
+  TrendingUp,
+  AlertTriangle,
+  Users,
 } from "lucide-react";
 
-const inputs = [
+const steps = [
   {
-    icon: MessageSquare,
-    title: "Slack messages",
-    description: "Volume, channels, and patterns of communication.",
-    color: "from-purple-500 to-indigo-600",
-    bgColor: "bg-purple-50",
-    borderColor: "border-purple-100",
-    iconColor: "text-purple-600",
+    number: "01",
+    title: "Connect Your Tools",
+    description: "Plug in Slack, Google Workspace, or Microsoft 365 in minutes. No code required.",
+    visual: "integrations",
   },
   {
-    icon: Clock,
-    title: "Response times",
-    description: "How quickly people reply during core hours vs after hours.",
-    color: "from-blue-500 to-cyan-600",
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-100",
-    iconColor: "text-blue-600",
+    number: "02",
+    title: "AI Analyzes Patterns",
+    description: "Yander monitors communication patterns, meeting behavior, and response times.",
+    visual: "processing",
   },
   {
-    icon: Calendar,
-    title: "Meeting attendance",
-    description: "Who shows up, who skips, and who's double-booked.",
-    color: "from-emerald-500 to-teal-600",
-    bgColor: "bg-emerald-50",
-    borderColor: "border-emerald-100",
-    iconColor: "text-emerald-600",
-  },
-  {
-    icon: Mic2,
-    title: "Meeting engagement",
-    description: "Who speaks, who's silent, and participation trends over time.",
-    color: "from-amber-500 to-orange-600",
-    bgColor: "bg-amber-50",
-    borderColor: "border-amber-100",
-    iconColor: "text-amber-600",
-  },
-  {
-    icon: Heart,
-    title: "Message sentiment",
-    description: "Tone and sentiment shifts across messaging tools.",
-    color: "from-pink-500 to-rose-600",
-    bgColor: "bg-pink-50",
-    borderColor: "border-pink-100",
-    iconColor: "text-pink-600",
+    number: "03",
+    title: "Get Actionable Insights",
+    description: "See who's thriving, who needs support, and where to focus your attention.",
+    visual: "insights",
   },
 ];
 
-const outputs = [
-  {
-    icon: AlertTriangle,
-    title: "Risk & health scores",
-    description: "At-a-glance view of who's thriving, overloaded, or at risk of leaving.",
-    highlight: true,
-  },
-  {
-    icon: TrendingUp,
-    title: "Engagement trends",
-    description: "See whose energy is rising or falling over time.",
-  },
-  {
-    icon: Zap,
-    title: "Burnout alerts",
-    description: "Alerts for after-hours work, high workload, and unnecessary meetings.",
-  },
-  {
-    icon: Users,
-    title: "Collaboration quality",
-    description: "Identify silent passengers, top collaborators, and unnecessary meetings.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Recommendations",
-    description: "Specific suggestions: rebalance workload, adjust 1:1s, intervene early.",
-  },
-];
-
-function FlowLine({ direction = "down" }: { direction?: "down" | "up" }) {
+function IntegrationVisual() {
   return (
-    <div className="flex flex-col items-center">
-      <svg
-        width="2"
-        height="40"
-        viewBox="0 0 2 40"
-        className="overflow-visible"
-      >
-        <defs>
-          <linearGradient id={`flowGradient-${direction}`} x1="0%" y1={direction === "down" ? "0%" : "100%"} x2="0%" y2={direction === "down" ? "100%" : "0%"}>
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="50%" stopColor="#d1d5db" />
-            <stop offset="100%" stopColor="#d1d5db" />
-          </linearGradient>
-        </defs>
-        <line
-          x1="1"
-          y1="0"
-          x2="1"
-          y2="40"
-          stroke={`url(#flowGradient-${direction})`}
-          strokeWidth="2"
-          strokeDasharray="4 4"
-        />
-      </svg>
-      <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse" />
+    <div className="flex items-center justify-center gap-3">
+      {[
+        { icon: MessageSquare, label: "Slack", color: "bg-purple-50 border-purple-100 text-purple-600" },
+        { icon: Calendar, label: "Calendar", color: "bg-blue-50 border-blue-100 text-blue-600" },
+        { icon: Video, label: "Meetings", color: "bg-emerald-50 border-emerald-100 text-emerald-600" },
+      ].map((item, i) => (
+        <motion.div
+          key={item.label}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.4 }}
+          className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${item.color}`}
+        >
+          <item.icon className="w-5 h-5" />
+          <span className="text-[8px] mt-1 font-medium opacity-70">{item.label}</span>
+        </motion.div>
+      ))}
     </div>
   );
 }
 
+function ProcessingVisual() {
+  return (
+    <div className="relative">
+      <div className="bg-gradient-to-br from-[#171717] to-[#2d2d2d] rounded-xl p-4 text-center">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
+            <Sparkles className="w-3 h-3 text-white" />
+          </div>
+          <span className="text-white text-sm font-semibold">Yander AI</span>
+        </div>
+        <div className="flex justify-center gap-1.5 mb-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" style={{ animationDelay: "150ms" }} />
+          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: "300ms" }} />
+        </div>
+        <p className="text-white/60 text-[10px]">Processing signals...</p>
+      </div>
+    </div>
+  );
+}
+
+function InsightsVisual() {
+  return (
+    <div className="space-y-2">
+      {[
+        { icon: TrendingUp, label: "Engagement", value: "7.8", trend: "up", color: "text-emerald-600 bg-emerald-50" },
+        { icon: AlertTriangle, label: "At Risk", value: "1", trend: "down", color: "text-amber-600 bg-amber-50" },
+        { icon: Users, label: "Team Health", value: "Good", trend: "up", color: "text-blue-600 bg-blue-50" },
+      ].map((item) => (
+        <div key={item.label} className="flex items-center gap-3 p-2 bg-white rounded-lg border border-[#e5e5e5]">
+          <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${item.color}`}>
+            <item.icon className="w-3.5 h-3.5" />
+          </div>
+          <div className="flex-1">
+            <p className="text-[10px] text-gray-500">{item.label}</p>
+            <p className="text-sm font-semibold text-gray-900">{item.value}</p>
+          </div>
+          <MiniChart
+            data={item.trend === "up" ? [4, 5, 5, 6, 7, 7, 8] : [6, 5, 4, 3, 2, 2, 1]}
+            width={40}
+            height={16}
+            color={item.trend === "up" ? "#10b981" : "#f59e0b"}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StepVisual({ type }: { type: string }) {
+  switch (type) {
+    case "integrations":
+      return <IntegrationVisual />;
+    case "processing":
+      return <ProcessingVisual />;
+    case "insights":
+      return <InsightsVisual />;
+    default:
+      return null;
+  }
+}
+
 export function HowItWorks() {
   return (
-    <section className="py-20 md:py-28 divider-dashed overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
+
       <Container>
-        <AnimatedSection className="text-center mb-16">
-          <SectionLabel number="01" centered>How Yander Works</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-gray-900 max-w-3xl mx-auto leading-tight">
-            See What&apos;s Really Happening Across Your Remote Team
+        {/* Header */}
+        <div className="text-center mb-16 relative">
+          <SectionLabel number="02" centered>
+            How It Works
+          </SectionLabel>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
+            From scattered signals to clear insights
           </h2>
-          <p className="mt-6 text-base text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Yander turns everyday Slack, email, and online meeting activity into
-            clear, daily insights on every person, so you can keep a true pulse
-            on every team member no matter where they work.
+          <p className="mt-4 text-base text-[#737373] max-w-2xl mx-auto">
+            Yander connects to your existing tools and turns everyday activity into actionable team intelligence.
           </p>
-        </AnimatedSection>
-
-        {/* Inputs Section */}
-        <AnimatedSection className="mb-6">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-200" />
-            <span className="px-4 py-1.5 rounded-full bg-gray-100 text-[10px] font-semibold text-gray-600 uppercase tracking-wider">
-              Data Inputs
-            </span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-200" />
-          </div>
-        </AnimatedSection>
-
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-          {inputs.map((input) => (
-            <StaggerItem key={input.title}>
-              <div className="group relative p-5 bg-white rounded-2xl border border-[#E4E7EB] hover:border-gray-300 hover:shadow-lg transition-all duration-300 h-full">
-                {/* Gradient accent on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${input.color} opacity-0 group-hover:opacity-[0.03] rounded-2xl transition-opacity duration-300`} />
-
-                <div className={`w-10 h-10 rounded-xl ${input.bgColor} border ${input.borderColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <input.icon className={`w-5 h-5 ${input.iconColor}`} />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-sm mb-2">{input.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{input.description}</p>
-
-                {/* Connection dot */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-gray-300 opacity-0 lg:opacity-100" />
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-
-        {/* Flow Lines to Processing */}
-        <div className="hidden lg:flex justify-center gap-[calc(20%-1rem)] mb-4">
-          {[...Array(5)].map((_, i) => (
-            <FlowLine key={i} direction="down" />
-          ))}
         </div>
 
-        {/* Processing Center - Enhanced */}
-        <AnimatedSection className="flex flex-col items-center my-8">
-          <div className="relative">
-            {/* Outer glow ring */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-emerald-500/20 rounded-3xl blur-xl animate-pulse" />
+        {/* Steps - Horizontal on desktop, vertical on mobile */}
+        <div className="relative">
+          {/* Connection line (desktop only) */}
+          <div className="hidden lg:block absolute top-1/2 left-[16%] right-[16%] h-px bg-gradient-to-r from-[#e5e5e5] via-[#171717]/20 to-[#e5e5e5]" />
 
-            {/* Main processing box */}
-            <div className="relative px-8 py-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl text-center max-w-lg border border-gray-700 shadow-2xl">
-              {/* Animated dots */}
-              <div className="absolute top-3 left-3 flex gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" style={{ animationDelay: "150ms" }} />
-                <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: "300ms" }} />
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                className="relative"
+              >
+                {/* Card */}
+                <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
+                  {/* Step number badge */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
+                      {step.number}
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
+                  </div>
 
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-white" />
+                  <p className="text-sm text-[#737373] mb-6 leading-relaxed">
+                    {step.description}
+                  </p>
+
+                  {/* Visual */}
+                  <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
+                    <StepVisual type={step.visual} />
+                  </div>
                 </div>
-                <span className="text-white font-bold text-lg">Yander AI</span>
-              </div>
 
-              <p className="text-gray-300 text-sm mb-3">
-                Analyzes patterns, detects trends, and updates scores daily
-              </p>
-
-              <div className="flex items-center justify-center gap-4 text-[10px] text-gray-500">
-                <span className="flex items-center gap-1">
-                  <span className="w-1 h-1 rounded-full bg-emerald-400" />
-                  Pattern Analysis
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-1 h-1 rounded-full bg-blue-400" />
-                  Trend Detection
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="w-1 h-1 rounded-full bg-purple-400" />
-                  Score Updates
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <p className="mt-6 text-gray-400 text-sm text-center max-w-md">
-            No surveys. No time tracking software. Just intelligent signals from
-            how your team already works.
-          </p>
-        </AnimatedSection>
-
-        {/* Flow Lines from Processing */}
-        <div className="hidden lg:flex justify-center gap-[calc(20%-1rem)] mb-4 mt-8">
-          {[...Array(5)].map((_, i) => (
-            <FlowLine key={i} direction="up" />
-          ))}
-        </div>
-
-        {/* Outputs Section */}
-        <AnimatedSection className="mb-6 mt-8">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-emerald-200" />
-            <span className="px-4 py-1.5 rounded-full bg-emerald-50 text-[10px] font-semibold text-emerald-700 uppercase tracking-wider border border-emerald-100">
-              Actionable Outputs
-            </span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-emerald-200" />
-          </div>
-        </AnimatedSection>
-
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {outputs.map((output) => (
-            <StaggerItem key={output.title}>
-              <div className={`group relative p-5 bg-white rounded-2xl border hover:shadow-lg transition-all duration-300 h-full ${
-                output.highlight
-                  ? "border-emerald-200 bg-gradient-to-br from-emerald-50/50 to-white"
-                  : "border-[#E4E7EB] hover:border-emerald-200"
-              }`}>
-                {/* Connection dot */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 lg:opacity-100" />
-
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${
-                  output.highlight
-                    ? "bg-emerald-100 border border-emerald-200"
-                    : "bg-emerald-50 border border-emerald-100"
-                }`}>
-                  <output.icon className={`w-5 h-5 ${output.highlight ? "text-emerald-700" : "text-emerald-600"}`} />
-                </div>
-                <h3 className="font-semibold text-gray-900 text-sm mb-2">{output.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{output.description}</p>
-
-                {output.highlight && (
-                  <div className="mt-3 flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-medium text-emerald-600">Primary insight</span>
+                {/* Arrow connector (mobile only) */}
+                {index < steps.length - 1 && (
+                  <div className="lg:hidden flex justify-center my-4">
+                    <div className="w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-[#737373] rotate-90" />
+                    </div>
                   </div>
                 )}
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom tagline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-full border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px]">
+            <div className="flex items-center gap-1">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping absolute" />
+            </div>
+            <span className="text-sm text-[#737373]">
+              No surveys. No time tracking. Just <span className="text-[#171717] font-medium">intelligent signals</span>.
+            </span>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );

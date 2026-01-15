@@ -17,13 +17,13 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center font-medium rounded-lg",
+        "inline-flex items-center font-medium rounded-md",
         {
           "bg-gray-100 text-gray-600": variant === "default",
           "bg-emerald-50 text-emerald-700": variant === "success",
           "bg-amber-50 text-amber-700": variant === "warning",
           "bg-red-50 text-red-700": variant === "danger",
-          "border border-[#E4E7EC] text-gray-500 bg-white shadow-subtle": variant === "outline",
+          "border border-[#e5e5e5] text-gray-500 bg-white": variant === "outline",
           "bg-blue-50 text-blue-700": variant === "blue",
           "bg-gray-50 text-gray-500 border border-gray-100": variant === "subtle",
         },

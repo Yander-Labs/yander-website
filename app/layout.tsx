@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
@@ -35,6 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
+      {process.env.NODE_ENV === "development" && (
+        <Script
+          src="https://unpkg.com/react-grab/dist/index.global.js"
+          strategy="afterInteractive"
+        />
+      )}
       <body className="font-sans" suppressHydrationWarning>
         {children}
       </body>

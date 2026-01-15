@@ -8,6 +8,7 @@ import type {
   Category,
   CategoryInput,
   ImageReference,
+  ImageBlock,
 } from './types'
 
 // =============================================================================
@@ -416,4 +417,102 @@ export function estimateReadTime(body: object[]): number {
   }
 
   return Math.max(1, Math.ceil(wordCount / 200))
+}
+
+// =============================================================================
+// Inline Image Helpers (for body content)
+// =============================================================================
+
+/**
+ * Create an inline image block for Portable Text body content.
+ *
+ * @param imageRef - Image reference from uploadImage() or AI generation
+ * @param caption - Optional caption displayed below the image
+ */
+export function createImageBlock(
+  imageRef: ImageReference,
+  caption?: string
+): ImageBlock {
+  return {
+    _type: 'image',
+    _key: generateKey(),
+    asset: imageRef.asset,
+    alt: imageRef.alt,
+    caption,
+  }
+}
+
+/**
+ * Generate an AI image and return as Portable Text image block.
+ * Uses nano-banana-pro by default for best quality.
+ *
+ * @param prompt - Text prompt for image generation
+ * @param alt - Alt text for accessibility
+ * @param caption - Optional caption displayed below the image
+ * @param options - Generation options (model, dimensions)
+ */
+export async function generateInlineImage(
+  prompt: string,
+  alt: string,
+  caption?: string,
+  options?: import('./replicate').GenerateImageOptions
+): Promise<ImageBlock> {
+  // Dynamic import to avoid circular dependencies
+  const { generateAndUploadImage } = await import('./replicate')
+
+  const slug = alt.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 30)
+  const filename = `inline-${slug}-${Date.now()}.jpg`
+
+  const imageRef = await generateAndUploadImage(prompt, filename, alt, options)
+  return createImageBlock(imageRef, caption)
+}
+
+/**
+ * Take a screenshot and return as Portable Text image block.
+ *
+ * @param url - URL to screenshot
+ * @param alt - Alt text for accessibility
+ * @param caption - Optional caption displayed below the image
+ * @param options - Screenshot options (viewport, selector, etc.)
+ */
+export async function screenshotInlineImage(
+  url: string,
+  alt: string,
+  caption?: string,
+  options?: import('./screenshot').ScreenshotOptions
+): Promise<ImageBlock> {
+  // Dynamic import to avoid circular dependencies
+  const { screenshotAndUpload } = await import('./screenshot')
+
+  const slug = alt.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 30)
+  const filename = `screenshot-${slug}-${Date.now()}.png`
+
+  const imageRef = await screenshotAndUpload(url, filename, alt, options)
+  return createImageBlock(imageRef, caption)
+}
+
+/**
+ * Insert an inline image into an existing post's body at a specific position.
+ *
+ * @param postId - ID of the post to update
+ * @param imageBlock - Image block to insert
+ * @param position - Position in body array (default: append at end)
+ */
+export async function insertInlineImage(
+  postId: string,
+  imageBlock: ImageBlock,
+  position?: number
+): Promise<Post> {
+  const post = await getPostById(postId)
+  if (!post) {
+    throw new Error(`Post not found: ${postId}`)
+  }
+
+  const body = post.body || []
+  const insertAt = position ?? body.length
+
+  // Insert the image block at the specified position
+  body.splice(insertAt, 0, imageBlock as never)
+
+  return updatePost(postId, { body })
 }

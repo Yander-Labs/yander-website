@@ -38,7 +38,9 @@ const stats = [
 
 export function Results() {
   return (
-    <section className="py-20 md:py-28 bg-gray-50/70 border-y border-[#E4E7EC] overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] overflow-hidden relative">
+      {/* Peec.ai signature gradient overlay */}
+      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="02" centered>Proven Results</SectionLabel>
@@ -54,7 +56,7 @@ export function Results() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, idx) => (
             <StaggerItem key={stat.label}>
-              <div className="group relative bg-white rounded-2xl p-8 text-center border border-[#E4E7EC] shadow-card hover:shadow-elevated hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+              <div className="group relative bg-white rounded-[12px] p-8 text-center border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
                 {/* Background decoration */}
                 <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                   stat.color === "emerald" ? "bg-emerald-500/10" :
@@ -63,7 +65,7 @@ export function Results() {
                 }`} />
 
                 {/* Icon badge */}
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl mb-6 mx-auto ${
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg mb-6 mx-auto ${
                   stat.color === "emerald" ? "bg-emerald-50 border border-emerald-100" :
                   stat.color === "blue" ? "bg-blue-50 border border-blue-100" :
                   "bg-purple-50 border border-purple-100"

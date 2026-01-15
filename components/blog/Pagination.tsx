@@ -55,32 +55,32 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   }
 
   return (
-    <nav className="flex items-center justify-center gap-2">
+    <nav className="flex items-center justify-center gap-1">
       {/* Previous */}
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 bg-white border border-[#E4E7EC] rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center gap-1 px-2 py-1.5 text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
       >
-        <ChevronLeft className="w-4 h-4" />
-        Previous
+        <ChevronLeft className="w-3.5 h-3.5" />
+        Prev
       </button>
 
       {/* Page numbers */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5">
         {getPageNumbers().map((page, index) => (
           page === 'ellipsis' ? (
-            <span key={`ellipsis-${index}`} className="px-2 text-gray-400">
+            <span key={`ellipsis-${index}`} className="px-1.5 text-gray-400 text-[13px]">
               ...
             </span>
           ) : (
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`w-10 h-10 flex items-center justify-center text-sm font-medium rounded-lg transition-colors ${
+              className={`w-8 h-8 flex items-center justify-center text-[13px] font-medium rounded transition-colors ${
                 currentPage === page
                   ? 'bg-gray-900 text-white'
-                  : 'bg-white text-gray-600 border border-[#E4E7EC] hover:bg-gray-50'
+                  : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
               {page}
@@ -93,10 +93,10 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 bg-white border border-[#E4E7EC] rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center gap-1 px-2 py-1.5 text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
       >
         Next
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-3.5 h-3.5" />
       </button>
     </nav>
   )
