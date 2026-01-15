@@ -7,9 +7,12 @@
 ### Never Use
 - Inter, Roboto, Arial as the primary typeface (we use Instrument Serif + Inter)
 - Purple/blue gradients on white backgrounds
+- **Gradient backgrounds on icons** (e.g., `bg-gradient-to-br from-emerald-500 to-blue-500`) - use solid colors like `bg-gray-900` instead
+- **"Candy" multi-color gradients** that look cheap and amateurish
 - Uniform card layouts with identical rounded corners
 - Evenly-distributed, timid color palettes
 - Predictable 12-column grids with equal spacing
+- Glow shadows on icons (e.g., `shadow-[0_0_40px_rgba(...)]`)
 
 ### Always Use
 - **Dramatic typography hierarchy** - Minimum 3x size jumps (14px → 48px)

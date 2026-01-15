@@ -231,8 +231,8 @@ function AIVisual() {
     <div className="flex-1 flex items-center justify-center p-4">
       <div className="relative">
         {/* Central AI icon */}
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-blue-500 flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.3)]">
-          <Zap className="w-8 h-8 text-white" />
+        <div className="w-14 h-14 rounded-xl bg-gray-900 flex items-center justify-center">
+          <Zap className="w-7 h-7 text-white" />
         </div>
 
         {/* Orbiting suggestions */}

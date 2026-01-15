@@ -60,6 +60,9 @@ export function Component({ className }: ComponentProps) {
 **Never Use:**
 - Inter, Roboto, Open Sans, Arial for body text (we use Instrument Serif + Inter)
 - Purple gradients on white backgrounds
+- **Gradient backgrounds on icons** (e.g., `bg-gradient-to-br from-emerald-500 to-blue-500`) - use solid `bg-gray-900` instead
+- **"Candy" multi-color gradients** - these look cheap and AI-generated
+- **Glow shadows on icons** (e.g., `shadow-[0_0_40px_rgba(...)]`)
 - Generic card layouts with uniform rounded corners
 - Evenly-distributed color palettes
 - Predictable 12-column grid layouts

@@ -346,3 +346,6 @@ Available in `globals.css`:
 - Skip decorative elements on dark sections
 - Use accent colors equally - always have a dominant grayscale with strategic pops
 - Forget data visualizations (MiniCharts, metrics, dashboards)
+- **Use gradient backgrounds on icons** - this looks cheap and amateurish. Use solid colors (`bg-gray-900`, `bg-gray-200`) instead of `bg-gradient-to-br from-X to-Y`
+- **Add glow shadows to icons** (e.g., `shadow-[0_0_40px_rgba(...)]`) - use subtle shadows only
+- **Use "candy" multi-color gradients** (emerald-to-blue, purple-to-pink) - these scream "AI generated"
