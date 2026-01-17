@@ -8,6 +8,7 @@ import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
 import { ArrowRight, X } from "lucide-react";
 import { useWaitlistModal } from "./ui/WaitlistModal";
+import { useDemoModal } from "./ui/DemoModal";
 
 interface NavigationProps {
   showBanner?: boolean;
@@ -23,6 +24,7 @@ export function Navigation({
   const [scrolled, setScrolled] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(showBanner);
   const { openModal } = useWaitlistModal();
+  const { openModal: openDemoModal } = useDemoModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +96,7 @@ export function Navigation({
               >
                 Blog
               </Link>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
               <Button variant="primary" size="sm" onClick={openModal}>

@@ -5,67 +5,52 @@ import { Badge } from "../ui/Badge";
 import { Container } from "../ui/Container";
 import { MiniChart } from "../ui/MiniChart";
 import { TrendingUp, TrendingDown, AlertTriangle, Sparkles, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const employees = [
   {
-    name: "Jessica Moore",
-    role: "Media Buyer",
-    avatar: "JM",
-    avatarBg: "from-violet-400 to-purple-500",
-    risk: 1,
+    name: "Sarah Chen",
+    role: "Designer",
+    avatar: "/avatars/Sarah-chen.png",
+    risk: 2,
     workload: 4,
     collab: 8,
-    engage: 8,
-    riskTrend: [2, 2, 1, 1, 1, 1, 1],
-    engageTrend: [6, 7, 7, 8, 8, 8, 8],
+    engage: 9,
+    riskTrend: [3, 3, 2, 2, 2, 2, 2],
+    engageTrend: [7, 8, 8, 9, 9, 9, 9],
   },
   {
-    name: "Ryan Peters",
-    role: "Creative Strategist",
-    avatar: "RP",
-    avatarBg: "from-blue-400 to-cyan-500",
-    risk: 2,
+    name: "Marcus Johnson",
+    role: "Developer",
+    avatar: "/avatars/marcus-johnson.png",
+    risk: 3,
     workload: 5,
     collab: 9,
-    engage: 6,
-    riskTrend: [3, 3, 2, 2, 2, 2, 2],
-    engageTrend: [7, 7, 6, 6, 6, 6, 6],
-  },
-  {
-    name: "Sophia Lin",
-    role: "Graphic Designer",
-    avatar: "SL",
-    avatarBg: "from-pink-400 to-rose-500",
-    risk: 5,
-    workload: 7,
-    collab: 9,
     engage: 8,
-    riskTrend: [3, 4, 4, 5, 5, 5, 5],
-    engageTrend: [8, 8, 8, 8, 8, 8, 8],
-  },
-  {
-    name: "James Carter",
-    role: "Media Buyer",
-    avatar: "JC",
-    avatarBg: "from-emerald-400 to-teal-500",
-    risk: 1,
-    workload: 2,
-    collab: 6,
-    engage: 8,
-    riskTrend: [1, 1, 1, 1, 1, 1, 1],
+    riskTrend: [4, 4, 3, 3, 3, 3, 3],
     engageTrend: [7, 7, 8, 8, 8, 8, 8],
   },
   {
-    name: "Olivia Bennett",
-    role: "Project Manager",
-    avatar: "OB",
-    avatarBg: "from-amber-400 to-orange-500",
-    risk: 9,
-    workload: 9,
-    collab: 2,
-    engage: 7,
-    riskTrend: [5, 6, 7, 8, 8, 9, 9],
-    engageTrend: [8, 8, 7, 7, 7, 7, 7],
+    name: "Emily Rodriguez",
+    role: "PM",
+    avatar: "/avatars/emily-rodriguez.png",
+    risk: 7,
+    workload: 8,
+    collab: 4,
+    engage: 5,
+    riskTrend: [4, 5, 5, 6, 6, 7, 7],
+    engageTrend: [7, 7, 6, 6, 5, 5, 5],
+  },
+  {
+    name: "Ryan Peters",
+    role: "Marketing",
+    avatar: "/avatars/ryan-peters.png",
+    risk: 1,
+    workload: 3,
+    collab: 8,
+    engage: 9,
+    riskTrend: [2, 2, 1, 1, 1, 1, 1],
+    engageTrend: [8, 8, 9, 9, 9, 9, 9],
   },
 ];
 
@@ -130,11 +115,11 @@ export function Dashboard() {
                 <div className="flex items-center gap-6 text-xs">
                   <div className="flex items-center gap-2">
                     <span className="text-gray-400">Team Size:</span>
-                    <span className="font-semibold text-gray-700">5 members</span>
+                    <span className="font-semibold text-gray-700">4 members</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-400">Avg. Engagement:</span>
-                    <span className="font-semibold text-emerald-600">7.4</span>
+                    <span className="font-semibold text-emerald-600">7.8</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-400">At Risk:</span>
@@ -180,8 +165,14 @@ export function Dashboard() {
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${employee.avatarBg} flex items-center justify-center text-xs font-bold text-white shadow-sm`}>
-                              {employee.avatar}
+                            <div className="w-10 h-10 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                              <Image
+                                src={employee.avatar}
+                                alt={employee.name}
+                                width={40}
+                                height={40}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <div>
                               <p className="font-medium text-gray-900 text-sm">
@@ -232,12 +223,18 @@ export function Dashboard() {
 
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-orange-500/25">
-                    OB
+                  <div className="w-11 h-11 rounded-xl overflow-hidden bg-gray-100 shadow-lg">
+                    <Image
+                      src="/avatars/emily-rodriguez.png"
+                      alt="Emily Rodriguez"
+                      width={44}
+                      height={44}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900 text-sm">Olivia Bennett</p>
-                    <p className="text-xs text-gray-400">Project Manager</p>
+                    <p className="font-semibold text-gray-900 text-sm">Emily Rodriguez</p>
+                    <p className="text-xs text-gray-400">PM</p>
                   </div>
                 </div>
                 <div className="px-2 py-1 rounded-full bg-red-100 border border-red-200">

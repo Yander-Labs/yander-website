@@ -9,7 +9,16 @@ import {
   Bell,
   Zap,
   Users,
+  Shield,
+  X,
+  Check,
+  Camera,
+  Keyboard,
+  Eye,
+  BarChart3,
+  Lock,
 } from "lucide-react";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -84,20 +93,24 @@ function DashboardVisual() {
 
               {/* Table rows */}
               {[
-                { name: "Alex Chen", role: "Product Manager", status: "active" },
-                { name: "Sarah Kim", role: "Designer", status: "active" },
-                { name: "Mike Johnson", role: "Developer", status: "away" },
-                { name: "Emily Davis", role: "Marketing", status: "active" },
+                { name: "Sarah Chen", role: "Designer", status: "active", avatar: "/avatars/Sarah-chen.png" },
+                { name: "Marcus Johnson", role: "Developer", status: "active", avatar: "/avatars/marcus-johnson.png" },
+                { name: "Emily Rodriguez", role: "PM", status: "away", avatar: "/avatars/emily-rodriguez.png" },
+                { name: "Ryan Peters", role: "Marketing", status: "active", avatar: "/avatars/ryan-peters.png" },
               ].map((person, i) => (
                 <div
                   key={i}
                   className="grid grid-cols-[1fr,0.8fr,0.5fr] gap-2 items-center py-1.5 px-1 rounded hover:bg-[#2a2a2a]/50"
                 >
                   <div className="flex items-center gap-2">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[8px] text-white ${
-                      ["bg-emerald-500", "bg-blue-500", "bg-purple-500", "bg-amber-500"][i]
-                    }`}>
-                      {person.name.split(" ").map(n => n[0]).join("")}
+                    <div className="w-5 h-5 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+                      <Image
+                        src={person.avatar}
+                        alt={person.name}
+                        width={20}
+                        height={20}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <span className="text-[10px] text-white">{person.name}</span>
                   </div>
@@ -115,74 +128,68 @@ function DashboardVisual() {
   );
 }
 
-// Analytics chart with glow effect
-function AnalyticsVisual() {
-  const points = [40, 45, 42, 55, 50, 65, 60, 72, 68, 78, 75, 85];
-  const maxY = 100;
-  const width = 280;
-  const height = 120;
-
-  // Create SVG path
-  const pathD = points
-    .map((p, i) => {
-      const x = (i / (points.length - 1)) * width;
-      const y = height - (p / maxY) * height;
-      return `${i === 0 ? "M" : "L"} ${x} ${y}`;
-    })
-    .join(" ");
-
-  // Create area path (for gradient fill)
-  const areaD = `${pathD} L ${width} ${height} L 0 ${height} Z`;
+// Privacy First visual matching the dark card design
+function PrivacyVisual() {
+  const blockedItems = [
+    { icon: Camera, label: "Screenshots", sublabel: "Never captured" },
+    { icon: Keyboard, label: "Keystrokes", sublabel: "Never logged" },
+    { icon: Eye, label: "Webcam", sublabel: "Never accessed" },
+  ];
 
   return (
-    <div className="flex-1 flex items-center justify-center p-6">
-      <div className="relative">
-        {/* Percentage indicator */}
-        <div className="absolute -top-2 right-0 flex items-center gap-1 text-emerald-400">
-          <ArrowUp className="w-3 h-3" />
-          <span className="text-sm font-medium">14.12%</span>
+    <div className="flex-1 flex flex-col p-5">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-9 h-9 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+          <Shield className="w-5 h-5 text-emerald-400" />
         </div>
+        <div>
+          <h4 className="text-sm font-semibold text-white">Privacy First</h4>
+          <p className="text-[11px] text-gray-500">Your team&apos;s trust matters</p>
+        </div>
+      </div>
 
-        {/* Chart */}
-        <svg width={width} height={height} className="overflow-visible">
-          {/* Glow filter */}
-          <defs>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
-            </linearGradient>
-          </defs>
+      {/* 2x2 Grid */}
+      <div className="grid grid-cols-2 gap-2 mb-2">
+        {/* Blocked items - red */}
+        {blockedItems.map((item) => (
+          <div
+            key={item.label}
+            className="bg-[#1f1215] rounded-lg p-3 border border-[#3a2024]"
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-5 h-5 rounded bg-rose-500/20 flex items-center justify-center">
+                <X className="w-3 h-3 text-rose-400" />
+              </div>
+              <span className="text-xs font-medium text-white">{item.label}</span>
+            </div>
+            <p className="text-[10px] text-rose-400/80 pl-7">{item.sublabel}</p>
+          </div>
+        ))}
 
-          {/* Area fill */}
-          <path d={areaD} fill="url(#areaGradient)" />
+        {/* Allowed item - green */}
+        <div className="bg-[#0f1f17] rounded-lg p-3 border border-[#1a3a28]">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
+              <Check className="w-3 h-3 text-emerald-400" />
+            </div>
+            <span className="text-xs font-medium text-white">Patterns Only</span>
+          </div>
+          <p className="text-[10px] text-emerald-400/80 pl-7">Aggregated insights</p>
+        </div>
+      </div>
 
-          {/* Line with glow */}
-          <path
-            d={pathD}
-            fill="none"
-            stroke="#10b981"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#glow)"
-          />
-
-          {/* End dot */}
-          <circle
-            cx={width}
-            cy={height - (points[points.length - 1] / maxY) * height}
-            r="4"
-            fill="#10b981"
-            filter="url(#glow)"
-          />
-        </svg>
+      {/* Role-Based Access row */}
+      <div className="bg-[#1a1a1a] rounded-lg p-3 border border-[#2a2a2a] mt-auto">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+            <Lock className="w-3 h-3 text-emerald-400" />
+          </div>
+          <div>
+            <span className="text-xs font-medium text-white">Role-Based Access</span>
+            <p className="text-[10px] text-gray-500">Only the right leaders see sensitive insights</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -263,24 +270,31 @@ function AIVisual() {
 
 // Team collaboration visual - overlapping avatars
 function CollaborationVisual() {
+  const teamAvatars = [
+    "/avatars/Sarah-chen.png",
+    "/avatars/marcus-johnson.png",
+    "/avatars/emily-rodriguez.png",
+    "/avatars/ryan-peters.png",
+  ];
+
   return (
     <div className="flex-1 flex items-center justify-center p-4">
       <div className="flex items-center">
         {/* Overlapping avatars */}
         <div className="flex -space-x-3">
-          {[
-            "bg-emerald-500",
-            "bg-blue-500",
-            "bg-purple-500",
-            "bg-amber-500",
-            "bg-rose-500",
-          ].map((color, i) => (
+          {teamAvatars.map((avatar, i) => (
             <div
               key={i}
-              className={`w-10 h-10 rounded-full ${color} border-2 border-[#1a1a1a] flex items-center justify-center text-white text-xs font-medium shadow-lg`}
+              className="w-10 h-10 rounded-full border-2 border-[#1a1a1a] overflow-hidden shadow-lg"
               style={{ zIndex: 5 - i }}
             >
-              {["AC", "SK", "MJ", "ED", "JL"][i]}
+              <Image
+                src={avatar}
+                alt="Team member"
+                width={40}
+                height={40}
+                className="w-full h-full object-cover"
+              />
             </div>
           ))}
         </div>
@@ -333,16 +347,16 @@ export function BentoFeatures() {
             </div>
           </motion.div>
 
-          {/* Card 2 - Analytics */}
+          {/* Card 2 - Privacy First */}
           <motion.div
             variants={itemVariants}
             className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[360px]"
           >
-            <AnalyticsVisual />
+            <PrivacyVisual />
             <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Simple Analytics</h3>
+              <h3 className="text-lg font-semibold text-white">Privacy by Design</h3>
               <p className="text-sm text-gray-400 mt-1">
-                Make informed decisions backed by data through our intuitive analytics tools.
+                Built for trust, not surveillance. We analyze patterns, not keystrokes.
               </p>
             </div>
           </motion.div>

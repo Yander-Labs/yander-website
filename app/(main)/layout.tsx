@@ -3,6 +3,7 @@
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { WaitlistModalProvider } from "@/components/ui/WaitlistModal";
+import { DemoModalProvider } from "@/components/ui/DemoModal";
 
 export default function MainLayout({
   children,
@@ -11,9 +12,11 @@ export default function MainLayout({
 }) {
   return (
     <WaitlistModalProvider>
-      <Navigation />
-      {children}
-      <Footer />
+      <DemoModalProvider>
+        <Navigation />
+        {children}
+        <Footer />
+      </DemoModalProvider>
     </WaitlistModalProvider>
   );
 }

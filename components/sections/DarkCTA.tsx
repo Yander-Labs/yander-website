@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useDemoModal } from "../ui/DemoModal";
 
 export function DarkCTA() {
+  const { openModal: openDemoModal } = useDemoModal();
+
   return (
     <section className="py-20 md:py-28 bg-white">
       <Container>
@@ -68,7 +71,10 @@ export function DarkCTA() {
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10">
+              <button
+                onClick={openDemoModal}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
+              >
                 Book a Demo
               </button>
               <p className="text-center text-xs text-white/40 mt-2">

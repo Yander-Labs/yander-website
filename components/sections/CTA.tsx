@@ -5,9 +5,11 @@ import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Clock, ShieldCheck, Award } from "lucide-react";
 import { useWaitlistModal } from "../ui/WaitlistModal";
+import { useDemoModal } from "../ui/DemoModal";
 
 export function CTA() {
   const { openModal } = useWaitlistModal();
+  const { openModal: openDemoModal } = useDemoModal();
 
   return (
     <section className="py-20 md:py-28 divider-dashed">
@@ -23,7 +25,7 @@ export function CTA() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
             <Button size="lg" onClick={openModal}>Join Waitlist</Button>
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary" size="lg" onClick={openDemoModal}>
               Book a Demo
             </Button>
           </div>
