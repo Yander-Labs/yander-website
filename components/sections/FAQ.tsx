@@ -10,27 +10,17 @@ const faqs = [
   {
     question: "How does Yander work without tracking keystrokes or screenshots?",
     answer:
-      "Yander analyzes aggregate patterns from tools your team already uses — Slack activity, meeting attendance, response times, and calendar data. We never capture screenshots, log keystrokes, or monitor individual messages. Instead, we look at patterns like how often someone participates in meetings or how their response time has changed over the past week.",
+      "Yander analyses aggregate patterns from tools your team already uses: Slack activity, emails, meeting attendance, response times, project management activity, and more. We never capture screenshots, log keystrokes, or monitor private messages. Instead, we look at patterns across the platforms your team already uses.",
   },
   {
     question: "What integrations does Yander support?",
     answer:
-      "Yander integrates with Slack, Google Workspace (Gmail, Calendar, Meet), Microsoft 365 (Outlook, Teams, Calendar), and Zoom. Setup takes about 10 minutes and requires just a few OAuth connections. We're constantly adding new integrations based on customer feedback.",
-  },
-  {
-    question: "Can employees see their own data?",
-    answer:
-      "Yes! We believe in transparency. Employees can view their own engagement scores and trends, but they cannot see other team members' data. This encourages self-awareness and personal accountability while maintaining privacy boundaries.",
+      "Yander integrates with Slack, Google Workspace (Gmail, Calendar, Meet), Microsoft 365 (Outlook, Teams, Calendar), Zoom, and project management tools like Notion, ClickUp, and Monday.com. Setup takes about 10 minutes. We're constantly adding new integrations based on customer feedback.",
   },
   {
     question: "How is Yander different from time-tracking software?",
     answer:
       "Time-tracking software monitors hours worked and specific activities. Yander focuses on engagement quality, not quantity. We help you understand if someone is thriving or struggling — not how many hours they logged. It's the difference between surveillance and insight.",
-  },
-  {
-    question: "What does the AI actually analyze?",
-    answer:
-      "Our AI looks at communication patterns (not content), meeting participation trends, response time changes, after-hours activity, and sentiment shifts in public channels. It identifies patterns like declining engagement, potential burnout signals, or isolation from team collaboration — all without reading private messages.",
   },
   {
     question: "How quickly can I get started?",
@@ -146,7 +136,7 @@ export function FAQ() {
             <p className="text-sm text-[#737373]">
               Still have questions?{" "}
               <a
-                href="mailto:hello@yander.io"
+                href="mailto:jordan@yanderlabs.com"
                 className="text-[#171717] font-medium hover:underline"
               >
                 Reach out to our team

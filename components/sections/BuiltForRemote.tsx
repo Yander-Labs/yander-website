@@ -5,6 +5,7 @@ import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MiniChart } from "../ui/MiniChart";
+import { useWaitlistModal } from "../ui/WaitlistModal";
 import { Check, TrendingUp, MessageCircle, Zap, Clock, ArrowUpRight } from "lucide-react";
 
 const features = [
@@ -45,6 +46,8 @@ const signals = [
 ];
 
 export function BuiltForRemote() {
+  const { openModal } = useWaitlistModal();
+
   return (
     <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative">
       {/* Peec.ai signature gradient overlay */}
@@ -75,7 +78,7 @@ export function BuiltForRemote() {
               ))}
             </ul>
 
-            <Button>Get Engagement Insights</Button>
+            <Button onClick={openModal}>Get Engagement Insights</Button>
           </AnimatedSection>
 
           {/* Visual - Enhanced Engagement Signals */}

@@ -5,9 +5,11 @@ import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
+import { useWaitlistModal } from "../ui/WaitlistModal";
 
 export function DarkCTA() {
   const { openModal: openDemoModal } = useDemoModal();
+  const { openModal: openWaitlistModal } = useWaitlistModal();
 
   return (
     <section className="py-20 md:py-28 bg-white">
@@ -17,7 +19,7 @@ export function DarkCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-8 md:p-12 lg:p-16"
+          className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
         >
           {/* Background decorations */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
@@ -42,38 +44,41 @@ export function DarkCTA() {
               </h2>
 
               <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
-                Join hundreds of agency leaders who use Yander to keep their teams engaged,
+                Join leading agencies who use Yander to keep their teams engaged,
                 prevent burnout, and deliver better results for clients.
               </p>
 
               {/* Stats row */}
-              <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-8">
+              <div className="mt-8 flex flex-wrap items-center justify-around sm:justify-center lg:justify-start w-full sm:w-auto gap-2 sm:gap-6 md:gap-8">
                 <div className="text-center lg:text-left">
-                  <p className="text-2xl md:text-3xl font-semibold text-white">30%</p>
-                  <p className="text-sm text-white/50">Better Retention</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">30%</p>
+                  <p className="text-xs sm:text-sm text-white/50">Better Retention</p>
                 </div>
                 <div className="hidden sm:block w-px h-12 bg-white/10" />
                 <div className="text-center lg:text-left">
-                  <p className="text-2xl md:text-3xl font-semibold text-white">8hrs</p>
-                  <p className="text-sm text-white/50">Saved Monthly</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">8hrs</p>
+                  <p className="text-xs sm:text-sm text-white/50">Saved Monthly</p>
                 </div>
                 <div className="hidden sm:block w-px h-12 bg-white/10" />
                 <div className="text-center lg:text-left">
-                  <p className="text-2xl md:text-3xl font-semibold text-white">10min</p>
-                  <p className="text-sm text-white/50">Setup Time</p>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">10min</p>
+                  <p className="text-xs sm:text-sm text-white/50">Setup Time</p>
                 </div>
               </div>
             </div>
 
             {/* CTA buttons */}
             <div className="flex flex-col gap-3 w-full sm:w-auto">
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group">
+              <button
+                onClick={openWaitlistModal}
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
+              >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
               >
                 Book a Demo
               </button>

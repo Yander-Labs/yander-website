@@ -42,87 +42,79 @@ const itemVariants = {
   },
 };
 
-// Dashboard visual - browser mockup with team table
+// Dashboard visual - clean team overview
 function DashboardVisual() {
+  const teamMembers = [
+    { name: "Sarah Chen", role: "Graphic Designer", score: 9, trend: "up", avatar: "/avatars/Sarah-chen.png" },
+    { name: "Marcus Johnson", role: "Creative Strategist", score: 8, trend: "up", avatar: "/avatars/marcus-johnson.png" },
+    { name: "Emily Rodriguez", role: "Project Manager", score: 5, trend: "down", avatar: "/avatars/emily-rodriguez.png" },
+    { name: "Ryan Peters", role: "Media Buyer", score: 9, trend: "up", avatar: "/avatars/ryan-peters.png" },
+  ];
+
   return (
-    <div className="flex-1 flex items-center justify-center p-6">
-      <div className="w-full max-w-md">
-        {/* Browser chrome */}
-        <div className="bg-[#2a2a2a] rounded-t-lg px-3 py-2 flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+    <div className="flex-1 flex flex-col p-5">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-md bg-white/10 flex items-center justify-center">
+            <Users className="w-4 h-4 text-white" />
           </div>
-          <div className="flex-1 flex justify-center">
-            <div className="bg-[#1a1a1a] rounded px-3 py-1 text-[10px] text-gray-500">
-              Dashboard
-            </div>
-          </div>
-          <div className="flex gap-1.5 opacity-0">
-            <div className="w-2.5 h-2.5 rounded-full" />
-            <div className="w-2.5 h-2.5 rounded-full" />
+          <div>
+            <h4 className="text-sm font-medium text-white">Team Overview</h4>
+            <p className="text-[10px] text-gray-500">4 members · Last 7 days</p>
           </div>
         </div>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded-md">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[10px] text-emerald-400">Live</span>
+        </div>
+      </div>
 
-        {/* Dashboard content */}
-        <div className="bg-[#1a1a1a] rounded-b-lg border border-[#2a2a2a] border-t-0 overflow-hidden">
-          <div className="flex">
-            {/* Sidebar */}
-            <div className="w-24 border-r border-[#2a2a2a] p-2 space-y-1">
-              {["Dashboard", "Analytics", "Team", "Settings"].map((item, i) => (
-                <div
-                  key={item}
-                  className={`px-2 py-1.5 rounded text-[9px] ${
-                    i === 0 ? "bg-[#2a2a2a] text-white" : "text-gray-500"
-                  }`}
-                >
-                  {item}
-                </div>
-              ))}
+      {/* Team list */}
+      <div className="space-y-2">
+        {teamMembers.map((member) => (
+          <div
+            key={member.name}
+            className={`flex items-center gap-3 p-2.5 rounded-lg border ${
+              member.score <= 5
+                ? "bg-amber-500/5 border-amber-500/20"
+                : "bg-[#1a1a1a] border-[#2a2a2a]"
+            }`}
+          >
+            <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
+              <Image
+                src={member.avatar}
+                alt={member.name}
+                width={32}
+                height={32}
+                className="w-full h-full object-cover"
+              />
             </div>
-
-            {/* Main content */}
-            <div className="flex-1 p-3">
-              {/* Table header */}
-              <div className="grid grid-cols-[1fr,0.8fr,0.5fr] gap-2 text-[8px] text-gray-500 uppercase tracking-wide mb-2 px-1">
-                <span>Name</span>
-                <span>Role</span>
-                <span>Status</span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-white truncate">{member.name}</span>
+                {member.score <= 5 && (
+                  <span className="text-[9px] px-1.5 py-0.5 bg-amber-500/20 text-amber-400 rounded">
+                    At Risk
+                  </span>
+                )}
               </div>
-
-              {/* Table rows */}
-              {[
-                { name: "Sarah Chen", role: "Designer", status: "active", avatar: "/avatars/Sarah-chen.png" },
-                { name: "Marcus Johnson", role: "Developer", status: "active", avatar: "/avatars/marcus-johnson.png" },
-                { name: "Emily Rodriguez", role: "PM", status: "away", avatar: "/avatars/emily-rodriguez.png" },
-                { name: "Ryan Peters", role: "Marketing", status: "active", avatar: "/avatars/ryan-peters.png" },
-              ].map((person, i) => (
-                <div
-                  key={i}
-                  className="grid grid-cols-[1fr,0.8fr,0.5fr] gap-2 items-center py-1.5 px-1 rounded hover:bg-[#2a2a2a]/50"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-                      <Image
-                        src={person.avatar}
-                        alt={person.name}
-                        width={20}
-                        height={20}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <span className="text-[10px] text-white">{person.name}</span>
-                  </div>
-                  <span className="text-[9px] text-gray-400">{person.role}</span>
-                  <div className={`w-1.5 h-1.5 rounded-full ${
-                    person.status === "active" ? "bg-emerald-400" : "bg-amber-400"
-                  }`} />
-                </div>
-              ))}
+              <span className="text-[10px] text-gray-500">{member.role}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className={`text-sm font-semibold ${
+                member.score <= 5 ? "text-amber-400" : "text-emerald-400"
+              }`}>
+                {member.score}
+              </div>
+              {member.trend === "up" ? (
+                <ArrowUp className="w-3 h-3 text-emerald-400" />
+              ) : (
+                <ArrowDown className="w-3 h-3 text-amber-400" />
+              )}
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
@@ -336,7 +328,7 @@ export function BentoFeatures() {
           {/* Card 1 - Dashboard (Large, spans 2 cols) */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[360px]"
+            className="lg:col-span-2 bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[320px] sm:min-h-[340px] md:min-h-[360px]"
           >
             <DashboardVisual />
             <div className="p-6 pt-0 mt-auto">
@@ -350,7 +342,7 @@ export function BentoFeatures() {
           {/* Card 2 - Privacy First */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[360px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[320px] sm:min-h-[340px] md:min-h-[360px]"
           >
             <PrivacyVisual />
             <div className="p-6 pt-0 mt-auto">
@@ -364,7 +356,7 @@ export function BentoFeatures() {
           {/* Card 3 - Smart Alerts */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
           >
             <AlertsVisual />
             <div className="p-6 pt-0 mt-auto">
@@ -378,7 +370,7 @@ export function BentoFeatures() {
           {/* Card 4 - AI Recommendations */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
           >
             <AIVisual />
             <div className="p-6 pt-0 mt-auto">
@@ -392,7 +384,7 @@ export function BentoFeatures() {
           {/* Card 5 - Team Collaboration */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
           >
             <CollaborationVisual />
             <div className="p-6 pt-0 mt-auto">

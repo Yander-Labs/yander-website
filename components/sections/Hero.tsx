@@ -103,25 +103,25 @@ function ProductMockup() {
 
           {/* Team members table - clean Notion-style */}
           <div className="rounded border border-[#f0f0f0] overflow-hidden">
-            {/* Table header */}
-            <div className="grid grid-cols-[1fr_50px_70px_55px_50px_28px] gap-4 px-4 py-2 bg-[#fafafa] border-b border-[#f0f0f0] text-[10px] font-medium text-gray-500 uppercase tracking-wide">
+            {/* Table header - responsive: hide some columns on mobile */}
+            <div className="grid grid-cols-[1fr_40px_40px_24px] sm:grid-cols-[1fr_45px_50px_45px_24px] md:grid-cols-[1fr_50px_70px_55px_50px_28px] gap-2 sm:gap-3 md:gap-4 px-3 sm:px-4 py-2 bg-[#fafafa] border-b border-[#f0f0f0] text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wide">
               <span>Member</span>
               <span className="text-center">Risk</span>
-              <span className="text-center">Workload</span>
+              <span className="hidden sm:block text-center">Load</span>
               <span className="text-center">Engage</span>
-              <span className="text-center">Collab</span>
+              <span className="hidden md:block text-center">Collab</span>
               <span></span>
             </div>
             {/* Table rows */}
             {teamMembers.map((member, idx) => (
               <div
                 key={member.name}
-                className={`grid grid-cols-[1fr_50px_70px_55px_50px_28px] gap-4 px-4 py-2.5 items-center ${
+                className={`grid grid-cols-[1fr_40px_40px_24px] sm:grid-cols-[1fr_45px_50px_45px_24px] md:grid-cols-[1fr_50px_70px_55px_50px_28px] gap-2 sm:gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-2.5 items-center ${
                   idx !== teamMembers.length - 1 ? 'border-b border-[#f5f5f5]' : ''
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+                <div className="flex items-center gap-1.5 sm:gap-2.5">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
                     <Image
                       src={member.avatar}
                       alt={member.name}
@@ -131,38 +131,48 @@ function ProductMockup() {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] text-gray-900">{member.name}</p>
-                    <p className="text-[11px] text-gray-400">{member.role}</p>
+                    <p className="text-[11px] sm:text-[13px] text-gray-900 truncate">{member.name}</p>
+                    <p className="text-[9px] sm:text-[11px] text-gray-400 truncate">{member.role}</p>
                   </div>
                   {member.name === "Emily Rodriguez" && (
-                    <div className="flex items-center gap-1.5 px-2 py-1 bg-amber-50 border border-amber-200 rounded-md">
-                      <AlertTriangle className="w-3 h-3 text-amber-600 flex-shrink-0" />
-                      <span className="text-[10px] text-amber-700 whitespace-nowrap">Check-in recommended · Engagement dropped 23%</span>
-                    </div>
+                    <>
+                      {/* Mobile: Compact badge with icon only */}
+                      <div className="flex md:hidden items-center justify-center w-5 h-5 sm:w-6 sm:h-6 bg-amber-50 border border-amber-200 rounded-md flex-shrink-0">
+                        <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-600" />
+                      </div>
+                      {/* Desktop: Full stacked badge */}
+                      <div className="hidden md:flex items-start gap-1.5 px-2 py-1 bg-amber-50 border border-amber-200 rounded-md">
+                        <AlertTriangle className="w-3 h-3 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-amber-700 font-medium">Check-in recommended</span>
+                          <span className="text-[10px] text-amber-600">Engagement dropped 23%</span>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
                 <div className="text-center">
-                  <span className={`text-[13px] font-medium ${
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
                     member.risk >= 7 ? 'text-red-600' : member.risk >= 4 ? 'text-amber-600' : 'text-emerald-600'
                   }`}>
                     {member.risk}
                   </span>
                 </div>
-                <div className="text-center">
-                  <span className={`text-[13px] font-medium ${
+                <div className="hidden sm:block text-center">
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
                     member.workload >= 7 ? 'text-red-600' : member.workload >= 4 ? 'text-amber-600' : 'text-emerald-600'
                   }`}>
                     {member.workload}
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className={`text-[13px] font-medium ${
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
                     member.engage <= 3 ? 'text-red-600' : member.engage <= 6 ? 'text-amber-600' : 'text-emerald-600'
                   }`}>
                     {member.engage}
                   </span>
                 </div>
-                <div className="text-center">
+                <div className="hidden md:block text-center">
                   <span className={`text-[13px] font-medium ${
                     member.collab <= 3 ? 'text-red-600' : member.collab <= 6 ? 'text-amber-600' : 'text-emerald-600'
                   }`}>
@@ -171,9 +181,9 @@ function ProductMockup() {
                 </div>
                 <div className="flex justify-center">
                   {member.trend === 'up' ? (
-                    <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
+                    <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-500" />
                   ) : (
-                    <TrendingDown className="w-3.5 h-3.5 text-red-500" />
+                    <TrendingDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-500" />
                   )}
                 </div>
               </div>

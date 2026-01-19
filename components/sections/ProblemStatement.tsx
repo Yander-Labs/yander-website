@@ -20,12 +20,12 @@ export function ProblemStatement() {
             >
               {/* Gallup Logo Card */}
               <div className="flex-shrink-0">
-                <div className="bg-[#2a2a2a] rounded-xl p-6 md:p-8 relative">
+                <div className="bg-[#2a2a2a] rounded-xl p-6 md:p-8 relative text-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/logos/gallup.svg"
                     alt="Gallup"
-                    className="h-8 md:h-10 w-auto mb-2 invert brightness-200"
+                    className="h-auto w-full max-w-[180px] md:max-w-[160px] mx-auto mb-2 invert brightness-200"
                   />
                   <p className="text-xs text-gray-400">
                     Global leader in workplace research.
