@@ -27,6 +27,8 @@ export async function POST(request: NextRequest) {
     const body: WaitlistRequest = await request.json();
     const { email } = body;
 
+    console.log("Waitlist signup attempt:", { email: email?.substring(0, 3) + "***" });
+
     if (!email || !email.includes("@")) {
       return NextResponse.json(
         { error: "Valid email address is required" },
@@ -38,6 +40,12 @@ export async function POST(request: NextRequest) {
       loops: { success: false, error: null as string | null },
       sheets: { success: false, error: null as string | null },
     };
+
+    // Log environment status (not the actual values)
+    console.log("Env check:", {
+      hasLoopsKey: !!process.env.LOOPS_API_KEY,
+      hasSheetDb: !!process.env.SHEETDB_API_URL,
+    });
 
     // Send to Loops
     const loopsApiKey = process.env.LOOPS_API_KEY;
@@ -60,6 +68,7 @@ export async function POST(request: NextRequest) {
         );
 
         const loopsText = await loopsResponse.text();
+        console.log("Loops response:", { status: loopsResponse.status, body: loopsText });
 
         let loopsData: LoopsResponse;
         try {
@@ -123,6 +132,8 @@ export async function POST(request: NextRequest) {
     // Consider success if at least Loops worked (primary destination)
     const overallSuccess = results.loops.success;
 
+    console.log("Waitlist results:", results);
+
     if (overallSuccess) {
       return NextResponse.json({
         success: true,
@@ -130,10 +141,12 @@ export async function POST(request: NextRequest) {
         details: results,
       });
     } else {
+      // Return more specific error for debugging
+      const errorMsg = results.loops.error || "Failed to process signup";
       return NextResponse.json(
         {
           success: false,
-          error: "Failed to process signup",
+          error: errorMsg,
           details: results,
         },
         { status: 500 }
