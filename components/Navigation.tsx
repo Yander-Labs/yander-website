@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useWaitlistModal } from "./ui/WaitlistModal";
 import { useDemoModal } from "./ui/DemoModal";
 
@@ -22,7 +22,7 @@ export function Navigation({
   bannerLink = "#"
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [bannerVisible, setBannerVisible] = useState(showBanner);
+  const bannerVisible = showBanner;
   const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
@@ -40,20 +40,13 @@ export function Navigation({
       {bannerVisible && (
         <div className="fixed top-0 left-0 right-0 z-[60] bg-gray-900 text-white">
           <Container>
-            <div className="flex items-center justify-center py-2.5 relative">
+            <div className="flex items-center justify-center py-2.5">
               <button
                 onClick={openModal}
-                className="flex items-center gap-2 text-sm font-medium hover:text-gray-200 transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium hover:text-gray-200 transition-colors"
               >
                 <span>{bannerText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setBannerVisible(false)}
-                className="absolute right-0 p-1 hover:bg-white/10 rounded-md transition-colors"
-                aria-label="Close banner"
-              >
-                <X className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               </button>
             </div>
           </Container>

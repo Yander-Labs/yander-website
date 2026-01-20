@@ -243,7 +243,7 @@ export function Hero() {
               delay: 0.2,
               ease: [0.21, 0.47, 0.32, 0.98],
             }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+            className="mt-8 flex flex-row items-center justify-center gap-3"
           >
             <Button size="lg" onClick={openModal}>Join Waitlist</Button>
             <Button variant="secondary" size="lg" onClick={openDemoModal}>
