@@ -31,6 +31,30 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
+  openGraph: {
+    title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
+    description:
+      "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
+    url: "https://yander.io",
+    siteName: "Yander",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Yander Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
+    description:
+      "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({
