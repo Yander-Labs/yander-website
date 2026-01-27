@@ -4,15 +4,29 @@ interface WaitlistRequest {
   email: string;
 }
 
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  "https://yander.io",
+  "https://www.yander.io",
+  "https://yander-website.vercel.app",
+  process.env.NODE_ENV === "development" ? "http://localhost:3001" : "",
+].filter(Boolean);
+
+function getCorsHeaders(origin: string | null) {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+}
+
 // Handle OPTIONS preflight
-export async function OPTIONS() {
+export async function OPTIONS(request: NextRequest) {
+  const origin = request.headers.get("origin");
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-    },
+    headers: getCorsHeaders(origin),
   });
 }
 
@@ -23,6 +37,9 @@ interface LoopsResponse {
 }
 
 export async function POST(request: NextRequest) {
+  const origin = request.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+
   try {
     const body: WaitlistRequest = await request.json();
     const { email } = body;
@@ -32,7 +49,7 @@ export async function POST(request: NextRequest) {
     if (!email || !email.includes("@")) {
       return NextResponse.json(
         { error: "Valid email address is required" },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -135,11 +152,13 @@ export async function POST(request: NextRequest) {
     console.log("Waitlist results:", results);
 
     if (overallSuccess) {
-      return NextResponse.json({
-        success: true,
-        message: "Successfully joined the waitlist",
-        details: results,
-      });
+      return NextResponse.json(
+        {
+          success: true,
+          message: "Successfully joined the waitlist",
+        },
+        { headers: corsHeaders }
+      );
     } else {
       // Return more specific error for debugging
       const errorMsg = results.loops.error || "Failed to process signup";
@@ -147,9 +166,8 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: errorMsg,
-          details: results,
         },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
   } catch (error) {
@@ -159,7 +177,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: "Internal server error",
       },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
