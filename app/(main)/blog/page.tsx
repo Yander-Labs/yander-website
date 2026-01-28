@@ -8,7 +8,31 @@ import { BlogContent } from './BlogContent'
 
 export const metadata: Metadata = {
   title: 'Blog | Yander',
-  description: 'Insights on remote work, team productivity, and building better workplace culture.'
+  description: 'Insights on remote work, team productivity, and building better workplace culture.',
+  alternates: {
+    canonical: 'https://yander.io/blog',
+  },
+  openGraph: {
+    title: 'Yander Blog - Remote Work & Team Productivity Insights',
+    description: 'Insights on remote work, team productivity, and building better workplace culture.',
+    url: 'https://yander.io/blog',
+    siteName: 'Yander',
+    type: 'website',
+    images: [
+      {
+        url: 'https://yander.io/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Yander Blog',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Yander Blog - Remote Work & Team Productivity Insights',
+    description: 'Insights on remote work, team productivity, and building better workplace culture.',
+    images: ['https://yander.io/og-image.png'],
+  },
 }
 
 export const revalidate = 60 // Revalidate every 60 seconds

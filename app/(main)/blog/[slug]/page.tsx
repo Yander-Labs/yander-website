@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { sanityFetch } from '@/lib/sanity'
+import { sanityFetch, urlFor } from '@/lib/sanity'
 import { postBySlugQuery, postSlugsQuery, relatedPostsQuery } from '@/lib/queries'
 import type { Post, PostCard } from '@/lib/types'
+import { generatePostSEO, generateJSONLD } from '@/lib/seo-utils'
 import { Container } from '@/components/ui/Container'
 import { PostHeader } from '@/components/blog/PostHeader'
 import { PostBody } from '@/components/blog/PostBody'
@@ -11,6 +12,8 @@ import { TableOfContents } from '@/components/blog/TableOfContents'
 import { ShareButtons } from '@/components/blog/ShareButtons'
 import { AuthorCard } from '@/components/blog/AuthorCard'
 import { RelatedPosts } from '@/components/blog/RelatedPosts'
+
+const SITE_URL = 'https://yander.io'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -35,9 +38,33 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
     }
   }
 
+  const seo = generatePostSEO(post, SITE_URL)
+  const postUrl = `${SITE_URL}/blog/${post.slug.current}`
+
   return {
-    title: `${post.title} | Yander Blog`,
-    description: post.excerpt || `Read ${post.title} on the Yander blog.`
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
+    alternates: {
+      canonical: seo.canonical,
+    },
+    openGraph: {
+      title: seo.openGraph.title,
+      description: seo.openGraph.description,
+      type: 'article',
+      url: postUrl,
+      siteName: seo.openGraph.siteName,
+      images: seo.openGraph.images,
+      publishedTime: post.publishedAt,
+      authors: post.author ? [post.author.name] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.twitter.title,
+      description: seo.twitter.description,
+      images: seo.twitter.images,
+    },
+    robots: seo.robots,
   }
 }
 
@@ -48,6 +75,34 @@ async function getPost(slug: string): Promise<Post | null> {
 async function getRelatedPosts(currentSlug: string, categoryIds: string[]): Promise<PostCard[]> {
   if (categoryIds.length === 0) return []
   return sanityFetch<PostCard[]>(relatedPostsQuery, { currentSlug, categoryIds })
+}
+
+// Generate breadcrumb structured data
+function generateBreadcrumbLD(post: Post) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `${SITE_URL}/blog/${post.slug.current}`,
+      },
+    ],
+  }
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -63,10 +118,24 @@ export default async function PostPage({ params }: PostPageProps) {
   const relatedPosts = await getRelatedPosts(slug, categoryIds)
 
   // Build URL for sharing
-  const postUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://yander.ai'}/blog/${slug}`
+  const postUrl = `${SITE_URL}/blog/${slug}`
+
+  // Generate structured data
+  const jsonLd = generateJSONLD(post, SITE_URL)
+  const breadcrumbLd = generateBreadcrumbLD(post)
 
   return (
     <main className="min-h-screen bg-white">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       <ReadingProgress />
       <PostHeader post={post} />
 

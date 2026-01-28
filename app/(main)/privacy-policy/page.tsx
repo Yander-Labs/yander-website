@@ -4,6 +4,10 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Yander",
   description: "Learn how Yander collects, uses, and protects your data. We're committed to transparency and your privacy.",
+  alternates: {
+    canonical: "https://yander.io/privacy-policy",
+  },
+  robots: "index, follow",
 };
 
 export default function PrivacyPolicyPage() {

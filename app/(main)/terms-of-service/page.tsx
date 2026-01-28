@@ -4,6 +4,10 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service | Yander",
   description: "Terms and conditions for using Yander's remote team intelligence platform. Read our service agreement, usage policies, and legal terms.",
+  alternates: {
+    canonical: "https://yander.io/terms-of-service",
+  },
+  robots: "index, follow",
 };
 
 export default function TermsOfServicePage() {

@@ -33,7 +33,7 @@ export interface SEOMetadata {
  */
 export function generatePostSEO(
   post: Post,
-  siteUrl: string = 'https://yander.ai'
+  siteUrl: string = 'https://yander.io'
 ): SEOMetadata {
   const postUrl = `${siteUrl}/blog/${post.slug.current}`
   const seo = post.seo || {}
@@ -94,7 +94,7 @@ export function generatePostSEO(
  */
 export function generateJSONLD(
   post: Post,
-  siteUrl: string = 'https://yander.ai'
+  siteUrl: string = 'https://yander.io'
 ): object {
   const seo = generatePostSEO(post, siteUrl)
 

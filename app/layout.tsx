@@ -27,6 +27,10 @@ export const metadata: Metadata = {
     "burnout prevention",
     "retention",
   ],
+  metadataBase: new URL("https://yander.io"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
@@ -39,10 +43,10 @@ export const metadata: Metadata = {
     siteName: "Yander",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
-        alt: "Yander Logo",
+        url: "https://yander.io/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yander - Remote Team Analytics Platform",
       },
     ],
     locale: "en_US",
@@ -53,7 +57,7 @@ export const metadata: Metadata = {
     title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
     description:
       "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
-    images: ["/logo.png"],
+    images: ["https://yander.io/og-image.png"],
   },
 };
 
