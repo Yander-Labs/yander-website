@@ -6,13 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/studio/',
-          '/studio',
-          '/waitlist-confirmation/',
-          '/waitlist-confirmation',
-          '/api/',
-        ],
+        disallow: ['/studio/', '/waitlist-confirmation/', '/api/'],
       },
     ],
     sitemap: 'https://yander.io/sitemap.xml',

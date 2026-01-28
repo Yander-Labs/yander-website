@@ -58,6 +58,41 @@ export const metadata: Metadata = {
     description:
       "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
     images: ["https://yander.io/og-image.png"],
+    site: "@yanderlabs",
+  },
+};
+
+// Organization structured data for SEO
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Yander",
+  url: "https://yander.io",
+  logo: "https://yander.io/logo.svg",
+  description:
+    "Remote team intelligence platform that helps organizations understand team engagement, collaboration patterns, and workplace health.",
+  sameAs: [
+    "https://x.com/yanderlabs",
+    "https://www.linkedin.com/company/107590331",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "jordan@yanderlabs.com",
+    contactType: "customer service",
+  },
+};
+
+// WebSite structured data for SEO
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Yander",
+  url: "https://yander.io",
+  description:
+    "Build a stronger remote team. Keep clients longer. Get live insights on engagement, workload, and sentiment.",
+  publisher: {
+    "@type": "Organization",
+    name: "Yander",
   },
 };
 
@@ -69,6 +104,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
       <head>
+        {/* Organization and WebSite Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
         {/* Meta Pixel Code */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

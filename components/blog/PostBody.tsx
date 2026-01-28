@@ -149,7 +149,7 @@ function createComponents(headingIds: Map<string, string>): Partial<PortableText
           <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-100">
             <Image
               src={urlFor(value).width(1200).auto('format').url()}
-              alt={value.alt || ''}
+              alt={value.alt || 'Article image'}
               fill
               className="object-cover"
             />

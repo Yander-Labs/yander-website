@@ -22,6 +22,7 @@ export interface SEOMetadata {
     title: string
     description: string
     images: string[]
+    site?: string
   }
   robots: string
   keywords?: string[]
@@ -40,7 +41,7 @@ export function generatePostSEO(
 
   // Title: SEO override > post title
   const title = seo.metaTitle || post.title
-  const fullTitle = `${title} | Yander Blog`
+  const fullTitle = `${title} | Yander`
 
   // Description: SEO override > excerpt > fallback
   const description =
@@ -66,7 +67,7 @@ export function generatePostSEO(
     description,
     canonical,
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       type: 'article',
       url: postUrl,
@@ -75,9 +76,10 @@ export function generatePostSEO(
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
       images: [imageUrl],
+      site: '@yanderlabs',
     },
     robots,
     keywords: seo.keywords,

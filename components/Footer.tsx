@@ -57,7 +57,7 @@ export function Footer() {
               <Link href="/" className="flex items-center text-gray-900">
                 <Image
                   src="/logo.svg"
-                  alt="Yander"
+                  alt="Yander - Remote Team Intelligence"
                   width={120}
                   height={35}
                   className="h-7 w-auto"

@@ -77,6 +77,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     <main className="min-h-screen bg-white pt-28">
       <section className="py-8">
         <Container>
+          <h1 className="sr-only">Yander Blog - Remote Work & Team Productivity Insights</h1>
           <Suspense fallback={<BlogContentSkeleton />}>
             <BlogContent
               initialPosts={posts}
