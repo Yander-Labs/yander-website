@@ -28,7 +28,7 @@ export function TrustedBy() {
             {companies.map((company) => (
               <div
                 key={company.name}
-                className="opacity-30 hover:opacity-50 transition-opacity duration-200"
+                className="opacity-50 hover:opacity-70 transition-opacity duration-200"
               >
                 <Image
                   src={company.logo}

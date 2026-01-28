@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 100">
+  <!-- Google Meet Logo -->
+  <g transform="translate(8, 14)">
+    <!-- Camera icon - based on official design -->
+    <!-- Blue (top-left) -->
+    <path fill="#4285f4" d="M0,12 C0,5.4 5.4,0 12,0 L36,0 L36,36 L0,36 L0,12 Z"/>
+    <!-- Red (top-right of main body) -->
+    <path fill="#ea4335" d="M36,0 L60,0 L60,36 L36,36 L36,0 Z"/>
+    <!-- Green (bottom-left) -->
+    <path fill="#34a853" d="M0,36 L36,36 L36,72 L12,72 C5.4,72 0,66.6 0,60 L0,36 Z"/>
+    <!-- Green (bottom-right of main body) -->
+    <path fill="#188038" d="M36,36 L60,36 L60,60 C60,66.6 54.6,72 48,72 L36,72 L36,36 Z"/>
+    <!-- Yellow (triangular lens projection) -->
+    <path fill="#fbbc04" d="M60,18 L78,6 C80,4.7 83,6.2 83,9 L83,63 C83,65.8 80,67.3 78,66 L60,54 L60,18 Z"/>
+    <!-- White center square -->
+    <rect fill="#ffffff" x="18" y="18" width="24" height="24" rx="2"/>
+  </g>
+  <!-- Google Meet Text -->
+  <text x="110" y="64" font-family="Google Sans, Product Sans, Roboto, Arial, sans-serif" font-size="42" font-weight="400" fill="#5f6368">Google Meet</text>
+</svg>

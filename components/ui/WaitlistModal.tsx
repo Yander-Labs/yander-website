@@ -1,8 +1,9 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Mail, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
+import { X, Mail, ArrowRight, Loader2 } from "lucide-react";
 
 // Context for modal state
 interface WaitlistModalContextType {
@@ -39,8 +40,9 @@ export function WaitlistModalProvider({ children }: { children: ReactNode }) {
 // Modal component
 function WaitlistModal() {
   const { isOpen, closeModal } = useWaitlistModal();
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,12 +56,30 @@ function WaitlistModal() {
 
     setStatus("loading");
 
-    // Simulate API call - replace with actual API endpoint
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    // For now, just log the email and show success
-    console.log("Waitlist signup:", email);
-    setStatus("success");
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        closeModal();
+        setEmail("");
+        setStatus("idle");
+        router.push("/waitlist-confirmation");
+      } else {
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMessage("Network error. Please try again.");
+      setStatus("error");
+    }
   };
 
   const handleClose = () => {
@@ -118,30 +138,7 @@ function WaitlistModal() {
 
               {/* Content */}
               <div className="px-6 pb-6">
-                {status === "success" ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center py-4"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-emerald-500" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      You&apos;re on the list!
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-4">
-                      We&apos;ll notify you when Yander is ready. Check your inbox for a confirmation.
-                    </p>
-                    <button
-                      onClick={handleClose}
-                      className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      Close
-                    </button>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <label htmlFor="email" className="sr-only">
                         Email address
@@ -190,8 +187,7 @@ function WaitlistModal() {
                     <p className="text-xs text-center text-gray-400">
                       No spam, ever. Unsubscribe anytime.
                     </p>
-                  </form>
-                )}
+                </form>
               </div>
             </div>
           </motion.div>

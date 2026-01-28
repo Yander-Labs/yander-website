@@ -1,54 +1,51 @@
 "use client";
 
-import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
+import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
-import {
-  SlackLogo,
-  GmailLogo,
-  NotionLogo,
-  ZoomLogo,
-  GoogleMeetLogo,
-} from "../icons/BrandLogos";
-import { ComponentType } from "react";
+import { Fragment } from "react";
 
 interface Integration {
   name: string;
-  Logo: ComponentType<{ size?: number }>;
-  bgColor: string;
+  logo: string;
+  height: number;
 }
 
 const integrations: Integration[] = [
-  { name: "Slack", Logo: SlackLogo, bgColor: "bg-[#4A154B]/5" },
-  { name: "Gmail", Logo: GmailLogo, bgColor: "bg-red-50" },
-  { name: "Notion", Logo: NotionLogo, bgColor: "bg-gray-50" },
-  { name: "Zoom", Logo: ZoomLogo, bgColor: "bg-blue-50" },
-  { name: "Google Meet", Logo: GoogleMeetLogo, bgColor: "bg-green-50" },
+  { name: "Slack", logo: "/logos/slack.svg", height: 28 },
+  { name: "Gmail", logo: "/logos/gmail.svg", height: 24 },
+  { name: "Notion", logo: "/logos/notion.svg", height: 28 },
+  { name: "Zoom", logo: "/logos/zoom.svg", height: 18 },
+  { name: "Google Meet", logo: "/logos/google-meet.png", height: 22 },
+  { name: "ClickUp", logo: "/logos/clickup.svg", height: 20 },
+  { name: "Monday.com", logo: "/logos/monday.svg", height: 20 },
 ];
 
 export function Integrations() {
   return (
-    <section className="py-16 md:py-20">
-      <Container size="narrow">
-        <AnimatedSection className="text-center mb-10">
-          <h2 className="font-serif text-2xl md:text-3xl text-gray-900">
+    <section className="py-12 md:py-16 bg-white">
+      <Container>
+        <AnimatedSection>
+          <p className="text-center text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-6">
             Connects with the tools your team already uses
-          </h2>
-        </AnimatedSection>
-
-        <StaggerContainer className="flex flex-wrap items-center justify-center gap-4">
-          {integrations.map((integration) => (
-            <StaggerItem key={integration.name}>
-              <div className="group flex items-center gap-3 px-3 sm:px-5 py-3 bg-white rounded-xl border border-[#E4E7EC] hover:border-gray-300 hover:shadow-md transition-all duration-200">
-                <div className={`p-2.5 rounded-xl ${integration.bgColor}`}>
-                  <integration.Logo size={24} />
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 md:gap-x-10">
+            {integrations.map((integration, idx) => (
+              <Fragment key={integration.name}>
+                <div className="flex items-center justify-center h-10 px-2">
+                  <img
+                    src={integration.logo}
+                    alt={integration.name}
+                    style={{ height: integration.height }}
+                    className="w-auto"
+                  />
                 </div>
-                <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">
-                  {integration.name}
-                </span>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+                {idx < integrations.length - 1 && (
+                  <div className="hidden md:block h-8 w-px bg-gray-200" />
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </AnimatedSection>
       </Container>
     </section>
   );

@@ -8,6 +8,7 @@ import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
 import { ArrowRight, X, Menu } from "lucide-react";
 import { useWaitlistModal } from "./ui/WaitlistModal";
+import { useDemoModal } from "./ui/DemoModal";
 
 interface NavigationProps {
   showBanner?: boolean;
@@ -24,6 +25,7 @@ export function Navigation({
   const [bannerVisible, setBannerVisible] = useState(showBanner);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openModal } = useWaitlistModal();
+  const { openModal: openDemoModal } = useDemoModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,20 +41,13 @@ export function Navigation({
       {bannerVisible && (
         <div className="fixed top-0 left-0 right-0 z-[60] bg-gray-900 text-white">
           <Container>
-            <div className="flex items-center justify-center py-2.5 relative">
+            <div className="flex items-center justify-center py-2.5">
               <button
                 onClick={openModal}
-                className="flex items-center gap-2 text-sm font-medium hover:text-gray-200 transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium hover:text-gray-200 transition-colors"
               >
                 <span>{bannerText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setBannerVisible(false)}
-                className="absolute right-0 p-1 hover:bg-white/10 rounded-md transition-colors"
-                aria-label="Close banner"
-              >
-                <X className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               </button>
             </div>
           </Container>
@@ -96,7 +91,7 @@ export function Navigation({
               >
                 Blog
               </Link>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
               <Button variant="primary" size="sm" onClick={openModal}>

@@ -14,14 +14,16 @@ import {
   AlertTriangle,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import { useWaitlistModal } from "../ui/WaitlistModal";
+import { useDemoModal } from "../ui/DemoModal";
 
 // Product mockup data
 const teamMembers = [
-  { name: "Sarah Chen", role: "Designer", risk: 2, engage: 9, trend: "up", avatar: "SC" },
-  { name: "Marcus Johnson", role: "Developer", risk: 3, engage: 8, trend: "up", avatar: "MJ" },
-  { name: "Emily Rodriguez", role: "PM", risk: 7, engage: 5, trend: "down", avatar: "ER" },
-  { name: "Alex Kim", role: "Marketing", risk: 1, engage: 9, trend: "up", avatar: "AK" },
+  { name: "Sarah Chen", role: "Graphic Designer", risk: 2, workload: 4, engage: 9, collab: 8, trend: "up", avatar: "/avatars/Sarah-chen.png" },
+  { name: "Marcus Johnson", role: "Creative Strategist", risk: 3, workload: 5, engage: 8, collab: 9, trend: "up", avatar: "/avatars/marcus-johnson.png" },
+  { name: "Emily Rodriguez", role: "Project Manager", risk: 7, workload: 8, engage: 5, collab: 4, trend: "down", avatar: "/avatars/emily-rodriguez.png" },
+  { name: "Ryan Peters", role: "Media Buyer", risk: 1, workload: 3, engage: 9, collab: 8, trend: "up", avatar: "/avatars/ryan-peters.png" },
 ];
 
 function ProductMockup() {
@@ -99,71 +101,89 @@ function ProductMockup() {
             </div>
           </div>
 
-          {/* Team members - Mobile card view */}
-          <div className="sm:hidden space-y-2">
-            {teamMembers.slice(0, 2).map((member) => (
-              <div key={member.name} className="flex items-center justify-between p-3 rounded border border-[#f0f0f0] bg-[#fafafa]">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded bg-gray-200 flex items-center justify-center text-[10px] font-medium text-gray-600">
-                    {member.avatar}
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-900">{member.name}</p>
-                    <p className="text-xs text-gray-400">{member.role}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-900">{member.engage}/10</span>
-                  {member.trend === 'up' ? (
-                    <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-                  ) : (
-                    <TrendingDown className="w-3.5 h-3.5 text-gray-900" />
-                  )}
-                </div>
-              </div>
-            ))}
-            <p className="text-center text-xs text-gray-400 pt-1">+2 more team members</p>
-          </div>
-
-          {/* Team members table - Desktop Notion-style */}
-          <div className="hidden sm:block rounded border border-[#f0f0f0] overflow-hidden">
-            {/* Table header */}
-            <div className="grid grid-cols-[1fr_80px_80px_40px] gap-4 px-3 py-2 bg-[#fafafa] border-b border-[#f0f0f0] text-[10px] font-medium text-gray-500 uppercase tracking-wide">
+          {/* Team members table - clean Notion-style */}
+          <div className="rounded border border-[#f0f0f0] overflow-hidden">
+            {/* Table header - responsive: hide some columns on mobile */}
+            <div className="grid grid-cols-[1fr_40px_40px_24px] sm:grid-cols-[1fr_45px_50px_45px_24px] md:grid-cols-[1fr_50px_70px_55px_50px_28px] gap-2 sm:gap-3 md:gap-4 px-3 sm:px-4 py-2 bg-[#fafafa] border-b border-[#f0f0f0] text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wide">
               <span>Member</span>
-              <span className="text-right">Risk</span>
-              <span className="text-right">Engage</span>
+              <span className="text-center">Risk</span>
+              <span className="hidden sm:block text-center">Load</span>
+              <span className="text-center">Engage</span>
+              <span className="hidden md:block text-center">Collab</span>
               <span></span>
             </div>
             {/* Table rows */}
             {teamMembers.map((member, idx) => (
               <div
                 key={member.name}
-                className={`grid grid-cols-[1fr_80px_80px_40px] gap-4 px-3 py-2.5 items-center ${
+                className={`grid grid-cols-[1fr_40px_40px_24px] sm:grid-cols-[1fr_45px_50px_45px_24px] md:grid-cols-[1fr_50px_70px_55px_50px_28px] gap-2 sm:gap-3 md:gap-4 px-3 sm:px-4 py-2 sm:py-2.5 items-center ${
                   idx !== teamMembers.length - 1 ? 'border-b border-[#f5f5f5]' : ''
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-6 h-6 rounded bg-gray-200 flex items-center justify-center text-[10px] font-medium text-gray-600">
-                    {member.avatar}
+                <div className="flex items-center gap-1.5 sm:gap-2.5">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+                    <Image
+                      src={member.avatar}
+                      alt={member.name}
+                      width={24}
+                      height={24}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div>
-                    <p className="text-[13px] text-gray-900">{member.name}</p>
-                    <p className="text-[11px] text-gray-400">{member.role}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] sm:text-[13px] text-gray-900 truncate">{member.name}</p>
+                    <p className="text-[9px] sm:text-[11px] text-gray-400 truncate">{member.role}</p>
                   </div>
+                  {member.name === "Emily Rodriguez" && (
+                    <>
+                      {/* Mobile: Compact badge with icon only */}
+                      <div className="flex md:hidden items-center justify-center w-5 h-5 sm:w-6 sm:h-6 bg-amber-50 border border-amber-200 rounded-md flex-shrink-0">
+                        <AlertTriangle className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-600" />
+                      </div>
+                      {/* Desktop: Full stacked badge */}
+                      <div className="hidden md:flex items-start gap-1.5 px-2 py-1 bg-amber-50 border border-amber-200 rounded-md">
+                        <AlertTriangle className="w-3 h-3 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-amber-700 font-medium">Check-in recommended</span>
+                          <span className="text-[10px] text-amber-600">Engagement dropped 23%</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
-                <div className="text-right">
-                  <span className={`text-[13px] font-medium ${member.risk >= 5 ? 'text-gray-900' : 'text-gray-500'}`}>
-                    {member.risk}/10
+                <div className="text-center">
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
+                    member.risk >= 7 ? 'text-red-600' : member.risk >= 4 ? 'text-amber-600' : 'text-emerald-600'
+                  }`}>
+                    {member.risk}
                   </span>
                 </div>
-                <div className="text-right">
-                  <span className="text-[13px] font-medium text-gray-900">{member.engage}/10</span>
+                <div className="hidden sm:block text-center">
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
+                    member.workload >= 7 ? 'text-red-600' : member.workload >= 4 ? 'text-amber-600' : 'text-emerald-600'
+                  }`}>
+                    {member.workload}
+                  </span>
                 </div>
-                <div className="flex justify-end">
+                <div className="text-center">
+                  <span className={`text-[11px] sm:text-[13px] font-medium ${
+                    member.engage <= 3 ? 'text-red-600' : member.engage <= 6 ? 'text-amber-600' : 'text-emerald-600'
+                  }`}>
+                    {member.engage}
+                  </span>
+                </div>
+                <div className="hidden md:block text-center">
+                  <span className={`text-[13px] font-medium ${
+                    member.collab <= 3 ? 'text-red-600' : member.collab <= 6 ? 'text-amber-600' : 'text-emerald-600'
+                  }`}>
+                    {member.collab}
+                  </span>
+                </div>
+                <div className="flex justify-center">
                   {member.trend === 'up' ? (
-                    <TrendingUp className="w-3.5 h-3.5 text-gray-400" />
+                    <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-500" />
                   ) : (
-                    <TrendingDown className="w-3.5 h-3.5 text-gray-900" />
+                    <TrendingDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-500" />
                   )}
                 </div>
               </div>
@@ -172,29 +192,13 @@ function ProductMockup() {
         </div>
       </div>
 
-      {/* Floating notification - minimal style */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="absolute -right-2 top-1/4 bg-white rounded border border-[#e5e5e5] shadow-lg p-3 w-56 hidden lg:block"
-      >
-        <div className="flex items-start gap-2.5">
-          <div className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center flex-shrink-0">
-            <AlertTriangle className="w-3 h-3 text-gray-500" />
-          </div>
-          <div>
-            <p className="text-[12px] font-medium text-gray-900">Check-in Recommended</p>
-            <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Emily&apos;s engagement dropped 23% this week.</p>
-          </div>
-        </div>
-      </motion.div>
     </motion.div>
   );
 }
 
 export function Hero() {
   const { openModal } = useWaitlistModal();
+  const { openModal: openDemoModal } = useDemoModal();
 
   return (
     <section className="relative pt-32 pb-8 md:pt-40 md:pb-12 overflow-hidden bg-[#fafafa]">
@@ -226,7 +230,9 @@ export function Hero() {
           >
             Marketing agency leaders with remote teams don&apos;t realize when
             employees skip meetings, burn out, or do the bare minimum. Yander
-            keeps a live pulse on engagement, workload, and sentiment.
+            keeps a live pulse on engagement, workload, and sentiment without intrusive
+            time tracking, so you can build a high-performing team and protect your client
+            relationships.
           </motion.p>
 
           <motion.div
@@ -237,10 +243,10 @@ export function Hero() {
               delay: 0.2,
               ease: [0.21, 0.47, 0.32, 0.98],
             }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+            className="mt-8 flex flex-row items-center justify-center gap-3"
           >
             <Button size="lg" onClick={openModal}>Join Waitlist</Button>
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary" size="lg" onClick={openDemoModal}>
               Book a Demo
             </Button>
           </motion.div>

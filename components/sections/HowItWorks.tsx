@@ -1,25 +1,24 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MiniChart } from "../ui/MiniChart";
 import {
-  MessageSquare,
-  Calendar,
-  Video,
   ArrowRight,
   Sparkles,
   TrendingUp,
   AlertTriangle,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 
 const steps = [
   {
     number: "01",
     title: "Connect Your Tools",
-    description: "Plug in Slack, Google Workspace, or Microsoft 365 in minutes. No code required.",
+    description: "Use our direct integrations to connect the tools your team is already using every day.",
     visual: "integrations",
   },
   {
@@ -37,23 +36,34 @@ const steps = [
 ];
 
 function IntegrationVisual() {
+  const integrations = [
+    { name: "Slack", logo: "/logos/slack.svg", height: 22 },
+    { name: "Gmail", logo: "/logos/gmail.svg", height: 20 },
+    { name: "Google Meet", logo: "/logos/google-meet.png", height: 18 },
+    { name: "Zoom", logo: "/logos/zoom.svg", height: 14 },
+    { name: "Notion", logo: "/logos/notion.svg", height: 22 },
+    { name: "ClickUp", logo: "/logos/clickup.svg", height: 16 },
+    { name: "Monday.com", logo: "/logos/monday.svg", height: 16 },
+  ];
+
   return (
-    <div className="flex items-center justify-center gap-3">
-      {[
-        { icon: MessageSquare, label: "Slack", color: "bg-purple-50 border-purple-100 text-purple-600" },
-        { icon: Calendar, label: "Calendar", color: "bg-blue-50 border-blue-100 text-blue-600" },
-        { icon: Video, label: "Meetings", color: "bg-emerald-50 border-emerald-100 text-emerald-600" },
-      ].map((item, i) => (
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      {integrations.map((item, i) => (
         <motion.div
-          key={item.label}
+          key={item.name}
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: i * 0.1, duration: 0.4 }}
-          className={`w-14 h-14 rounded-xl border flex flex-col items-center justify-center ${item.color}`}
+          transition={{ delay: i * 0.08, duration: 0.4 }}
+          className="flex items-center justify-center h-8"
         >
-          <item.icon className="w-5 h-5" />
-          <span className="text-[8px] mt-1 font-medium opacity-70">{item.label}</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.logo}
+            alt={item.name}
+            style={{ height: item.height }}
+            className="w-auto"
+          />
         </motion.div>
       ))}
     </div>
@@ -144,48 +154,89 @@ export function HowItWorks() {
 
         {/* Steps - Horizontal on desktop, vertical on mobile */}
         <div className="relative">
-          {/* Connection line (desktop only) */}
-          <div className="hidden lg:block absolute top-1/2 left-[16%] right-[16%] h-px bg-gradient-to-r from-[#e5e5e5] via-[#171717]/20 to-[#e5e5e5]" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6">
+          {/* Desktop layout with arrows */}
+          <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-4 items-stretch">
             {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="relative"
-              >
-                {/* Card */}
-                <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
-                  {/* Step number badge */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
-                      {step.number}
+              <React.Fragment key={step.number}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                >
+                  {/* Card */}
+                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
+                    {/* Step number badge */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
+                        {step.number}
+                      </div>
+                      <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
                     </div>
-                    <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
+
+                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
+                      {step.description}
+                    </p>
+
+                    {/* Visual */}
+                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
+                      <StepVisual type={step.visual} />
+                    </div>
                   </div>
+                </motion.div>
 
-                  <p className="text-sm text-[#737373] mb-6 leading-relaxed">
-                    {step.description}
-                  </p>
-
-                  {/* Visual */}
-                  <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
-                    <StepVisual type={step.visual} />
-                  </div>
-                </div>
-
-                {/* Arrow connector (mobile only) */}
+                {/* Arrow connector (desktop) */}
                 {index < steps.length - 1 && (
-                  <div className="lg:hidden flex justify-center my-4">
-                    <div className="w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center">
+                  <div className="flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] flex items-center justify-center">
+                      <ArrowRight className="w-5 h-5 text-[#171717]" />
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Mobile/Tablet layout with vertical arrows */}
+          <div className="flex flex-col gap-0 lg:hidden">
+            {steps.map((step, index) => (
+              <React.Fragment key={step.number}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                >
+                  {/* Card */}
+                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6">
+                    {/* Step number badge */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
+                        {step.number}
+                      </div>
+                      <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
+                    </div>
+
+                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
+                      {step.description}
+                    </p>
+
+                    {/* Visual */}
+                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
+                      <StepVisual type={step.visual} />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Arrow connector (mobile) */}
+                {index < steps.length - 1 && (
+                  <div className="flex justify-center py-4">
+                    <div className="w-8 h-8 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_2px_2px_0px] flex items-center justify-center">
                       <ArrowRight className="w-4 h-4 text-[#737373] rotate-90" />
                     </div>
                   </div>
                 )}
-              </motion.div>
+              </React.Fragment>
             ))}
           </div>
         </div>

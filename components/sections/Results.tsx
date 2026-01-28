@@ -43,7 +43,7 @@ export function Results() {
       <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
-          <SectionLabel number="02" centered>Proven Results</SectionLabel>
+          <SectionLabel number="03" centered>Proven Results</SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl text-gray-900">
             Real Teams. Real Results.
           </h2>

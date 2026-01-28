@@ -1,18 +1,25 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
 import { SectionLabel } from "../ui/SectionLabel";
 import { Star, Quote } from "lucide-react";
+import jordanHeadshot from "@/components/images/Jordan in blue podcast 1 copy.png";
+import arnelHeadshot from "@/components/images/Arnel headshot copy.jpeg";
+import hayesLogo from "@/components/images/Hayes Logo.png";
+import loudfaceLogo from "@/components/images/Loudface Logo.png";
 
 const testimonials = [
   {
     quote:
-      "Running a 17-person remote marketing agency, losing key people has quietly cost us $100,000's in lost momentum and client disruption. Before Yander, I had no reliable way to see burnout or disengagement until it was too late. Now we have a clear view of engagement and workload for every person, and we've already prevented costly resignations and client issues as a result.",
+      "Running a 23-person remote marketing agency, losing key people has quietly cost us $100,000's in lost momentum and client disruption. Before Yander, I had no reliable way to see burnout or disengagement until it was too late. Now we have a clear view of engagement and workload for every person, and we've already prevented costly resignations and client issues as a result.",
     name: "Jordan Hayes",
     title: "Founder & CEO",
     company: "Hayes Media",
-    avatar: "JH",
+    companyLogo: hayesLogo,
+    logoClassName: "h-6 w-auto",
+    image: jordanHeadshot,
   },
   {
     quote:
@@ -20,7 +27,9 @@ const testimonials = [
     name: "Arnel Bukva",
     title: "Founder & CEO",
     company: "Loudface",
-    avatar: "AB",
+    companyLogo: loudfaceLogo,
+    logoClassName: "h-4 w-auto",
+    image: arnelHeadshot,
   },
 ];
 
@@ -41,7 +50,7 @@ export function Testimonials() {
       <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
-          <SectionLabel number="03" centered>Testimonials</SectionLabel>
+          <SectionLabel number="04" centered>Testimonials</SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl text-gray-900 max-w-2xl mx-auto">
             Trusted By Leaders Who Know Winning Starts With Their Team
           </h2>
@@ -59,18 +68,28 @@ export function Testimonials() {
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
                 <div className="mt-6 pt-4 border-t border-[#e5e5e5] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center text-white text-sm font-medium">
-                    {testimonial.avatar}
-                  </div>
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-10 h-10 rounded-lg object-cover"
+                  />
                   <div className="flex-1">
                     <p className="font-medium text-gray-900 text-sm">
                       {testimonial.name}
                     </p>
                     <p className="text-xs text-gray-500">{testimonial.title}</p>
                   </div>
-                  <span className="text-xs font-medium text-gray-400">
-                    {testimonial.company}
-                  </span>
+                  {"companyLogo" in testimonial && testimonial.companyLogo ? (
+                    <Image
+                      src={testimonial.companyLogo}
+                      alt={testimonial.company}
+                      className={"logoClassName" in testimonial ? testimonial.logoClassName : "h-5 w-auto"}
+                    />
+                  ) : (
+                    <span className="text-xs font-medium text-gray-400">
+                      {testimonial.company}
+                    </span>
+                  )}
                 </div>
               </div>
             </StaggerItem>
