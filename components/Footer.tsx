@@ -36,7 +36,7 @@ const footerLinks = {
     { label: "Documentation", href: "#", comingSoon: true },
     { label: "Help Center", href: "#", comingSoon: true },
     { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms of Service", href: "#", comingSoon: true },
+    { label: "Terms of Service", href: "/terms-of-service" },
   ],
 };
 
@@ -193,10 +193,12 @@ export function Footer() {
               >
                 Privacy
               </Link>
-              <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
+              <Link
+                href="/terms-of-service"
+                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              >
                 Terms
-                <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>
-              </span>
+              </Link>
               <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
                 Cookies
                 <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>

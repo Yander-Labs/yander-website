@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm text-gray-500 mb-8">
-            Last updated: January 19, 2025
+            Last updated: January 28, 2025
           </p>
 
           <div className="space-y-8 text-gray-600">
@@ -59,6 +59,32 @@ export default function PrivacyPolicyPage() {
               <p className="leading-relaxed mt-3">
                 We analyze patterns such as response times, meeting participation, collaboration frequency, and activity levels to generate team health insights — never the content of communications.
               </p>
+
+              <h3 className="font-medium text-gray-900 mt-4 mb-2">2.4 Google API Data</h3>
+              <p className="leading-relaxed">
+                When you connect Google Workspace services (such as Gmail, Google Calendar, or Google Meet), we access certain data through Google APIs to provide our Service. We collect only aggregate metadata — such as email response times, calendar meeting frequency, and collaboration patterns — to generate engagement insights. <strong>We do not access the content of your emails, documents, or calendar event details.</strong>
+              </p>
+              <p className="leading-relaxed mt-3">
+                <strong>Google API Services User Data Policy Compliance:</strong> Yander&apos;s use and transfer of information received from Google APIs adheres to the{" "}
+                <a
+                  href="https://developers.google.com/terms/api-services-user-data-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-900 underline hover:no-underline"
+                >
+                  Google API Services User Data Policy
+                </a>
+                , including the Limited Use requirements.
+              </p>
+              <p className="leading-relaxed mt-3">
+                <strong>Limited Use Disclosure:</strong> In accordance with Google&apos;s Limited Use requirements:
+              </p>
+              <ul className="list-disc pl-5 space-y-2 mt-2">
+                <li>We only use Google user data to provide and improve the user-facing features of our Service that are prominent in our application&apos;s user interface</li>
+                <li>We do not transfer Google user data to third parties unless necessary to provide or improve user-facing features, you provide affirmative consent, or it is required for security or legal compliance</li>
+                <li>We do not use Google user data for serving advertisements, including retargeting, personalized, or interest-based advertising</li>
+                <li>We do not allow humans to read Google user data unless you have provided affirmative consent, it is necessary for security purposes, or it is required to comply with applicable law</li>
+              </ul>
             </section>
 
             <section>

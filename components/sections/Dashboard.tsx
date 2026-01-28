@@ -137,8 +137,14 @@ export function Dashboard() {
                   >
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${employee.avatarBg} flex items-center justify-center text-xs font-bold text-white shadow-sm`}>
-                          {employee.avatar}
+                        <div className="w-10 h-10 rounded-xl overflow-hidden bg-gray-100">
+                          <Image
+                            src={employee.avatar}
+                            alt={employee.name}
+                            width={40}
+                            height={40}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm">{employee.name}</p>
