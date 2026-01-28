@@ -33,7 +33,7 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-sm text-gray-500">Share:</span>
+      <span className="hidden sm:inline text-sm text-gray-500">Share:</span>
 
       {/* Twitter */}
       <button

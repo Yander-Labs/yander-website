@@ -87,8 +87,28 @@ export const relatedPostsQuery = `*[_type == "post" && slug.current != $currentS
   "categories": categories[]->{title, slug, color}
 }`
 
-// Search posts
+// Search posts (optimized - searches title, excerpt, author name, category titles)
+// NOTE: Removed pt::text(body) scan for performance. For full-text body search,
+// use a dedicated search service or implement a searchIndex field.
 export const searchPostsQuery = `*[_type == "post" && (
+  title match $searchTerm + "*" ||
+  excerpt match $searchTerm + "*" ||
+  author->name match $searchTerm + "*" ||
+  count(categories[@->title match $searchTerm + "*"]) > 0
+)] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  readTime,
+  mainImage,
+  "author": author->{name, image, role},
+  "categories": categories[]->{title, slug, color}
+}`
+
+// Full-text search including body content (slower, use sparingly)
+export const deepSearchPostsQuery = `*[_type == "post" && (
   title match $searchTerm + "*" ||
   excerpt match $searchTerm + "*" ||
   pt::text(body) match $searchTerm + "*"

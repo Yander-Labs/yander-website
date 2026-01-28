@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:watch": "bash scripts/dev-watchdog.sh",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity:script": "node --env-file=.env.local",
+    "sanity:seed": "node --env-file=.env.local scripts/seed-blog-content.mjs"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",

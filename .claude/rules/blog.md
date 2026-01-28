@@ -1,104 +1,104 @@
 # Blog Rules
 
-## Route Structure
+## Routes
+
+| Route | File |
+|-------|------|
+| `/blog` | `app/(main)/blog/page.tsx` |
+| `/blog/[slug]` | `app/(main)/blog/[slug]/page.tsx` |
+| `/studio` | Sanity Studio |
+
+## Post Creation Decision Tree
 
 ```
-/blog           → Blog listing page (app/(main)/blog/page.tsx)
-/blog/[slug]    → Individual post (app/(main)/blog/[slug]/page.tsx)
-/studio         → Sanity Studio for content management
+1. Has mainImage?
+   NO → Generate: generateBlogImage(title, 'yander')
+   YES → Continue
+
+2. Has 1-3 inline images in body?
+   NO → Add via generateInlineImage() or screenshotInlineImage()
+   YES → Continue
+
+3. Has author assigned?
+   NO → Select from listAuthors()
+   YES → Continue
+
+4. Has categories (1-2)?
+   NO → Select from listCategories()
+   YES → Continue
+
+5. SEO audit score >= 80?
+   NO → Fix issues from auditPostSEO()
+   YES → Ready to publish
 ```
 
-## Data Fetching
+## Visual Requirements
 
-```typescript
-import { sanityFetch } from "@/lib/sanity"
-import { postsQuery, postBySlugQuery, categoriesQuery } from "@/lib/queries"
-import type { Post, PostCard, Category } from "@/lib/types"
+| Asset | Required | Source |
+|-------|----------|--------|
+| Main Header Image | **YES** | AI (nano-banana-pro) |
+| Inline Images (1-3) | **YES** | AI or Screenshot |
+| OG Image | Auto | Falls back to mainImage |
 
-// Fetch all posts
-const posts = await sanityFetch<PostCard[]>(postsQuery)
+## Image Type Decision
 
-// Fetch single post
-const post = await sanityFetch<Post | null>(postBySlugQuery, { slug })
+| Content Type | Use |
+|--------------|-----|
+| Conceptual ideas | `generateInlineImage()` |
+| Product UIs | `screenshotInlineImage()` |
+| Tutorials/steps | `screenshotInlineImage()` |
+| Abstract concepts | `generateInlineImage()` |
 
-// Fetch categories
-const categories = await sanityFetch<Category[]>(categoriesQuery)
-```
+## Yander Image Style
+
+Use `'yander'` style: flat illustration, grainy texture, sketchy edges, monochrome grayscale.
 
 ## Available Queries
 
-| Query | Returns | Parameters |
-|-------|---------|------------|
-| `postsQuery` | All posts | None |
-| `paginatedPostsQuery` | Posts + total | `$start`, `$end` |
-| `postsByCategoryQuery` | Filtered posts | `$categorySlug` |
-| `postBySlugQuery` | Single post | `$slug` |
-| `postSlugsQuery` | All slugs | None |
-| `categoriesQuery` | All categories | None |
-| `relatedPostsQuery` | Related posts | `$currentSlug`, `$categoryIds` |
-| `searchPostsQuery` | Search results | `$searchTerm` |
+| Query | Returns |
+|-------|---------|
+| `postsQuery` | All posts |
+| `paginatedPostsQuery` | Posts + total |
+| `postBySlugQuery` | Single post |
+| `postSlugsQuery` | All slugs |
+| `categoriesQuery` | All categories |
+| `relatedPostsQuery` | Related posts |
 
-## Category Colors
+## Post Page Components (order)
 
-Categories use Tailwind color names stored in `color` field:
-- `blue`, `emerald`, `purple`, `amber`, `rose`, `cyan`, `orange`
+1. ReadingProgress
+2. PostHeader
+3. TableOfContents (desktop)
+4. PostBody
+5. ShareButtons
+6. AuthorCard
+7. RelatedPosts
 
-Used in `CategoryBadge` component for theming.
+## Quality Checklist
 
-## ISR Revalidation
+- [ ] Main header image attached
+- [ ] 1-3 inline images in body
+- [ ] All images have alt text
+- [ ] Author assigned
+- [ ] Categories (1-2)
+- [ ] Excerpt 120-160 chars
+- [ ] SEO keywords (3-5)
+- [ ] SEO score 80+
 
-```typescript
-// At top of page.tsx
-export const revalidate = 60 // Revalidate every 60 seconds
-```
+## Environment Required
 
-## Static Generation
+| Variable | Purpose |
+|----------|---------|
+| `SANITY_TOKEN` | Write access |
+| `REPLICATE_API_TOKEN` | AI images |
 
-```typescript
-// Generate static pages for all posts
-export async function generateStaticParams() {
-  const slugs = await sanityFetch<string[]>(postSlugsQuery)
-  return slugs.map((slug) => ({ slug }))
-}
-```
+## Cost Per Post
 
-## Dynamic Metadata
+| Component | Cost |
+|-----------|------|
+| Header + 2 inline | ~$0.06 |
+| Screenshots | Free |
 
-```typescript
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await sanityFetch<Post | null>(postBySlugQuery, {
-    slug: params.slug
-  })
+## Detailed Examples
 
-  return {
-    title: post?.title,
-    description: post?.excerpt,
-  }
-}
-```
-
-## Post Page Component Order
-
-1. `ReadingProgress` - Sticky progress bar at top
-2. `PostHeader` - Hero with image, title, metadata
-3. `TableOfContents` - Sidebar navigation (desktop)
-4. `PostBody` - Portable Text content
-5. `ShareButtons` - Social sharing
-6. `AuthorCard` - Author bio
-7. `RelatedPosts` - Recommended posts
-
-## Blog Listing Features
-
-- Server-side initial load
-- Client-side search filtering
-- Category filter pills
-- Pagination with page numbers
-- Animated card entrance
-
-## Adding New Blog Features
-
-1. Add schema field in `sanity/schemaTypes/post.ts` if needed
-2. Add query in `lib/queries.ts`
-3. Add type in `lib/types.ts`
-4. Create or update component in `components/blog/`
-5. Run `npm run build` to verify
+See `.claude/deep-dive/image-generation.md` and `.claude/deep-dive/portable-text.md`.

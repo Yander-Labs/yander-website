@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, X, Menu } from "lucide-react";
 import { useWaitlistModal } from "./ui/WaitlistModal";
 
 interface NavigationProps {
@@ -22,6 +22,7 @@ export function Navigation({
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(showBanner);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { openModal } = useWaitlistModal();
 
   useEffect(() => {
@@ -87,10 +88,11 @@ export function Navigation({
               </span>
             </div>
 
-            <div className="flex items-center gap-4">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-4">
               <Link
                 href="/blog"
-                className="hidden md:block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
                 Blog
               </Link>
@@ -101,9 +103,90 @@ export function Navigation({
                 Join Waitlist
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
         </Container>
       </nav>
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={cn(
+          "fixed inset-0 z-[70] md:hidden transition-opacity duration-300",
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        {/* Drawer */}
+        <div
+          className={cn(
+            "absolute top-0 right-0 h-full w-[280px] max-w-[85vw] bg-white shadow-xl transition-transform duration-300 ease-out",
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+        >
+          <div className="flex flex-col h-full">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-4 border-b border-[#E4E7EC]">
+              <span className="text-sm font-semibold text-gray-900">Menu</span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 -mr-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Drawer Content */}
+            <div className="flex-1 p-4 space-y-2">
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                Home
+              </Link>
+              <Link
+                href="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                Blog
+              </Link>
+            </div>
+
+            {/* Drawer Footer */}
+            <div className="p-4 border-t border-[#E4E7EC] space-y-3">
+              <Button variant="ghost" size="md" className="w-full justify-center">
+                Book a Demo
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                className="w-full justify-center"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openModal();
+                }}
+              >
+                Join Waitlist
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

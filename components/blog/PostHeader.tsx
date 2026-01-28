@@ -62,7 +62,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         )}
 
         {/* Meta */}
-        <div className="flex flex-wrap items-center gap-6 pb-8 border-b border-[#E4E7EC]">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-6 pb-8 border-b border-[#E4E7EC]">
           {/* Author */}
           <div className="flex items-center gap-3">
             {post.author?.image ? (

@@ -35,7 +35,7 @@ export function Footer() {
     <footer className="bg-gray-50 border-t border-[#E4E7EC]">
       <Container>
         <div className="py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
             {/* Brand Column */}
             <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center text-gray-900">

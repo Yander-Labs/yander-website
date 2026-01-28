@@ -67,7 +67,7 @@ function ProductMockup() {
           </div>
 
           {/* Stats row - minimal cards */}
-          <div className="grid grid-cols-3 gap-3 mb-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-5">
             <div className="p-3 rounded border border-[#f0f0f0] bg-[#fafafa]">
               <div className="text-[11px] text-gray-500 mb-1">Engagement</div>
               <div className="flex items-baseline gap-1.5">
@@ -86,7 +86,7 @@ function ProductMockup() {
               </div>
               <div className="mt-2 text-[10px] text-amber-600">Emily R.</div>
             </div>
-            <div className="p-3 rounded border border-[#f0f0f0] bg-[#fafafa]">
+            <div className="p-3 rounded border border-[#f0f0f0] bg-[#fafafa] hidden sm:block">
               <div className="text-[11px] text-gray-500 mb-1">Team Health</div>
               <div className="flex items-baseline gap-1.5">
                 <span className="text-xl font-semibold text-gray-900">Good</span>
@@ -99,8 +99,34 @@ function ProductMockup() {
             </div>
           </div>
 
-          {/* Team members table - clean Notion-style */}
-          <div className="rounded border border-[#f0f0f0] overflow-hidden">
+          {/* Team members - Mobile card view */}
+          <div className="sm:hidden space-y-2">
+            {teamMembers.slice(0, 2).map((member) => (
+              <div key={member.name} className="flex items-center justify-between p-3 rounded border border-[#f0f0f0] bg-[#fafafa]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded bg-gray-200 flex items-center justify-center text-[10px] font-medium text-gray-600">
+                    {member.avatar}
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-900">{member.name}</p>
+                    <p className="text-xs text-gray-400">{member.role}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-gray-900">{member.engage}/10</span>
+                  {member.trend === 'up' ? (
+                    <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
+                  ) : (
+                    <TrendingDown className="w-3.5 h-3.5 text-gray-900" />
+                  )}
+                </div>
+              </div>
+            ))}
+            <p className="text-center text-xs text-gray-400 pt-1">+2 more team members</p>
+          </div>
+
+          {/* Team members table - Desktop Notion-style */}
+          <div className="hidden sm:block rounded border border-[#f0f0f0] overflow-hidden">
             {/* Table header */}
             <div className="grid grid-cols-[1fr_80px_80px_40px] gap-4 px-3 py-2 bg-[#fafafa] border-b border-[#f0f0f0] text-[10px] font-medium text-gray-500 uppercase tracking-wide">
               <span>Member</span>

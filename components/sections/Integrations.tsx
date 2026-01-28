@@ -38,7 +38,7 @@ export function Integrations() {
         <StaggerContainer className="flex flex-wrap items-center justify-center gap-4">
           {integrations.map((integration) => (
             <StaggerItem key={integration.name}>
-              <div className="group flex items-center gap-3 px-5 py-3 bg-white rounded-xl border border-[#E4E7EC] hover:border-gray-300 hover:shadow-md transition-all duration-200">
+              <div className="group flex items-center gap-3 px-3 sm:px-5 py-3 bg-white rounded-xl border border-[#E4E7EC] hover:border-gray-300 hover:shadow-md transition-all duration-200">
                 <div className={`p-2.5 rounded-xl ${integration.bgColor}`}>
                   <integration.Logo size={24} />
                 </div>

@@ -126,25 +126,70 @@ export function Dashboard() {
               </div>
 
               {/* Stats Row */}
-              <div className="px-6 py-3 border-b border-[#e5e5e5] bg-gray-50/50">
-                <div className="flex items-center gap-6 text-xs">
+              <div className="px-4 sm:px-6 py-3 border-b border-[#e5e5e5] bg-gray-50/50">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-400">Team Size:</span>
-                    <span className="font-semibold text-gray-700">5 members</span>
+                    <span className="text-gray-400">Team:</span>
+                    <span className="font-semibold text-gray-700">5</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-400">Avg. Engagement:</span>
+                    <span className="text-gray-400">Engagement:</span>
                     <span className="font-semibold text-emerald-600">7.4</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-400">At Risk:</span>
-                    <span className="font-semibold text-red-600">1 person</span>
+                    <span className="font-semibold text-red-600">1</span>
                   </div>
                 </div>
               </div>
 
-              {/* Table */}
-              <div className="overflow-x-auto">
+              {/* Mobile Card View */}
+              <div className="md:hidden p-4 space-y-3">
+                {employees.slice(0, 3).map((employee, idx) => (
+                  <div
+                    key={idx}
+                    className={`p-4 rounded-lg border ${employee.risk >= 7 ? 'border-red-200 bg-red-50/30' : 'border-[#E4E7EC] bg-white'}`}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${employee.avatarBg} flex items-center justify-center text-xs font-bold text-white shadow-sm`}>
+                          {employee.avatar}
+                        </div>
+                        <div>
+                          <p className="font-medium text-gray-900 text-sm">{employee.name}</p>
+                          <p className="text-xs text-gray-400">{employee.role}</p>
+                        </div>
+                      </div>
+                      {employee.risk >= 7 && (
+                        <div className="px-2 py-1 rounded-full bg-red-100 border border-red-200">
+                          <span className="text-[10px] font-semibold text-red-600">High Risk</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <span className="text-gray-400">Risk:</span>
+                          <span className={`ml-1 font-semibold ${employee.risk >= 7 ? 'text-red-600' : employee.risk >= 4 ? 'text-amber-600' : 'text-emerald-600'}`}>
+                            {employee.risk}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Engage:</span>
+                          <span className={`ml-1 font-semibold ${employee.engage >= 7 ? 'text-emerald-600' : 'text-amber-600'}`}>
+                            {employee.engage}
+                          </span>
+                        </div>
+                      </div>
+                      <MiniChart data={employee.engageTrend} width={48} height={20} strokeWidth={1.5} showDot={false} />
+                    </div>
+                  </div>
+                ))}
+                <p className="text-center text-xs text-gray-400 pt-1">+2 more team members</p>
+              </div>
+
+              {/* Desktop Table */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-[#e5e5e5] bg-gray-50/30">

@@ -6,17 +6,10 @@ import Link from 'next/link'
 import { urlFor } from '@/lib/sanity'
 import { CodeBlock } from './CodeBlock'
 import type { PortableTextBlock, PortableTextSpan } from '@portabletext/types'
+import { useMemo } from 'react'
 
 interface PostBodyProps {
   body: PortableTextBlock[]
-}
-
-// Generate ID from text for heading anchors
-function generateId(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
 }
 
 // Helper to extract text from block children
@@ -30,11 +23,38 @@ function extractTextFromBlock(children: unknown[] | undefined): string {
     .join('')
 }
 
-const components: Partial<PortableTextReactComponents> = {
+// Pre-compute unique heading IDs for the entire body
+function computeHeadingIds(body: PortableTextBlock[]): Map<string, string> {
+  const idMap = new Map<string, string>() // block._key -> unique id
+  const usedIds = new Map<string, number>()
+
+  body.forEach((block) => {
+    if (block._type === 'block' && (block.style === 'h2' || block.style === 'h3')) {
+      const text = extractTextFromBlock(block.children as unknown[] | undefined)
+      if (text && block._key) {
+        const baseId = text
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '')
+
+        const count = usedIds.get(baseId) || 0
+        const uniqueId = count === 0 ? baseId : `${baseId}-${count}`
+        usedIds.set(baseId, count + 1)
+
+        idMap.set(block._key, uniqueId)
+      }
+    }
+  })
+
+  return idMap
+}
+
+// Create components factory that uses pre-computed heading IDs
+function createComponents(headingIds: Map<string, string>): Partial<PortableTextReactComponents> {
+  return {
   block: {
     h2: ({ children, value }) => {
-      const text = extractTextFromBlock(value.children as unknown[] | undefined)
-      const id = generateId(text)
+      const id = value._key ? headingIds.get(value._key) || '' : ''
 
       return (
         <h2 id={id} className="font-serif text-2xl md:text-3xl text-gray-900 mt-12 mb-4 scroll-mt-24">
@@ -43,8 +63,7 @@ const components: Partial<PortableTextReactComponents> = {
       )
     },
     h3: ({ children, value }) => {
-      const text = extractTextFromBlock(value.children as unknown[] | undefined)
-      const id = generateId(text)
+      const id = value._key ? headingIds.get(value._key) || '' : ''
 
       return (
         <h3 id={id} className="font-semibold text-xl text-gray-900 mt-8 mb-3 scroll-mt-24">
@@ -151,9 +170,14 @@ const components: Partial<PortableTextReactComponents> = {
       />
     )
   }
+  }
 }
 
 export function PostBody({ body }: PostBodyProps) {
+  // Pre-compute unique heading IDs to ensure consistency with TableOfContents
+  const headingIds = useMemo(() => computeHeadingIds(body), [body])
+  const components = useMemo(() => createComponents(headingIds), [headingIds])
+
   return (
     <div className="prose-custom">
       <PortableText value={body} components={components} />

@@ -43,7 +43,7 @@ export function BlogContent({
     <div className="space-y-6">
       {/* Header row: Title + Search + Filters */}
       <div className="flex flex-col md:flex-row gap-4 md:items-end">
-        <h1 className="font-serif text-7xl md:text-8xl text-gray-900 flex-shrink-0">
+        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-900 flex-shrink-0">
           Blog
         </h1>
         <div className="flex-1 max-w-sm">

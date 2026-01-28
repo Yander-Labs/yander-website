@@ -31,16 +31,22 @@ export function TableOfContents({ body }: TableOfContentsProps) {
   // Extract headings from portable text
   useEffect(() => {
     const extractedHeadings: Heading[] = []
+    const usedIds = new Map<string, number>()
 
     body.forEach((block) => {
       if (block._type === 'block' && (block.style === 'h2' || block.style === 'h3')) {
         const text = extractTextFromBlock(block.children as unknown[] | undefined)
 
         if (text) {
-          const id = text
+          let baseId = text
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
+
+          // Make ID unique by appending counter for duplicates
+          const count = usedIds.get(baseId) || 0
+          const id = count === 0 ? baseId : `${baseId}-${count}`
+          usedIds.set(baseId, count + 1)
 
           extractedHeadings.push({
             id,
@@ -95,7 +101,7 @@ export function TableOfContents({ body }: TableOfContentsProps) {
   }
 
   return (
-    <nav className="sticky top-28">
+    <nav className="sticky top-20 md:top-28">
       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
         On this page
       </p>

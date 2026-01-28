@@ -55,29 +55,34 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   }
 
   return (
-    <nav className="flex items-center justify-center gap-1">
+    <nav className="flex items-center justify-center gap-2 sm:gap-1">
       {/* Previous */}
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex items-center gap-1 px-2 py-1.5 text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center gap-1 px-3 py-2 sm:px-2 sm:py-1.5 text-sm sm:text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors min-h-[44px] sm:min-h-0"
       >
-        <ChevronLeft className="w-3.5 h-3.5" />
-        Prev
+        <ChevronLeft className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+        <span className="hidden sm:inline">Prev</span>
       </button>
 
-      {/* Page numbers */}
-      <div className="flex items-center gap-0.5">
+      {/* Mobile: Page indicator */}
+      <span className="sm:hidden text-sm text-gray-600 px-2">
+        {currentPage} / {totalPages}
+      </span>
+
+      {/* Desktop: Page numbers */}
+      <div className="hidden sm:flex items-center gap-0.5">
         {getPageNumbers().map((page, index) => (
           page === 'ellipsis' ? (
-            <span key={`ellipsis-${index}`} className="px-1.5 text-gray-400 text-[13px]">
+            <span key={`ellipsis-${index}`} className="px-1.5 text-gray-400 text-sm">
               ...
             </span>
           ) : (
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`w-8 h-8 flex items-center justify-center text-[13px] font-medium rounded transition-colors ${
+              className={`w-8 h-8 flex items-center justify-center text-sm font-medium rounded transition-colors ${
                 currentPage === page
                   ? 'bg-gray-900 text-white'
                   : 'text-gray-600 hover:bg-gray-100'
@@ -93,10 +98,10 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex items-center gap-1 px-2 py-1.5 text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center gap-1 px-3 py-2 sm:px-2 sm:py-1.5 text-sm sm:text-[13px] font-medium text-gray-600 bg-white border border-[#e5e5e5] rounded hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors min-h-[44px] sm:min-h-0"
       >
-        Next
-        <ChevronRight className="w-3.5 h-3.5" />
+        <span className="hidden sm:inline">Next</span>
+        <ChevronRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
       </button>
     </nav>
   )

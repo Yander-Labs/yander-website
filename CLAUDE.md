@@ -1,174 +1,85 @@
-# Yander Website - AI Agent Instructions
+# Yander Website
 
-## Project Overview
 Next.js 16.1 + React 19 + TypeScript marketing website with Sanity CMS blog.
-Remote team intelligence platform focused on employee engagement and retention.
 
-## Critical Commands
+## Architecture
+
+| Decision | Rationale |
+|----------|-----------|
+| `app/(main)/` route group | Pages with Navigation/Footer |
+| `app/studio/` route group | Full-screen CMS (no nav/footer) |
+| Sanity embedded studio | Single-domain deployment |
+| Tailwind v4 | Native CSS theme variables |
+| Framer Motion | Declarative animations with scroll triggers |
+
+## Commands
+
 ```bash
-npm run dev -- --port 3001  # Start dev server on port 3001
-npm run build               # Production build - run before committing
-npm run lint                # Check for linting errors
+npm run dev:watch    # Dev server with auto-recovery (port 3001)
+npm run build        # Production build - run before committing
+npm run lint         # Check for errors
 ```
 
-> **Port:** This project uses port 3001 to avoid conflicts with other local projects.
+## Key Locations
 
-## File Locations
-- **Pages**: `app/(main)/` for public routes, `app/studio/` for CMS
-- **Components**: `components/{ui,sections,blog}/`
-- **Sanity schemas**: `sanity/schemaTypes/`
-- **Utilities**: `lib/{sanity.ts,queries.ts,types.ts,utils.ts}`
-- **Scripts**: `scripts/`
+| Purpose | Path |
+|---------|------|
+| Public pages | `app/(main)/` |
+| Sanity Studio | `app/studio/` |
+| Components | `components/{ui,sections,blog}/` |
+| Queries | `lib/queries.ts` |
+| Types | `lib/types.ts` |
+| Sanity schemas | `sanity/schemaTypes/` |
 
-## Environment Variables
-Required in `.env.local`:
-```
-NEXT_PUBLIC_SANITY_PROJECT_ID=s3r1d2vt
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-```
+## Component Pattern
 
-## Code Patterns
-
-### Component Structure
 ```typescript
-"use client" // Only if needed (hooks, interactivity)
+"use client" // Only if hooks/interactivity needed
 
 import { cn } from "@/lib/utils"
 
-interface ComponentProps {
-  className?: string
-}
-
-export function Component({ className }: ComponentProps) {
+export function Component({ className }: { className?: string }) {
   return <div className={cn("base-classes", className)} />
 }
 ```
 
-### When to Use "use client"
-**Required for:** useState, useEffect, useRef, onClick, onChange, Framer Motion
-**Not needed for:** Static rendering, server-side data fetching, pure display
+## Sanity Pattern
 
-### Styling Conventions
-- Border color: `border-[#E4E7EC]`
-- Shadows: `shadow-card`, `shadow-elevated`, `shadow-xl`
-- Typography: `font-serif` for headings, `font-sans` (default) for body
-- Section padding: `py-20 md:py-28`
-
-### Anti-AI-Slop Design Rules
-
-**Never Use:**
-- Inter, Roboto, Open Sans, Arial for body text (we use Instrument Serif + Inter)
-- Purple gradients on white backgrounds
-- **Gradient backgrounds on icons** (e.g., `bg-gradient-to-br from-emerald-500 to-blue-500`) - use solid `bg-gray-900` instead
-- **"Candy" multi-color gradients** - these look cheap and AI-generated
-- **Glow shadows on icons** (e.g., `shadow-[0_0_40px_rgba(...)]`)
-- Generic card layouts with uniform rounded corners
-- Evenly-distributed color palettes
-- Predictable 12-column grid layouts
-
-**Always Use:**
-- CSS variables for all colors (defined in globals.css)
-- Minimum 3x size jumps for typography hierarchy
-- One distinctive, memorable element per design
-- Asymmetric layouts with intentional negative space
-- High-impact entrance animations over scattered micro-interactions
-
-**For Infographics:**
-- Use geometric patterns or gradient meshes for backgrounds
-- Apply dramatic shadows and layered transparencies
-- Editorial/magazine aesthetic with serif headers
-- Data visualization should tell a story, not just display numbers
-
-**For Bento Grids:**
-- Break the grid with at least one oversized element
-- Use `lg:col-span-2` or `lg:row-span-2` for visual hierarchy
-- Add micro-interactions on hover states
-- Generous negative space OR controlled density - never mediocre middle ground
-
-**Yander's Aesthetic Direction: "Refined Clarity"**
-- **Editorial sophistication** - Serif headlines (Instrument Serif), thoughtful whitespace
-- **Data-driven confidence** - Clear metrics, sparkline visualizations
-- **Premium minimalism** - Grayscale palette with strategic accent colors
-- **Trustworthy professionalism** - Subtle shadows, refined borders, no gimmicks
-
-### Sanity Integration
 ```typescript
-import { client, urlFor, sanityFetch } from "@/lib/sanity"
-import { postsQuery, postBySlugQuery } from "@/lib/queries"
-import type { Post, PostCard } from "@/lib/types"
+import { sanityFetch, urlFor } from "@/lib/sanity"
+import type { PostCard } from "@/lib/types"
 
-// Fetch data
 const posts = await sanityFetch<PostCard[]>(postsQuery)
-
-// Image URLs
 urlFor(image).width(600).height(400).url()
 ```
 
-### Animation Defaults (Framer Motion)
-```typescript
-initial={{ opacity: 0, y: 20 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-```
+## Environment
 
-## Common Tasks
-
-### Add Homepage Section
-1. Create `components/sections/NewSection.tsx`
-2. Import and add to `app/(main)/page.tsx`
-3. Use `Container`, `AnimatedSection` wrappers
-
-### Add Blog Feature
-1. Update `sanity/schemaTypes/` if new schema needed
-2. Add GROQ query in `lib/queries.ts`
-3. Add types in `lib/types.ts`
-4. Create component in `components/blog/`
-
-### Modify Sanity Schema
-1. Edit `sanity/schemaTypes/{type}.ts`
-2. Run `npm run build`
-3. Studio auto-updates at `/studio`
-
-### Seed Blog Content
 ```bash
-SANITY_TOKEN=your_token node scripts/seed-blog-content.mjs
+NEXT_PUBLIC_SANITY_PROJECT_ID=s3r1d2vt
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_TOKEN=<required for writes>
+REPLICATE_API_TOKEN=<required for AI images>
 ```
 
-## File Naming
-- Components: `PascalCase.tsx`
-- Utilities: `camelCase.ts`
-- Pages: `page.tsx`, `layout.tsx`
-- Use absolute imports: `@/components`, `@/lib`
+## Rules & Skills
 
-## Route Groups
-- `app/(main)/` - Public pages with Navigation and Footer
-- `app/studio/` - Sanity Studio (no nav/footer, intentionally minimal)
-
-## Sanity Schemas
-- `post`: title, slug, author, mainImage, categories, body, readTime
-- `author`: name, slug, image, bio, role
-- `category`: title, slug, description, color (Tailwind color name)
-- `blockContent`: Rich text with h2/h3/h4, images, code blocks
-
-## Key Utilities
-- `cn()` from `@/lib/utils` - Merge conditional classnames
-- `urlFor()` from `@/lib/sanity` - Build Sanity image URLs
-- `sanityFetch<T>()` from `@/lib/sanity` - Typed GROQ queries
-
-## Do NOT
-- Add "use client" to server components unnecessarily
-- Use default exports for components (use named exports)
-- Hardcode Sanity credentials
-- Modify `app/studio/` layout (intentionally minimal for full-screen CMS)
-- Create new files when editing existing ones would suffice
+| Topic | Location |
+|-------|----------|
+| Boundaries (Always/Ask/Never) | `.claude/rules/boundaries.md` |
+| Context hygiene | `.claude/rules/context-hygiene.md` |
+| Blog workflow | `.claude/rules/blog.md` |
+| Sanity CMS | `.claude/rules/sanity.md` |
+| SEO | `.claude/rules/seo.md` |
+| Styling | `.claude/rules/styling.md` |
+| Components | `.claude/rules/components.md` |
+| Design tokens | `.claude/rules/design-tokens.md` |
+| Anti-AI-slop | `.claude/skills/frontend-design/SKILL.md` |
+| `/context-audit` | Audit agent config health |
 
 ## Quick Reference
-| Task | File |
-|------|------|
-| Add nav link | `components/Navigation.tsx` |
-| Add footer link | `components/Footer.tsx` |
-| New blog query | `lib/queries.ts` |
-| New type | `lib/types.ts` |
-| Global styles | `app/globals.css` |
-| Sanity config | `sanity.config.ts` |
+
+- Use named exports (not default)
+- Port 3001 (avoid conflicts)
+- `font-serif` for headlines, `font-sans` for body
+- Border color: `border-[#E4E7EC]`

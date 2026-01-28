@@ -1,13 +1,11 @@
 # Component Rules
 
-## File Structure Template
+## File Template
 
 ```typescript
 "use client" // Only if needed
 
 import { cn } from "@/lib/utils"
-// External imports (react, framer-motion, lucide-react)
-// Internal imports (@/components, @/lib)
 
 interface ComponentNameProps {
   className?: string
@@ -23,31 +21,31 @@ export function ComponentName({ className, children }: ComponentNameProps) {
 }
 ```
 
-## Naming Conventions
+## Naming
 
-- **Files:** `PascalCase.tsx`
-- **Components:** `PascalCase` function name
-- **Props Interface:** `ComponentNameProps`
-- **Exports:** Named exports only (not default)
+| Item | Convention |
+|------|------------|
+| Files | `PascalCase.tsx` |
+| Components | `PascalCase` function |
+| Props | `ComponentNameProps` |
+| Exports | Named only (not default) |
 
-## "use client" Rules
+## "use client" Decision
 
 **Required for:**
 - `useState`, `useEffect`, `useRef`, `useCallback`
 - Event handlers: `onClick`, `onChange`, `onSubmit`
 - Framer Motion animations
-- Browser APIs (localStorage, window, document)
+- Browser APIs
 
 **Not needed for:**
 - Static rendering
 - Server-side data fetching
 - Pure display components
-- Components that only receive props
 
 ## Common Wrappers
 
 ```typescript
-// Page sections
 import { Container } from "@/components/ui/Container"
 import { AnimatedSection } from "@/components/ui/AnimatedSection"
 
@@ -56,43 +54,13 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection"
     {/* Content */}
   </AnimatedSection>
 </Container>
-
-// Conditional classes
-import { cn } from "@/lib/utils"
-
-className={cn(
-  "base-classes always-applied",
-  condition && "applied-when-true",
-  !condition && "applied-when-false",
-  className // Allow override from props
-)}
 ```
 
-## Button Usage
-
-```typescript
-import { Button } from "@/components/ui/Button"
-
-<Button variant="primary" size="lg">Primary Action</Button>
-<Button variant="secondary" size="md">Secondary</Button>
-<Button variant="outline" size="sm">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-```
-
-## Icon Usage
-
-```typescript
-import { IconName } from "lucide-react"
-
-<IconName className="w-5 h-5 text-gray-500" />
-```
-
-## Component Location
+## Component Locations
 
 | Type | Directory |
 |------|-----------|
-| Reusable UI primitives | `components/ui/` |
+| UI primitives | `components/ui/` |
 | Homepage sections | `components/sections/` |
 | Blog-specific | `components/blog/` |
-| Navigation/Footer | `components/` (root) |
-| Brand logos | `components/icons/` |
+| Navigation/Footer | `components/` |

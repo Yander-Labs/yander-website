@@ -71,9 +71,9 @@ export default async function PostPage({ params }: PostPageProps) {
       <PostHeader post={post} />
 
       <Container>
-        <div className="flex gap-12 pb-16">
+        <div className="flex gap-8 lg:gap-12 pb-16">
           {/* Main Content */}
-          <article className="flex-1 max-w-3xl">
+          <article className="flex-1 min-w-0 max-w-3xl">
             {post.body && <PostBody body={post.body} />}
 
             {/* Share buttons */}
@@ -89,9 +89,9 @@ export default async function PostPage({ params }: PostPageProps) {
             )}
           </article>
 
-          {/* Table of Contents - Desktop */}
+          {/* Table of Contents - Desktop only */}
           {post.body && (
-            <aside className="hidden lg:block w-64 flex-shrink-0">
+            <aside className="hidden xl:block w-56 xl:w-64 flex-shrink-0">
               <TableOfContents body={post.body} />
             </aside>
           )}

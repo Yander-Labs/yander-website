@@ -5,7 +5,7 @@ import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MiniChart } from "../ui/MiniChart";
-import { Check, TrendingUp, MessageCircle, Zap, Clock, ArrowUpRight } from "lucide-react";
+import { Check, TrendingUp, MessageCircle, Zap, Clock, ChevronRight } from "lucide-react";
 
 const features = [
   "Works with Slack, Gmail, and your existing meeting tools",
@@ -67,8 +67,8 @@ export function BuiltForRemote() {
             <ul className="space-y-3 mb-8">
               {features.map((feature) => (
                 <li key={feature} className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-emerald-600" />
+                  <div className="w-5 h-5 rounded-md bg-gray-900 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-white" />
                   </div>
                   <span className="text-sm text-gray-600">{feature}</span>
                 </li>
@@ -84,14 +84,11 @@ export function BuiltForRemote() {
               {/* Main Card */}
               <div className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden">
                 {/* Card Header */}
-                <div className="px-5 py-4 border-b border-[#e5e5e5] bg-gradient-to-r from-gray-50 via-white to-gray-50">
+                <div className="px-5 py-4 border-b border-[#E4E7EC]">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                        Engagement Signals
-                      </span>
-                    </div>
+                    <span className="text-xs font-semibold text-gray-900 uppercase tracking-wider">
+                      Engagement Signals
+                    </span>
                     <div className="flex items-center gap-1.5 text-xs text-gray-400">
                       <Clock className="w-3 h-3" />
                       <span>Real-time</span>
@@ -104,122 +101,70 @@ export function BuiltForRemote() {
                   {signals.map((signal) => (
                     <div
                       key={signal.title}
-                      className={`group relative overflow-hidden rounded-lg border transition-all duration-200 hover:shadow-subtle ${
-                        signal.type === "success"
-                          ? "bg-gradient-to-r from-emerald-50 to-emerald-50/30 border-emerald-100 hover:border-emerald-200"
-                          : signal.type === "warning"
-                          ? "bg-gradient-to-r from-amber-50 to-amber-50/30 border-amber-100 hover:border-amber-200"
-                          : "bg-gradient-to-r from-blue-50 to-blue-50/30 border-blue-100 hover:border-blue-200"
-                      }`}
+                      className="group relative bg-white p-4 border-b border-[#E4E7EC] last:border-b-0 hover:bg-gray-50/50 transition-colors duration-150"
                     >
-                      {/* Left accent bar */}
-                      <div
-                        className={`absolute left-0 top-0 bottom-0 w-1 ${
-                          signal.type === "success"
-                            ? "bg-emerald-500"
-                            : signal.type === "warning"
-                            ? "bg-amber-500"
-                            : "bg-blue-500"
-                        }`}
-                      />
+                      <div className="flex items-start gap-3">
+                        {/* Icon - Grayscale with status dot */}
+                        <div className="relative flex-shrink-0">
+                          <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
+                            <signal.icon className="w-4 h-4 text-gray-500" />
+                          </div>
+                          {/* Tiny status indicator dot */}
+                          <div
+                            className={`absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full border-2 border-white ${
+                              signal.type === "success"
+                                ? "bg-emerald-500"
+                                : signal.type === "warning"
+                                ? "bg-amber-500"
+                                : "bg-gray-400"
+                            }`}
+                          />
+                        </div>
 
-                      <div className="p-4 pl-5">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex items-start gap-3">
-                            {/* Icon with glow */}
-                            <div
-                              className={`relative w-9 h-9 rounded-lg flex items-center justify-center ${
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <p className="text-sm font-medium text-gray-900">
+                              {signal.title}
+                            </p>
+                            {/* Metric badge - Strategic color accent */}
+                            <span
+                              className={`text-xs font-semibold px-1.5 py-0.5 rounded border ${
                                 signal.type === "success"
-                                  ? "bg-emerald-100"
+                                  ? "bg-emerald-50 text-emerald-600 border-emerald-100"
                                   : signal.type === "warning"
-                                  ? "bg-amber-100"
-                                  : "bg-blue-100"
+                                  ? "bg-amber-50 text-amber-600 border-amber-100"
+                                  : "bg-gray-100 text-gray-600 border-gray-200"
                               }`}
                             >
-                              <signal.icon
-                                className={`w-4 h-4 ${
-                                  signal.type === "success"
-                                    ? "text-emerald-600"
-                                    : signal.type === "warning"
-                                    ? "text-amber-600"
-                                    : "text-blue-600"
-                                }`}
-                              />
-                            </div>
-
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-1">
-                                <p
-                                  className={`text-sm font-semibold ${
-                                    signal.type === "success"
-                                      ? "text-emerald-800"
-                                      : signal.type === "warning"
-                                      ? "text-amber-800"
-                                      : "text-blue-800"
-                                  }`}
-                                >
-                                  {signal.title}
-                                </p>
-                                <span
-                                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                                    signal.type === "success"
-                                      ? "bg-emerald-200/50 text-emerald-700"
-                                      : signal.type === "warning"
-                                      ? "bg-amber-200/50 text-amber-700"
-                                      : "bg-blue-200/50 text-blue-700"
-                                  }`}
-                                >
-                                  {signal.metric}
-                                </span>
-                              </div>
-                              <p
-                                className={`text-xs leading-relaxed ${
-                                  signal.type === "success"
-                                    ? "text-emerald-700/80"
-                                    : signal.type === "warning"
-                                    ? "text-amber-700/80"
-                                    : "text-blue-700/80"
-                                }`}
-                              >
-                                {signal.message}
-                              </p>
-                              <p className="text-[10px] text-gray-400 mt-1.5">
-                                {signal.time}
-                              </p>
-                            </div>
+                              {signal.metric}
+                            </span>
                           </div>
-
-                          {/* Mini trend chart */}
-                          <div className="flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
-                            <MiniChart
-                              data={signal.trend}
-                              width={48}
-                              height={24}
-                              strokeWidth={1.5}
-                              showDot={false}
-                              color={
-                                signal.type === "success"
-                                  ? "#10b981"
-                                  : signal.type === "warning"
-                                  ? "#f59e0b"
-                                  : "#3b82f6"
-                              }
-                            />
-                          </div>
+                          <p className="text-sm text-gray-500 leading-relaxed">
+                            {signal.message}
+                          </p>
+                          <p className="text-xs text-gray-400 mt-1.5">
+                            {signal.time}
+                          </p>
                         </div>
-                      </div>
 
-                      {/* Hover arrow */}
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0 translate-x-2">
-                        <ArrowUpRight
-                          className={`w-4 h-4 ${
-                            signal.type === "success"
-                              ? "text-emerald-500"
-                              : signal.type === "warning"
-                              ? "text-amber-500"
-                              : "text-blue-500"
-                          }`}
-                        />
+                        {/* Mini trend chart - Functional color for data viz (hidden on mobile) */}
+                        <div className="hidden sm:block flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
+                          <MiniChart
+                            data={signal.trend}
+                            width={48}
+                            height={24}
+                            strokeWidth={1.5}
+                            showDot={false}
+                            color={
+                              signal.type === "success"
+                                ? "#10b981"
+                                : signal.type === "warning"
+                                ? "#f59e0b"
+                                : "#6b7280"
+                            }
+                          />
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -229,17 +174,14 @@ export function BuiltForRemote() {
                 <div className="px-5 py-3 border-t border-[#e5e5e5] bg-gray-50/50">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-gray-400">3 new signals today</span>
-                    <button className="text-gray-600 font-medium hover:text-gray-900 transition-colors flex items-center gap-1">
+                    <button className="text-gray-600 font-medium hover:text-gray-900 transition-colors flex items-center gap-0.5">
                       View all
-                      <ArrowUpRight className="w-3 h-3" />
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative floating elements */}
-              <div className="absolute -top-3 -right-3 w-20 h-20 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-full blur-2xl" />
-              <div className="absolute -bottom-3 -left-3 w-16 h-16 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-2xl" />
             </div>
           </AnimatedSection>
         </div>

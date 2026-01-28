@@ -98,7 +98,7 @@ function WaitlistModal() {
               <div className="relative px-6 pt-6 pb-4">
                 <button
                   onClick={handleClose}
-                  className="absolute right-4 top-4 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="absolute right-3 top-3 p-3 rounded-lg hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5 text-gray-400" />
