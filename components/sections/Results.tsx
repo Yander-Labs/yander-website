@@ -11,7 +11,7 @@ const stats = [
     value: 30,
     suffix: "%",
     label: "Increase in Retention",
-    description: "Spot disengagement before it leads to resignation",
+    description: "Spot disengagement before people quit",
     icon: TrendingUp,
     color: "emerald",
     trend: "+12% vs last quarter",
@@ -32,7 +32,7 @@ const stats = [
     description: "Teams using Yander report significant gains in team collaboration",
     icon: Users,
     color: "purple",
-    trend: "Survey results",
+    trend: "Stronger team",
   },
 ];
 
@@ -47,10 +47,6 @@ export function Results() {
           <h2 className="font-serif text-3xl md:text-4xl text-gray-900">
             Real Teams. Real Results.
           </h2>
-          <p className="mt-4 text-base text-gray-500 max-w-xl mx-auto">
-            From preventing turnover to lifting productivity, teams are using
-            Yander to work smarter.
-          </p>
         </AnimatedSection>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -113,12 +109,6 @@ export function Results() {
           ))}
         </StaggerContainer>
 
-        {/* Bottom decoration */}
-        <div className="mt-12 flex items-center justify-center gap-4">
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-gray-200" />
-          <span className="text-xs text-gray-400">Based on customer data</span>
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-gray-200" />
-        </div>
       </Container>
     </section>
   );

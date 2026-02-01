@@ -29,7 +29,7 @@ const steps = [
   },
   {
     number: "03",
-    title: "Get Actionable Insights",
+    title: "Get Daily Scores",
     description: "See who's thriving, who needs support, and where to focus your attention.",
     visual: "insights",
   },
@@ -145,11 +145,8 @@ export function HowItWorks() {
             How It Works
           </SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
-            From scattered signals to clear insights
+            Start getting insights in a few minutes
           </h2>
-          <p className="mt-4 text-base text-[#737373] max-w-2xl mx-auto">
-            Yander connects to your existing tools and turns everyday activity into actionable team intelligence.
-          </p>
         </div>
 
         {/* Steps - Horizontal on desktop, vertical on mobile */}

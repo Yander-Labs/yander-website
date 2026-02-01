@@ -17,6 +17,10 @@ import {
   Eye,
   BarChart3,
   Lock,
+  Paperclip,
+  ChevronDown,
+  Send,
+  MessageSquare,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -187,38 +191,57 @@ function PrivacyVisual() {
   );
 }
 
-// Smart alerts notification stack
+// Smart alerts - Slack message mockup
 function AlertsVisual() {
   return (
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="space-y-2 w-full max-w-[200px]">
-        {[
-          { type: "critical", text: "Burnout risk: Marcus J.", time: "now" },
-          { type: "warning", text: "Low engagement detected", time: "2h" },
-          { type: "info", text: "Weekly report ready", time: "1d" },
-        ].map((alert, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1 - i * 0.2, x: i * 4 }}
-            transition={{ delay: i * 0.1 }}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
-              i === 0
-                ? "bg-[#2a2a2a] border-[#3a3a3a]"
-                : "bg-[#222] border-[#2a2a2a]"
-            }`}
-            style={{ transform: `translateX(${i * 4}px)` }}
-          >
-            <div className={`w-1.5 h-6 rounded-full ${
-              alert.type === "critical" ? "bg-rose-500" :
-              alert.type === "warning" ? "bg-amber-500" : "bg-blue-500"
-            }`} />
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-white truncate">{alert.text}</p>
-              <p className="text-[9px] text-gray-500">{alert.time}</p>
+    <div className="flex-1 flex items-center justify-center p-5">
+      <div className="w-full max-w-[280px]">
+        {/* Slack message container */}
+        <div className="bg-[#1a1a1a] rounded-lg border border-[#2a2a2a] overflow-hidden">
+          {/* Slack header */}
+          <div className="flex items-center gap-2 px-3 py-2 bg-[#4A154B] border-b border-[#3a1a3b]">
+            <Image
+              src="/logos/slack.svg"
+              alt="Slack"
+              width={16}
+              height={16}
+              className="w-4 h-4"
+            />
+            <span className="text-[11px] text-white/80">#team-alerts</span>
+          </div>
+
+          {/* Message */}
+          <div className="p-3">
+            <div className="flex gap-2.5">
+              {/* Yander bot avatar */}
+              <div className="w-8 h-8 rounded bg-gray-900 flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[10px] font-bold">Y</span>
+              </div>
+
+              {/* Message content */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[12px] font-semibold text-white">Yander</span>
+                  <span className="text-[9px] px-1 py-0.5 bg-[#2a2a2a] rounded text-gray-400">APP</span>
+                  <span className="text-[9px] text-gray-500">2:34 PM</span>
+                </div>
+
+                {/* Alert box */}
+                <div className="bg-amber-500/10 border-l-2 border-amber-500 rounded-r px-2.5 py-2">
+                  <p className="text-[11px] text-amber-200 font-medium mb-0.5">⚠️ Low Engagement Detected</p>
+                  <p className="text-[10px] text-gray-400">
+                    <span className="text-white font-medium">Marcus Johnson</span> has shown a 23% drop in engagement over the past 7 days.
+                  </p>
+                </div>
+
+                {/* Action hint */}
+                <p className="text-[9px] text-gray-500 mt-2">
+                  💡 Consider scheduling a 1:1 check-in
+                </p>
+              </div>
             </div>
-          </motion.div>
-        ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -260,40 +283,37 @@ function AIVisual() {
   );
 }
 
-// Team collaboration visual - overlapping avatars
-function CollaborationVisual() {
-  const teamAvatars = [
-    "/avatars/Sarah-chen.png",
-    "/avatars/marcus-johnson.png",
-    "/avatars/emily-rodriguez.png",
-    "/avatars/ryan-peters.png",
-  ];
-
+// Yander Chat visual - AI chat interface
+function ChatVisual() {
   return (
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="flex items-center">
-        {/* Overlapping avatars */}
-        <div className="flex -space-x-3">
-          {teamAvatars.map((avatar, i) => (
-            <div
-              key={i}
-              className="w-10 h-10 rounded-full border-2 border-[#1a1a1a] overflow-hidden shadow-lg"
-              style={{ zIndex: 5 - i }}
-            >
-              <Image
-                src={avatar}
-                alt="Team member"
-                width={40}
-                height={40}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+    <div className="flex-1 flex flex-col justify-center p-5">
+      {/* Chat input container */}
+      <div className="bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-3">
+        {/* Input area */}
+        <div className="mb-3">
+          <p className="text-[13px] text-gray-500">Ask or search for anything</p>
         </div>
 
-        {/* Plus indicator */}
-        <div className="ml-2 w-10 h-10 rounded-full bg-[#2a2a2a] border-2 border-dashed border-[#3a3a3a] flex items-center justify-center text-gray-400 text-sm">
-          +8
+        {/* Bottom row */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Attachment icon */}
+            <Paperclip className="w-4 h-4 text-gray-500" />
+
+            {/* Model selector */}
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-[#2a2a2a] cursor-pointer">
+              <div className="w-4 h-4 rounded bg-gray-700 flex items-center justify-center">
+                <span className="text-[8px] font-bold text-white">Y</span>
+              </div>
+              <span className="text-[12px] font-medium text-white">Yander AI</span>
+              <ChevronDown className="w-3 h-3 text-gray-400" />
+            </div>
+          </div>
+
+          {/* Send button */}
+          <div className="w-8 h-8 rounded-full bg-[#2a2a2a] flex items-center justify-center">
+            <Send className="w-4 h-4 text-gray-400" />
+          </div>
         </div>
       </div>
     </div>
@@ -310,11 +330,8 @@ export function BentoFeatures() {
             Key Features
           </SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
-            Turn team signals into actionable insights
+            Yander gives you the data you need to make better team decisions.
           </h2>
-          <p className="mt-4 text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-            Identify engagement patterns that matter, monitor team health, and act before issues escalate.
-          </p>
         </div>
 
         {/* Bento Grid */}
@@ -323,74 +340,60 @@ export function BentoFeatures() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          {/* Card 1 - Dashboard (Large, spans 2 cols) */}
+          {/* Card 1 - Smart Alerts */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[320px] sm:min-h-[340px] md:min-h-[360px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
           >
-            <DashboardVisual />
+            <AlertsVisual />
             <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Real-Time Dashboard</h3>
+              <h3 className="text-lg font-semibold text-white">Slack Notifications</h3>
               <p className="text-sm text-gray-400 mt-1">
-                Our interactive dashboard provides an all-encompassing view of your team&apos;s engagement, collaboration, and wellbeing metrics.
+                Get a Slack message whenever Yander detects a problem.
               </p>
             </div>
           </motion.div>
 
-          {/* Card 2 - Privacy First */}
+          {/* Card 2 - AI Recommendations */}
           <motion.div
             variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[320px] sm:min-h-[340px] md:min-h-[360px]"
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
+          >
+            <AIVisual />
+            <div className="p-6 pt-0 mt-auto">
+              <h3 className="text-lg font-semibold text-white">AI Recommendations</h3>
+              <p className="text-sm text-gray-400 mt-1">
+                Get suggestions that are proven to help with team engagement, communication, and more.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 3 - Immediate Insights */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
+          >
+            <ChatVisual />
+            <div className="p-6 pt-0 mt-auto">
+              <h3 className="text-lg font-semibold text-white">Immediate Insights</h3>
+              <p className="text-sm text-gray-400 mt-1">
+                Ask the chat any team-related question and get the answers you need in seconds.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 4 - Privacy by Design */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
           >
             <PrivacyVisual />
             <div className="p-6 pt-0 mt-auto">
               <h3 className="text-lg font-semibold text-white">Privacy by Design</h3>
               <p className="text-sm text-gray-400 mt-1">
                 Built for trust, not surveillance. We analyze patterns, not keystrokes.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 3 - Smart Alerts */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
-          >
-            <AlertsVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Smart Alerts</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Get notified about burnout risks and engagement changes in real-time.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 4 - AI Recommendations */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
-          >
-            <AIVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">AI Recommendations</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Receive intelligent suggestions to improve team engagement and prevent issues.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 5 - Team Collaboration */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[240px] sm:min-h-[260px] md:min-h-[280px]"
-          >
-            <CollaborationVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Team Collaboration</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Seamlessly track collaboration patterns across your entire organization.
               </p>
             </div>
           </motion.div>

@@ -39,8 +39,8 @@ export function DarkCTA() {
                 <span className="text-sm text-white/80">Start your free trial today</span>
               </div>
 
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] leading-tight">
-                Ready to build a stronger remote team?
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] text-white tracking-[-0.02em] leading-tight">
+                Sign up and get a stronger pulse on your team
               </h2>
 
               <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
@@ -82,9 +82,6 @@ export function DarkCTA() {
               >
                 Book a Demo
               </button>
-              <p className="text-center text-xs text-white/40 mt-2">
-                No credit card required
-              </p>
             </div>
           </div>
         </motion.div>

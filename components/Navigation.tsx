@@ -18,7 +18,7 @@ interface NavigationProps {
 
 export function Navigation({
   showBanner = true,
-  bannerText = "Now in early access. Join the waitlist for priority access.",
+  bannerText = "Join the waitlist for early access",
   bannerLink = "#"
 }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +58,7 @@ export function Navigation({
       <nav
         className={cn(
           "fixed left-0 right-0 z-50 transition-all duration-200",
-          bannerVisible ? "top-[44px]" : "top-0",
+          bannerVisible ? "top-[40px]" : "top-0",
           scrolled
             ? "bg-white/95 backdrop-blur-md border-b border-[#E4E7EC] py-3"
             : "bg-transparent py-5"

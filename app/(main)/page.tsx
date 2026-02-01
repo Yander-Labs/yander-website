@@ -1,7 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { Integrations } from "@/components/sections/Integrations";
-import { ProblemStatement } from "@/components/sections/ProblemStatement";
 import { BentoFeatures } from "@/components/sections/BentoFeatures";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Results } from "@/components/sections/Results";
@@ -15,7 +14,6 @@ export default function Home() {
       <Hero />
       <TrustedBy />
       <Integrations />
-      <ProblemStatement />
       <BentoFeatures />
       <HowItWorks />
       <Results />

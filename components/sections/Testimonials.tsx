@@ -13,9 +13,9 @@ import loudfaceLogo from "@/components/images/Loudface Logo.png";
 const testimonials = [
   {
     quote:
-      "Running a 23-person remote marketing agency, losing key people has quietly cost us $100,000's in lost momentum and client disruption. Before Yander, I had no reliable way to see burnout or disengagement until it was too late. Now we have a clear view of engagement and workload for every person, and we've already prevented costly resignations and client issues as a result.",
+      "Running a 23-person remote marketing agency, losing key people has cost us $100,000's in lost momentum and client disruption. Before Yander, I had no reliable way to see burnout or disengagement. Now we have a clear view of engagement and workload for every person, and we've already prevented costly resignations and client issues.",
     name: "Jordan Hayes",
-    title: "Founder & CEO",
+    title: "Founder & CEO, Hayes Media",
     company: "Hayes Media",
     companyLogo: hayesLogo,
     logoClassName: "h-6 w-auto",
@@ -23,9 +23,9 @@ const testimonials = [
   },
   {
     quote:
-      "Working with brands like Montblanc and Radisson, I can't afford blind spots in my team. With everyone remote, it used to be almost impossible to know who was engaged, collaborating well, or quietly burning out behind the scenes. Yander gives me the insights to keep my team performing at the level our clients expect and to step in early when something's off, instead of finding out when it's too late.",
+      "Working with brands like Montblanc and Radisson, I can't afford blind spots in my team. Yander gives me the insights to keep my team performing at the level our clients expect and to step in early when something's off, instead of finding out when it's too late.",
     name: "Arnel Bukva",
-    title: "Founder & CEO",
+    title: "Founder & CEO, Loudface",
     company: "Loudface",
     companyLogo: loudfaceLogo,
     logoClassName: "h-4 w-auto",
