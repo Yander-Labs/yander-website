@@ -102,7 +102,7 @@ export function FAQ() {
             <SectionLabel number="05" centered>
               FAQ
             </SectionLabel>
-            <h2 className="font-serif text-3xl md:text-4xl text-[#171717] tracking-[-0.02em]">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em]">
               Frequently Asked Questions
             </h2>
             <p className="mt-4 text-base text-[#737373]">

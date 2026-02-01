@@ -316,10 +316,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="font-serif text-[32px] sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.02em] text-[#171717] leading-[1.1]"
+            className="font-serif text-[32px] sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.005em] text-[#171717] leading-[1.1]"
           >
-            Real-time team performance{" "}
-            <span className="text-[#737373]">in one dashboard.</span>
+            Your team's performance{" "}
+            <span className="text-[#737373]">in one dashboard</span>
           </motion.h1>
 
           <motion.p
@@ -332,7 +332,7 @@ export function Hero() {
             }}
             className="mt-6 text-base md:text-lg text-[#737373] max-w-2xl mx-auto leading-relaxed"
           >
-            Turns activity from the tools you use everyday into an accurate daily score for every employee.
+            Pulls insights from the tools you use everyday to give you an accurate daily score for each employee.
           </motion.p>
 
           <motion.div

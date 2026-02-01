@@ -330,7 +330,7 @@ export function BentoFeatures() {
             Key Features
           </SectionLabel>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
-            Yander gives you the data you need to make better team decisions.
+            Get the data you need to make better team decisions.
           </h2>
         </div>
 

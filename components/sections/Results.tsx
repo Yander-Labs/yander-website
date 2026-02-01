@@ -29,7 +29,7 @@ const stats = [
     value: 64,
     suffix: "%",
     label: "Collaboration Improvement",
-    description: "Teams using Yander report significant gains in team collaboration",
+    description: "Collaborative teams deliver better client work",
     icon: Users,
     color: "purple",
     trend: "Stronger team",
@@ -44,7 +44,7 @@ export function Results() {
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="03" centered>Proven Results</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl text-gray-900">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-gray-900">
             Real Teams. Real Results.
           </h2>
         </AnimatedSection>
