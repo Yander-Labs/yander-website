@@ -3,6 +3,7 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument-serif), "Georgia", serif;
+  --font-geist: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 
   /* Peec.ai color palette (exact values from source) */
   --color-text-primary: rgb(23, 23, 23);      /* #171717 - Primary text */
@@ -67,6 +68,10 @@
 
   .font-serif {
     font-family: var(--font-serif), "Georgia", serif;
+  }
+
+  .font-geist {
+    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   }
 
   /* Attio-style striped background */

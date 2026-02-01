@@ -316,10 +316,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="font-serif text-[32px] sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.005em] text-[#171717] leading-[1.1]"
+            className="font-geist font-semibold text-[36px] sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.02em] text-[#171717] leading-[1.1]"
           >
-            Your team's performance{" "}
-            <span className="text-[#737373]">in one dashboard</span>
+            One dashboard for your entire team's performance
           </motion.h1>
 
           <motion.p
@@ -332,7 +331,7 @@ export function Hero() {
             }}
             className="mt-6 text-base md:text-lg text-[#737373] max-w-2xl mx-auto leading-relaxed"
           >
-            Pulls insights from the tools you use everyday to give you an accurate daily score for each employee.
+            Yander connects to your existing tools and uses its own AI scoring algorithm to give you a clear daily picture of every employee — so you can keep your best people and protect your client relationships.
           </motion.p>
 
           <motion.div

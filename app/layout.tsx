@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Instrument_Serif, Geist } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,6 +14,12 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   display: "swap",
   variable: "--font-instrument-serif",
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
 });
 
 export const metadata: Metadata = {
@@ -102,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${geist.variable}`}>
       <head>
         {/* Organization and WebSite Structured Data */}
         <script
