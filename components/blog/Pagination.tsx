@@ -6,9 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 interface PaginationProps {
   currentPage: number
   totalPages: number
+  basePath?: string
 }
 
-export function Pagination({ currentPage, totalPages }: PaginationProps) {
+export function Pagination({ currentPage, totalPages, basePath = '/blog' }: PaginationProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -21,7 +22,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
     } else {
       params.set('page', page.toString())
     }
-    router.push(`/blog?${params.toString()}`)
+    router.push(`${basePath}?${params.toString()}`)
   }
 
   // Generate page numbers to show

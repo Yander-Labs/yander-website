@@ -129,3 +129,38 @@ export interface CategoryInput {
   description?: string
   color?: string
 }
+
+// =============================================================================
+// Changelog Types
+// =============================================================================
+
+export type ChangeType =
+  | 'feature'
+  | 'improvement'
+  | 'fix'
+  | 'breaking'
+  | 'deprecated'
+  | 'security'
+  | 'performance'
+
+export interface ChangelogCard {
+  _id: string
+  title: string
+  version: string
+  slug: { current: string }
+  summary?: string
+  releaseDate: string
+  changeTypes?: ChangeType[]
+  isHighlight?: boolean
+  coverImage?: Image & { alt?: string }
+}
+
+export interface Changelog extends ChangelogCard {
+  body?: PortableTextBlock[]
+  seo?: SEO
+}
+
+export interface PaginatedChangelogs {
+  entries: ChangelogCard[]
+  total: number
+}

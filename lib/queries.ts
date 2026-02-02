@@ -171,3 +171,72 @@ export const postsForSEOAuditQuery = `*[_type == "post"] | order(publishedAt des
   "author": author->{name},
   "categories": categories[]->{title}
 }`
+
+// =============================================================================
+// Changelog Queries
+// =============================================================================
+
+// Get all changelog entries for listing (newest first)
+export const changelogsQuery = `*[_type == "changelog"] | order(releaseDate desc) {
+  _id,
+  title,
+  version,
+  slug,
+  summary,
+  releaseDate,
+  changeTypes,
+  isHighlight,
+  coverImage
+}`
+
+// Get changelog entries with pagination
+export const paginatedChangelogsQuery = `{
+  "entries": *[_type == "changelog"] | order(releaseDate desc) [$start...$end] {
+    _id,
+    title,
+    version,
+    slug,
+    summary,
+    releaseDate,
+    changeTypes,
+    isHighlight,
+    coverImage
+  },
+  "total": count(*[_type == "changelog"])
+}`
+
+// Get single changelog by slug
+export const changelogBySlugQuery = `*[_type == "changelog" && slug.current == $slug][0] {
+  _id,
+  title,
+  version,
+  slug,
+  summary,
+  releaseDate,
+  changeTypes,
+  isHighlight,
+  coverImage,
+  body,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage,
+    canonicalUrl,
+    noIndex,
+    keywords
+  }
+}`
+
+// Get all slugs for static generation
+export const changelogSlugsQuery = `*[_type == "changelog" && defined(slug.current)][].slug.current`
+
+// Get recent changelog entries (for sidebar/footer widget)
+export const recentChangelogsQuery = `*[_type == "changelog"] | order(releaseDate desc) [0...5] {
+  _id,
+  title,
+  version,
+  slug,
+  summary,
+  releaseDate,
+  changeTypes
+}`

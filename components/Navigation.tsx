@@ -91,6 +91,12 @@ export function Navigation({
               >
                 Blog
               </Link>
+              <Link
+                href="/changelog"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                Changelog
+              </Link>
               <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
@@ -159,6 +165,13 @@ export function Navigation({
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               >
                 Blog
+              </Link>
+              <Link
+                href="/changelog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                Changelog
               </Link>
             </div>
 
