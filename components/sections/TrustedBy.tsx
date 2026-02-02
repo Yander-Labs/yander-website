@@ -21,7 +21,7 @@ export function TrustedBy() {
     <section className="py-10 md:py-12 border-y border-[#E4E7EC] bg-gray-50/30">
       <Container>
         <AnimatedSection>
-          <p className="text-center text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-6">
+          <p className="text-center text-[10px] text-gray-600 uppercase tracking-[0.15em] mb-6">
             Trusted by the teams behind
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-10">

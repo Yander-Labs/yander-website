@@ -31,8 +31,13 @@ const trendData = [
   { name: "Alex Thompson", values: [58, 60, 62, 64, 62], color: "#a5f3fc" },        // Pastel cyan
 ];
 
-function getScoreColor(score: number, isRisk: boolean = false) {
-  if (isRisk) {
+function getScoreColor(score: number, type: "default" | "risk" | "workload" = "default") {
+  if (type === "workload") {
+    if (score >= 70) return "bg-rose-200 text-rose-700";
+    if (score >= 50) return "bg-amber-100 text-amber-700";
+    return "bg-emerald-100 text-emerald-700";
+  }
+  if (type === "risk") {
     if (score >= 50) return "bg-rose-200 text-rose-700";
     if (score >= 30) return "bg-amber-100 text-amber-700";
     return "bg-emerald-100 text-emerald-700";
@@ -42,9 +47,9 @@ function getScoreColor(score: number, isRisk: boolean = false) {
   return "bg-rose-200 text-rose-700";
 }
 
-function ScoreBadge({ score, isRisk = false }: { score: number; isRisk?: boolean }) {
+function ScoreBadge({ score, type = "default" }: { score: number; type?: "default" | "risk" | "workload" }) {
   return (
-    <span className={`inline-flex items-center justify-center min-w-[32px] px-1.5 py-0.5 rounded text-[11px] font-semibold ${getScoreColor(score, isRisk)}`}>
+    <span className={`inline-flex items-center justify-center min-w-[32px] px-1.5 py-0.5 rounded text-[11px] font-semibold ${getScoreColor(score, type)}`}>
       {score}
     </span>
   );
@@ -274,13 +279,13 @@ function ProductMockup() {
                   <p className="text-[10px] sm:text-[11px] text-gray-400 truncate">{member.role}</p>
                 </div>
                 <div className="flex justify-center">
-                  <ScoreBadge score={member.workload} />
+                  <ScoreBadge score={member.workload} type="workload" />
                 </div>
                 <div className="flex justify-center">
                   <ScoreBadge score={member.engagement} />
                 </div>
                 <div className="flex justify-center">
-                  <ScoreBadge score={member.quitRisk} isRisk />
+                  <ScoreBadge score={member.quitRisk} type="risk" />
                 </div>
                 <div className="hidden sm:flex justify-center">
                   <ScoreBadge score={member.commitment} />

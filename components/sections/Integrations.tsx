@@ -25,7 +25,7 @@ export function Integrations() {
     <section className="py-12 md:py-16 bg-white">
       <Container>
         <AnimatedSection>
-          <p className="text-center text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-6">
+          <p className="text-center text-[10px] text-gray-600 uppercase tracking-[0.15em] mb-6">
             Connects with the tools your team already uses
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-8 md:gap-x-10">
