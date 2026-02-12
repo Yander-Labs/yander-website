@@ -173,6 +173,17 @@ export default function PrivacyPolicyPage() {
               <p className="leading-relaxed">
                 We use cookies and similar technologies to enhance your experience, analyze usage, and deliver relevant content. You can manage cookie preferences through your browser settings. Note that disabling cookies may affect Service functionality.
               </p>
+              <p className="leading-relaxed mt-3">
+                When you visit or log in to our website, cookies and similar technologies may be used by our online data partners or vendors to associate these activities with other personal information they or others have about you, including by association with your email. We (or service providers on our behalf) may then send communications and marketing to these email. You may opt out of receiving this advertising by visiting{" "}
+                <a href="https://app.retention.com/optout" target="_blank" rel="noopener noreferrer" className="text-gray-900 underline hover:no-underline">
+                  https://app.retention.com/optout
+                </a>
+                . You also have the option to opt out of the collection of your personal data in compliance with GDPR. To exercise this option, please visit{" "}
+                <a href="https://www.rb2b.com/rb2b-gdpr-opt-out" target="_blank" rel="noopener noreferrer" className="text-gray-900 underline hover:no-underline">
+                  https://www.rb2b.com/rb2b-gdpr-opt-out
+                </a>
+                .
+              </p>
             </section>
 
             <section>

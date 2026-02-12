@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Instrument_Serif, Geist } from "next/font/google";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 import "./globals.css";
 
 const inter = Inter({
@@ -173,6 +174,7 @@ export default function RootLayout({
       )}
       <body className="font-sans" suppressHydrationWarning>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
