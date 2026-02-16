@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion"
 import { Container } from "@/components/ui/Container"
-import { Button } from "@/components/ui/Button"
-import { useWaitlistModal } from "@/components/ui/WaitlistModal"
 import {
   Users,
   TrendingUp,
@@ -86,8 +84,6 @@ const stats = [
 ]
 
 export default function UseCasesPage() {
-  const { openModal } = useWaitlistModal()
-
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -262,9 +258,9 @@ export default function UseCasesPage() {
             <p className="text-lg text-gray-600 mb-8">
               Join the waitlist and be the first to know when Yander launches.
             </p>
-            <Button size="lg" onClick={openModal}>
-              Join Waitlist
-            </Button>
+            <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">
+              Get Started Free
+            </a>
           </div>
         </Container>
       </section>

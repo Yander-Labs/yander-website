@@ -2,10 +2,8 @@
 
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
-import { Button } from "../ui/Button";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MiniChart } from "../ui/MiniChart";
-import { useWaitlistModal } from "../ui/WaitlistModal";
 import { Check, TrendingUp, MessageCircle, Zap, Clock, ChevronRight } from "lucide-react";
 
 const features = [
@@ -46,8 +44,6 @@ const signals = [
 ];
 
 export function BuiltForRemote() {
-  const { openModal } = useWaitlistModal();
-
   return (
     <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative">
       {/* Peec.ai signature gradient overlay */}
@@ -78,7 +74,7 @@ export function BuiltForRemote() {
               ))}
             </ul>
 
-            <Button onClick={openModal}>Get Engagement Insights</Button>
+            <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px]">Get Started Free</a>
           </AnimatedSection>
 
           {/* Visual - Enhanced Engagement Signals */}

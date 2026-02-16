@@ -2,14 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
-import { Button } from "../ui/Button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
-import { useWaitlistModal } from "../ui/WaitlistModal";
 
 export function DarkCTA() {
   const { openModal: openDemoModal } = useDemoModal();
-  const { openModal: openWaitlistModal } = useWaitlistModal();
 
   return (
     <section className="py-20 md:py-28 bg-white">
@@ -69,13 +66,13 @@ export function DarkCTA() {
 
             {/* CTA buttons */}
             <div className="flex flex-col gap-3 w-full sm:w-auto">
-              <button
-                onClick={openWaitlistModal}
+              <a
+                href="https://accounts.yander.ai/sign-up"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <button
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"

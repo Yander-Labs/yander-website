@@ -6,25 +6,12 @@ import Image from "next/image";
 import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
-import { ArrowRight, X, Menu } from "lucide-react";
-import { useWaitlistModal } from "./ui/WaitlistModal";
+import { X, Menu } from "lucide-react";
 import { useDemoModal } from "./ui/DemoModal";
 
-interface NavigationProps {
-  showBanner?: boolean;
-  bannerText?: string;
-  bannerLink?: string;
-}
-
-export function Navigation({
-  showBanner = true,
-  bannerText = "Join the waitlist for early access",
-  bannerLink = "#"
-}: NavigationProps) {
+export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [bannerVisible, setBannerVisible] = useState(showBanner);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   useEffect(() => {
@@ -37,28 +24,10 @@ export function Navigation({
 
   return (
     <>
-      {/* Announcement Banner */}
-      {bannerVisible && (
-        <div className="fixed top-0 left-0 right-0 z-[60] bg-gray-900 text-white">
-          <Container>
-            <div className="flex items-center justify-center py-2.5">
-              <button
-                onClick={openModal}
-                className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium hover:text-gray-200 transition-colors"
-              >
-                <span>{bannerText}</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-              </button>
-            </div>
-          </Container>
-        </div>
-      )}
-
       {/* Navigation */}
       <nav
         className={cn(
-          "fixed left-0 right-0 z-50 transition-all duration-200",
-          bannerVisible ? "top-[40px]" : "top-0",
+          "fixed left-0 right-0 z-50 transition-all duration-200 top-0",
           scrolled
             ? "bg-white/95 backdrop-blur-md border-b border-[#E4E7EC] py-3"
             : "bg-transparent py-5"
@@ -100,9 +69,9 @@ export function Navigation({
               <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
-              <Button variant="primary" size="sm" onClick={openModal}>
-                Join Waitlist
-              </Button>
+              <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
+                Get Started Free
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -180,17 +149,13 @@ export function Navigation({
               <Button variant="ghost" size="md" className="w-full justify-center">
                 Book a Demo
               </Button>
-              <Button
-                variant="primary"
-                size="md"
-                className="w-full justify-center"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openModal();
-                }}
+              <a
+                href="https://accounts.yander.ai/sign-up"
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Join Waitlist
-              </Button>
+                Get Started Free
+              </a>
             </div>
           </div>
         </div>

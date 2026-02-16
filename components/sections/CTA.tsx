@@ -4,11 +4,9 @@ import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Clock, ShieldCheck, Award } from "lucide-react";
-import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 
 export function CTA() {
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
@@ -24,7 +22,7 @@ export function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-            <Button size="lg" onClick={openModal}>Join Waitlist</Button>
+            <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">Get Started Free</a>
             <Button variant="secondary" size="lg" onClick={openDemoModal}>
               Book a Demo
             </Button>

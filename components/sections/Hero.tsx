@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Sparkles,
 } from "lucide-react";
-import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 
 // Product mockup data - matching the screenshot structure
@@ -306,7 +305,6 @@ function ProductMockup() {
 }
 
 export function Hero() {
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
@@ -349,7 +347,7 @@ export function Hero() {
             }}
             className="mt-8 flex flex-row items-center justify-center gap-3"
           >
-            <Button size="lg" onClick={openModal}>Join Waitlist</Button>
+            <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">Get Started Free</a>
             <Button variant="secondary" size="lg" onClick={openDemoModal}>
               Book a Demo
             </Button>
