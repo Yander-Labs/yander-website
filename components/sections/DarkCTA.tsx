@@ -67,7 +67,7 @@ export function DarkCTA() {
             {/* CTA buttons */}
             <div className="flex flex-col gap-3 w-full sm:w-auto">
               <a
-                href="https://accounts.yander.ai/sign-up"
+                href="https://app.yander.ai/sign-up"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
               >
                 Get Started Free

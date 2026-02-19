@@ -69,7 +69,7 @@ export function Navigation() {
               <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
-              <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
+              <a href="https://app.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
                 Get Started Free
               </a>
             </div>
@@ -150,7 +150,7 @@ export function Navigation() {
                 Book a Demo
               </Button>
               <a
-                href="https://accounts.yander.ai/sign-up"
+                href="https://app.yander.ai/sign-up"
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
                 onClick={() => setMobileMenuOpen(false)}
               >

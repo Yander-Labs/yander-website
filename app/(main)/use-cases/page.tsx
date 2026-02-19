@@ -258,7 +258,7 @@ export default function UseCasesPage() {
             <p className="text-lg text-gray-600 mb-8">
               Join the waitlist and be the first to know when Yander launches.
             </p>
-            <a href="https://accounts.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">
+            <a href="https://app.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">
               Get Started Free
             </a>
           </div>
