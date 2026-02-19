@@ -52,21 +52,30 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="font-medium text-gray-900 mt-4 mb-2">2.3 Workplace Integration Data</h3>
               <p className="leading-relaxed">
-                When you connect workplace tools (such as Slack, Google Workspace, Microsoft 365, Zoom, Notion, ClickUp, or Monday.com), we collect aggregate metadata and patterns to provide engagement insights. <strong>We do not:</strong>
+                When you connect workplace tools (such as Slack, Google Workspace, Microsoft 365, Zoom, Notion, ClickUp, or Monday.com), we collect and process data from those tools to power our AI-driven team intelligence features. This includes:
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
-                <li>Read the content of private messages or emails</li>
-                <li>Capture screenshots or record keystrokes</li>
-                <li>Monitor individual file contents or documents</li>
-                <li>Track personal activities outside of work tools</li>
+                <li><strong>Email data:</strong> Subject lines, message bodies, sender and recipient information, and timestamps.</li>
+                <li><strong>Messaging data:</strong> Message text, channel information, and timestamps from connected Slack channels, including public channels, private channels, and direct messages.</li>
+                <li><strong>Calendar data:</strong> Event titles, descriptions, attendee lists, times, and locations.</li>
+                <li><strong>Meeting transcripts:</strong> Speaker-attributed transcription text from recorded meetings (via integrations such as Recall.ai, Fathom, or Fireflies).</li>
+                <li><strong>Document data:</strong> Page text and comments from connected tools such as Notion.</li>
               </ul>
               <p className="leading-relaxed mt-3">
-                We analyze patterns such as response times, meeting participation, collaboration frequency, and activity levels to generate team health insights — never the content of communications.
+                This data is processed by AI models (via our sub-processor OpenRouter) to extract facts, relationship patterns, collaboration insights, and engagement scores. <strong>We do not:</strong>
               </p>
+              <ul className="list-disc pl-5 space-y-2 mt-2">
+                <li>Display raw communication content in the dashboard — only AI-extracted insights and summaries are shown</li>
+                <li>Allow Yander employees to review your raw communication content except as necessary for technical support with your explicit consent</li>
+                <li>Capture screenshots or record keystrokes</li>
+                <li>Track personal activities outside of connected work tools</li>
+                <li>Use your content for training AI models</li>
+                <li>Sell or share your content with third parties beyond our listed sub-processors</li>
+              </ul>
 
               <h3 className="font-medium text-gray-900 mt-4 mb-2">2.4 Google API Data</h3>
               <p className="leading-relaxed">
-                When you connect Google Workspace services (such as Gmail, Google Calendar, or Google Meet), we access certain data through Google APIs to provide our Service. We collect only aggregate metadata — such as email response times, calendar meeting frequency, and collaboration patterns — to generate engagement insights. <strong>We do not access the content of your emails, documents, or calendar event details.</strong>
+                When you connect Google Workspace services (such as Gmail, Google Calendar, or Google Meet), we access data through Google APIs to provide our Service. This includes email content (subject lines, bodies, sender and recipient information, timestamps) and calendar event details (titles, descriptions, attendees, times, locations). This data is processed by AI models to extract team engagement insights — such as collaboration patterns, response time trends, and relationship mapping. Raw communication content is not displayed to users; only AI-generated insights and summaries are surfaced in the dashboard.
               </p>
               <p className="leading-relaxed mt-3">
                 <strong>Google API Services User Data Policy Compliance:</strong> Yander&apos;s use and transfer of information received from Google APIs adheres to the{" "}
@@ -111,7 +120,7 @@ export default function PrivacyPolicyPage() {
               <p className="leading-relaxed">We do not sell your personal information. We may share your information in the following circumstances:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li><strong>With Your Organization:</strong> Aggregated team insights are shared with authorized administrators within your organization.</li>
-                <li><strong>Service Providers (Sub-processors):</strong> Third-party vendors who assist in operating our Service, bound by confidentiality agreements and data processing agreements. See our current sub-processor list in Section 14 below.</li>
+                <li><strong>Service Providers (Sub-processors):</strong> Third-party vendors who assist in operating our Service, bound by confidentiality agreements and data processing agreements. See our current sub-processor list in Section 15 below.</li>
                 <li><strong>Legal Requirements:</strong> When required by law, court order, or governmental authority.</li>
                 <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets, with notice to users.</li>
                 <li><strong>With Your Consent:</strong> When you have given explicit permission to share.</li>
@@ -124,8 +133,8 @@ export default function PrivacyPolicyPage() {
                 We implement industry-standard security measures to protect your information:
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
-                <li>SOC 2 Type II compliance</li>
-                <li>Enterprise-grade encryption for data at rest and in transit (AES-256, TLS 1.3)</li>
+                <li>Actively pursuing SOC 2 Type II certification</li>
+                <li>Encryption for data at rest (AES-256 via infrastructure provider) and in transit (TLS 1.3 via edge proxy)</li>
                 <li>Regular security audits and penetration testing</li>
                 <li>Access controls and authentication requirements</li>
                 <li>Secure data centers with physical security measures</li>
@@ -218,7 +227,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">13. Legal Bases for Processing (GDPR)</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">14. Legal Bases for Processing (GDPR)</h2>
               <p className="leading-relaxed">
                 If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, we process your personal data on the following legal bases:
               </p>
@@ -237,7 +246,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">14. Sub-processors</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">15. Sub-processors</h2>
               <p className="leading-relaxed">
                 We use the following sub-processors to deliver our Service. Each sub-processor is bound by a data processing agreement and processes data only as necessary for the stated purpose.
               </p>
@@ -253,7 +262,7 @@ export default function PrivacyPolicyPage() {
                   <tbody className="divide-y divide-gray-200">
                     <tr>
                       <td className="px-4 py-2.5">Railway</td>
-                      <td className="px-4 py-2.5">Cloud infrastructure, hosting, and PostgreSQL database</td>
+                      <td className="px-4 py-2.5">Cloud infrastructure, hosting, PostgreSQL database, and Redis</td>
                       <td className="px-4 py-2.5">United States</td>
                     </tr>
                     <tr>
@@ -286,11 +295,6 @@ export default function PrivacyPolicyPage() {
                       <td className="px-4 py-2.5">Product analytics</td>
                       <td className="px-4 py-2.5">United States</td>
                     </tr>
-                    <tr>
-                      <td className="px-4 py-2.5">Upstash</td>
-                      <td className="px-4 py-2.5">Redis caching and task queues</td>
-                      <td className="px-4 py-2.5">United States</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -303,7 +307,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">15. Data Processing Agreement</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">16. Data Processing Agreement</h2>
               <p className="leading-relaxed">
                 If your organization requires a Data Processing Agreement under GDPR Article 28 or similar legislation, our standard DPA is available at{" "}
                 <a href="/dpa" className="text-gray-900 underline hover:no-underline">
@@ -313,7 +317,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">16. Contact Us</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">17. Contact Us</h2>
               <p className="leading-relaxed">
                 If you have questions about this Privacy Policy or our data practices, please contact us:
               </p>

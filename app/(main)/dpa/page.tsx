@@ -128,10 +128,19 @@ export default function DpaPage() {
               </p>
               <p className="leading-relaxed mt-3">
                 The categories of Personal Data processed under this DPA
-                include workplace metadata such as email timestamps, calendar
-                event metadata, meeting participation records, and collaboration
-                patterns. Yander does not process the content of emails, private
-                messages, or documents. The Data Subjects include the
+                include workplace communication content and metadata from
+                connected integrations. This includes email content (subject
+                lines, message bodies, sender and recipient addresses,
+                timestamps), messaging content (message text, channel
+                information, timestamps from Slack and similar tools), calendar
+                event details (titles, descriptions, attendees, times,
+                locations), meeting transcripts (speaker-attributed text from
+                recorded meetings), and document content (page text and comments
+                from tools such as Notion). This data is processed by AI models
+                to extract facts, collaboration patterns, and engagement
+                insights. Raw communication content is not displayed to
+                end users; only AI-generated summaries and scores are surfaced
+                in the Service. The Data Subjects include the
                 Customer&apos;s employees, contractors, and other authorized
                 users of workplace tools connected to the Service.
               </p>
@@ -332,7 +341,7 @@ export default function DpaPage() {
                         Railway (AWS)
                       </td>
                       <td className="p-3 border border-gray-200">
-                        Application hosting and database infrastructure
+                        Application hosting, database infrastructure, and Redis
                       </td>
                       <td className="p-3 border border-gray-200">
                         United States
@@ -393,15 +402,6 @@ export default function DpaPage() {
                         United States / European Union
                       </td>
                     </tr>
-                    <tr>
-                      <td className="p-3 border border-gray-200">Upstash</td>
-                      <td className="p-3 border border-gray-200">
-                        Redis caching and task queues
-                      </td>
-                      <td className="p-3 border border-gray-200">
-                        United States
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -422,12 +422,13 @@ export default function DpaPage() {
                 <li>
                   <strong>Encryption at rest:</strong> All Personal Data stored
                   in databases and file systems is encrypted using AES-256
-                  encryption.
+                  encryption via our infrastructure provider (Railway on AWS).
                 </li>
                 <li>
                   <strong>Encryption in transit:</strong> All data transmitted
-                  between clients and servers, and between internal services, is
-                  protected using TLS 1.3.
+                  between clients and servers is protected using TLS 1.3 via
+                  our edge proxy. Internal service-to-service communication
+                  occurs within the same isolated network.
                 </li>
                 <li>
                   <strong>Tenant-level data isolation:</strong> Every database
@@ -443,8 +444,8 @@ export default function DpaPage() {
                 </li>
                 <li>
                   <strong>No personally identifiable information in logs:</strong>{" "}
-                  Application logs are designed to exclude personally
-                  identifiable information. Logs contain only anonymized
+                  Application logs are designed to minimize personally
+                  identifiable information. Logs primarily contain anonymized
                   identifiers, tenant identifiers, and operational metadata.
                 </li>
                 <li>
@@ -709,10 +710,10 @@ export default function DpaPage() {
                 <p className="mt-1">
                   Email:{" "}
                   <a
-                    href="mailto:legal@yander.io"
+                    href="mailto:jordan@yanderlabs.com"
                     className="text-gray-900 underline hover:no-underline"
                   >
-                    legal@yander.io
+                    jordan@yanderlabs.com
                   </a>
                 </p>
               </div>

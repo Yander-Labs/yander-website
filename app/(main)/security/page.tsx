@@ -40,10 +40,10 @@ export default function SecurityPage() {
                 questions or need documentation for your procurement process,
                 reach out to our team at{" "}
                 <a
-                  href="mailto:security@yander.io"
+                  href="mailto:jordan@yanderlabs.com"
                   className="text-gray-900 underline hover:no-underline"
                 >
-                  security@yander.io
+                  jordan@yanderlabs.com
                 </a>
                 .
               </p>
@@ -79,19 +79,21 @@ export default function SecurityPage() {
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>
                   <strong className="text-gray-900">At rest:</strong> All data
-                  is encrypted using AES-256 encryption, the same standard used
-                  by financial institutions and government agencies.
+                  is encrypted using AES-256 encryption via our infrastructure
+                  provider (Railway on AWS), the same standard used by financial
+                  institutions and government agencies.
                 </li>
                 <li>
                   <strong className="text-gray-900">In transit:</strong> All
-                  network communication is secured with TLS 1.3. Every
-                  connection to our API, dashboard, and third-party integrations
-                  is encrypted end-to-end.
+                  network communication is secured with TLS 1.3 via our edge
+                  proxy. Every connection to our API, dashboard, and third-party
+                  integrations is encrypted.
                 </li>
                 <li>
                   <strong className="text-gray-900">OAuth tokens:</strong>{" "}
-                  Integration credentials are stored in dedicated encrypted
-                  database columns, separate from general application data.
+                  Integration credentials are managed by our sub-processor
+                  Nango, which handles OAuth token storage and rotation
+                  separately from our application database.
                 </li>
                 <li>
                   <strong className="text-gray-900">
@@ -165,32 +167,35 @@ export default function SecurityPage() {
                 Data Handling
               </h2>
               <p className="leading-relaxed">
-                Yander is designed around a privacy-first principle: we analyze
-                metadata patterns, not communication content. We do not read
-                email bodies, private messages, or document contents.
+                When you connect workplace tools, Yander collects and processes
+                communication content to power AI-driven team intelligence. This
+                includes email content, Slack messages, calendar event details,
+                meeting transcripts, and document text from connected tools.
               </p>
               <p className="leading-relaxed mt-3">
-                Data processing is limited to:
+                This data is processed by AI models to extract:
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>
-                  Email metadata (sender, recipient, timestamps — not message
-                  bodies)
-                </li>
-                <li>Calendar event metadata (participants, times, duration)</li>
-                <li>
-                  Collaboration frequency patterns (how often people interact,
-                  not what they discuss)
+                  Collaboration patterns (how often and when people interact)
                 </li>
                 <li>
-                  Meeting participation data (attendance and scheduling
-                  patterns)
+                  Relationship mapping (who works with whom across teams)
+                </li>
+                <li>
+                  Engagement signals (response patterns, meeting participation,
+                  activity trends)
+                </li>
+                <li>
+                  Key facts and context (project involvement, expertise areas)
                 </li>
               </ul>
               <p className="leading-relaxed mt-3">
-                This approach lets us deliver meaningful team intelligence
-                without ever accessing the substance of your team&apos;s
-                communications.
+                Raw communication content is never displayed in the dashboard.
+                Only AI-extracted insights, scores, and summaries are surfaced to
+                users. Yander employees do not review your raw communication
+                content except as necessary for technical support with your
+                explicit consent.
               </p>
             </section>
 
@@ -343,7 +348,7 @@ export default function SecurityPage() {
                     <tr>
                       <td className="py-2 pr-4">Railway (AWS)</td>
                       <td className="py-2 pr-4">
-                        Application hosting and database
+                        Application hosting, database, and Redis
                       </td>
                       <td className="py-2">US</td>
                     </tr>
@@ -387,13 +392,6 @@ export default function SecurityPage() {
                       </td>
                       <td className="py-2">US/EU</td>
                     </tr>
-                    <tr>
-                      <td className="py-2 pr-4">Upstash</td>
-                      <td className="py-2 pr-4">
-                        Redis caching and task queues
-                      </td>
-                      <td className="py-2">US</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -423,10 +421,10 @@ export default function SecurityPage() {
                 <li>
                   Report vulnerabilities to{" "}
                   <a
-                    href="mailto:security@yander.io"
+                    href="mailto:jordan@yanderlabs.com"
                     className="text-gray-900 underline hover:no-underline"
                   >
-                    security@yander.io
+                    jordan@yanderlabs.com
                   </a>{" "}
                   with a detailed description of the issue.
                 </li>
@@ -455,19 +453,19 @@ export default function SecurityPage() {
                 <p className="mt-1">
                   Security inquiries:{" "}
                   <a
-                    href="mailto:security@yander.io"
+                    href="mailto:jordan@yanderlabs.com"
                     className="text-gray-900 underline hover:no-underline"
                   >
-                    security@yander.io
+                    jordan@yanderlabs.com
                   </a>
                 </p>
                 <p className="mt-1">
                   Legal and privacy:{" "}
                   <a
-                    href="mailto:legal@yander.io"
+                    href="mailto:jordan@yanderlabs.com"
                     className="text-gray-900 underline hover:no-underline"
                   >
-                    legal@yander.io
+                    jordan@yanderlabs.com
                   </a>
                 </p>
               </div>
