@@ -707,6 +707,8 @@ export default function DpaPage() {
               </p>
               <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="font-medium text-gray-900">Yander Labs, Inc.</p>
+                <p className="mt-1">2261 Market Street STE 46212</p>
+                <p>San Francisco, CA 94114</p>
                 <p className="mt-1">
                   Email:{" "}
                   <a
