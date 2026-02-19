@@ -19,7 +19,7 @@ export default function TermsOfServicePage() {
             Terms of Service
           </h1>
           <p className="text-sm text-gray-500 mb-8">
-            Last updated: January 28, 2025
+            Last updated: February 19, 2026
           </p>
 
           <div className="space-y-8 text-gray-600">
@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
             <section>
               <h2 className="font-serif text-xl text-gray-900 mb-3">2. Description of Service</h2>
               <p className="leading-relaxed">
-                Yander provides a remote team intelligence platform that helps organizations understand team engagement, collaboration patterns, and workplace health through integration with existing workplace tools. Our Service analyzes aggregate metadata and patterns — not the content of communications — to generate actionable insights for managers and team leads.
+                Yander provides a remote team intelligence platform that helps organizations understand team engagement, collaboration patterns, and workplace health through integration with existing workplace tools. Our Service processes data from connected workplace tools — including communication content, calendar details, and meeting transcripts — using AI to generate actionable insights for managers and team leads. Raw communication content is not displayed to users; only AI-extracted summaries and engagement scores are surfaced.
               </p>
               <p className="leading-relaxed mt-3">
                 We reserve the right to modify, suspend, or discontinue any part of the Service at any time, with or without notice. We will not be liable to you or any third party for any modification, suspension, or discontinuation of the Service.
@@ -227,7 +227,7 @@ export default function TermsOfServicePage() {
 
               <h3 className="font-medium text-gray-900 mt-4 mb-2">15.2 Entire Agreement</h3>
               <p className="leading-relaxed">
-                These Terms, together with our Privacy Policy, constitute the entire agreement between you and Yander regarding the Service and supersede all prior agreements.
+                These Terms, together with our Privacy Policy and Data Processing Agreement (DPA), constitute the entire agreement between you and Yander regarding the Service and supersede all prior agreements.
               </p>
 
               <h3 className="font-medium text-gray-900 mt-4 mb-2">15.3 Severability</h3>
