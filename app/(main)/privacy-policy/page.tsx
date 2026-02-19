@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm text-gray-500 mb-8">
-            Last updated: January 28, 2025
+            Last updated: February 19, 2026
           </p>
 
           <div className="space-y-8 text-gray-600">
@@ -111,7 +111,7 @@ export default function PrivacyPolicyPage() {
               <p className="leading-relaxed">We do not sell your personal information. We may share your information in the following circumstances:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li><strong>With Your Organization:</strong> Aggregated team insights are shared with authorized administrators within your organization.</li>
-                <li><strong>Service Providers:</strong> Third-party vendors who assist in operating our Service (hosting, analytics, payment processing), bound by confidentiality agreements.</li>
+                <li><strong>Service Providers (Sub-processors):</strong> Third-party vendors who assist in operating our Service, bound by confidentiality agreements and data processing agreements. See our current sub-processor list in Section 14 below.</li>
                 <li><strong>Legal Requirements:</strong> When required by law, court order, or governmental authority.</li>
                 <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets, with notice to users.</li>
                 <li><strong>With Your Consent:</strong> When you have given explicit permission to share.</li>
@@ -201,14 +201,119 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">12. Changes to This Policy</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">12. California Privacy Rights</h2>
+              <p className="leading-relaxed">
+                If you are a California resident, you have the right under the California Consumer Privacy Act (CCPA) to request access to, deletion of, and information about the categories of personal information we collect. We do not sell personal information. To exercise your rights, contact us at{" "}
+                <a href="mailto:jordan@yanderlabs.com" className="text-gray-900 underline hover:no-underline">
+                  jordan@yanderlabs.com
+                </a>.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">13. Changes to This Policy</h2>
               <p className="leading-relaxed">
                 We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on this page and updating the &quot;Last updated&quot; date. Your continued use of the Service after changes constitutes acceptance of the updated policy.
               </p>
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">13. Contact Us</h2>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">13. Legal Bases for Processing (GDPR)</h2>
+              <p className="leading-relaxed">
+                If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, we process your personal data on the following legal bases:
+              </p>
+              <ul className="list-disc pl-5 space-y-2 mt-2">
+                <li><strong>Performance of a Contract:</strong> Processing necessary to provide the Service you have subscribed to, including account management, workspace analytics, and support.</li>
+                <li><strong>Legitimate Interests:</strong> Processing necessary for our legitimate interests, such as improving our Service, ensuring security, and preventing fraud, where those interests are not overridden by your data protection rights.</li>
+                <li><strong>Consent:</strong> Where you have given explicit consent, such as opting in to marketing communications or connecting optional workplace integrations.</li>
+                <li><strong>Legal Obligation:</strong> Processing necessary to comply with applicable laws and regulations.</li>
+              </ul>
+              <p className="leading-relaxed mt-3">
+                Where processing is based on consent, you may withdraw consent at any time by contacting us at{" "}
+                <a href="mailto:jordan@yanderlabs.com" className="text-gray-900 underline hover:no-underline">
+                  jordan@yanderlabs.com
+                </a>.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">14. Sub-processors</h2>
+              <p className="leading-relaxed">
+                We use the following sub-processors to deliver our Service. Each sub-processor is bound by a data processing agreement and processes data only as necessary for the stated purpose.
+              </p>
+              <div className="mt-4 overflow-x-auto">
+                <table className="min-w-full text-sm border border-gray-200 rounded-lg">
+                  <thead>
+                    <tr className="bg-gray-50">
+                      <th className="text-left px-4 py-2.5 font-medium text-gray-900 border-b border-gray-200">Sub-processor</th>
+                      <th className="text-left px-4 py-2.5 font-medium text-gray-900 border-b border-gray-200">Purpose</th>
+                      <th className="text-left px-4 py-2.5 font-medium text-gray-900 border-b border-gray-200">Location</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr>
+                      <td className="px-4 py-2.5">Railway</td>
+                      <td className="px-4 py-2.5">Cloud infrastructure, hosting, and PostgreSQL database</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">Clerk</td>
+                      <td className="px-4 py-2.5">Authentication and user management</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">Nango</td>
+                      <td className="px-4 py-2.5">OAuth integration proxy</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">Stripe</td>
+                      <td className="px-4 py-2.5">Payment processing</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">OpenRouter</td>
+                      <td className="px-4 py-2.5">LLM inference (AI processing)</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">Sentry</td>
+                      <td className="px-4 py-2.5">Error monitoring and performance</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">PostHog</td>
+                      <td className="px-4 py-2.5">Product analytics</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5">Upstash</td>
+                      <td className="px-4 py-2.5">Redis caching and task queues</td>
+                      <td className="px-4 py-2.5">United States</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="leading-relaxed mt-3">
+                We will notify customers of any changes to this sub-processor list at least 30 days in advance. For enterprise customers with a{" "}
+                <a href="/dpa" className="text-gray-900 underline hover:no-underline">
+                  Data Processing Agreement
+                </a>, objection rights are detailed in the DPA.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">15. Data Processing Agreement</h2>
+              <p className="leading-relaxed">
+                If your organization requires a Data Processing Agreement under GDPR Article 28 or similar legislation, our standard DPA is available at{" "}
+                <a href="/dpa" className="text-gray-900 underline hover:no-underline">
+                  yander.io/dpa
+                </a>. The DPA is incorporated by reference into our Terms of Service for all customers processing personal data subject to applicable data protection laws.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl text-gray-900 mb-3">16. Contact Us</h2>
               <p className="leading-relaxed">
                 If you have questions about this Privacy Policy or our data practices, please contact us:
               </p>

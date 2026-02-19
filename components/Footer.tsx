@@ -37,6 +37,8 @@ const footerLinks = {
     { label: "Help Center", href: "#", comingSoon: true },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Data Processing Agreement", href: "/dpa" },
+    { label: "Security", href: "/security" },
   ],
 };
 
@@ -199,10 +201,18 @@ export function Footer() {
               >
                 Terms
               </Link>
-              <span className="inline-flex items-center gap-1.5 text-sm text-gray-400 cursor-default">
-                Cookies
-                <span className="text-[9px] px-1 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">Soon</span>
-              </span>
+              <Link
+                href="/dpa"
+                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                DPA
+              </Link>
+              <Link
+                href="/security"
+                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                Security
+              </Link>
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${SITE_URL}/privacy-policy`,
-      lastModified: new Date('2025-01-15'),
+      lastModified: new Date('2026-02-19'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
@@ -51,6 +51,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date('2025-01-15'),
       changeFrequency: 'yearly',
       priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/dpa`,
+      lastModified: new Date('2026-02-19'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/security`,
+      lastModified: new Date('2026-02-19'),
+      changeFrequency: 'yearly',
+      priority: 0.4,
     },
   ]
 
