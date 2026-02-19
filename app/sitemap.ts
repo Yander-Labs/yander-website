@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${SITE_URL}/terms-of-service`,
-      lastModified: new Date('2025-01-15'),
+      lastModified: new Date('2026-02-19'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
@@ -63,6 +63,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date('2026-02-19'),
       changeFrequency: 'yearly',
       priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/beta-terms`,
+      lastModified: new Date('2026-02-19'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
     },
   ]
 

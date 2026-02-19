@@ -204,21 +204,22 @@ export default function SecurityPage() {
                 Logging and Monitoring
               </h2>
               <p className="leading-relaxed">
-                We enforce a strict no-PII logging policy across the entire
-                platform. Application logs contain only anonymized identifiers
-                such as tenant IDs and entity IDs — never customer names, email
-                addresses, or other sensitive data.
+                Our logging infrastructure is designed to minimize the presence
+                of personally identifiable information. Application logs
+                primarily contain anonymized identifiers such as tenant IDs and
+                entity IDs rather than customer names or email addresses.
               </p>
               <p className="leading-relaxed mt-3">
                 All logs include structured request tracing with request IDs and
-                duration metrics, enabling rapid incident investigation without
-                exposing personal information.
+                duration metrics, enabling rapid incident investigation while
+                limiting exposure of personal information.
               </p>
               <p className="leading-relaxed mt-3">
-                Error monitoring is handled through Sentry with automatic PII
-                stripping applied before any data is transmitted. This ensures
-                that even our error tracking pipeline cannot inadvertently
-                capture sensitive information.
+                Error monitoring is handled through Sentry. On the frontend,
+                session replays are masked and only anonymized user identifiers
+                are transmitted. On the backend, error events are filtered to
+                reduce noise and limit the inclusion of sensitive data in error
+                reports.
               </p>
             </section>
 
