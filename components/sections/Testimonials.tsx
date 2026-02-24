@@ -51,8 +51,8 @@ export function Testimonials() {
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="04" centered>Testimonials</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-gray-900 max-w-2xl mx-auto">
-            Trusted By Leaders Who Know Winning Starts With Their Team
+          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-gray-900 max-w-2xl mx-auto">
+            Trusted by leaders who know winning starts with their team
           </h2>
         </AnimatedSection>
 

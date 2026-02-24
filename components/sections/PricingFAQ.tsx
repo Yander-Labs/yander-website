@@ -3,39 +3,43 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
-import { SectionLabel } from "../ui/SectionLabel";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "How does Yander work without tracking keystrokes or screenshots?",
+    question: "What counts as an entity?",
     answer:
-      "Yander analyses aggregate patterns from tools your team already uses: Slack activity, emails, meeting attendance, response times, project management activity, and more. We never capture screenshots, log keystrokes, or monitor private messages. Instead, we look at patterns across the platforms your team already uses.",
+      "An entity is one employee or one client. Each person you track in Yander counts as one entity toward your plan limit.",
   },
   {
-    question: "What integrations does Yander support?",
+    question: "Can I change plans at any time?",
     answer:
-      "Yander integrates with Slack, Google Workspace (Gmail, Calendar, Meet), Microsoft 365 (Outlook, Teams, Calendar), Zoom, and project management tools like Notion, ClickUp, and Monday.com. Setup takes about 10 minutes. We're constantly adding new integrations based on customer feedback.",
+      "Yes. Upgrade or downgrade anytime. Changes take effect immediately, and billing adjusts pro-rata.",
   },
   {
-    question: "How is Yander different from time-tracking software?",
+    question: "What happens after my 14-day trial?",
     answer:
-      "Time-tracking software monitors hours worked and specific activities. Yander focuses on engagement quality, not quantity. We help you understand if someone is thriving or struggling — not how many hours they logged. It's the difference between surveillance and insight.",
+      "You'll be prompted to choose a plan. If you don't, your account pauses \u2014 no surprise charges.",
   },
   {
-    question: "How quickly can I get started?",
+    question: "What payment methods do you accept?",
     answer:
-      "Most teams are fully set up in under 10 minutes. Connect your integrations, invite your team, and you'll start seeing initial insights within 24-48 hours as the system calibrates to your team's patterns. Full trend data typically appears after the first week.",
+      "We accept all major credit cards and can arrange invoicing for Enterprise plans.",
   },
   {
-    question: "Is my team's data secure?",
+    question: "Is there a setup fee?",
     answer:
-      "Absolutely. We're SOC 2 Type II compliant and use enterprise-grade encryption for all data at rest and in transit. We never sell data, and you can request complete data deletion at any time. Your team's privacy is our top priority.",
+      "No. All plans include free onboarding and setup support.",
   },
   {
-    question: "What size teams is Yander best for?",
+    question: "Can I add more entities beyond my plan limit?",
     answer:
-      "Yander works best for remote or hybrid teams of 5-500 people. Smaller teams benefit from the early warning signals and engagement tracking, while larger teams appreciate the ability to spot patterns across departments and identify at-risk employees before issues escalate.",
+      "Yes. Additional entities are billed at the extra entity rate for your plan tier.",
+  },
+  {
+    question: "What's included in the Enterprise plan?",
+    answer:
+      "Custom scoring cadence, negotiated entity pricing, dedicated support, SSO, and a tailored onboarding experience. Contact sales to discuss your needs.",
   },
 ];
 
@@ -90,27 +94,22 @@ function FAQItem({
   );
 }
 
-export function FAQ() {
+export function PricingFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="py-20 md:py-28 bg-[#fafafa] border-t border-[#e5e5e5]">
       <Container>
         <div className="max-w-3xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-12">
-            <SectionLabel number="05" centered>
-              FAQ
-            </SectionLabel>
-            <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em]">
-              Frequently asked questions
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#171717] tracking-[-0.02em]">
+              Questions & answers
             </h2>
             <p className="mt-4 text-base text-[#737373]">
-              Everything you need to know about Yander
+              Everything you need to know about pricing
             </p>
           </div>
 
-          {/* FAQ List */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +130,6 @@ export function FAQ() {
             ))}
           </motion.div>
 
-          {/* Still have questions */}
           <div className="mt-8 text-center">
             <p className="text-sm text-[#737373]">
               Still have questions?{" "}

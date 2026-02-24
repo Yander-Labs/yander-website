@@ -46,30 +46,20 @@ export function Navigation() {
                   priority
                 />
               </Link>
-              <div className="hidden md:block h-5 w-px bg-gray-200" />
-              <span className="hidden md:block text-sm text-gray-500">
-                Remote Team Intelligence
-              </span>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-4">
               <Link
-                href="/blog"
+                href="/pricing"
                 className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
-                Blog
-              </Link>
-              <Link
-                href="/changelog"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Changelog
+                Pricing
               </Link>
               <Button variant="ghost" size="sm" onClick={openDemoModal}>
                 Book a Demo
               </Button>
-              <a href="https://app.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
+              <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
                 Get Started Free
               </a>
             </div>
@@ -129,18 +119,11 @@ export function Navigation() {
                 Home
               </Link>
               <Link
-                href="/blog"
+                href="/pricing"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                Blog
-              </Link>
-              <Link
-                href="/changelog"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                Changelog
+                Pricing
               </Link>
             </div>
 
@@ -150,7 +133,7 @@ export function Navigation() {
                 Book a Demo
               </Button>
               <a
-                href="https://app.yander.ai/sign-up"
+                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
                 onClick={() => setMobileMenuOpen(false)}
               >

@@ -329,8 +329,8 @@ export function BentoFeatures() {
           <SectionLabel number="01" centered className="text-gray-400">
             Key Features
           </SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
-            Get the data you need to make better team decisions.
+          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
+            Get the data you need to make better team and client decisions
           </h2>
         </div>
 

@@ -36,8 +36,8 @@ export function DarkCTA() {
                 <span className="text-sm text-white/80">Start your free trial today</span>
               </div>
 
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] text-white tracking-[-0.02em] leading-tight">
-                Sign up and get a stronger pulse on your team
+              <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] leading-tight">
+                Get an accurate pulse on your team and clients
               </h2>
 
               <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
@@ -67,7 +67,7 @@ export function DarkCTA() {
             {/* CTA buttons */}
             <div className="flex flex-col gap-3 w-full sm:w-auto">
               <a
-                href="https://app.yander.ai/sign-up"
+                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
               >
                 Get Started Free

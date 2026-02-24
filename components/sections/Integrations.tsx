@@ -3,6 +3,8 @@
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
 import { Fragment } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 interface Integration {
   name: string;
@@ -44,6 +46,15 @@ export function Integrations() {
                 )}
               </Fragment>
             ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/integrations"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors group"
+            >
+              See all integrations
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
         </AnimatedSection>
       </Container>

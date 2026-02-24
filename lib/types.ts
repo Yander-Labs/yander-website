@@ -164,3 +164,25 @@ export interface PaginatedChangelogs {
   entries: ChangelogCard[]
   total: number
 }
+
+// =============================================================================
+// Integration Types
+// =============================================================================
+
+export type IntegrationCategory = 'communication' | 'project-management' | 'meeting-import'
+
+export interface IntegrationCard {
+  _id: string
+  name: string
+  slug: { current: string }
+  description: string
+  logo: Image
+  category: IntegrationCategory
+  isImportOnly?: boolean
+}
+
+export interface IntegrationDetail extends IntegrationCard {
+  longDescription: string
+  features: string[]
+  howItWorks: { step: string; description: string }[]
+}

@@ -6,8 +6,8 @@ import { Button } from "../ui/Button";
 import { Container } from "../ui/Container";
 import {
   ShieldCheck,
-  TrendingUp,
-  Sparkles,
+  Bell,
+  Lock,
 } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
 
@@ -321,7 +321,7 @@ export function Hero() {
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="font-geist font-semibold text-[36px] sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.02em] text-[#171717] leading-[1.1]"
           >
-            One dashboard for your entire team's performance
+            One dashboard for your team and client performance
           </motion.h1>
 
           <motion.p
@@ -334,7 +334,7 @@ export function Hero() {
             }}
             className="mt-6 text-base md:text-lg text-[#737373] max-w-2xl mx-auto leading-relaxed"
           >
-            Yander connects to your existing tools and uses its own AI scoring algorithm to give you a clear daily picture of every employee — so you can keep your best people and protect your client relationships.
+            Yander connects to your existing tools and uses its own AI scoring algorithm to give you a clear daily picture of every employee and client, so you can keep your best people and protect your client relationships.
           </motion.p>
 
           <motion.div
@@ -347,7 +347,7 @@ export function Hero() {
             }}
             className="mt-8 flex flex-row items-center justify-center gap-3"
           >
-            <a href="https://app.yander.ai/sign-up" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">Get Started Free</a>
+            <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">Get Started Free</a>
             <Button variant="secondary" size="lg" onClick={openDemoModal}>
               Book a Demo
             </Button>
@@ -364,13 +364,13 @@ export function Hero() {
             className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#737373]"
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
-              <span>Connect your tools</span>
+              <Lock className="w-4 h-4" />
+              <span>Enterprise-grade security</span>
             </div>
             <div className="hidden sm:block h-4 w-px bg-gray-200" />
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              <span>Start getting insights</span>
+              <Bell className="w-4 h-4" />
+              <span>Notifications when scores change</span>
             </div>
             <div className="hidden sm:block h-4 w-px bg-gray-200" />
             <div className="flex items-center gap-2">
