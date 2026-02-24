@@ -144,7 +144,7 @@ export function HowItWorks() {
           <SectionLabel number="02" centered>
             How It Works
           </SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
+          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
             Start getting insights in a few minutes
           </h2>
         </div>

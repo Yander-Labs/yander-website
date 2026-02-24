@@ -44,8 +44,8 @@ export function Results() {
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="03" centered>Proven Results</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-gray-900">
-            Real Teams. Real Results.
+          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-gray-900">
+            Real teams, real results
           </h2>
         </AnimatedSection>
 
@@ -80,7 +80,7 @@ export function Results() {
                     suffix={stat.suffix}
                     duration={1500}
                     delay={idx * 200}
-                    className={`font-serif text-5xl md:text-6xl tracking-tight ${
+                    className={`font-semibold text-5xl md:text-6xl tracking-tight ${
                       stat.color === "emerald" ? "text-emerald-600" :
                       stat.color === "blue" ? "text-blue-600" :
                       "text-purple-600"

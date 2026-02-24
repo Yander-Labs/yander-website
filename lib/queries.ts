@@ -240,3 +240,35 @@ export const recentChangelogsQuery = `*[_type == "changelog"] | order(releaseDat
   releaseDate,
   changeTypes
 }`
+
+// =============================================================================
+// Integration Queries
+// =============================================================================
+
+// Get all integrations for listing
+export const integrationsQuery = `*[_type == "integration"] | order(order asc, name asc) {
+  _id,
+  name,
+  slug,
+  description,
+  logo,
+  category,
+  isImportOnly
+}`
+
+// Get single integration by slug
+export const integrationBySlugQuery = `*[_type == "integration" && slug.current == $slug][0] {
+  _id,
+  name,
+  slug,
+  description,
+  longDescription,
+  logo,
+  category,
+  isImportOnly,
+  features,
+  howItWorks
+}`
+
+// Get all slugs for static generation
+export const integrationSlugsQuery = `*[_type == "integration" && defined(slug.current)][].slug.current`

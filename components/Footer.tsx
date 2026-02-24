@@ -21,10 +21,8 @@ function LinkedInIcon({ className }: { className?: string }) {
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "#", comingSoon: true },
-    { label: "How It Works", href: "#", comingSoon: true },
-    { label: "Integrations", href: "#", comingSoon: true },
-    { label: "Pricing", href: "#", comingSoon: true },
+    { label: "Integrations", href: "/integrations" },
+    { label: "Pricing", href: "/pricing" },
   ],
   company: [
     { label: "About", href: "#", comingSoon: true },
@@ -33,6 +31,7 @@ const footerLinks = {
     { label: "Contact", href: "#", comingSoon: true },
   ],
   resources: [
+    { label: "Changelog", href: "/changelog" },
     { label: "Documentation", href: "#", comingSoon: true },
     { label: "Help Center", href: "#", comingSoon: true },
     { label: "Privacy Policy", href: "/privacy-policy" },
