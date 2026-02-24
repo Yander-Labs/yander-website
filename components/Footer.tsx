@@ -89,21 +89,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.product.map((link) => (
                   <li key={link.label}>
-                    {link.comingSoon ? (
-                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
-                        {link.label}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
-                          Soon
-                        </span>
-                      </span>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        {link.label}
-                      </a>
-                    )}
+                    <Link
+                      href={link.href}
+                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
