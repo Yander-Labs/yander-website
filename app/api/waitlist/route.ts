@@ -46,7 +46,8 @@ export async function POST(request: NextRequest) {
 
     console.log("Waitlist signup attempt:", { email: email?.substring(0, 3) + "***" });
 
-    if (!email || !email.includes("@")) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
       return NextResponse.json(
         { error: "Valid email address is required" },
         { status: 400, headers: corsHeaders }
