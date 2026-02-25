@@ -64,7 +64,7 @@ const tiers: PricingTier[] = [
     description: "For mid-size agencies with 50-100 employees and/or clients.",
     monthlyPrice: 799,
     annualPrice: 7990,
-    annualMonthly: 666,
+    annualMonthly: 665,
     entities: "Up to 100",
     integrations: "Unlimited",
     scoringRefresh: "Daily",

@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "What happens after my 14-day trial?",
     answer:
-      "You'll be prompted to choose a plan. If you don't, your account pauses \u2014 no surprise charges.",
+      "The 14-day free trial is available on the Starter plan only. After your trial ends, you'll be prompted to choose a plan. If you don't, your account pauses \u2014 no surprise charges.",
   },
   {
     question: "What payment methods do you accept?",
