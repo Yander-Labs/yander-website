@@ -105,6 +105,26 @@ export async function POST(request: NextRequest) {
             results.loops.error = loopsData.message || "Failed to add to Loops";
           }
         }
+
+        // Send event to trigger automation
+        if (results.loops.success) {
+          try {
+            await fetch("https://app.loops.so/api/v1/events/send", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${loopsApiKey}`,
+              },
+              body: JSON.stringify({
+                email,
+                eventName: "waitlist_signup",
+              }),
+            });
+          } catch {
+            // Non-critical - contact was already created
+            console.log("Loops event send failed, contact was still created");
+          }
+        }
       } catch (error) {
         results.loops.error =
           error instanceof Error ? error.message : "Loops API error";

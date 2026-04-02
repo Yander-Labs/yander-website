@@ -85,7 +85,7 @@ export function CostCalculator() {
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="roleTitle" className="block text-sm font-medium text-gray-600 mb-1.5">
-                      Role title
+                      Enter the role you're hiring
                     </label>
                     <input
                       type="text"
@@ -99,7 +99,7 @@ export function CostCalculator() {
 
                   <div>
                     <label htmlFor="salary" className="block text-sm font-medium text-gray-600 mb-1.5">
-                      Annual salary (USD)
+                      Your annual salary budget (USD)
                     </label>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300">$</span>

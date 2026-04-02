@@ -11,7 +11,7 @@ import {
 const steps = [
   {
     number: "01",
-    title: "Tell us who you need",
+    title: "Tell Yander who you need",
     description: "Paste a job description or build one with Yander. Define the role, skills, budget, and the culture you want.",
     visual: "jobpost",
   },
@@ -70,7 +70,7 @@ function AISearchVisual() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo.svg"
+              src="/favicon.png"
               alt="Yander"
               width={20}
               height={20}
