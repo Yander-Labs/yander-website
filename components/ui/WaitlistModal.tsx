@@ -173,7 +173,7 @@ function WaitlistModal() {
                         </>
                       ) : (
                         <>
-                          Join the Waitlist
+                          Join The Waitlist
                           <ArrowRight className="w-4 h-4" />
                         </>
                       )}
