@@ -52,11 +52,11 @@ export default function RemoteHiringPlaybookPage() {
               rel="noopener noreferrer"
             >
               <Button size="lg" className="w-full sm:w-auto">
-                Access the Playbook
+                Access The Playbook
               </Button>
             </a>
             <p className="text-sm text-gray-400 mt-6">
-              Check your inbox — you&apos;ll also receive it by email shortly.
+              Check your inbox. You&apos;ll also receive it by email shortly.
             </p>
           </div>
         </Container>
@@ -66,25 +66,84 @@ export default function RemoteHiringPlaybookPage() {
 
   return (
     <main className="min-h-screen flex items-center">
-      <Container size="narrow">
-        <div className="py-24 md:py-32 max-w-xl mx-auto">
-          <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
-            The Remote Offshore Talent Playbook
-          </h1>
-          <p className="text-lg text-gray-500 mb-10 leading-relaxed">
-            The exact system for hiring A-players from South America, Eastern
-            Europe, and South Africa — from someone who&apos;s made 60+ hires
-            across 5 countries.
-          </p>
+      <Container>
+        <div className="py-24 md:py-32">
+          <div className="flex flex-col md:flex-row md:gap-16 md:items-start">
+            {/* Left: headline + subheadline (desktop) */}
+            <div className="md:flex-1">
+              <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
+                The Remote Offshore Talent Playbook
+              </h1>
+              <p className="text-lg text-gray-500 mb-8 md:mb-0 leading-relaxed">
+                The exact system for hiring A-players from South America,
+                Eastern Europe, and South Africa. From someone who&apos;s made
+                60+ hires in these regions.
+              </p>
+            </div>
 
-          <ul className="space-y-3 mb-10">
+            {/* Right: form (desktop) */}
+            <div className="md:flex-1 md:max-w-md">
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-gray-700 mb-1.5"
+                    >
+                      First name
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Your name"
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-1.5"
+                    >
+                      Email address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="you@company.com"
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full"
+                    disabled={status === "loading"}
+                  >
+                    {status === "loading" ? "Sending..." : "Get The Free Playbook"}
+                  </Button>
+                  {status === "error" && (
+                    <p className="text-red-600 text-sm mt-3">{errorMsg}</p>
+                  )}
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {/* Bullets below on all screens */}
+          <ul className="space-y-3 mt-12 max-w-2xl">
             {[
-              "Region-by-role matching matrix — which countries produce the best talent for each role type",
-              "4-stage vetting system that filters out 90% of bad hires before they cost you anything",
-              "2026 salary benchmarks by role and region so you don't overpay or lowball",
-              "10 red flags that predict failure before it happens — each one cost me money or clients",
-              "Onboarding framework that makes new hires productive in 2 weeks",
-              "LinkedIn outreach templates and candidate scoring rubric",
+              "Region-by-role matching matrix. Which countries produce the best talent for each role type.",
+              "4-stage vetting system that filters out 90% of bad hires before they cost you anything.",
+              "2026 salary benchmarks by role and region so you don't overpay or lowball.",
+              "10 red flags that predict failure before it happens. Each one cost me money or clients.",
+              "Onboarding framework that makes new hires productive in 2 weeks.",
+              "LinkedIn outreach templates and candidate scoring rubric.",
             ].map((item, i) => (
               <li key={i} className="flex gap-3 text-gray-600">
                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
@@ -92,59 +151,6 @@ export default function RemoteHiringPlaybookPage() {
               </li>
             ))}
           </ul>
-
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label
-                  htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700 mb-1.5"
-                >
-                  First name
-                </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="Jordan"
-                  required
-                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1.5"
-                >
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
-                  required
-                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
-                />
-              </div>
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "Sending..." : "Get the Free Playbook"}
-              </Button>
-              {status === "error" && (
-                <p className="text-red-600 text-sm mt-3">{errorMsg}</p>
-              )}
-            </form>
-          </div>
-          <p className="text-center text-sm text-gray-400 mt-3">
-            No spam, ever. Just the playbook.
-          </p>
         </div>
       </Container>
     </main>
