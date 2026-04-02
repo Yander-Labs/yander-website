@@ -24,15 +24,10 @@ const footerLinks = {
     { label: "Integrations", href: "/integrations" },
   ],
   company: [
-    { label: "About", href: "#", comingSoon: true },
     { label: "Blog", href: "/blog" },
-    { label: "Careers", href: "#", comingSoon: true },
-    { label: "Contact", href: "#", comingSoon: true },
   ],
   resources: [
     { label: "Changelog", href: "/changelog" },
-    { label: "Documentation", href: "#", comingSoon: true },
-    { label: "Help Center", href: "#", comingSoon: true },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Data Processing Agreement", href: "/dpa" },
@@ -107,28 +102,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    {link.comingSoon ? (
-                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
-                        {link.label}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-gray-100 text-gray-400 font-medium">
-                          Soon
-                        </span>
-                      </span>
-                    ) : link.href.startsWith('/') ? (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        {link.label}
-                      </a>
-                    )}
+                    <Link
+                      href={link.href}
+                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
