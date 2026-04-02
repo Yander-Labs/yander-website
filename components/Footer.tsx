@@ -22,7 +22,6 @@ function LinkedInIcon({ className }: { className?: string }) {
 const footerLinks = {
   product: [
     { label: "Integrations", href: "/integrations" },
-    { label: "Pricing", href: "/pricing" },
   ],
   company: [
     { label: "About", href: "#", comingSoon: true },
@@ -65,14 +64,14 @@ export function Footer() {
                 />
               </Link>
               <p className="mt-4 text-sm text-gray-500 max-w-xs">
-                Build stronger remote teams. Keep clients longer. Get live insights on engagement, workload, and sentiment.
+                Find A-player offshore talent with AI. Hire faster, spend less, and build teams that last.
               </p>
               <div className="mt-6 flex items-center gap-3">
                 {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-9 h-9 rounded-lg bg-white border border-[#E4E7EC] flex items-center justify-center text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-all"
+                    className="w-9 h-9 rounded-none bg-white border border-[#E4E7EC] flex items-center justify-center text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-all"
                     aria-label={social.label}
                   >
                     <social.icon className="w-4 h-4" />
@@ -111,7 +110,7 @@ export function Footer() {
                     {link.comingSoon ? (
                       <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
                         {link.label}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-gray-100 text-gray-400 font-medium">
                           Soon
                         </span>
                       </span>
@@ -146,7 +145,7 @@ export function Footer() {
                     {"comingSoon" in link && link.comingSoon ? (
                       <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
                         {link.label}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-400 font-medium">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-gray-100 text-gray-400 font-medium">
                           Soon
                         </span>
                       </span>

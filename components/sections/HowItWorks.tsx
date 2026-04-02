@@ -2,117 +2,145 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Container } from "../ui/Container";
-import { SectionLabel } from "../ui/SectionLabel";
-import { MiniChart } from "../ui/MiniChart";
-import {
-  ArrowRight,
-  Sparkles,
-  TrendingUp,
-  AlertTriangle,
-  Users,
-} from "lucide-react";
 import Image from "next/image";
+import { Container } from "../ui/Container";
+import {
+  FileText,
+} from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Connect Your Tools",
-    description: "Use our direct integrations to connect the tools your team is already using every day.",
-    visual: "integrations",
+    title: "Tell us who you need",
+    description: "Paste a job description or build one with Yander. Define the role, skills, budget, and the culture you want.",
+    visual: "jobpost",
   },
   {
     number: "02",
-    title: "AI Analyzes Patterns",
-    description: "Yander monitors communication patterns, meeting behavior, and response times.",
-    visual: "processing",
+    title: "AI does the heavy lifting",
+    description: "Yander's agent searches global talent pools, screens for qualifications, and runs culture-fit assessments automatically.",
+    visual: "aisearch",
   },
   {
     number: "03",
-    title: "Get Daily Scores",
-    description: "See who's thriving, who needs support, and where to focus your attention.",
-    visual: "insights",
+    title: "Interview the top 1%",
+    description: "Every person you talk to has been vetted, tested, and matched to your needs.",
+    visual: "interview",
   },
 ];
 
-function IntegrationVisual() {
-  const integrations = [
-    { name: "Slack", logo: "/logos/slack.svg", height: 22 },
-    { name: "Gmail", logo: "/logos/gmail.svg", height: 20 },
-    { name: "Google Meet", logo: "/logos/google-meet.png", height: 18 },
-    { name: "Zoom", logo: "/logos/zoom.svg", height: 14 },
-    { name: "Notion", logo: "/logos/notion.svg", height: 22 },
-    { name: "ClickUp", logo: "/logos/clickup.svg", height: 16 },
-    { name: "Monday.com", logo: "/logos/monday.svg", height: 16 },
-  ];
-
+function JobPostVisual() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
-      {integrations.map((item, i) => (
-        <motion.div
-          key={item.name}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.08, duration: 0.4 }}
-          className="flex items-center justify-center h-8"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.logo}
-            alt={item.name}
-            style={{ height: item.height }}
-            className="w-auto"
-          />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-function ProcessingVisual() {
-  return (
-    <div className="relative">
-      <div className="bg-gradient-to-br from-[#171717] to-[#2d2d2d] rounded-xl p-4 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
-            <Sparkles className="w-3 h-3 text-white" />
-          </div>
-          <span className="text-white text-sm font-semibold">Yander AI</span>
+    <div className="space-y-2.5">
+      <div className="flex items-center gap-3 p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
+        <FileText className="w-4 h-4 text-gray-400 flex-shrink-0" />
+        <div className="flex-1">
+          <p className="text-[10px] text-gray-400 uppercase tracking-wide">Role</p>
+          <p className="text-[13px] font-medium text-gray-900">Senior Full Stack Developer</p>
         </div>
-        <div className="flex justify-center gap-1.5 mb-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" style={{ animationDelay: "150ms" }} />
-          <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: "300ms" }} />
+      </div>
+      <div className="p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
+        <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-2">Required Skills</p>
+        <div className="flex flex-wrap gap-1.5">
+          {["React", "Node.js", "PostgreSQL", "AWS", "TypeScript"].map((skill) => (
+            <span key={skill} className="px-2.5 py-1 bg-gray-50 rounded-none text-[11px] font-medium text-gray-600 border border-gray-100">
+              {skill}
+            </span>
+          ))}
         </div>
-        <p className="text-white/60 text-[10px]">Processing signals...</p>
+      </div>
+      <div className="flex gap-2.5">
+        <div className="flex-1 p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
+          <p className="text-[10px] text-gray-400 uppercase tracking-wide">Budget</p>
+          <p className="text-[13px] font-medium text-gray-900">$45-60k/yr</p>
+        </div>
+        <div className="flex-1 p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
+          <p className="text-[10px] text-gray-400 uppercase tracking-wide">Region</p>
+          <p className="text-[13px] font-medium text-gray-900">South America</p>
+        </div>
       </div>
     </div>
   );
 }
 
-function InsightsVisual() {
+function AISearchVisual() {
   return (
-    <div className="space-y-2">
-      {[
-        { icon: TrendingUp, label: "Engagement", value: "7.8", trend: "up", color: "text-emerald-600 bg-emerald-50" },
-        { icon: AlertTriangle, label: "At Risk", value: "1", trend: "down", color: "text-amber-600 bg-amber-50" },
-        { icon: Users, label: "Team Health", value: "Good", trend: "up", color: "text-blue-600 bg-blue-50" },
-      ].map((item) => (
-        <div key={item.label} className="flex items-center gap-3 p-2 bg-white rounded-lg border border-[#e5e5e5]">
-          <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${item.color}`}>
-            <item.icon className="w-3.5 h-3.5" />
+    <div className="bg-[#1e1044] rounded-none p-4 border border-white/10 relative overflow-hidden">
+      <div className="relative">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/logo.svg"
+              alt="Yander"
+              width={20}
+              height={20}
+              className="w-5 h-5 brightness-0 invert"
+            />
+            <span className="text-sm font-medium text-white">Yander</span>
           </div>
-          <div className="flex-1">
-            <p className="text-[10px] text-gray-500">{item.label}</p>
-            <p className="text-sm font-semibold text-gray-900">{item.value}</p>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-pulse" />
+            <span className="text-[10px] text-white/60 font-medium">Processing</span>
           </div>
-          <MiniChart
-            data={item.trend === "up" ? [4, 5, 5, 6, 7, 7, 8] : [6, 5, 4, 3, 2, 2, 1]}
-            width={40}
-            height={16}
-            color={item.trend === "up" ? "#10b981" : "#f59e0b"}
+        </div>
+        <div className="space-y-2">
+          {[
+            { text: "Searching talent pools", done: true },
+            { text: "Skills assessment complete", done: true },
+            { text: "Culture fit analysis", done: true },
+            { text: "Ranking top candidates", active: true },
+          ].map((item) => (
+            <div key={item.text} className="flex items-center gap-2.5 px-3 py-2 bg-white/[0.03] rounded-none border border-white/[0.06]">
+              {"active" in item && item.active ? (
+                <div className="w-3.5 h-3.5 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
+                </div>
+              ) : (
+                <div className="w-3.5 h-3.5 flex items-center justify-center flex-shrink-0 text-white/60 text-[10px] font-medium">
+                  ✓
+                </div>
+              )}
+              <span className={`text-[12px] ${"active" in item && item.active ? "text-white/80 font-medium" : "text-white/60"}`}>
+                {item.text}
+              </span>
+              {"done" in item && item.done && (
+                <span className="ml-auto text-[10px] text-white/40">Done</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InterviewVisual() {
+  const candidates = [
+    { name: "Maria Santos", role: "Senior Full Stack Dev", match: 96, location: "São Paulo", avatar: "/avatars/maria-santos.jpg" },
+    { name: "Raj Patel", role: "Full Stack Developer", match: 94, location: "Bangalore", avatar: "/avatars/raj-patel.jpg" },
+    { name: "James Ndaba", role: "Backend Engineer", match: 91, location: "Cape Town", avatar: "/avatars/james-ndaba.jpg" },
+  ];
+
+  return (
+    <div className="space-y-2.5">
+      {candidates.map((candidate) => (
+        <div key={candidate.name} className="flex items-center gap-3 p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
+          <Image
+            src={candidate.avatar}
+            alt={candidate.name}
+            width={36}
+            height={36}
+            className="w-9 h-9 rounded-full object-cover flex-shrink-0"
           />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <p className="text-[13px] font-medium text-gray-900 truncate">{candidate.name}</p>
+              <span className="flex-shrink-0 text-[10px] font-medium text-gray-500">
+                {candidate.match}%
+              </span>
+            </div>
+            <p className="text-[11px] text-gray-400">{candidate.role} · {candidate.location}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -121,141 +149,69 @@ function InsightsVisual() {
 
 function StepVisual({ type }: { type: string }) {
   switch (type) {
-    case "integrations":
-      return <IntegrationVisual />;
-    case "processing":
-      return <ProcessingVisual />;
-    case "insights":
-      return <InsightsVisual />;
-    default:
-      return null;
+    case "jobpost": return <JobPostVisual />;
+    case "aisearch": return <AISearchVisual />;
+    case "interview": return <InterviewVisual />;
+    default: return null;
   }
 }
 
 export function HowItWorks() {
   return (
-    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
-
+    <section className="relative py-24 md:py-32 bg-[#fafafa] overflow-hidden">
       <Container>
         {/* Header */}
-        <div className="text-center mb-16 relative">
-          <SectionLabel number="02" centered>
-            How It Works
-          </SectionLabel>
-          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
-            Start getting insights in a few minutes
-          </h2>
-        </div>
-
-        {/* Steps - Horizontal on desktop, vertical on mobile */}
-        <div className="relative">
-          {/* Desktop layout with arrows */}
-          <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-4 items-stretch">
-            {steps.map((step, index) => (
-              <React.Fragment key={step.number}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                >
-                  {/* Card */}
-                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
-                    {/* Step number badge */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
-                        {step.number}
-                      </div>
-                      <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
-                    </div>
-
-                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
-                      {step.description}
-                    </p>
-
-                    {/* Visual */}
-                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
-                      <StepVisual type={step.visual} />
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Arrow connector (desktop) */}
-                {index < steps.length - 1 && (
-                  <div className="flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5 text-[#171717]" />
-                    </div>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-
-          {/* Mobile/Tablet layout with vertical arrows */}
-          <div className="flex flex-col gap-0 lg:hidden">
-            {steps.map((step, index) => (
-              <React.Fragment key={step.number}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                >
-                  {/* Card */}
-                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6">
-                    {/* Step number badge */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
-                        {step.number}
-                      </div>
-                      <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
-                    </div>
-
-                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
-                      {step.description}
-                    </p>
-
-                    {/* Visual */}
-                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
-                      <StepVisual type={step.visual} />
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Arrow connector (mobile) */}
-                {index < steps.length - 1 && (
-                  <div className="flex justify-center py-4">
-                    <div className="w-8 h-8 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_2px_2px_0px] flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-[#737373] rotate-90" />
-                    </div>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-full border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px]">
-            <div className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping absolute" />
+        <div className="relative text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="text-xs font-mono text-gray-300 tracking-wider">[01]</span>
+              <span className="text-xs font-medium text-gray-400 uppercase tracking-[0.15em]">How it works</span>
             </div>
-            <span className="text-sm text-[#737373]">
-              No surveys. No time tracking. Just <span className="text-[#171717] font-medium">intelligent signals</span>.
-            </span>
-          </div>
-        </motion.div>
+            <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a0a0a] tracking-[-0.02em]">
+              From job post to interview.
+              <br />
+              <span className="text-[#1e1044]">No recruiters needed.</span>
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* Steps */}
+        <div className="relative max-w-5xl mx-auto space-y-6">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-none border border-gray-200/60 p-6 md:p-8 lg:p-10 shadow-soft hover:shadow-soft-lg transition-all duration-300"
+            >
+              {/* Content */}
+              <div className={index % 2 !== 0 ? "lg:order-2" : ""}>
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-xs font-mono text-gray-300 tracking-wider">{step.number}</span>
+                  <div className="h-px flex-1 bg-gray-100" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#0a0a0a] tracking-[-0.02em]">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-base text-gray-500 leading-relaxed max-w-md">
+                  {step.description}
+                </p>
+              </div>
+
+              {/* Visual */}
+              <div className={`bg-[#fafafa] rounded-none border border-gray-200/60 p-5 ${index % 2 !== 0 ? "lg:order-1" : ""}`}>
+                <StepVisual type={step.visual} />
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </Container>
     </section>
   );

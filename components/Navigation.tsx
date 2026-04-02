@@ -7,11 +7,13 @@ import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
+import { useWaitlistModal } from "./ui/WaitlistModal";
 import { useDemoModal } from "./ui/DemoModal";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export function Navigation() {
               <Link href="/" className="flex items-center text-gray-900">
                 <Image
                   src="/logo.svg"
-                  alt="Yander - Remote Team Intelligence"
+                  alt="Yander - AI Offshore Recruitment"
                   width={120}
                   height={35}
                   className="h-7 w-auto"
@@ -51,23 +53,26 @@ export function Navigation() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-4">
               <Link
-                href="/pricing"
+                href="/blog"
                 className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
-                Pricing
+                Blog
               </Link>
-              <Button variant="ghost" size="sm" onClick={openDemoModal}>
-                Book a Demo
+              <Button variant="ghost" size="sm" onClick={openModal}>
+                Join Waitlist
               </Button>
-              <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]">
-                Get Started Free
-              </a>
+              <button
+                onClick={openDemoModal}
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
+              >
+                Book a Demo
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-none transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
@@ -102,7 +107,7 @@ export function Navigation() {
               <span className="text-sm font-semibold text-gray-900">Menu</span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 -mr-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 -mr-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-none transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -114,31 +119,41 @@ export function Navigation() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
               >
                 Home
               </Link>
               <Link
-                href="/pricing"
+                href="/blog"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
               >
-                Pricing
+                Blog
               </Link>
             </div>
 
             {/* Drawer Footer */}
             <div className="p-4 border-t border-[#E4E7EC] space-y-3">
-              <Button variant="ghost" size="md" className="w-full justify-center">
-                Book a Demo
-              </Button>
-              <a
-                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
-                onClick={() => setMobileMenuOpen(false)}
+              <Button
+                variant="ghost"
+                size="md"
+                className="w-full justify-center"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openModal();
+                }}
               >
-                Get Started Free
-              </a>
+                Join Waitlist
+              </Button>
+              <button
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openDemoModal();
+                }}
+              >
+                Book a Demo
+              </button>
             </div>
           </div>
         </div>

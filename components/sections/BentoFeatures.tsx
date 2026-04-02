@@ -1,404 +1,298 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from "framer-motion";
 import { Container } from "../ui/Container";
-import { SectionLabel } from "../ui/SectionLabel";
-import {
-  ArrowUp,
-  ArrowDown,
-  Bell,
-  Zap,
-  Users,
-  Shield,
-  X,
-  Check,
-  Camera,
-  Keyboard,
-  Eye,
-  BarChart3,
-  Lock,
-  Paperclip,
-  ChevronDown,
-  Send,
-  MessageSquare,
-} from "lucide-react";
-import Image from "next/image";
+import { Check } from "lucide-react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.21, 0.47, 0.32, 0.98] as const,
-    },
-  },
-};
-
-// Dashboard visual - clean team overview
-function DashboardVisual() {
-  const teamMembers = [
-    { name: "Sarah Chen", role: "Graphic Designer", score: 9, trend: "up", avatar: "/avatars/Sarah-chen.png" },
-    { name: "Marcus Johnson", role: "Creative Strategist", score: 8, trend: "up", avatar: "/avatars/marcus-johnson.png" },
-    { name: "Emily Rodriguez", role: "Project Manager", score: 5, trend: "down", avatar: "/avatars/emily-rodriguez.png" },
-    { name: "Ryan Peters", role: "Media Buyer", score: 9, trend: "up", avatar: "/avatars/ryan-peters.png" },
-  ];
+function AnimatedBar({ score, delay }: { score: number; delay: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <div className="flex-1 flex flex-col p-5">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-md bg-white/10 flex items-center justify-center">
-            <Users className="w-4 h-4 text-white" />
-          </div>
-          <div>
-            <h4 className="text-sm font-medium text-white">Team Overview</h4>
-            <p className="text-[10px] text-gray-500">4 members · Last 7 days</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded-md">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] text-emerald-400">Live</span>
-        </div>
-      </div>
+    <div ref={ref} className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
+      <motion.div
+        className="h-full bg-white/40 rounded-full"
+        initial={{ width: 0 }}
+        animate={isInView ? { width: `${score}%` } : { width: 0 }}
+        transition={{ duration: 1.2, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      />
+    </div>
+  );
+}
 
-      {/* Team list */}
+const features = [
+  {
+    id: "search",
+    label: "01",
+    title: "AI-Powered Search",
+    description: "Our agent analyzes your job requirements and matches candidates across skills, experience, and work style. This isn't keyword matching. It's real understanding of what makes a candidate right for your role.",
+    visual: (
+      <div className="space-y-3">
+        {[
+          { label: "Technical skills", score: 96 },
+          { label: "Experience level", score: 92 },
+          { label: "Communication", score: 88 },
+          { label: "Culture alignment", score: 94 },
+        ].map((item, i) => (
+          <div key={item.label}>
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-sm text-white/80">{item.label}</span>
+              <span className="text-sm font-medium text-white">{item.score}%</span>
+            </div>
+            <AnimatedBar score={item.score} delay={0.15 + i * 0.1} />
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    id: "culture",
+    label: "02",
+    title: "Culture Fit Screening",
+    description: "Every candidate completes personality assessments that evaluate remote work readiness, communication style, self-management, and collaboration preferences. You only meet people who'll work well with your team.",
+    visual: (
       <div className="space-y-2">
-        {teamMembers.map((member) => (
-          <div
-            key={member.name}
-            className={`flex items-center gap-3 p-2.5 rounded-lg border ${
-              member.score <= 5
-                ? "bg-amber-500/5 border-amber-500/20"
-                : "bg-[#1a1a1a] border-[#2a2a2a]"
-            }`}
-          >
-            <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-              <Image
-                src={member.avatar}
-                alt={member.name}
-                width={32}
-                height={32}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-white truncate">{member.name}</span>
-                {member.score <= 5 && (
-                  <span className="text-[9px] px-1.5 py-0.5 bg-amber-500/20 text-amber-400 rounded">
-                    At Risk
-                  </span>
-                )}
-              </div>
-              <span className="text-[10px] text-gray-500">{member.role}</span>
-            </div>
+        {[
+          "Remote work readiness",
+          "Communication style",
+          "Work ethic alignment",
+          "Team collaboration",
+          "Self-management",
+        ].map((trait) => (
+          <div key={trait} className="flex items-center justify-between py-2.5 border-b border-white/[0.06] last:border-b-0">
+            <span className="text-sm text-white/80">{trait}</span>
             <div className="flex items-center gap-2">
-              <div className={`text-sm font-semibold ${
-                member.score <= 5 ? "text-amber-400" : "text-emerald-400"
-              }`}>
-                {member.score}
+              <span className="text-xs text-white/80">Passed</span>
+              <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
+                <Check className="w-3 h-3 text-white/80" />
               </div>
-              {member.trend === "up" ? (
-                <ArrowUp className="w-3 h-3 text-emerald-400" />
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    id: "vetting",
+    label: "03",
+    title: "Automated Vetting Pipeline",
+    description: "Every candidate goes through a multi-step pipeline before you see them: resume screening, technical assessment, personality testing, and culture evaluation. By the time they reach you, the hard work is done.",
+    visual: (
+      <div className="space-y-0">
+        {[
+          { step: "Resume screening", done: true },
+          { step: "Skills assessment", done: true },
+          { step: "Personality test", done: true },
+          { step: "Culture evaluation", done: true },
+          { step: "Ready for interview", done: false },
+        ].map((item) => (
+          <div key={item.step} className="flex items-center gap-4 py-3 border-b border-white/[0.06] last:border-b-0">
+            <div className="flex items-center justify-center w-8">
+              {item.done ? (
+                <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
+                  <Check className="w-3 h-3 text-white/80" />
+                </div>
               ) : (
-                <ArrowDown className="w-3 h-3 text-amber-400" />
+                <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-pulse" />
+                </div>
               )}
             </div>
+            <span className={`text-sm ${item.done ? "text-white/80" : "text-white/80 font-medium"}`}>
+              {item.step}
+            </span>
+            {item.done && <span className="ml-auto text-xs text-white/80">Complete</span>}
           </div>
         ))}
       </div>
+    ),
+  },
+  {
+    id: "forms",
+    label: "04",
+    title: "Self-Service Screening",
+    description: "Already getting inbound candidates? Send them to a Yander screening form. They'll complete personality tests and qualification checks automatically. You only review the ones who pass.",
+    visual: (
+      <div>
+        <div className="space-y-3 mb-6">
+          {[
+            { field: "Personal details", pct: "100%" },
+            { field: "Work experience", pct: "100%" },
+            { field: "Technical assessment", pct: "100%" },
+            { field: "Culture & personality", pct: "75%" },
+          ].map((item) => (
+            <div key={item.field}>
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-sm text-white/80">{item.field}</span>
+                <span className="text-xs text-white/70">{item.pct}</span>
+              </div>
+              <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
+                <div className="h-full bg-white/30 rounded-full" style={{ width: item.pct }} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+          <span className="text-sm text-white/80">Overall progress</span>
+          <span className="text-lg font-bold text-white">94%</span>
+        </div>
+      </div>
+    ),
+  },
+];
+
+function FeatureNav({ activeIndex }: { activeIndex: number }) {
+  return (
+    <div className="flex gap-1">
+      {features.map((feature, i) => (
+        <div
+          key={feature.id}
+          className={`flex-1 py-3 px-4 text-center text-sm font-medium transition-all duration-300 border-b-2 ${
+            i === activeIndex
+              ? "text-white border-white bg-white/[0.04]"
+              : i < activeIndex
+              ? "text-white/70 border-white/20"
+              : "text-white/70 border-transparent"
+          }`}
+        >
+          <span className="hidden sm:inline">{feature.title}</span>
+          <span className="sm:hidden">{feature.label}</span>
+        </div>
+      ))}
     </div>
   );
 }
 
-// Privacy First visual matching the dark card design
-function PrivacyVisual() {
-  const blockedItems = [
-    { icon: Camera, label: "Screenshots", sublabel: "Never captured" },
-    { icon: Keyboard, label: "Keystrokes", sublabel: "Never logged" },
-    { icon: Eye, label: "Webcam", sublabel: "Never accessed" },
-  ];
+function ProgressBar({ progress, activeIndex }: { progress: number; activeIndex: number }) {
+  // Calculate the fill for the current segment
+  const segmentSize = 1 / features.length;
+  const segmentStart = activeIndex * segmentSize;
+  const segmentProgress = Math.min(1, Math.max(0, (progress - segmentStart) / segmentSize));
 
   return (
-    <div className="flex-1 flex flex-col p-5">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-9 h-9 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-          <Shield className="w-5 h-5 text-emerald-400" />
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-white">Privacy First</h4>
-          <p className="text-[11px] text-gray-500">Your team&apos;s trust matters</p>
-        </div>
-      </div>
-
-      {/* 2x2 Grid */}
-      <div className="grid grid-cols-2 gap-2 mb-2">
-        {/* Blocked items - red */}
-        {blockedItems.map((item) => (
-          <div
-            key={item.label}
-            className="bg-[#1f1215] rounded-lg p-3 border border-[#3a2024]"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-5 h-5 rounded bg-rose-500/20 flex items-center justify-center">
-                <X className="w-3 h-3 text-rose-400" />
-              </div>
-              <span className="text-xs font-medium text-white">{item.label}</span>
-            </div>
-            <p className="text-[10px] text-rose-400/80 pl-7">{item.sublabel}</p>
-          </div>
-        ))}
-
-        {/* Allowed item - green */}
-        <div className="bg-[#0f1f17] rounded-lg p-3 border border-[#1a3a28]">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
-              <Check className="w-3 h-3 text-emerald-400" />
-            </div>
-            <span className="text-xs font-medium text-white">Patterns Only</span>
-          </div>
-          <p className="text-[10px] text-emerald-400/80 pl-7">Aggregated insights</p>
-        </div>
-      </div>
-
-      {/* Role-Based Access row */}
-      <div className="bg-[#1a1a1a] rounded-lg p-3 border border-[#2a2a2a] mt-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-            <Lock className="w-3 h-3 text-emerald-400" />
-          </div>
-          <div>
-            <span className="text-xs font-medium text-white">Role-Based Access</span>
-            <p className="text-[10px] text-gray-500">Only the right leaders see sensitive insights</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Smart alerts - Slack message mockup
-function AlertsVisual() {
-  return (
-    <div className="flex-1 flex items-center justify-center p-5">
-      <div className="w-full max-w-[280px]">
-        {/* Slack message container */}
-        <div className="bg-[#1a1a1a] rounded-lg border border-[#2a2a2a] overflow-hidden">
-          {/* Slack header */}
-          <div className="flex items-center gap-2 px-3 py-2 bg-[#4A154B] border-b border-[#3a1a3b]">
-            <Image
-              src="/logos/slack.svg"
-              alt="Slack"
-              width={16}
-              height={16}
-              className="w-4 h-4"
-            />
-            <span className="text-[11px] text-white/80">#team-alerts</span>
-          </div>
-
-          {/* Message */}
-          <div className="p-3">
-            <div className="flex gap-2.5">
-              {/* Yander bot avatar */}
-              <div className="w-8 h-8 rounded bg-gray-900 flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-[10px] font-bold">Y</span>
-              </div>
-
-              {/* Message content */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[12px] font-semibold text-white">Yander</span>
-                  <span className="text-[9px] px-1 py-0.5 bg-[#2a2a2a] rounded text-gray-400">APP</span>
-                  <span className="text-[9px] text-gray-500">2:34 PM</span>
-                </div>
-
-                {/* Alert box */}
-                <div className="bg-amber-500/10 border-l-2 border-amber-500 rounded-r px-2.5 py-2">
-                  <p className="text-[11px] text-amber-200 font-medium mb-0.5">⚠️ Low Engagement Detected</p>
-                  <p className="text-[10px] text-gray-400">
-                    <span className="text-white font-medium">Marcus Johnson</span> has shown a 23% drop in engagement over the past 7 days.
-                  </p>
-                </div>
-
-                {/* Action hint */}
-                <p className="text-[9px] text-gray-500 mt-2">
-                  💡 Consider scheduling a 1:1 check-in
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// AI recommendations visual
-function AIVisual() {
-  return (
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="relative">
-        {/* Central AI icon */}
-        <div className="w-14 h-14 rounded-xl bg-gray-900 flex items-center justify-center">
-          <Zap className="w-7 h-7 text-white" />
-        </div>
-
-        {/* Orbiting suggestions */}
-        {[
-          { text: "Schedule 1:1", angle: -45, distance: 70 },
-          { text: "Review workload", angle: 45, distance: 75 },
-          { text: "Send kudos", angle: 180, distance: 65 },
-        ].map((item, i) => {
-          const x = Math.cos((item.angle * Math.PI) / 180) * item.distance;
-          const y = Math.sin((item.angle * Math.PI) / 180) * item.distance;
-          return (
+    <div className="hidden lg:flex flex-col items-center gap-3 absolute right-8 top-1/2 -translate-y-1/2 z-10">
+      {features.map((_, i) => (
+        <div key={i} className="flex flex-col items-center gap-1">
+          {/* Segment track */}
+          <div className="w-[2px] h-16 bg-white/[0.08] relative overflow-hidden">
             <div
-              key={i}
-              className="absolute px-2 py-1 bg-[#2a2a2a] rounded-md text-[9px] text-gray-300 whitespace-nowrap border border-[#3a3a3a]"
+              className="absolute top-0 left-0 w-full bg-white transition-all duration-150 ease-linear"
               style={{
-                left: `calc(50% + ${x}px - 30px)`,
-                top: `calc(50% + ${y}px - 10px)`,
+                height: i < activeIndex
+                  ? "100%"
+                  : i === activeIndex
+                  ? `${segmentProgress * 100}%`
+                  : "0%",
               }}
-            >
-              {item.text}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-// Yander Chat visual - AI chat interface
-function ChatVisual() {
-  return (
-    <div className="flex-1 flex flex-col justify-center p-5">
-      {/* Chat input container */}
-      <div className="bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-3">
-        {/* Input area */}
-        <div className="mb-3">
-          <p className="text-[13px] text-gray-500">Ask or search for anything</p>
-        </div>
-
-        {/* Bottom row */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {/* Attachment icon */}
-            <Paperclip className="w-4 h-4 text-gray-500" />
-
-            {/* Model selector */}
-            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-[#2a2a2a] cursor-pointer">
-              <div className="w-4 h-4 rounded bg-gray-700 flex items-center justify-center">
-                <span className="text-[8px] font-bold text-white">Y</span>
-              </div>
-              <span className="text-[12px] font-medium text-white">Yander AI</span>
-              <ChevronDown className="w-3 h-3 text-gray-400" />
-            </div>
+            />
           </div>
-
-          {/* Send button */}
-          <div className="w-8 h-8 rounded-full bg-[#2a2a2a] flex items-center justify-center">
-            <Send className="w-4 h-4 text-gray-400" />
-          </div>
+          {/* Dot */}
+          <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+            i <= activeIndex ? "bg-white" : "bg-white/20"
+          }`} />
         </div>
-      </div>
+      ))}
     </div>
   );
 }
 
 export function BentoFeatures() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setScrollProgress(latest);
+    // Map scroll progress to feature index
+    const index = Math.min(
+      features.length - 1,
+      Math.floor(latest * features.length)
+    );
+    setActiveIndex(index);
+  });
+
   return (
-    <section className="py-20 md:py-28 bg-[#0a0a0a]">
-      <Container>
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <SectionLabel number="01" centered className="text-gray-400">
-            Key Features
-          </SectionLabel>
-          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
-            Get the data you need to make better team and client decisions
-          </h2>
+    <section ref={containerRef} className="relative bg-[#1e1044]" style={{ height: `${features.length * 100}vh` }}>
+      {/* Subtle glow */}
+      <div className="sticky top-0 h-screen">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgba(99,102,241,0.08),transparent)]" />
+      </div>
+
+      {/* Sticky container */}
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden" style={{ marginTop: "-100vh" }}>
+        {/* Header */}
+        <div className="pt-20 pb-8 px-4">
+          <Container>
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="text-xs font-mono text-gray-600 tracking-wider">[02]</span>
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-[0.15em]">Platform</span>
+              </div>
+              <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em]">
+                Every step of hiring, handled.
+              </h2>
+            </div>
+
+            {/* Nav tabs + content in bordered box */}
+            <div className="border border-white/15">
+              <FeatureNav activeIndex={activeIndex} />
+            </div>
+          </Container>
         </div>
 
-        {/* Bento Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
-          {/* Card 1 - Smart Alerts */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
-          >
-            <AlertsVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Slack Notifications</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Get a Slack message whenever Yander detects a problem.
-              </p>
-            </div>
-          </motion.div>
+        {/* Feature content */}
+        <div className="flex-1 relative">
+          {/* Progress bar */}
+          <ProgressBar progress={scrollProgress} activeIndex={activeIndex} />
 
-          {/* Card 2 - AI Recommendations */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
-          >
-            <AIVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">AI Recommendations</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Get suggestions that are proven to help with team engagement, communication, and more.
-              </p>
-            </div>
-          </motion.div>
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.id}
+              className="absolute inset-0 px-4"
+              style={{
+                opacity: useTransform(
+                  scrollYProgress,
+                  [
+                    Math.max(0, (i - 0.3) / features.length),
+                    i / features.length,
+                    (i + 0.7) / features.length,
+                    Math.min(1, (i + 1) / features.length),
+                  ],
+                  [0, 1, 1, i === features.length - 1 ? 1 : 0]
+                ),
+              }}
+            >
+              <Container>
+                <div className="border border-white/15 p-6 md:p-10 max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                    {/* Text */}
+                    <div className="pt-4">
+                      <span className="text-xs font-mono text-white/80 tracking-wider">{feature.label}</span>
+                      <h3 className="mt-3 text-2xl md:text-3xl font-bold text-white tracking-[-0.02em]">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-4 text-base text-white/70 leading-relaxed max-w-md">
+                        {feature.description}
+                      </p>
+                    </div>
 
-          {/* Card 3 - Immediate Insights */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
-          >
-            <ChatVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Immediate Insights</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Ask the chat any team-related question and get the answers you need in seconds.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 4 - Privacy by Design */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#141414] rounded-2xl border border-[#2a2a2a] overflow-hidden flex flex-col min-h-[280px] sm:min-h-[300px] md:min-h-[320px]"
-          >
-            <PrivacyVisual />
-            <div className="p-6 pt-0 mt-auto">
-              <h3 className="text-lg font-semibold text-white">Privacy by Design</h3>
-              <p className="text-sm text-gray-400 mt-1">
-                Built for trust, not surveillance. We analyze patterns, not keystrokes.
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </Container>
+                    {/* Visual */}
+                    <div className="bg-white/[0.03] border border-white/10 p-6 md:p-8">
+                      {feature.visual}
+                    </div>
+                  </div>
+                </div>
+              </Container>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

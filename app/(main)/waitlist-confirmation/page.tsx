@@ -26,7 +26,7 @@ export default function WaitlistConfirmationPage() {
             <CheckCircle className="w-8 h-8 text-emerald-500" />
           </div>
 
-          <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4">
+          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[#0a0a0a] tracking-[-0.02em] mb-4">
             You&apos;re on the list!
           </h1>
 

@@ -2,85 +2,73 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 
 export function DarkCTA() {
+  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-24 md:py-32 bg-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
+          className="relative overflow-hidden rounded-none bg-[#1e1044] p-10 sm:p-12 md:p-16 lg:p-20"
         >
-          {/* Background decorations */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-amber-500/10 to-rose-500/10 rounded-full blur-3xl" />
+          {/* Subtle gradient */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(99,102,241,0.12),transparent)]" />
 
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '32px 32px'
-          }} />
+          <div className="relative max-w-3xl mx-auto text-center">
+            <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] leading-[1.1]">
+              The future of hiring is
+              <br />
+              <span className="text-indigo-300">not through a recruitment agency.</span>
+            </h2>
 
-          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Content */}
-            <div className="text-center lg:text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/80">Start your free trial today</span>
-              </div>
+            <p className="mt-6 text-lg text-gray-300 max-w-xl mx-auto">
+              Join the waitlist and be the first to access AI-powered
+              offshore recruiting. Faster, cheaper, and with better culture
+              fit than any agency.
+            </p>
 
-              <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] leading-tight">
-                Get an accurate pulse on your team and clients
-              </h2>
-
-              <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
-                Join leading agencies who use Yander to keep their teams engaged,
-                prevent burnout, and deliver better results for clients.
-              </p>
-
-              {/* Stats row */}
-              <div className="mt-8 flex flex-wrap items-center justify-around sm:justify-center lg:justify-start w-full sm:w-auto gap-2 sm:gap-6 md:gap-8">
-                <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">30%</p>
-                  <p className="text-xs sm:text-sm text-white/50">Better Retention</p>
+            {/* Stats */}
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
+              {[
+                { value: "50%", label: "Salary savings" },
+                { value: "Days", label: "To first candidates" },
+                { value: "From $500/mo", label: "Starting price" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-2xl md:text-3xl font-bold text-white">{stat.value}</p>
+                  <p className="text-sm text-gray-400 mt-1">{stat.label}</p>
                 </div>
-                <div className="hidden sm:block w-px h-12 bg-white/10" />
-                <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">8hrs</p>
-                  <p className="text-xs sm:text-sm text-white/50">Saved Monthly</p>
-                </div>
-                <div className="hidden sm:block w-px h-12 bg-white/10" />
-                <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">10min</p>
-                  <p className="text-xs sm:text-sm text-white/50">Setup Time</p>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* CTA buttons */}
-            <div className="flex flex-col gap-3 w-full sm:w-auto">
-              <a
-                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
+            {/* CTAs */}
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={openModal}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0a0a0a] rounded-none font-medium text-base hover:bg-gray-100 transition-all group w-full sm:w-auto shadow-subtle hover:shadow-elevated"
               >
-                Get Started Free
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                Join the Waitlist
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </button>
               <button
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white rounded-none font-medium text-base hover:bg-white/15 transition-colors border border-white/10 w-full sm:w-auto"
               >
                 Book a Demo
               </button>
             </div>
           </div>
+
+          {/* Bottom gradient bar */}
         </motion.div>
       </Container>
     </section>

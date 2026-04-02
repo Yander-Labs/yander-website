@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Mail, ArrowRight, Loader2 } from "lucide-react";
+import { X, ArrowRight, Loader2 } from "lucide-react";
 
 // Context for modal state
 interface WaitlistModalContextType {
@@ -84,7 +84,6 @@ function WaitlistModal() {
 
   const handleClose = () => {
     closeModal();
-    // Reset state after animation completes
     setTimeout(() => {
       setEmail("");
       setStatus("idle");
@@ -102,7 +101,7 @@ function WaitlistModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
           />
 
           {/* Modal */}
@@ -113,35 +112,31 @@ function WaitlistModal() {
             transition={{ duration: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-full max-w-md"
           >
-            <div className="bg-white rounded-2xl shadow-2xl border border-[#e5e5e5] overflow-hidden mx-4">
+            <div className="bg-white rounded-none shadow-soft-lg border border-gray-200/60 overflow-hidden mx-4">
               {/* Header */}
-              <div className="relative px-6 pt-6 pb-4">
+              <div className="relative px-6 pt-6 pb-2">
                 <button
                   onClick={handleClose}
-                  className="absolute right-3 top-3 p-3 rounded-lg hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="absolute right-3 top-3 p-3 rounded-none hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5 text-gray-400" />
                 </button>
 
-                <div className="w-12 h-12 rounded-xl bg-gray-900 flex items-center justify-center mb-4">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-
-                <h2 className="font-serif text-2xl text-gray-900 tracking-tight">
-                  Join the Waitlist
+                <h2 className="font-geist font-bold text-2xl text-[#0a0a0a] tracking-[-0.02em]">
+                  Get early access
                 </h2>
-                <p className="mt-2 text-sm text-gray-500">
-                  Get early access to Yander and be the first to know when we launch.
+                <p className="mt-2 text-sm text-gray-500 leading-relaxed">
+                  Get early access to AI-powered offshore recruiting.
                 </p>
               </div>
 
               {/* Content */}
-              <div className="px-6 pb-6">
+              <div className="px-6 pb-6 pt-4">
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label htmlFor="email" className="sr-only">
-                        Email address
+                      <label htmlFor="email" className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
+                        Work email
                       </label>
                       <div className="relative">
                         <input
@@ -152,11 +147,11 @@ function WaitlistModal() {
                             setEmail(e.target.value);
                             if (status === "error") setStatus("idle");
                           }}
-                          placeholder="Enter your work email"
-                          className={`w-full px-4 py-3 rounded-lg border bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 transition-all ${
+                          placeholder="you@company.com"
+                          className={`w-full px-4 py-3.5 rounded-none border bg-[#fafafa] text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0a0a0a]/10 focus:bg-white transition-all ${
                             status === "error"
                               ? "border-red-300 focus:border-red-500"
-                              : "border-[#e5e5e5] focus:border-gray-400"
+                              : "border-gray-200/60 focus:border-gray-300"
                           }`}
                           disabled={status === "loading"}
                         />
@@ -169,7 +164,7 @@ function WaitlistModal() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a0a0a] text-white rounded-none font-medium hover:bg-[#171717] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0a0a0a]/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {status === "loading" ? (
                         <>
@@ -178,7 +173,7 @@ function WaitlistModal() {
                         </>
                       ) : (
                         <>
-                          Get Early Access
+                          Join the Waitlist
                           <ArrowRight className="w-4 h-4" />
                         </>
                       )}

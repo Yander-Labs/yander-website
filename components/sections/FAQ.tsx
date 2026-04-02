@@ -3,39 +3,48 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
-import { SectionLabel } from "../ui/SectionLabel";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "How does Yander work without tracking keystrokes or screenshots?",
+    question: "How is Yander different from a recruitment agency?",
     answer:
-      "Yander analyses aggregate patterns from tools your team already uses: Slack activity, emails, meeting attendance, response times, project management activity, and more. We never capture screenshots, log keystrokes, or monitor private messages. Instead, we look at patterns across the platforms your team already uses.",
+      "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent does the sourcing, screening, and culture-fit assessment automatically. Plans start from $500/month regardless of how many roles you fill.",
   },
   {
-    question: "What integrations does Yander support?",
+    question: "What regions do you source from?",
     answer:
-      "Yander integrates with Slack, Google Workspace (Gmail, Calendar, Meet), Microsoft 365 (Outlook, Teams, Calendar), Zoom, and project management tools like Notion, ClickUp, and Monday.com. Setup takes about 10 minutes. We're constantly adding new integrations based on customer feedback.",
+      "South America (Brazil, Colombia, Argentina), South Africa, and Southeast Asia (India, Philippines). These regions offer world-class talent at 40-70% less than US rates.",
   },
   {
-    question: "How is Yander different from time-tracking software?",
+    question: "How does the AI matching work?",
     answer:
-      "Time-tracking software monitors hours worked and specific activities. Yander focuses on engagement quality, not quantity. We help you understand if someone is thriving or struggling — not how many hours they logged. It's the difference between surveillance and insight.",
+      "You provide a job description or build one with Yander. Our AI agent searches talent pools for candidates who match on technical skills, experience, and company culture. Each candidate is assessed through skills tests and personality evaluations before being presented to you.",
   },
   {
-    question: "How quickly can I get started?",
+    question: "What does culture-fit screening include?",
     answer:
-      "Most teams are fully set up in under 10 minutes. Connect your integrations, invite your team, and you'll start seeing initial insights within 24-48 hours as the system calibrates to your team's patterns. Full trend data typically appears after the first week.",
+      "Personality assessments evaluating remote work readiness, communication style, self-management, and collaboration preferences. The people you interview aren't just technically qualified. They'll work well with your team.",
   },
   {
-    question: "Is my team's data secure?",
+    question: "Can I send my own candidates through Yander?",
     answer:
-      "Absolutely. We're SOC 2 Type II compliant and use enterprise-grade encryption for all data at rest and in transit. We never sell data, and you can request complete data deletion at any time. Your team's privacy is our top priority.",
+      "Yes. Send candidates to a Yander screening form where they'll complete personality tests and qualification checks automatically. Ideal if you're getting inbound applicants and want to filter them without manual effort.",
   },
   {
-    question: "What size teams is Yander best for?",
+    question: "How fast do I get candidates?",
     answer:
-      "Yander works best for remote or hybrid teams of 5-500 people. Smaller teams benefit from the early warning signals and engagement tracking, while larger teams appreciate the ability to spot patterns across departments and identify at-risk employees before issues escalate.",
+      "Most roles have interview-ready candidates within days. The AI agent works continuously. No waiting on a recruiter's schedule.",
+  },
+  {
+    question: "What is Yander Pulse?",
+    answer:
+      "An optional add-on for retention. It tracks engagement, sentiment, and workload across your remote team, giving you early warnings before problems become resignations. Think of it as an HR assistant for the team you built with Yander.",
+  },
+  {
+    question: "Is Yander available now?",
+    answer:
+      "We're in development and accepting early access signups. Join the waitlist to be first in line when we launch.",
   },
 ];
 
@@ -51,22 +60,22 @@ function FAQItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-[#e5e5e5] last:border-b-0">
+    <div className="border-b border-gray-100 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full py-5 flex items-center justify-between text-left group"
+        className="w-full py-6 flex items-center justify-between text-left group"
       >
-        <span className="text-base font-medium text-[#171717] pr-4 md:pr-8 group-hover:text-gray-600 transition-colors">
+        <span className="text-base font-medium text-[#0a0a0a] pr-8 group-hover:text-gray-600 transition-colors">
           {question}
         </span>
         <div
-          className={`w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-            isOpen ? "bg-[#171717] border-[#171717]" : ""
+          className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+            isOpen ? "bg-[#0a0a0a] shadow-subtle" : "bg-[#fafafa] border border-gray-200"
           }`}
         >
           <ChevronDown
             className={`w-4 h-4 transition-all duration-200 ${
-              isOpen ? "rotate-180 text-white" : "text-gray-500"
+              isOpen ? "rotate-180 text-white" : "text-gray-400"
             }`}
           />
         </div>
@@ -80,7 +89,7 @@ function FAQItem({
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#737373] text-sm leading-relaxed pr-12">
+            <p className="pb-6 text-gray-500 text-sm leading-relaxed pr-12 max-w-2xl">
               {answer}
             </p>
           </motion.div>
@@ -94,29 +103,33 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 md:py-28 bg-[#fafafa] border-t border-[#e5e5e5]">
+    <section className="relative py-24 md:py-32 bg-[#fafafa] overflow-hidden">
+
       <Container>
-        <div className="max-w-3xl mx-auto">
-          {/* Header */}
+        <div className="relative max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <SectionLabel number="05" centered>
-              FAQ
-            </SectionLabel>
-            <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em]">
-              Frequently asked questions
-            </h2>
-            <p className="mt-4 text-base text-[#737373]">
-              Everything you need to know about Yander
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="text-xs font-mono text-gray-300 tracking-wider">[07]</span>
+                <span className="text-xs font-medium text-gray-400 uppercase tracking-[0.15em]">FAQ</span>
+              </div>
+              <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a0a0a] tracking-[-0.02em]">
+                Your questions, answered.
+              </h2>
+            </motion.div>
           </div>
 
-          {/* FAQ List */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] px-6 md:px-8"
+            className="bg-white rounded-none border border-gray-200/60 shadow-soft-lg px-6 md:px-8"
           >
             {faqs.map((faq, index) => (
               <FAQItem
@@ -124,22 +137,16 @@ export function FAQ() {
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === index}
-                onToggle={() =>
-                  setOpenIndex(openIndex === index ? null : index)
-                }
+                onToggle={() => setOpenIndex(openIndex === index ? null : index)}
               />
             ))}
           </motion.div>
 
-          {/* Still have questions */}
           <div className="mt-8 text-center">
-            <p className="text-sm text-[#737373]">
+            <p className="text-sm text-gray-400">
               Still have questions?{" "}
-              <a
-                href="mailto:jordan@yanderlabs.com"
-                className="text-[#171717] font-medium hover:underline"
-              >
-                Reach out to our team
+              <a href="mailto:jordan@yanderlabs.com" className="text-[#0a0a0a] font-medium hover:underline">
+                Get in touch
               </a>
             </p>
           </div>

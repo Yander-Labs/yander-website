@@ -1,10 +1,11 @@
 import { Hero } from "@/components/sections/Hero";
-import { TrustedBy } from "@/components/sections/TrustedBy";
-import { Integrations } from "@/components/sections/Integrations";
-import { BentoFeatures } from "@/components/sections/BentoFeatures";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { BentoFeatures } from "@/components/sections/BentoFeatures";
+import { CostCalculator } from "@/components/sections/CostCalculator";
+import { Regions } from "@/components/sections/Regions";
 import { Results } from "@/components/sections/Results";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { PulseAddon } from "@/components/sections/PulseAddon";
+import { FeaturedBlog } from "@/components/sections/FeaturedBlog";
 import { DarkCTA } from "@/components/sections/DarkCTA";
 import { FAQ } from "@/components/sections/FAQ";
 
@@ -12,13 +13,14 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <TrustedBy />
-      <Integrations />
-      <BentoFeatures />
       <HowItWorks />
+      <BentoFeatures />
+      <CostCalculator />
+      <Regions />
       <Results />
-      <Testimonials />
+      <PulseAddon />
       <DarkCTA />
+      <FeaturedBlog />
       <FAQ />
     </main>
   );
