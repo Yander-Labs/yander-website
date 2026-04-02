@@ -28,6 +28,7 @@ export default function RemoteHiringPlaybookPage() {
       }
 
       setStatus("success");
+      window.scrollTo(0, 0);
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
       setStatus("error");
@@ -43,8 +44,7 @@ export default function RemoteHiringPlaybookPage() {
               You&apos;re in.
             </h2>
             <p className="text-lg text-gray-500 mb-10 leading-relaxed">
-              The playbook is ready for you. We&apos;ve also sent a copy to your
-              email.
+              Access the playbook below.
             </p>
             <a
               href="https://www.notion.so/The-Remote-Offshore-Talent-Playbook-334f5ce31c4881e29a17c1b58f9944e4"
@@ -55,9 +55,6 @@ export default function RemoteHiringPlaybookPage() {
                 Access The Playbook
               </Button>
             </a>
-            <p className="text-sm text-gray-400 mt-6">
-              Check your inbox. You&apos;ll also receive it by email shortly.
-            </p>
           </div>
         </Container>
       </main>
