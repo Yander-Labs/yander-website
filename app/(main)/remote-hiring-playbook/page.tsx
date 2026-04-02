@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -71,16 +72,42 @@ export default function RemoteHiringPlaybookPage() {
               <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
                 The Remote Offshore Talent Playbook
               </h1>
-              <p className="text-lg text-gray-500 mb-8 md:mb-0 leading-relaxed">
+              <p className="text-lg text-gray-500 mb-8 md:mb-6 leading-relaxed">
                 The exact system for hiring A-players from South America,
                 Eastern Europe, and South Africa. From someone who&apos;s made
                 60+ hires in these regions.
               </p>
+
+              {/* Bullets inside left column on desktop, below form on mobile */}
+              <ul className="hidden md:block space-y-3">
+                {[
+                  "Region-by-role matching matrix. Which countries produce the best talent for each role type.",
+                  "4-stage vetting system that filters out 90% of bad hires before they cost you anything.",
+                  "2026 salary benchmarks by role and region so you don't overpay or lowball.",
+                  "10 red flags that predict failure before it happens. Each one cost me money or clients.",
+                  "Onboarding framework that makes new hires productive in 2 weeks.",
+                  "LinkedIn outreach templates and candidate scoring rubric.",
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-gray-600">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Right: form (desktop) */}
             <div className="md:flex-1 md:max-w-md">
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8">
+                <div className="mb-6 rounded-lg overflow-hidden border border-gray-200">
+                  <Image
+                    src="/playbook-preview.png"
+                    alt="Preview of The Remote Offshore Talent Playbook"
+                    width={640}
+                    height={450}
+                    className="w-full h-auto"
+                  />
+                </div>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
                     <label
@@ -132,8 +159,8 @@ export default function RemoteHiringPlaybookPage() {
             </div>
           </div>
 
-          {/* Bullets below on all screens */}
-          <ul className="space-y-3 mt-6 md:mt-4 max-w-2xl">
+          {/* Bullets below form on mobile only */}
+          <ul className="md:hidden space-y-3 mt-6">
             {[
               "Region-by-role matching matrix. Which countries produce the best talent for each role type.",
               "4-stage vetting system that filters out 90% of bad hires before they cost you anything.",
