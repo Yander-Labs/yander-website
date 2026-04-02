@@ -66,6 +66,18 @@ export default function RemoteHiringPlaybookPage() {
     <main className="min-h-screen flex items-center">
       <Container>
         <div className="py-24 md:py-32">
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">
+              <Image
+                src="/jordan-hayes.png"
+                alt="Jordan Hayes"
+                width={20}
+                height={20}
+                className="rounded-full object-cover w-5 h-5"
+              />
+              <span className="text-xs text-gray-600 font-medium">Made by Jordan Hayes</span>
+            </div>
+          </div>
           <div className="flex flex-col md:flex-row md:gap-16 md:items-start">
             {/* Left: headline + subheadline (desktop) */}
             <div className="md:flex-1">
