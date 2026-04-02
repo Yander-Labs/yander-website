@@ -133,7 +133,7 @@ export default function RemoteHiringPlaybookPage() {
           </div>
 
           {/* Bullets below on all screens */}
-          <ul className="space-y-3 mt-12 max-w-2xl">
+          <ul className="space-y-3 mt-6 md:mt-4 max-w-2xl">
             {[
               "Region-by-role matching matrix. Which countries produce the best talent for each role type.",
               "4-stage vetting system that filters out 90% of bad hires before they cost you anything.",
