@@ -25,7 +25,12 @@ export function useDemoModal() {
 export function DemoModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
+  const openModal = () => {
+    if (typeof window !== "undefined" && window.posthog) {
+      window.posthog.capture("book_demo_clicked");
+    }
+    setIsOpen(true);
+  };
   const closeModal = () => setIsOpen(false);
 
   return (
