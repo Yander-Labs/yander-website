@@ -266,9 +266,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="font-geist font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#0a0a0a] leading-[1.1]"
           >
-            Hire the top 1% of
+            The first AI agent that
             <br />
-            <span className="text-[#1e1044]">offshore talent.</span>
+            <span className="text-[#1e1044]">recruits for you.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -278,9 +278,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="mt-6 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
           >
-            Yander is the AI Recruiting Platform to hire the best talent in
-            Latin America, Southeast Asia, and South Africa without expensive
-            placement fees.
+            Tell Yander who you need to hire. It headhunts, vets, and
+            presents culture-matched candidates ready to interview.
           </motion.p>
 
           {/* CTAs */}
