@@ -53,6 +53,12 @@ export function Navigation() {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-4">
               <Link
+                href="/talent"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                Talent
+              </Link>
+              <Link
                 href="/blog"
                 className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
@@ -122,6 +128,13 @@ export function Navigation() {
                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
               >
                 Home
+              </Link>
+              <Link
+                href="/talent"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+              >
+                Talent
               </Link>
               <Link
                 href="/blog"
