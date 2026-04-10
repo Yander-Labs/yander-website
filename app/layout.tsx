@@ -24,15 +24,18 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
+  title: "Yander - The First AI Agent That Recruits For You",
   description:
-    "Yander keeps a live pulse on engagement, workload, and sentiment without intrusive time tracking, so you can build a high-performing team and protect your client relationships.",
+    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates from Latin America, Southeast Asia, and South Africa. No placement fees.",
   keywords: [
-    "remote team management",
-    "employee engagement",
-    "team analytics",
-    "burnout prevention",
-    "retention",
+    "AI recruiting",
+    "offshore hiring",
+    "remote talent",
+    "AI recruitment platform",
+    "hire offshore developers",
+    "Latin America talent",
+    "Southeast Asia hiring",
+    "South Africa recruitment",
   ],
   metadataBase: new URL("https://yander.io"),
   alternates: {
@@ -43,9 +46,9 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
+    title: "Yander - The First AI Agent That Recruits For You",
     description:
-      "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
+      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No agency fees.",
     url: "https://yander.io",
     siteName: "Yander",
     images: [
@@ -53,7 +56,7 @@ export const metadata: Metadata = {
         url: "https://yander.io/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yander - Remote Team Analytics Platform",
+        alt: "Yander - AI Recruiting Platform",
       },
     ],
     locale: "en_US",
@@ -61,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yander - Build a Stronger Remote Team. Keep Clients Longer.",
+    title: "Yander - The First AI Agent That Recruits For You",
     description:
-      "Keep a live pulse on engagement, workload, and sentiment without intrusive time tracking.",
+      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No agency fees.",
     images: ["https://yander.io/og-image.png"],
     site: "@yanderlabs",
   },
@@ -77,7 +80,7 @@ const organizationJsonLd = {
   url: "https://yander.io",
   logo: "https://yander.io/logo.svg",
   description:
-    "Remote team intelligence platform that helps organizations understand team engagement, collaboration patterns, and workplace health.",
+    "AI recruiting platform that helps companies hire top offshore talent from Latin America, Southeast Asia, and South Africa without agency fees.",
   sameAs: [
     "https://x.com/yanderlabs",
     "https://www.linkedin.com/company/107590331",
