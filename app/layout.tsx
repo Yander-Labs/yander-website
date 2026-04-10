@@ -26,7 +26,7 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "Yander - The First AI Agent That Recruits For You",
   description:
-    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates from Latin America, Southeast Asia, and South Africa. No placement fees.",
+    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates from Latin America, Southeast Asia, South Africa, and Eastern Europe. No placement fees.",
   keywords: [
     "AI recruiting",
     "offshore hiring",
@@ -80,7 +80,7 @@ const organizationJsonLd = {
   url: "https://yander.io",
   logo: "https://yander.io/logo.svg",
   description:
-    "AI recruiting platform that helps companies hire top offshore talent from Latin America, Southeast Asia, and South Africa without agency fees.",
+    "AI recruiting platform that helps companies hire top offshore talent from Latin America, Southeast Asia, South Africa, and Eastern Europe without agency fees.",
   sameAs: [
     "https://x.com/yanderlabs",
     "https://www.linkedin.com/company/107590331",
