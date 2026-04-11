@@ -85,6 +85,15 @@
     );
   }
 
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Lighter stripes variant */
   .bg-stripes-light {
     background-image: repeating-linear-gradient(

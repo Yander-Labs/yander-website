@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { FeaturedTalent } from "@/components/sections/FeaturedTalent";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { BentoFeatures } from "@/components/sections/BentoFeatures";
 import { CostCalculator } from "@/components/sections/CostCalculator";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <FeaturedTalent />
       <HowItWorks />
       <BentoFeatures />
       <CostCalculator />
