@@ -69,15 +69,13 @@ function AISearchVisual() {
       <div className="relative">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 flex items-center justify-center">
-              <Image
-                src="/favicon.png"
-                alt="Yander"
-                width={24}
-                height={24}
-                className="w-6 h-6 invert"
-              />
-            </div>
+            <Image
+              src="/Yander Black Logo White BG.png"
+              alt="Yander"
+              width={28}
+              height={28}
+              className="w-7 h-7 invert"
+            />
             <span className="text-sm font-medium text-white">Yander</span>
           </div>
           <div className="flex items-center gap-1.5">
