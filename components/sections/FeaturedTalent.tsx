@@ -236,10 +236,6 @@ export function FeaturedTalent() {
           {/* Header row */}
           <div className="flex items-end justify-between mb-4">
             <div>
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="text-xs font-mono text-gray-300 tracking-wider">[00]</span>
-                <span className="text-xs font-medium text-gray-400 uppercase tracking-[0.15em]">Talent Network</span>
-              </div>
               <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-[#0a0a0a] tracking-[-0.02em]">
                 Pre-vetted talent,
                 <span className="text-[#1e1044]"> ready to hire.</span>

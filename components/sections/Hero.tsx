@@ -333,10 +333,10 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Interactive Search */}
-        <div className="relative mt-16 md:mt-20 max-w-3xl mx-auto">
+        {/* Interactive Search - hidden, preserved for future use */}
+        {/* <div className="relative mt-16 md:mt-20 max-w-3xl mx-auto">
           <InteractiveSearch />
-        </div>
+        </div> */}
       </Container>
     </section>
   );
