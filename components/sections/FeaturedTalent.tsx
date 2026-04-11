@@ -272,7 +272,7 @@ export function FeaturedTalent() {
           {/* Subheadline with live counter */}
           <div className="flex items-center gap-3 mb-8">
             <p className="text-base text-gray-500">
-              Browse from{" "}
+              Access{" "}
               <span className="font-semibold text-[#0a0a0a] tabular-nums">
                 {networkSize.toLocaleString()}
               </span>{" "}
