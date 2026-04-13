@@ -49,7 +49,7 @@ const features = [
   {
     id: "culture",
     label: "02",
-    title: "Culture Fit Screening",
+    title: "Culture Fit Assessment",
     description: "Every candidate completes personality assessments that evaluate remote work readiness, communication style, self-management, and collaboration preferences. You only meet people who'll work well with your team.",
     visual: (
       <div className="space-y-2">
@@ -74,14 +74,14 @@ const features = [
     ),
   },
   {
-    id: "vetting",
+    id: "evaluation",
     label: "03",
-    title: "Automated Vetting Pipeline",
-    description: "Every candidate goes through a multi-step pipeline before you see them: resume screening, technical assessment, personality testing, and culture evaluation. By the time they reach you, the hard work is done.",
+    title: "Candidate Evaluation Tools",
+    description: "Candidates go through structured evaluations: resume review, skills assessment, personality profiling, and culture fit analysis. By the time they reach you, the hard work is done.",
     visual: (
       <div className="space-y-0">
         {[
-          { step: "Resume screening", done: true },
+          { step: "Resume review", done: true },
           { step: "Skills assessment", done: true },
           { step: "Personality test", done: true },
           { step: "Culture evaluation", done: true },
@@ -111,8 +111,8 @@ const features = [
   {
     id: "forms",
     label: "04",
-    title: "Self-Service Screening",
-    description: "Already getting inbound candidates? Send them to a Yander screening form. They'll complete personality tests and qualification checks automatically. You only review the ones who pass.",
+    title: "Candidate Assessment Forms",
+    description: "Already getting inbound candidates? Send them to a Yander assessment form. They'll complete structured evaluations so you can review organized, comparable profiles.",
     visual: (
       <div>
         <div className="space-y-3 mb-6">

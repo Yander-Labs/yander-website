@@ -46,7 +46,7 @@ export function Regions() {
               Three regions. One platform.
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
-              Hire pre-vetted professionals where A-player talent costs up to
+              Hire top professionals where A-player talent costs up to
               50% less than domestic hires. No sacrificing quality.
             </p>
           </motion.div>

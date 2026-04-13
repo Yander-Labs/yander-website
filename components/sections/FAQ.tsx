@@ -9,7 +9,7 @@ const faqs = [
   {
     question: "How is Yander different from a recruitment agency?",
     answer:
-      "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent does the sourcing, screening, and culture-fit assessment automatically. Plans start from $500/month regardless of how many roles you fill.",
+      "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles sourcing and helps you evaluate candidates with structured assessments. Plans start from $500/month regardless of how many roles you fill.",
   },
   {
     question: "What regions do you source from?",
@@ -22,14 +22,14 @@ const faqs = [
       "You provide a job description or build one with Yander. Our AI agent searches talent pools for candidates who match on technical skills, experience, and company culture. Each candidate is assessed through skills tests and personality evaluations before being presented to you.",
   },
   {
-    question: "What does culture-fit screening include?",
+    question: "What does culture-fit assessment include?",
     answer:
       "Personality assessments evaluating remote work readiness, communication style, self-management, and collaboration preferences. The people you interview aren't just technically qualified. They'll work well with your team.",
   },
   {
     question: "Can I send my own candidates through Yander?",
     answer:
-      "Yes. Send candidates to a Yander screening form where they'll complete personality tests and qualification checks automatically. Ideal if you're getting inbound applicants and want to filter them without manual effort.",
+      "Yes. Send candidates to a Yander assessment form where they'll complete structured evaluations. Ideal if you're getting inbound applicants and want organized, comparable profiles to review.",
   },
   {
     question: "How fast do I get candidates?",

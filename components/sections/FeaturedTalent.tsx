@@ -247,7 +247,7 @@ export function FeaturedTalent() {
           <div className="flex items-end justify-between mb-4">
             <div>
               <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-[#0a0a0a] tracking-[-0.02em]">
-                Pre-vetted talent,
+                Top talent,
                 <span className="text-[#1e1044]"> ready to hire.</span>
               </h2>
             </div>

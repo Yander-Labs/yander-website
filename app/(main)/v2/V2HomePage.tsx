@@ -279,7 +279,7 @@ function StickyFeatures() {
                     )}
                     {i === 2 && (
                       <div className="space-y-3">
-                        {["Resume screening", "Skills assessment", "Personality test", "Culture evaluation", "Ready for interview"].map((step, si) => (
+                        {["Resume review", "Skills assessment", "Personality profile", "Culture fit report", "Ready for your review"].map((step, si) => (
                           <div key={step} className="flex items-center gap-3 py-2">
                             <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: si < 4 ? t.lightGray : "transparent", border: si === 4 ? `2px solid ${t.charcoal}` : "none" }}>
                               {si < 4 ? <Check className="w-3 h-3" style={{ color: t.charcoal }} /> : <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: t.accent }} />}
@@ -394,7 +394,7 @@ export function V2HomePage() {
           <div className="flex items-end justify-between mb-4">
             <div>
               <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-[40px] tracking-tight" style={{ color: t.charcoal }}>
-                Pre-vetted talent, <span style={{ color: t.accent }}>ready to hire.</span>
+                Top talent, <span style={{ color: t.accent }}>ready to hire.</span>
               </h2>
             </div>
           </div>

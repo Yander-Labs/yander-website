@@ -279,7 +279,7 @@ export function TalentPage() {
             <span className="text-[#1e1044]">talent.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
-            These are the roles Yander fills for companies. Pre-vetted, culture-matched professionals across Latin America, Southeast Asia, South Africa, and Eastern Europe.
+            These are the roles Yander fills for companies. Top, culture-matched professionals across Latin America, Southeast Asia, South Africa, and Eastern Europe.
           </p>
 
           {/* Stats */}
@@ -383,7 +383,7 @@ export function TalentPage() {
             Ready to hire?
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-md mx-auto">
-            Join the waitlist and be the first to access pre-vetted offshore talent through Yander.
+            Join the waitlist and be the first to access top offshore talent through Yander.
           </p>
           <button
             onClick={openModal}

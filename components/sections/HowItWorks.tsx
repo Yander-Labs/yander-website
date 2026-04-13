@@ -18,13 +18,13 @@ const steps = [
   {
     number: "02",
     title: "AI does the heavy lifting",
-    description: "Yander's agent searches global talent pools, screens for qualifications, and runs culture-fit assessments automatically.",
+    description: "Yander's agent searches global talent pools, surfaces qualified candidates, and runs structured assessments to help you evaluate them.",
     visual: "aisearch",
   },
   {
     number: "03",
     title: "Interview the top 1%",
-    description: "Every person you talk to has been vetted, tested, and matched to your needs.",
+    description: "Every person you talk to has been sourced, assessed, and organized by relevance to your needs. You make the final call.",
     visual: "interview",
   },
 ];

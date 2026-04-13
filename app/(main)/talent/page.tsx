@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Available Talent | Yander",
     description:
-      "Explore the roles Yander fills for companies. Hire pre-vetted offshore talent at up to 50% less than domestic rates.",
+      "Explore the roles Yander fills for companies. Hire top offshore talent at up to 50% less than domestic rates.",
     url: "https://yander.io/talent",
     siteName: "Yander",
     type: "website",
