@@ -1,29 +1,12 @@
-import { Hero } from "@/components/sections/Hero";
-import { FeaturedTalent } from "@/components/sections/FeaturedTalent";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { BentoFeatures } from "@/components/sections/BentoFeatures";
-import { CostCalculator } from "@/components/sections/CostCalculator";
-import { Regions } from "@/components/sections/Regions";
-import { Results } from "@/components/sections/Results";
-import { PulseAddon } from "@/components/sections/PulseAddon";
-import { FeaturedBlog } from "@/components/sections/FeaturedBlog";
-import { DarkCTA } from "@/components/sections/DarkCTA";
-import { FAQ } from "@/components/sections/FAQ";
+import type { Metadata } from "next";
+import { V2HomePage } from "../(main)/v2/V2HomePage";
+
+export const metadata: Metadata = {
+  title: "Yander - The First AI Agent That Recruits For You",
+  description:
+    "Tell Yander who you need to hire. It headhunts, evaluates, and presents culture-matched candidates ready to interview.",
+};
 
 export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <FeaturedTalent />
-      <HowItWorks />
-      <BentoFeatures />
-      <CostCalculator />
-      <Regions />
-      <Results />
-      <PulseAddon />
-      <DarkCTA />
-      <FeaturedBlog />
-      <FAQ />
-    </main>
-  );
+  return <V2HomePage />;
 }
