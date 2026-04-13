@@ -118,11 +118,11 @@ function ProfileCard({ profile }: { profile: Profile }) {
   const { openModal } = useWaitlistModal();
   return (
     <div
-      className="bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200"
-      style={{ boxShadow: t.shadowCard, borderRadius: "12px" }}
+      className="bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200 border border-gray-200"
+      style={{ borderRadius: "0px" }}
       onClick={openModal}
-      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = t.shadowCardHover; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = t.shadowCard; }}
+      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#d4d4d4"; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
     >
       <div className="p-5">
         <div className="flex items-start gap-3 mb-3">
@@ -177,7 +177,7 @@ function TalentSlider() {
 
   return (
     <div className="relative">
-      <div ref={scrollRef} className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth" style={{ scrollSnapType: "x mandatory" }}>
+      <div ref={scrollRef} className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth py-1 -my-1" style={{ scrollSnapType: "x mandatory" }}>
         {profiles.map((p) => (
           <div key={p.name} className="w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] flex-shrink-0" style={{ scrollSnapAlign: "start" }}>
             <ProfileCard profile={p} />
