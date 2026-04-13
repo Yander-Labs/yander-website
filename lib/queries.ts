@@ -1,5 +1,5 @@
-// Get all posts for listing
-export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
+// Get all posts for listing (only published posts - publishedAt <= now)
+export const postsQuery = `*[_type == "post" && publishedAt <= now()] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -11,9 +11,9 @@ export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
   "categories": categories[]->{title, slug, color}
 }`
 
-// Get posts with pagination
+// Get posts with pagination (only published posts)
 export const paginatedPostsQuery = `{
-  "posts": *[_type == "post"] | order(publishedAt desc) [$start...$end] {
+  "posts": *[_type == "post" && publishedAt <= now()] | order(publishedAt desc) [$start...$end] {
     _id,
     title,
     slug,
@@ -24,11 +24,11 @@ export const paginatedPostsQuery = `{
     "author": author->{name, image, role},
     "categories": categories[]->{title, slug, color}
   },
-  "total": count(*[_type == "post"])
+  "total": count(*[_type == "post" && publishedAt <= now()])
 }`
 
-// Get posts filtered by category
-export const postsByCategoryQuery = `*[_type == "post" && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
+// Get posts filtered by category (only published)
+export const postsByCategoryQuery = `*[_type == "post" && publishedAt <= now() && $categorySlug in categories[]->slug.current] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -75,7 +75,7 @@ export const categoriesQuery = `*[_type == "category"] | order(title asc) {
 }`
 
 // Get related posts (same category, exclude current post)
-export const relatedPostsQuery = `*[_type == "post" && slug.current != $currentSlug && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...3] {
+export const relatedPostsQuery = `*[_type == "post" && publishedAt <= now() && slug.current != $currentSlug && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...3] {
   _id,
   title,
   slug,
@@ -90,7 +90,7 @@ export const relatedPostsQuery = `*[_type == "post" && slug.current != $currentS
 // Search posts (optimized - searches title, excerpt, author name, category titles)
 // NOTE: Removed pt::text(body) scan for performance. For full-text body search,
 // use a dedicated search service or implement a searchIndex field.
-export const searchPostsQuery = `*[_type == "post" && (
+export const searchPostsQuery = `*[_type == "post" && publishedAt <= now() && (
   title match $searchTerm + "*" ||
   excerpt match $searchTerm + "*" ||
   author->name match $searchTerm + "*" ||
@@ -108,7 +108,7 @@ export const searchPostsQuery = `*[_type == "post" && (
 }`
 
 // Full-text search including body content (slower, use sparingly)
-export const deepSearchPostsQuery = `*[_type == "post" && (
+export const deepSearchPostsQuery = `*[_type == "post" && publishedAt <= now() && (
   title match $searchTerm + "*" ||
   excerpt match $searchTerm + "*" ||
   pt::text(body) match $searchTerm + "*"
@@ -272,3 +272,138 @@ export const integrationBySlugQuery = `*[_type == "integration" && slug.current 
 
 // Get all slugs for static generation
 export const integrationSlugsQuery = `*[_type == "integration" && defined(slug.current)][].slug.current`
+
+// =============================================================================
+// Comparison Page Queries
+// =============================================================================
+
+// Get all comparison pages for listing
+export const comparisonsQuery = `*[_type == "comparison"] | order(competitorName asc) {
+  _id,
+  title,
+  slug,
+  competitorName,
+  competitorLogo,
+  heroDescription,
+  publishedAt
+}`
+
+// Get single comparison by slug
+export const comparisonBySlugQuery = `*[_type == "comparison" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  competitorName,
+  competitorLogo,
+  competitorUrl,
+  headline,
+  heroDescription,
+  yanderSummary,
+  competitorSummary,
+  featureRows,
+  chooseYander,
+  chooseCompetitor,
+  verdict,
+  body,
+  faqs,
+  stats,
+  testimonial,
+  publishedAt,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage,
+    canonicalUrl,
+    noIndex,
+    keywords
+  }
+}`
+
+// Get all comparison slugs for static generation
+export const comparisonSlugsQuery = `*[_type == "comparison" && defined(slug.current)][].slug.current`
+
+// =============================================================================
+// Industry / Use Case Page Queries
+// =============================================================================
+
+// Get all industry pages for listing
+export const industryPagesQuery = `*[_type == "industryPage"] | order(industry asc) {
+  _id,
+  title,
+  slug,
+  industry,
+  headline,
+  heroDescription,
+  publishedAt
+}`
+
+// Get single industry page by slug
+export const industryPageBySlugQuery = `*[_type == "industryPage" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  industry,
+  headline,
+  heroDescription,
+  painPoints,
+  features,
+  stats,
+  body,
+  testimonial,
+  faqs,
+  publishedAt,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage,
+    canonicalUrl,
+    noIndex,
+    keywords
+  }
+}`
+
+// Get all industry page slugs for static generation
+export const industryPageSlugsQuery = `*[_type == "industryPage" && defined(slug.current)][].slug.current`
+
+// =============================================================================
+// Landing / Pillar Page Queries
+// =============================================================================
+
+// Get all landing pages for listing
+export const landingPagesQuery = `*[_type == "landingPage"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  pageType,
+  headline,
+  heroDescription,
+  publishedAt
+}`
+
+// Get single landing page by slug
+export const landingPageBySlugQuery = `*[_type == "landingPage" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  pageType,
+  headline,
+  heroDescription,
+  painPoints,
+  features,
+  stats,
+  body,
+  testimonial,
+  faqs,
+  publishedAt,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage,
+    canonicalUrl,
+    noIndex,
+    keywords
+  }
+}`
+
+// Get all landing page slugs for static generation
+export const landingPageSlugsQuery = `*[_type == "landingPage" && defined(slug.current)][].slug.current`

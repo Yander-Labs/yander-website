@@ -186,3 +186,115 @@ export interface IntegrationDetail extends IntegrationCard {
   features: string[]
   howItWorks: { step: string; description: string }[]
 }
+
+// =============================================================================
+// Comparison Page Types
+// =============================================================================
+
+export interface ComparisonFeatureRow {
+  feature: string
+  yander: string
+  competitor: string
+  whyItMatters?: string
+}
+
+export interface ComparisonStat {
+  value: string
+  label: string
+}
+
+export interface Testimonial {
+  quote?: string
+  name?: string
+  role?: string
+  company?: string
+}
+
+export interface ComparisonFAQ {
+  question: string
+  answer: string
+}
+
+export interface ComparisonCard {
+  _id: string
+  title: string
+  slug: { current: string }
+  competitorName: string
+  competitorLogo?: Image
+  heroDescription: string
+  publishedAt?: string
+}
+
+export interface Comparison extends ComparisonCard {
+  competitorUrl?: string
+  headline: string
+  yanderSummary: string
+  competitorSummary: string
+  featureRows?: ComparisonFeatureRow[]
+  chooseYander?: string[]
+  chooseCompetitor?: string[]
+  verdict?: string
+  body?: PortableTextBlock[]
+  faqs?: ComparisonFAQ[]
+  stats?: ComparisonStat[]
+  testimonial?: Testimonial
+  seo?: SEO
+}
+
+// =============================================================================
+// Industry / Use Case Page Types
+// =============================================================================
+
+export interface IndustryPainPoint {
+  problem: string
+  solution: string
+}
+
+export interface IndustryFeature {
+  feature: string
+  description: string
+}
+
+export interface IndustryPageCard {
+  _id: string
+  title: string
+  slug: { current: string }
+  industry: string
+  headline: string
+  heroDescription: string
+  publishedAt?: string
+}
+
+// =============================================================================
+// Landing / Pillar Page Types
+// =============================================================================
+
+export interface LandingPageCard {
+  _id: string
+  title: string
+  slug: { current: string }
+  pageType: 'landing' | 'pillar'
+  headline: string
+  heroDescription: string
+  publishedAt?: string
+}
+
+export interface LandingPage extends LandingPageCard {
+  painPoints?: IndustryPainPoint[]
+  features?: IndustryFeature[]
+  stats?: ComparisonStat[]
+  body?: PortableTextBlock[]
+  testimonial?: Testimonial
+  faqs?: ComparisonFAQ[]
+  seo?: SEO
+}
+
+export interface IndustryPage extends IndustryPageCard {
+  painPoints?: IndustryPainPoint[]
+  features?: IndustryFeature[]
+  stats?: ComparisonStat[]
+  body?: PortableTextBlock[]
+  testimonial?: Testimonial
+  faqs?: ComparisonFAQ[]
+  seo?: SEO
+}
