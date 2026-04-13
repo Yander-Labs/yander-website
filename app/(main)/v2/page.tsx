@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Yander - The First AI Agent That Recruits For You",
   description:
     "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview.",
-  robots: "noindex",
+  robots: "noindex, nofollow",
 };
 
 export default function Page() {

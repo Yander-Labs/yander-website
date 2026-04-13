@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
+
+export const metadata: Metadata = {
+  robots: "noindex, nofollow",
+};
 import { FeaturedTalent } from "@/components/sections/FeaturedTalent";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { BentoFeatures } from "@/components/sections/BentoFeatures";
