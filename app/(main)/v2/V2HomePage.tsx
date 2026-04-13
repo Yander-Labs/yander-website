@@ -16,6 +16,7 @@ const t = {
   midGray: "#898989",
   lightGray: "#f5f5f5",
   white: "#ffffff",
+  accent: "#1e1044", // Deep purple
   // Multi-layered shadow system
   shadowCard: "rgba(19,19,22,0.7) 0px 1px 5px -4px, rgba(34,42,53,0.08) 0px 0px 0px 1px, rgba(34,42,53,0.05) 0px 4px 8px",
   shadowCardHover: "rgba(19,19,22,0.7) 0px 2px 8px -4px, rgba(34,42,53,0.1) 0px 0px 0px 1px, rgba(34,42,53,0.08) 0px 8px 16px",
@@ -98,17 +99,17 @@ const profiles: Profile[] = [
 
 // ─── Feature data ───
 const features = [
-  { num: "01", title: "AI-Powered Search", body: "Our agent analyzes your job requirements and matches candidates across skills, experience, and work style. Not keyword matching. Real understanding." },
-  { num: "02", title: "Culture Fit Screening", body: "Every candidate completes personality assessments that evaluate remote work readiness, communication style, self-management, and collaboration preferences." },
-  { num: "03", title: "Automated Vetting Pipeline", body: "Resume screening, technical assessment, personality testing, and culture evaluation. By the time candidates reach you, the hard work is done." },
-  { num: "04", title: "Self-Service Screening", body: "Already getting inbound candidates? Send them to a Yander screening form. They complete qualification checks automatically. You only review the ones who pass." },
+  { num: "01", title: "AI-Powered Sourcing", body: "Our agent analyzes your job requirements and surfaces candidates that match on skills, experience, and work style. Not keyword matching. Real understanding of who you need." },
+  { num: "02", title: "Culture Fit Assessment", body: "Candidates complete structured assessments that help you evaluate remote work readiness, communication style, self-management, and collaboration preferences." },
+  { num: "03", title: "Candidate Evaluation Tools", body: "Structured resume reviews, skills assessments, and personality profiles. Candidates are organized by relevance so you can focus your time on the best fits." },
+  { num: "04", title: "Candidate Assessment Forms", body: "Already getting inbound candidates? Send them to a Yander assessment form. They complete structured evaluations so you can review organized, comparable profiles." },
 ];
 
 // ─── How it works ───
 const steps = [
   { num: "01", title: "Tell Yander who you need", body: "Paste a job description or build one with Yander. Define the role, skills, budget, and the culture you want." },
-  { num: "02", title: "AI does the heavy lifting", body: "Yander's agent searches global talent pools, screens for qualifications, and runs culture-fit assessments automatically." },
-  { num: "03", title: "Interview the top 1%", body: "Every person you talk to has been vetted, tested, and matched to your needs." },
+  { num: "02", title: "AI does the heavy lifting", body: "Yander's agent searches global talent pools, surfaces qualified candidates, and runs structured assessments to help you evaluate them." },
+  { num: "03", title: "Interview the best candidates", body: "Every person you talk to has been sourced, assessed, and organized by relevance to your needs. You make the final call." },
 ];
 
 // ─── Components ───
@@ -224,7 +225,7 @@ function StickyFeatures() {
               {features.map((f, i) => (
                 <div key={f.num} className={`flex-1 pb-3 text-center text-sm font-medium transition-all border-b-2 ${
                   i === activeIndex ? "border-current" : "border-transparent"
-                }`} style={{ color: i === activeIndex ? t.charcoal : t.midGray }}>
+                }`} style={{ color: i === activeIndex ? t.accent : t.midGray }}>
                   <span className="hidden sm:inline">{f.title}</span>
                   <span className="sm:hidden">{f.num}</span>
                 </div>
@@ -256,7 +257,7 @@ function StickyFeatures() {
                               <span className="text-sm font-medium" style={{ color: t.charcoal }}>{item.score}%</span>
                             </div>
                             <div className="h-1.5 rounded-full" style={{ backgroundColor: t.lightGray }}>
-                              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${item.score}%`, backgroundColor: t.charcoal }} />
+                              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${item.score}%`, backgroundColor: t.accent }} />
                             </div>
                           </div>
                         ))}
@@ -282,7 +283,7 @@ function StickyFeatures() {
                         {["Resume screening", "Skills assessment", "Personality test", "Culture evaluation", "Ready for interview"].map((step, si) => (
                           <div key={step} className="flex items-center gap-3 py-2">
                             <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: si < 4 ? t.lightGray : "transparent", border: si === 4 ? `2px solid ${t.charcoal}` : "none" }}>
-                              {si < 4 ? <Check className="w-3 h-3" style={{ color: t.charcoal }} /> : <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: t.charcoal }} />}
+                              {si < 4 ? <Check className="w-3 h-3" style={{ color: t.charcoal }} /> : <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: t.accent }} />}
                             </div>
                             <span className="text-sm" style={{ color: si === 4 ? t.charcoal : t.midGray, fontWeight: si === 4 ? 500 : 400 }}>{step}</span>
                           </div>
@@ -298,7 +299,7 @@ function StickyFeatures() {
                               <span className="text-xs" style={{ color: "#d4d4d4" }}>{item.pct}%</span>
                             </div>
                             <div className="h-1.5 rounded-full" style={{ backgroundColor: t.lightGray }}>
-                              <div className="h-full rounded-full" style={{ width: `${item.pct}%`, backgroundColor: t.charcoal }} />
+                              <div className="h-full rounded-full" style={{ width: `${item.pct}%`, backgroundColor: t.accent }} />
                             </div>
                           </div>
                         ))}
@@ -340,7 +341,8 @@ export function V2HomePage() {
               className="font-geist font-bold text-[40px] sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.1] tracking-tight"
               style={{ color: t.charcoal }}
             >
-              The first AI agent that recruits for you.
+              The first AI agent that{" "}
+              <span style={{ color: t.accent }}>recruits for you.</span>
             </motion.h1>
 
             <motion.p
@@ -350,7 +352,7 @@ export function V2HomePage() {
               className="mt-6 text-lg md:text-xl leading-relaxed max-w-xl mx-auto"
               style={{ color: t.midGray }}
             >
-              Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview.
+              Tell Yander who you need to hire. It headhunts, evaluates, and presents culture-matched candidates ready to interview.
             </motion.p>
 
             <motion.div
@@ -361,7 +363,7 @@ export function V2HomePage() {
             >
               <button onClick={openModal}
                 className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-lg transition-opacity hover:opacity-80 group w-full sm:w-auto"
-                style={{ backgroundColor: t.charcoal, boxShadow: t.shadowButton }}>
+                style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
                 Join The Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
@@ -384,21 +386,6 @@ export function V2HomePage() {
             </motion.div>
           </div>
 
-          {/* Search bar */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="mt-16 max-w-2xl mx-auto">
-            <div className="flex items-center gap-3 px-5 py-4 rounded-xl" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
-              <Search className="w-5 h-5" style={{ color: "#d4d4d4" }} />
-              <div className="flex-1 text-sm" style={{ color: t.charcoal }}>
-                {typewriterText}
-                <span className="inline-block w-[2px] h-4 ml-0.5 animate-pulse align-text-bottom" style={{ backgroundColor: t.charcoal }} />
-              </div>
-              <button onClick={openModal} className="px-4 py-2 text-white text-sm font-medium rounded-lg transition-opacity hover:opacity-80"
-                style={{ backgroundColor: t.charcoal }}>
-                Search
-              </button>
-            </div>
-          </motion.div>
         </Container>
       </section>
 
@@ -408,7 +395,7 @@ export function V2HomePage() {
           <div className="flex items-end justify-between mb-4">
             <div>
               <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-[40px] tracking-tight" style={{ color: t.charcoal }}>
-                Pre-vetted talent, ready to hire.
+                Pre-vetted talent, <span style={{ color: t.accent }}>ready to hire.</span>
               </h2>
             </div>
           </div>
@@ -440,7 +427,7 @@ export function V2HomePage() {
             <p className="text-xs font-medium uppercase tracking-[0.15em] mb-4" style={{ color: t.midGray }}>How it works</p>
             <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-[48px] leading-[1.1] tracking-tight" style={{ color: t.charcoal }}>
               From job post to interview.<br />
-              <span style={{ color: t.midGray }}>No recruiters needed.</span>
+              <span style={{ color: t.accent }}>No recruiters needed.</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto space-y-6">
@@ -475,7 +462,7 @@ export function V2HomePage() {
               <p className="text-xs font-medium uppercase tracking-[0.15em] mb-4" style={{ color: t.midGray }}>Cost comparison</p>
               <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-[48px] leading-[1.1] tracking-tight" style={{ color: t.charcoal }}>
                 Stop overpaying<br />
-                <span style={{ color: t.midGray }}>for recruitment.</span>
+                <span style={{ color: t.accent }}>for recruitment.</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed max-w-md" style={{ color: t.midGray }}>
                 Agencies charge 20% of annual salary per placement. Yander starts from $500/month.
@@ -516,7 +503,7 @@ export function V2HomePage() {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section className="py-24 md:py-32" style={{ backgroundColor: t.charcoal }}>
+      <section className="py-24 md:py-32" style={{ backgroundColor: t.accent }}>
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-[48px] leading-[1.1] tracking-tight text-white">
@@ -561,10 +548,10 @@ export function V2HomePage() {
 
 // ─── FAQ accordion ───
 const faqs = [
-  { q: "How is Yander different from a recruitment agency?", a: "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent does the sourcing, screening, and culture-fit assessment automatically. Plans start from $500/month regardless of how many roles you fill." },
+  { q: "How is Yander different from a recruitment agency?", a: "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles the sourcing and surfaces candidates for your review. Plans start from $500/month regardless of how many roles you fill." },
   { q: "What regions do you source from?", a: "South America (Brazil, Colombia, Argentina), South Africa, and Southeast Asia (India, Philippines). These regions offer world-class talent at 40-70% less than US rates." },
-  { q: "How does the AI matching work?", a: "You provide a job description or build one with Yander. Our AI agent searches talent pools for candidates who match on technical skills, experience, and company culture. Each candidate is assessed through skills tests and personality evaluations before being presented to you." },
-  { q: "How fast do I get candidates?", a: "Most roles have interview-ready candidates within days. The AI agent works continuously. No waiting on a recruiter's schedule." },
+  { q: "How does the AI sourcing work?", a: "You provide a job description or build one with Yander. Our AI agent searches talent pools and surfaces candidates that match on technical skills, experience, and company culture. Candidates complete structured assessments so you can evaluate them efficiently." },
+  { q: "How fast do I get candidates?", a: "Most roles have candidates ready for your review within days. The AI agent works continuously. No waiting on a recruiter's schedule." },
   { q: "Is Yander available now?", a: "We're in development and accepting early access signups. Join the waitlist to be first in line when we launch." },
 ];
 
