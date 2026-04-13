@@ -119,7 +119,6 @@ function ProfileCard({ profile }: { profile: Profile }) {
   return (
     <div
       className="bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200 border border-gray-200"
-      style={{ borderRadius: "0px" }}
       onClick={openModal}
       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#d4d4d4"; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
@@ -131,7 +130,7 @@ function ProfileCard({ profile }: { profile: Profile }) {
             <h4 className="text-sm font-semibold truncate" style={{ color: t.charcoal }}>{profile.name}</h4>
             <p className="text-xs" style={{ color: t.midGray }}>{profile.role}</p>
           </div>
-          <span className="text-xs font-medium px-2.5 py-1 rounded-full" style={{ color: t.midGray, backgroundColor: t.lightGray }}>Remote</span>
+          <span className="text-xs font-medium px-2.5 py-1 rounded-none" style={{ color: t.midGray, backgroundColor: t.lightGray }}>Remote</span>
         </div>
         <p className="text-lg font-bold mb-3" style={{ color: t.charcoal }}>{profile.salary}</p>
         <div className="flex items-center gap-1.5 mb-3">
@@ -140,7 +139,7 @@ function ProfileCard({ profile }: { profile: Profile }) {
         </div>
         <div className="flex flex-wrap gap-1.5">
           {profile.skills.map((s) => (
-            <span key={s} className="px-2 py-0.5 text-[11px] font-medium rounded" style={{ color: t.midGray, backgroundColor: t.lightGray }}>{s}</span>
+            <span key={s} className="px-2 py-0.5 text-[11px] font-medium rounded-none" style={{ color: t.midGray, backgroundColor: t.lightGray }}>{s}</span>
           ))}
         </div>
       </div>
@@ -187,12 +186,12 @@ function TalentSlider() {
       {/* Arrows */}
       <div className="flex items-center gap-2 mt-6 justify-end">
         <button onClick={() => scroll("left")} disabled={!canLeft}
-          className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${canLeft ? "hover:bg-gray-100" : ""}`}
+          className={`w-10 h-10 flex items-center justify-center rounded-none transition-colors ${canLeft ? "hover:bg-gray-100" : ""}`}
           style={{ boxShadow: canLeft ? t.shadowCard : "none", opacity: canLeft ? 1 : 0.3 }}>
           <ChevronLeft className="w-5 h-5" style={{ color: t.charcoal }} />
         </button>
         <button onClick={() => scroll("right")} disabled={!canRight}
-          className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${canRight ? "hover:bg-gray-100" : ""}`}
+          className={`w-10 h-10 flex items-center justify-center rounded-none transition-colors ${canRight ? "hover:bg-gray-100" : ""}`}
           style={{ boxShadow: canRight ? t.shadowCard : "none", opacity: canRight ? 1 : 0.3 }}>
           <ChevronRight className="w-5 h-5" style={{ color: t.charcoal }} />
         </button>
@@ -247,7 +246,7 @@ function StickyFeatures() {
                     <h3 className="mt-3 font-geist font-bold text-2xl md:text-3xl tracking-tight" style={{ color: t.charcoal }}>{f.title}</h3>
                     <p className="mt-4 text-base leading-relaxed max-w-md" style={{ color: t.midGray }}>{f.body}</p>
                   </div>
-                  <div className="p-8 rounded-xl" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
+                  <div className="p-8 rounded-none" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
                     {i === 0 && (
                       <div className="space-y-4">
                         {[{ label: "Technical skills", score: 96 }, { label: "Experience", score: 92 }, { label: "Communication", score: 88 }, { label: "Culture fit", score: 94 }].map((item) => (
@@ -362,13 +361,13 @@ export function V2HomePage() {
               className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
             >
               <button onClick={openModal}
-                className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-lg transition-opacity hover:opacity-80 group w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-80 group w-full sm:w-auto"
                 style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
                 Join The Waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
               <button onClick={openDemoModal}
-                className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-lg transition-shadow w-full sm:w-auto"
+                className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-shadow w-full sm:w-auto"
                 style={{ color: t.charcoal, backgroundColor: t.white, boxShadow: t.shadowCard }}>
                 Book a Demo
               </button>
@@ -376,9 +375,9 @@ export function V2HomePage() {
 
             {/* Role pills */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-              className="mt-8 flex flex-wrap items-center justify-center gap-2">
+              className="mt-8 flex items-center justify-center gap-2 flex-nowrap overflow-x-auto scrollbar-hide">
               {["Software Engineering", "Performance Marketing", "Copywriting", "Design", "Executive Assistants", "Operations", "& More"].map((role) => (
-                <span key={role} className="px-3 py-1.5 text-xs font-medium rounded-full"
+                <span key={role} className="px-3 py-1.5 text-xs font-medium whitespace-nowrap flex-shrink-0"
                   style={{ color: t.midGray, backgroundColor: t.lightGray }}>
                   {role}
                 </span>
@@ -437,7 +436,7 @@ export function V2HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="p-8 md:p-10 rounded-xl"
+                className="p-8 md:p-10 rounded-none"
                 style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-mono" style={{ color: "#d4d4d4" }}>{step.num}</span>
@@ -483,7 +482,7 @@ export function V2HomePage() {
                 </div>
               </div>
             </div>
-            <div className="p-8 rounded-xl" style={{ backgroundColor: t.lightGray }}>
+            <div className="p-8 rounded-none" style={{ backgroundColor: t.lightGray }}>
               <div className="grid grid-cols-2 gap-6">
                 {[
                   { val: "50%", label: "Lower salary costs" },
@@ -491,7 +490,7 @@ export function V2HomePage() {
                   { val: "$0", label: "Placement fees" },
                   { val: "From $500/mo", label: "Starting price" },
                 ].map((s) => (
-                  <div key={s.label} className="p-5 rounded-lg" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
+                  <div key={s.label} className="p-5 rounded-none" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
                     <p className="text-2xl font-bold" style={{ color: t.charcoal }}>{s.val}</p>
                     <p className="text-xs mt-1" style={{ color: t.midGray }}>{s.label}</p>
                   </div>
@@ -514,12 +513,12 @@ export function V2HomePage() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button onClick={openModal}
-                className="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 text-base min-h-[52px] rounded-lg transition-opacity hover:opacity-90 group w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-90 group w-full sm:w-auto"
                 style={{ backgroundColor: t.white, color: t.charcoal }}>
                 Join The Waitlist <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
               <button onClick={openDemoModal}
-                className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-lg transition-colors text-white border border-white/20 hover:bg-white/10 w-full sm:w-auto">
+                className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-colors text-white border border-white/20 hover:bg-white/10 w-full sm:w-auto">
                 Book a Demo
               </button>
             </div>
@@ -536,7 +535,7 @@ export function V2HomePage() {
                 Your questions, answered.
               </h2>
             </div>
-            <div className="rounded-xl" style={{ boxShadow: t.shadowCard }}>
+            <div className="rounded-none" style={{ boxShadow: t.shadowCard }}>
               <FAQ />
             </div>
           </div>
