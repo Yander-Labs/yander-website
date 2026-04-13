@@ -375,9 +375,9 @@ export function V2HomePage() {
 
             {/* Role pills */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
-              className="mt-8 flex items-center justify-center gap-2 flex-nowrap overflow-x-auto scrollbar-hide">
+              className="mt-8 flex flex-wrap items-center justify-center gap-2">
               {["Software Engineering", "Performance Marketing", "Copywriting", "Design", "Executive Assistants", "Operations", "& More"].map((role) => (
-                <span key={role} className="px-3 py-1.5 text-xs font-medium whitespace-nowrap flex-shrink-0"
+                <span key={role} className="px-3 py-1.5 text-xs font-medium"
                   style={{ color: t.midGray, backgroundColor: t.lightGray }}>
                   {role}
                 </span>
