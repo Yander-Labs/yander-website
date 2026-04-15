@@ -144,6 +144,28 @@ function createComponents(headingIds: Map<string, string>): Partial<PortableText
     image: ({ value }) => {
       if (!value?.asset) return null
 
+      const ref = value.asset._ref || ''
+      const isSvg = ref.endsWith('-svg')
+
+      if (isSvg) {
+        return (
+          <figure className="my-8">
+            <div className="rounded-xl overflow-hidden">
+              <img
+                src={urlFor(value).url()}
+                alt={value.alt || 'Article image'}
+                className="w-full h-auto"
+              />
+            </div>
+            {value.caption && (
+              <figcaption className="mt-2 text-center text-sm text-gray-500">
+                {value.caption}
+              </figcaption>
+            )}
+          </figure>
+        )
+      }
+
       return (
         <figure className="my-8">
           <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-100">
