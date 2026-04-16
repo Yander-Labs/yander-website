@@ -31,7 +31,7 @@ interface PricingTier {
 const tiers: PricingTier[] = [
   {
     name: "Starter",
-    description: "For small agencies with up to 25 employees and/or clients.",
+    description: "For small teams with up to 25 employees and/or clients.",
     monthlyPrice: 199,
     annualPrice: 1990,
     annualMonthly: 166,
@@ -46,7 +46,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Professional",
-    description: "For growing agencies with 25-50 employees and/or clients.",
+    description: "For growing teams with 25-50 employees and/or clients.",
     monthlyPrice: 449,
     annualPrice: 4490,
     annualMonthly: 374,
@@ -61,7 +61,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Growth",
-    description: "For mid-size agencies with 50-100 employees and/or clients.",
+    description: "For mid-size teams with 50-100 employees and/or clients.",
     monthlyPrice: 799,
     annualPrice: 7990,
     annualMonthly: 665,
@@ -75,7 +75,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Enterprise",
-    description: "For large agencies with 100+ employees and/or clients.",
+    description: "For large teams with 100+ employees and/or clients.",
     monthlyPrice: null,
     annualPrice: null,
     annualMonthly: null,

@@ -20,7 +20,11 @@ function LinkedInIcon({ className }: { className?: string }) {
 }
 
 const footerLinks = {
-  product: [] as { label: string; href: string }[],
+  product: [
+    { label: "Pulse", href: "/pulse" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Integrations", href: "/integrations" },
+  ],
   company: [
     { label: "Blog", href: "/blog" },
   ],

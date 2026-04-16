@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/use-cases',
+        destination: '/pulse#use-cases',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
