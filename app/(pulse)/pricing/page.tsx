@@ -49,7 +49,7 @@ export default function PricingPage() {
               Pulse Pricing
             </p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em]">
-              One dashboard for your team and client performance
+              One dashboard for your team's performance
             </h1>
           </AnimatedSection>
         </Container>

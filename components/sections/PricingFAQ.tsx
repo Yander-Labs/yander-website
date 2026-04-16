@@ -7,9 +7,9 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What counts as an entity?",
+    question: "What counts as an employee?",
     answer:
-      "An entity is one employee or one client. Each person you track in Yander counts as one entity toward your plan limit.",
+      "Each employee you track in Yander counts as one seat toward your plan limit.",
   },
   {
     question: "Can I change plans at any time?",
@@ -32,14 +32,14 @@ const faqs = [
       "No. All plans include free onboarding and setup support.",
   },
   {
-    question: "Can I add more entities beyond my plan limit?",
+    question: "Can I add more employees beyond my plan limit?",
     answer:
-      "Yes. Additional entities are billed at the extra entity rate for your plan tier.",
+      "Yes. Additional employees are billed at the extra employee rate for your plan tier.",
   },
   {
     question: "What's included in the Enterprise plan?",
     answer:
-      "Custom scoring cadence, negotiated entity pricing, dedicated support, SSO, and a tailored onboarding experience. Contact sales to discuss your needs.",
+      "Custom scoring cadence, negotiated per-employee pricing, dedicated support, SSO, and a tailored onboarding experience. Contact sales to discuss your needs.",
   },
 ];
 

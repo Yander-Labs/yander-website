@@ -31,7 +31,7 @@ interface PricingTier {
 const tiers: PricingTier[] = [
   {
     name: "Starter",
-    description: "For small teams with up to 25 employees and/or clients.",
+    description: "For small teams with up to 25 employees.",
     monthlyPrice: 199,
     annualPrice: 1990,
     annualMonthly: 166,
@@ -46,7 +46,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Professional",
-    description: "For growing teams with 25-50 employees and/or clients.",
+    description: "For growing teams with 25-50 employees.",
     monthlyPrice: 449,
     annualPrice: 4490,
     annualMonthly: 374,
@@ -61,7 +61,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Growth",
-    description: "For mid-size teams with 50-100 employees and/or clients.",
+    description: "For mid-size teams with 50-100 employees.",
     monthlyPrice: 799,
     annualPrice: 7990,
     annualMonthly: 665,
@@ -75,7 +75,7 @@ const tiers: PricingTier[] = [
   },
   {
     name: "Enterprise",
-    description: "For large teams with 100+ employees and/or clients.",
+    description: "For large teams with 100+ employees.",
     monthlyPrice: null,
     annualPrice: null,
     annualMonthly: null,
@@ -90,7 +90,7 @@ const tiers: PricingTier[] = [
 ];
 
 const tooltips: Record<string, React.ReactNode> = {
-  entities: "1 entity = 1 employee or client.",
+  entities: "1 employee tracked per seat.",
   integrations: (
     <>
       Connect tools such as Slack, Notion, Gmail, ClickUp, Monday.com, Asana.{" "}
@@ -173,10 +173,10 @@ function PricingCard({ tier, billing }: { tier: PricingTier; billing: BillingPer
 
       {/* Features */}
       <div className="space-y-3 flex-1">
-        <FeatureItem text={`${tier.entities} entities included`} tooltip={tooltips.entities} />
+        <FeatureItem text={`${tier.entities} employees included`} tooltip={tooltips.entities} />
         <FeatureItem text={`${tier.integrations} integration${tier.integrations === "1" ? "" : "s"}`} tooltip={tooltips.integrations} />
         <FeatureItem text={isEnterprise ? "Custom score refresh" : `Scores refresh ${tier.scoringRefresh.toLowerCase()}`} />
-        <FeatureItem text={isEnterprise ? "Custom rate per extra entity" : `${tier.extraEntity.replace("/entity", "")}/mo per extra entity`} />
+        <FeatureItem text={isEnterprise ? "Custom rate per extra employee" : `${tier.extraEntity.replace("/entity", "")}/mo per extra employee`} />
       </div>
 
       {/* Security footer */}
