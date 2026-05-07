@@ -329,7 +329,7 @@ export function Hero() {
             <span className="text-gray-300">·</span>
             <span className="text-xs">Get candidates immediately</span>
             <span className="text-gray-300">·</span>
-            <span className="text-xs">Plans from $500/mo</span>
+            <span className="text-xs">Plans from $199/mo</span>
           </motion.div>
         </div>
 

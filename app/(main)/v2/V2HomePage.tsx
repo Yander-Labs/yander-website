@@ -464,21 +464,21 @@ export function V2HomePage() {
                 <span style={{ color: t.accent }}>for recruitment.</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed max-w-md" style={{ color: t.midGray }}>
-                Agencies charge 20% of annual salary per placement. Yander starts from $500/month.
+                Agencies charge 20% of annual salary per placement. Yander starts from $199/month.
               </p>
               <div className="mt-10 space-y-6">
                 <div>
                   <p className="text-xs uppercase tracking-wider mb-2" style={{ color: t.midGray }}>Typical agency</p>
-                  <p className="text-4xl font-bold tracking-tight" style={{ color: t.charcoal }}>20%</p>
+                  <p className="text-4xl font-bold tracking-tight line-through" style={{ color: t.midGray }}>20%</p>
                   <p className="text-sm mt-1" style={{ color: t.midGray }}>of annual salary, per placement</p>
                 </div>
                 <div className="h-px" style={{ backgroundColor: t.lightGray }} />
                 <div>
                   <p className="text-xs uppercase tracking-wider mb-2" style={{ color: t.midGray }}>Yander</p>
                   <p className="text-4xl font-bold tracking-tight" style={{ color: t.charcoal }}>
-                    From $500<span className="text-lg font-medium" style={{ color: t.midGray }}>/mo</span>
+                    From $199<span className="text-lg font-medium" style={{ color: t.midGray }}>/mo</span>
                   </p>
-                  <p className="text-sm mt-1" style={{ color: t.midGray }}>Flat rate, unlimited roles</p>
+                  <p className="text-sm mt-1" style={{ color: t.midGray }}>Flat rate</p>
                 </div>
               </div>
             </div>
@@ -486,9 +486,9 @@ export function V2HomePage() {
               <div className="grid grid-cols-2 gap-6">
                 {[
                   { val: "50%", label: "Lower salary costs" },
-                  { val: "3", label: "Global regions" },
+                  { val: "16", label: "Countries" },
                   { val: "$0", label: "Placement fees" },
-                  { val: "From $500/mo", label: "Starting price" },
+                  { val: "From $199/mo", label: "Starting price" },
                 ].map((s) => (
                   <div key={s.label} className="p-5 rounded-none" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
                     <p className="text-2xl font-bold" style={{ color: t.charcoal }}>{s.val}</p>
@@ -547,8 +547,8 @@ export function V2HomePage() {
 
 // ─── FAQ accordion ───
 const faqs = [
-  { q: "How is Yander different from a recruitment agency?", a: "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles the sourcing and surfaces candidates for your review. Plans start from $500/month regardless of how many roles you fill." },
-  { q: "What regions do you source from?", a: "South America (Brazil, Colombia, Argentina), South Africa, and Southeast Asia (India, Philippines). These regions offer world-class talent at 40-70% less than US rates." },
+  { q: "How is Yander different from a recruitment agency?", a: "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles the sourcing and surfaces candidates for your review. Plans start from $199/month." },
+  { q: "What countries do you source from?", a: "We source from 16 countries across Latin America, Southeast Asia, South Africa, and Eastern Europe. These markets offer world-class talent at 40-70% less than US rates, and our AI surfaces candidates you wouldn't typically find through traditional inbound channels." },
   { q: "How does the AI sourcing work?", a: "You provide a job description or build one with Yander. Our AI agent searches talent pools and surfaces candidates that match on technical skills, experience, and company culture. Candidates complete structured assessments so you can evaluate them efficiently." },
   { q: "How fast do I get candidates?", a: "Most roles have candidates ready for your review within days. The AI agent works continuously. No waiting on a recruiter's schedule." },
   { q: "Is Yander available now?", a: "We're in development and accepting early access signups. Join the waitlist to be first in line when we launch." },

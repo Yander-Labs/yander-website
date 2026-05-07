@@ -43,7 +43,7 @@ export function Regions() {
               <span className="text-xs font-medium text-gray-400 uppercase tracking-[0.15em]">Global talent</span>
             </div>
             <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a0a0a] tracking-[-0.02em]">
-              Three regions. One platform.
+              Talent across 16 countries.
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
               Hire top professionals where A-player talent costs up to

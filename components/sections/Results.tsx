@@ -13,18 +13,18 @@ const stats = [
     color: "text-[#0a0a0a]",
   },
   {
-    value: 500,
+    value: 199,
     suffix: "",
     prefix: "$",
-    label: "From $500/mo",
+    label: "From $199/mo",
     description: "Flat monthly fee. No percentage of salary, no placement fees.",
     color: "text-[#0a0a0a]",
   },
   {
-    value: 3,
+    value: 16,
     suffix: "",
-    label: "Global regions",
-    description: "South America, South Africa, and Southeast Asia talent pools",
+    label: "Countries",
+    description: "Latin America, Southeast Asia, South Africa, and Eastern Europe",
     color: "text-[#0a0a0a]",
   },
   {

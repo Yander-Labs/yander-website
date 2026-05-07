@@ -9,12 +9,12 @@ const faqs = [
   {
     question: "How is Yander different from a recruitment agency?",
     answer:
-      "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles sourcing and helps you evaluate candidates with structured assessments. Plans start from $500/month regardless of how many roles you fill.",
+      "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles sourcing and helps you evaluate candidates with structured assessments. Plans start from $199/month.",
   },
   {
-    question: "What regions do you source from?",
+    question: "What countries do you source from?",
     answer:
-      "South America (Brazil, Colombia, Argentina), South Africa, and Southeast Asia (India, Philippines). These regions offer world-class talent at 40-70% less than US rates.",
+      "We source from 16 countries across Latin America, Southeast Asia, South Africa, and Eastern Europe. These markets offer world-class talent at 40-70% less than US rates, and our AI surfaces strong candidates you wouldn't typically reach through inbound applications.",
   },
   {
     question: "How does the AI matching work?",

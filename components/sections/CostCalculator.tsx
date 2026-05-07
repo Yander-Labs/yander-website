@@ -14,7 +14,7 @@ export function CostCalculator() {
 
   const salaryNum = parseFloat(salary.replace(/,/g, "")) || 0;
   const agencyFee = salaryNum * 0.2;
-  const yanderCost = 500;
+  const yanderCost = 199;
   const savings = agencyFee - yanderCost;
 
   const handleCalculate = (e: React.FormEvent) => {
@@ -52,20 +52,20 @@ export function CostCalculator() {
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-md">
               Agencies charge 20% of annual salary per placement.
-              Yander starts from $500/month.
+              Yander starts from $199/month.
             </p>
 
             <div className="mt-10 space-y-6">
               <div>
                 <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">Typical agency</p>
-                <p className="text-4xl font-bold text-[#0a0a0a] tracking-tight">20%</p>
+                <p className="text-4xl font-bold text-gray-400 tracking-tight line-through">20%</p>
                 <p className="text-sm text-gray-400 mt-1">of annual salary, per placement</p>
               </div>
               <div className="h-px bg-gray-100" />
               <div>
                 <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">Yander</p>
-                <p className="text-4xl font-bold text-[#0a0a0a] tracking-tight">From $500<span className="text-lg font-medium text-gray-400">/mo</span></p>
-                <p className="text-sm text-gray-400 mt-1">Flat rate, unlimited roles</p>
+                <p className="text-4xl font-bold text-[#0a0a0a] tracking-tight">From $199<span className="text-lg font-medium text-gray-400">/mo</span></p>
+                <p className="text-sm text-gray-400 mt-1">Flat rate</p>
               </div>
             </div>
           </motion.div>
