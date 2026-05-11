@@ -23,6 +23,7 @@ const footerLinks = {
   product: [
     { label: "Pulse", href: "/pulse" },
     { label: "Pricing", href: "/pricing" },
+    { label: "Pulse Pricing", href: "/pulse-pricing" },
     { label: "Integrations", href: "/integrations" },
   ],
   company: [

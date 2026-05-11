@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { PricingCards } from "@/components/sections/PricingCards";
-import { PricingComparison } from "@/components/sections/PricingComparison";
-import { PricingFAQ } from "@/components/sections/PricingFAQ";
+import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
+import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
+import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
+import { RecruiterPricingClosingCTA } from "@/components/sections/RecruiterPricingClosingCTA";
 
 export const metadata: Metadata = {
   title: "Pricing | Yander",
   description:
-    "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
+    "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
   alternates: {
     canonical: "https://yander.io/pricing",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pricing | Yander",
     description:
-      "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
+      "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
     url: "https://yander.io/pricing",
     siteName: "Yander",
     type: "website",
@@ -26,70 +26,50 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pricing | Yander",
     description:
-      "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
+      "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
   },
 };
-
-const trustedCompanies = [
-  { name: "Montblanc", logo: "/logos/imgi_14_Montblanc_1765364669732-CO9W13yj.png" },
-  { name: "Loudface", logo: "/logos/loudface-logo.png" },
-  { name: "Hayes Media", logo: "/logos/hayes-media-logo.png", className: "h-7 md:h-8 w-auto object-contain" },
-  { name: "Seamless.AI", logo: "/logos/imgi_12_Seamless_AI_Logo_1_1765364669732-CEQ3A-Wa.png" },
-  { name: "Radisson Hotels", logo: "/logos/imgi_13_Radisson_Hotel_idRe5QavwV_0_1_1765364669732-R3ZAbgZj.png" },
-];
 
 export default function PricingPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-28 pb-6 md:pt-32 md:pb-8">
+      {/* ── Section 1: Hero ── */}
+      <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden bg-[#fafaf7]">
+        {/* Tonal gradient (cream → white) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fafaf7] via-white to-white pointer-events-none" />
+        {/* Subtle vertical rhythm lines on edges (signature component) */}
+        <div
+          className="absolute inset-y-0 left-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-y-0 right-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+          aria-hidden="true"
+        />
+
         <Container>
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.15em] mb-4">
-              Pulse Pricing
+          <AnimatedSection className="relative text-center max-w-5xl mx-auto">
+            <p className="text-[11px] font-medium text-gray-500 uppercase tracking-[0.22em] mb-5">
+              Pricing
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em]">
-              One dashboard for your team's performance
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em] leading-[1.1] lg:whitespace-nowrap">
+              Clear pricing for your recruiting needs.
             </h1>
           </AnimatedSection>
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="hidden md:block pb-6 md:pb-8">
-        <Container>
-          <AnimatedSection>
-            <p className="text-center text-[10px] text-gray-600 uppercase tracking-[0.15em] mb-6">
-              Trusted by teams behind
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-10">
-              {trustedCompanies.map((company) => (
-                <div
-                  key={company.name}
-                  className="opacity-80 hover:opacity-100 transition-opacity duration-200"
-                >
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    width={120}
-                    height={24}
-                    className={company.className || "h-4 md:h-5 w-auto object-contain"}
-                  />
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </Container>
-      </section>
+      {/* ── Section 2: Pricing cards ── */}
+      <RecruiterPricingCards />
 
-      {/* Pricing Cards with Toggle */}
-      <PricingCards />
+      {/* ── Section 3 (NEW): Proof / Why this beats an agency ── */}
+      <RecruiterPricingProof />
 
-      {/* Feature Comparison */}
-      <PricingComparison />
+      {/* ── Section 4: FAQ ── */}
+      <RecruiterPricingFAQ />
 
-      {/* FAQ */}
-      <PricingFAQ />
+      {/* ── Section 5 (NEW): Closing CTA ── */}
+      <RecruiterPricingClosingCTA />
     </>
   );
 }
