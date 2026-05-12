@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { useWaitlistModal } from "@/components/ui/WaitlistModal";
 import { ArrowRight, MapPin, Search } from "lucide-react";
 
 interface Role {
@@ -194,8 +194,6 @@ const roles: Role[] = [
 ];
 
 function RoleCard({ role }: { role: Role }) {
-  const { openModal } = useWaitlistModal();
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -239,13 +237,13 @@ function RoleCard({ role }: { role: Role }) {
         {/* Footer */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <span className="text-xs text-gray-400">{role.hiredRecently} hired recently</span>
-          <button
-            onClick={openModal}
+          <Link
+            href="/pricing"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1e1044] hover:text-[#0a0a0a] transition-colors"
           >
             View details
             <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -255,7 +253,6 @@ function RoleCard({ role }: { role: Role }) {
 export function TalentPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const { openModal } = useWaitlistModal();
 
   const filteredRoles = roles.filter((role) => {
     const matchesCategory = activeCategory === "All" || role.category === activeCategory;
@@ -338,12 +335,12 @@ export function TalentPage() {
           <p className="text-sm text-gray-400">
             Showing <span className="text-gray-700 font-medium">{filteredRoles.length}</span> roles
           </p>
-          <button
-            onClick={openModal}
+          <Link
+            href="/pricing"
             className="text-sm font-medium text-[#1e1044] hover:text-[#0a0a0a] transition-colors"
           >
             Can&apos;t find what you need? Tell us &rarr;
-          </button>
+          </Link>
         </div>
 
         {/* Role grid */}
@@ -383,15 +380,15 @@ export function TalentPage() {
             Ready to hire?
           </h2>
           <p className="mt-3 text-base text-gray-500 max-w-md mx-auto">
-            Join the waitlist and be the first to access top offshore talent through Yander.
+            Start free with your first 200 sourced candidates. No placement fees, ever.
           </p>
-          <button
-            onClick={openModal}
+          <Link
+            href="/pricing"
             className="mt-6 inline-flex items-center justify-center gap-2 font-medium bg-[#0a0a0a] text-white hover:bg-[#171717] px-8 py-4 text-base transition-all group"
           >
-            Join The Waitlist
+            Get Started Free
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          </Link>
         </div>
       </Container>
     </section>

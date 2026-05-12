@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Container } from "../ui/Container";
 import { ArrowRight } from "lucide-react";
-import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 
 export function DarkCTA() {
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
@@ -31,9 +30,8 @@ export function DarkCTA() {
             </h2>
 
             <p className="mt-6 text-lg text-gray-300 max-w-xl mx-auto">
-              Join the waitlist and be the first to access AI-powered
-              offshore recruiting. Faster, cheaper, and with better culture
-              fit than any agency.
+              Start free with your first 200 sourced candidates. Faster,
+              cheaper, and with better culture fit than any agency.
             </p>
 
             {/* Stats */}
@@ -52,13 +50,13 @@ export function DarkCTA() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={openModal}
+              <Link
+                href="/pricing"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0a0a0a] rounded-none font-medium text-base hover:bg-gray-100 transition-all group w-full sm:w-auto shadow-subtle hover:shadow-elevated"
               >
-                Join the Waitlist
+                Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+              </Link>
               <button
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white rounded-none font-medium text-base hover:bg-white/15 transition-colors border border-white/10 w-full sm:w-auto"

@@ -3,17 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
-import { useWaitlistModal } from "./ui/WaitlistModal";
 import { useDemoModal } from "./ui/DemoModal";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   useEffect(() => {
@@ -70,9 +67,12 @@ export function Navigation() {
               >
                 Blog
               </Link>
-              <Button variant="ghost" size="sm" onClick={openModal}>
-                Join Waitlist
-              </Button>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-4 py-2.5 text-sm min-h-[44px]"
+              >
+                Get Started Free
+              </Link>
               <button
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
@@ -160,17 +160,13 @@ export function Navigation() {
 
             {/* Drawer Footer */}
             <div className="p-4 border-t border-[#E4E7EC] space-y-3">
-              <Button
-                variant="ghost"
-                size="md"
-                className="w-full justify-center"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openModal();
-                }}
+              <Link
+                href="/pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-700 hover:text-gray-900 hover:bg-gray-50 border border-[#E4E7EC] px-5 py-3 text-sm min-h-[44px] w-full"
               >
-                Join Waitlist
-              </Button>
+                Get Started Free
+              </Link>
               <button
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
                 onClick={() => {

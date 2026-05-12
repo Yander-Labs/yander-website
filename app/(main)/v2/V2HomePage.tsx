@@ -5,7 +5,6 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent }
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { useWaitlistModal } from "@/components/ui/WaitlistModal";
 import { useDemoModal } from "@/components/ui/DemoModal";
 import { ArrowRight, Search, MapPin, ChevronLeft, ChevronRight, Check } from "lucide-react";
 
@@ -115,11 +114,10 @@ const steps = [
 // ─── Components ───
 
 function ProfileCard({ profile }: { profile: Profile }) {
-  const { openModal } = useWaitlistModal();
   return (
-    <div
-      className="bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200 border border-gray-200"
-      onClick={openModal}
+    <Link
+      href="/pricing"
+      className="block bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200 border border-gray-200"
       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#d4d4d4"; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
     >
@@ -143,7 +141,7 @@ function ProfileCard({ profile }: { profile: Profile }) {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -322,7 +320,6 @@ function StickyFeatures() {
 // ─── Main page ───
 
 export function V2HomePage() {
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
   const networkSize = useLiveCandidateFeed();
   const typewriterText = useTypewriter();
@@ -360,12 +357,12 @@ export function V2HomePage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
             >
-              <button onClick={openModal}
+              <Link href="/pricing"
                 className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-80 group w-full sm:w-auto"
                 style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
-                Join The Waitlist
+                Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+              </Link>
               <button onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-shadow w-full sm:w-auto"
                 style={{ color: t.charcoal, backgroundColor: t.white, boxShadow: t.shadowCard }}>
@@ -509,14 +506,14 @@ export function V2HomePage() {
               The future of hiring is not through a recruitment agency.
             </h2>
             <p className="mt-6 text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
-              Join the waitlist and be the first to access AI-powered offshore recruiting. Faster, cheaper, and with better culture fit than any agency.
+              Start free with your first 200 sourced candidates. Faster, cheaper, and with better culture fit than any agency.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button onClick={openModal}
+              <Link href="/pricing"
                 className="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-90 group w-full sm:w-auto"
                 style={{ backgroundColor: t.white, color: t.charcoal }}>
-                Join The Waitlist <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+                Get Started Free <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
               <button onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-colors text-white border border-white/20 hover:bg-white/10 w-full sm:w-auto">
                 Book a Demo
@@ -551,7 +548,7 @@ const faqs = [
   { q: "What countries do you source from?", a: "We source from 16 countries across Latin America, Southeast Asia, South Africa, and Eastern Europe. These markets offer world-class talent at 40-70% less than US rates, and our AI surfaces candidates you wouldn't typically find through traditional inbound channels." },
   { q: "How does the AI sourcing work?", a: "You provide a job description or build one with Yander. Our AI agent searches talent pools and surfaces candidates that match on technical skills, experience, and company culture. Candidates complete structured assessments so you can evaluate them efficiently." },
   { q: "How fast do I get candidates?", a: "Most roles have candidates ready for your review within days. The AI agent works continuously. No waiting on a recruiter's schedule." },
-  { q: "Is Yander available now?", a: "We're in development and accepting early access signups. Join the waitlist to be first in line when we launch." },
+  { q: "Is Yander available now?", a: "Yes. Get started free with your first 200 sourced candidates — no credit card required. Paid plans start at $89/month." },
 ];
 
 function FAQ() {

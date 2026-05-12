@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "../ui/Container";
 import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
@@ -227,7 +228,6 @@ function InteractiveSearch() {
 }
 
 export function Hero() {
-  const { openModal } = useWaitlistModal();
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
@@ -289,13 +289,13 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <button
-              onClick={openModal}
+            <Link
+              href="/pricing"
               className="inline-flex items-center justify-center gap-2 font-medium rounded-none bg-[#0a0a0a] text-white hover:bg-[#171717] px-8 py-4 text-base min-h-[52px] transition-all group w-full sm:w-auto"
             >
-              Join the Waitlist
+              Get Started Free
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+            </Link>
             <button
               onClick={openDemoModal}
               className="inline-flex items-center justify-center font-medium rounded-none bg-white border border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-900 px-8 py-4 text-base min-h-[52px] transition-all w-full sm:w-auto"

@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Is Yander available now?",
     answer:
-      "We're in development and accepting early access signups. Join the waitlist to be first in line when we launch.",
+      "Yes. Get started free with your first 200 sourced candidates — no credit card required. Paid plans start at $89/month.",
   },
 ];
 
