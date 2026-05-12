@@ -62,7 +62,7 @@ export function Footer() {
                 />
               </Link>
               <p className="mt-4 text-sm text-gray-500 max-w-xs">
-                Find A-player offshore talent with AI. Hire faster, spend less, and build teams that last.
+                Find A-player talent worldwide with AI. Hire faster, spend less, and build teams that last.
               </p>
               <div className="mt-6 flex items-center gap-3">
                 {socialLinks.map((social) => (

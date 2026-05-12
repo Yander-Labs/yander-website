@@ -5,25 +5,46 @@ import { Container } from "../ui/Container";
 
 const regions = [
   {
+    name: "North America",
+    countries: ["USA", "Canada"],
+    talent: "Engineering, Product, Strategy",
+    positioning: "Native English",
+    highlight: "Premium expertise. US timezone overlap. Native English.",
+  },
+  {
     name: "South America",
-    countries: ["Brazil", "Colombia", "Argentina"],
+    countries: ["Brazil", "Colombia", "Argentina", "Mexico"],
     talent: "Engineering, Design, Data Science",
-    savings: "40-55%",
-    highlight: "Strong timezone overlap with US East Coast",
+    positioning: "40-55% less than US rates",
+    highlight: "Strong US East Coast overlap. Significant cost savings.",
   },
   {
-    name: "South Africa",
-    countries: ["South Africa"],
+    name: "UK & Ireland",
+    countries: ["UK", "Ireland"],
+    talent: "Engineering, Operations, Finance",
+    positioning: "Native English",
+    highlight: "Senior expertise on tap. EU work hours. Native English.",
+  },
+  {
+    name: "Continental Europe",
+    countries: ["Spain", "Portugal", "Poland", "Eastern Europe"],
+    talent: "Engineering, Design, Marketing",
+    positioning: "30-60% less than US rates",
+    highlight: "Strong technical depth. EU timezones. Cost-effective.",
+  },
+  {
+    name: "Africa",
+    countries: ["South Africa", "Kenya", "Nigeria"],
     talent: "Development, Finance, Operations, Support",
-    savings: "40-60%",
-    highlight: "English-speaking, strong work ethic, minimal timezone gap with Europe",
+    positioning: "40-60% less than US rates",
+    highlight: "English-speaking. Minimal timezone gap with Europe.",
   },
   {
-    name: "Southeast Asia",
-    countries: ["India", "Philippines"],
+    name: "Asia-Pacific",
+    countries: ["India", "Philippines", "Australia"],
     talent: "Engineering, Support, Admin, Finance",
-    savings: "50-70%",
-    highlight: "Largest talent pool, highest savings",
+    positioning: "Native (AU) · 50-70% less than US rates (IN, PH)",
+    highlight: "Largest talent pool. Round-the-clock coverage.",
   },
 ];
 
@@ -43,11 +64,11 @@ export function Regions() {
               <span className="text-xs font-medium text-gray-400 uppercase tracking-[0.15em]">Global talent</span>
             </div>
             <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a0a0a] tracking-[-0.02em]">
-              Talent across 16 countries.
+              Talent, worldwide.
             </h2>
             <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
-              Hire top professionals where A-player talent costs up to
-              50% less than domestic hires. No sacrificing quality.
+              Access top professionals anywhere — from premium native-English
+              markets to cost-effective regions where you&apos;ll save up to 70%.
             </p>
           </motion.div>
         </div>
@@ -80,8 +101,8 @@ export function Regions() {
                   <p className="text-sm text-gray-700">{region.talent}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Salary savings</p>
-                  <p className="text-sm font-semibold text-[#0a0a0a]">{region.savings} vs US rates</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Positioning</p>
+                  <p className="text-sm font-semibold text-[#0a0a0a]">{region.positioning}</p>
                 </div>
               </div>
 

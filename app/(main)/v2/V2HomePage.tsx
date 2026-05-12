@@ -46,8 +46,10 @@ function useLiveCandidateFeed() {
 // ─── Typewriter for search demo ───
 const searchQueries = [
   "Senior Full Stack Developer in Brazil",
-  "Performance Marketing Lead in South Africa",
+  "Performance Marketing Lead, anywhere",
+  "Product Designer in the UK",
   "Executive Assistant in Philippines",
+  "Senior Software Engineer in the US",
 ];
 
 function useTypewriter() {
@@ -455,37 +457,50 @@ export function V2HomePage() {
         <Container>
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.15em] mb-4" style={{ color: t.midGray }}>Cost comparison</p>
+              <p className="text-xs font-medium uppercase tracking-[0.15em] mb-4" style={{ color: t.midGray }}>Why Yander</p>
               <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-[48px] leading-[1.1] tracking-tight" style={{ color: t.charcoal }}>
-                Stop overpaying<br />
-                <span style={{ color: t.accent }}>for recruitment.</span>
+                Fill roles faster.<br />
+                <span style={{ color: t.accent }}>For less.</span>
               </h2>
               <p className="mt-4 text-lg leading-relaxed max-w-md" style={{ color: t.midGray }}>
-                Agencies charge 20% of annual salary per placement. Yander starts from $199/month.
+                AI sourcing reaches candidates outside your hiring funnel — more qualified people, faster, at a fraction of traditional cost.
               </p>
-              <div className="mt-10 space-y-6">
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-2" style={{ color: t.midGray }}>Typical agency</p>
-                  <p className="text-4xl font-bold tracking-tight line-through" style={{ color: t.midGray }}>20%</p>
-                  <p className="text-sm mt-1" style={{ color: t.midGray }}>of annual salary, per placement</p>
-                </div>
-                <div className="h-px" style={{ backgroundColor: t.lightGray }} />
-                <div>
-                  <p className="text-xs uppercase tracking-wider mb-2" style={{ color: t.midGray }}>Yander</p>
-                  <p className="text-4xl font-bold tracking-tight" style={{ color: t.charcoal }}>
-                    From $199<span className="text-lg font-medium" style={{ color: t.midGray }}>/mo</span>
-                  </p>
-                  <p className="text-sm mt-1" style={{ color: t.midGray }}>Flat rate</p>
-                </div>
+              <div className="mt-10 space-y-5">
+                {[
+                  { title: "More candidates", body: "AI surfaces passive talent your inbound and network would never reach." },
+                  { title: "Faster", body: "Interview-ready candidates land in your inbox within days, not weeks." },
+                  { title: "Cost-effective", body: "Free to start. Paid plans from $89/mo. No placement fees, ever." },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <div className="flex-shrink-0 w-1 self-stretch" style={{ backgroundColor: t.accent }} />
+                    <div>
+                      <p className="text-sm font-semibold" style={{ color: t.charcoal }}>{item.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed max-w-sm" style={{ color: t.midGray }}>{item.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
+                <Link href="/pricing"
+                  className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-80 group w-full sm:w-auto"
+                  style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
+                  Get Started Free
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+                <Link href="/pricing"
+                  className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-shadow w-full sm:w-auto"
+                  style={{ color: t.charcoal, backgroundColor: t.white, boxShadow: t.shadowCard }}>
+                  See full pricing
+                </Link>
               </div>
             </div>
             <div className="p-8 rounded-none" style={{ backgroundColor: t.lightGray }}>
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { val: "50%", label: "Lower salary costs" },
-                  { val: "16", label: "Countries" },
-                  { val: "$0", label: "Placement fees" },
-                  { val: "From $199/mo", label: "Starting price" },
+                  { val: "Free", label: "200 candidates to try" },
+                  { val: "$89/mo", label: "Pro · 500 candidates/mo" },
+                  { val: "$249/mo", label: "Max · Unlimited candidates" },
+                  { val: "$0", label: "Placement fees, ever" },
                 ].map((s) => (
                   <div key={s.label} className="p-5 rounded-none" style={{ backgroundColor: t.white, boxShadow: t.shadowCard }}>
                     <p className="text-2xl font-bold" style={{ color: t.charcoal }}>{s.val}</p>
@@ -503,10 +518,10 @@ export function V2HomePage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-[48px] leading-[1.1] tracking-tight text-white">
-              The future of hiring is not through a recruitment agency.
+              Hires your funnel can&apos;t reach.
             </h2>
             <p className="mt-6 text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
-              Start free with your first 200 sourced candidates. Faster, cheaper, and with better culture fit than any agency.
+              AI sourcing brings in qualified candidates outside your network. More options, faster, more cost-effective to fill roles. Start free with your first 200 sourced candidates.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link href="/pricing"
@@ -544,10 +559,11 @@ export function V2HomePage() {
 
 // ─── FAQ accordion ───
 const faqs = [
-  { q: "How is Yander different from a recruitment agency?", a: "Agencies charge 15-25% of annual salary per placement and rely on manual sourcing. Yander is software. Our AI agent handles the sourcing and surfaces candidates for your review. Plans start from $199/month." },
-  { q: "What countries do you source from?", a: "We source from 16 countries across Latin America, Southeast Asia, South Africa, and Eastern Europe. These markets offer world-class talent at 40-70% less than US rates, and our AI surfaces candidates you wouldn't typically find through traditional inbound channels." },
+  { q: "Why use Yander to hire?", a: "Yander is AI sourcing software. Our agent surfaces qualified candidates outside your inbound and network, helps you evaluate them with structured assessments, and gets you interview-ready people in days. Used by hiring teams and recruiters alike. Start free with your first 200 candidates — paid plans from $89/month." },
+  { q: "What countries do you source from?", a: "We source candidates worldwide — including the US, Canada, UK, Australia, South America, Europe, South Africa, and Southeast Asia. Whether you want premium native-English expertise or cost-effective talent (where you can save 40-70% versus US rates), our AI surfaces strong candidates wherever they are." },
   { q: "How does the AI sourcing work?", a: "You provide a job description or build one with Yander. Our AI agent searches talent pools and surfaces candidates that match on technical skills, experience, and company culture. Candidates complete structured assessments so you can evaluate them efficiently." },
   { q: "How fast do I get candidates?", a: "Most roles have candidates ready for your review within days. The AI agent works continuously. No waiting on a recruiter's schedule." },
+  { q: "How much does Yander cost?", a: "Free to start — your first 200 sourced candidates are on us. Pro is $89/month for 500 sourced candidates per month, and Max is $249/month for unlimited. No placement fees, no contracts, cancel anytime." },
   { q: "Is Yander available now?", a: "Yes. Get started free with your first 200 sourced candidates — no credit card required. Paid plans start at $89/month." },
 ];
 

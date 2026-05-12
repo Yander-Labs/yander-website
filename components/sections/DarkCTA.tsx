@@ -24,22 +24,21 @@ export function DarkCTA() {
 
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] leading-[1.1]">
-              The future of hiring is
+              Find candidates
               <br />
-              <span className="text-indigo-300">not through a recruitment agency.</span>
+              <span className="text-indigo-300">your funnel can&apos;t reach.</span>
             </h2>
 
             <p className="mt-6 text-lg text-gray-300 max-w-xl mx-auto">
-              Start free with your first 200 sourced candidates. Faster,
-              cheaper, and with better culture fit than any agency.
+              AI sourcing surfaces qualified candidates outside your network — more options, faster, more cost-effective to fill roles. Start free with your first 200.
             </p>
 
             {/* Stats */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
               {[
-                { value: "50%", label: "Salary savings" },
+                { value: "Free", label: "To get started" },
                 { value: "Days", label: "To first candidates" },
-                { value: "From $199/mo", label: "Starting price" },
+                { value: "$0", label: "Placement fees, ever" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <p className="text-2xl md:text-3xl font-bold text-white">{stat.value}</p>

@@ -20,13 +20,13 @@ export function RecruiterPricingClosingCTA() {
         aria-hidden="true"
       />
 
-      {/* Second-read moment: oversized "16" set faintly */}
+      {/* Second-read moment: oversized "∞" set faintly */}
       <div
         aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
       >
         <span className="text-[clamp(20rem,40vw,40rem)] font-bold leading-none text-white/[0.04] tracking-tighter">
-          16
+          ∞
         </span>
       </div>
 
@@ -39,16 +39,17 @@ export function RecruiterPricingClosingCTA() {
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
             <p className="text-[11px] font-medium text-white/50 uppercase tracking-[0.22em] mb-8">
-              Sourcing across 16 countries
+              Sourcing talent worldwide
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-[-0.02em] leading-[1.1]">
-              Stop paying agencies.
+              Reach beyond your funnel.
               <br />
               <span className="text-indigo-300">Start sourcing smarter.</span>
             </h2>
             <p className="mt-8 text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
-              Your first 200 candidates are free. Move up only when you&apos;re
-              actively hiring.
+              More qualified candidates, faster, more cost-effective to fill
+              roles. Your first 200 candidates are free. Move up only when
+              you&apos;re actively hiring.
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">

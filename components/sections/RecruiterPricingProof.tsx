@@ -20,10 +20,10 @@ const stats: ProofStat[] = [
       "Most strong candidates aren't job hunting. Yander reaches them outbound so you don't have to.",
   },
   {
-    headline: "16",
-    label: "Countries sourced",
+    headline: "Worldwide",
+    label: "Sourcing reach",
     detail:
-      "Latin America, Southeast Asia, South Africa, and Eastern Europe — markets your team can't realistically tap on its own.",
+      "From the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia — broader reach than your team can practically cover.",
   },
   {
     headline: "Days",

@@ -26,16 +26,16 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "Yander - The First AI Agent That Recruits For You",
   description:
-    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates from Latin America, Southeast Asia, South Africa, and Eastern Europe. No placement fees.",
+    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia. No placement fees.",
   keywords: [
     "AI recruiting",
-    "offshore hiring",
+    "global hiring",
     "remote talent",
     "AI recruitment platform",
-    "hire offshore developers",
-    "Latin America talent",
-    "Southeast Asia hiring",
-    "South Africa recruitment",
+    "hire remote developers",
+    "international hiring",
+    "worldwide recruiting",
+    "remote team hiring",
   ],
   metadataBase: new URL("https://yander.io"),
   alternates: {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yander - The First AI Agent That Recruits For You",
     description:
-      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No agency fees.",
+      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
     url: "https://yander.io",
     siteName: "Yander",
     images: [
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yander - The First AI Agent That Recruits For You",
     description:
-      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No agency fees.",
+      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
     images: ["https://yander.io/og-image.png"],
     site: "@yanderlabs",
   },
@@ -80,7 +80,7 @@ const organizationJsonLd = {
   url: "https://yander.io",
   logo: "https://yander.io/logo.svg",
   description:
-    "AI recruiting platform that helps companies hire top offshore talent from Latin America, Southeast Asia, South Africa, and Eastern Europe without agency fees.",
+    "AI recruiting platform that helps companies hire top remote talent worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia — without placement fees.",
   sameAs: [
     "https://x.com/yanderlabs",
     "https://www.linkedin.com/company/107590331",

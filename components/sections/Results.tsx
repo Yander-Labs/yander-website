@@ -4,7 +4,16 @@ import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { AnimatedNumber } from "../ui/AnimatedNumber";
 
-const stats = [
+type Stat = {
+  value: number | string;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+  description: string;
+  color: string;
+};
+
+const stats: Stat[] = [
   {
     value: 50,
     suffix: "%",
@@ -21,10 +30,9 @@ const stats = [
     color: "text-[#0a0a0a]",
   },
   {
-    value: 16,
-    suffix: "",
-    label: "Countries",
-    description: "Latin America, Southeast Asia, South Africa, and Eastern Europe",
+    value: "Worldwide",
+    label: "Sourcing reach",
+    description: "From the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia",
     color: "text-[#0a0a0a]",
   },
   {
@@ -32,7 +40,7 @@ const stats = [
     suffix: "",
     prefix: "$",
     label: "Placement fees",
-    description: "Unlike agencies that charge 20% of salary per hire",
+    description: "Flat-rate sourcing, not a percentage of every hire",
     color: "text-[#0a0a0a]",
   },
 ];
@@ -71,9 +79,13 @@ export function Results() {
             >
               <div>
                 <div className="mb-3">
-                  {"prefix" in stat && stat.prefix ? (
+                  {typeof stat.value === "string" ? (
+                    <span className={`font-bold text-3xl md:text-4xl tracking-tight ${stat.color}`}>
+                      {stat.value}
+                    </span>
+                  ) : stat.prefix ? (
                     <span className={`font-bold text-4xl md:text-5xl tracking-tight ${stat.color}`}>
-                      {stat.prefix}{stat.value}{stat.suffix}
+                      {stat.prefix}{stat.value}{stat.suffix ?? ""}
                     </span>
                   ) : (
                     <AnimatedNumber

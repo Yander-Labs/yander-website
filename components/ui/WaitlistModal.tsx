@@ -127,7 +127,7 @@ function WaitlistModal() {
                   Get early access
                 </h2>
                 <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                  Get early access to AI-powered offshore recruiting.
+                  Get early access to AI-powered global recruiting.
                 </p>
               </div>
 

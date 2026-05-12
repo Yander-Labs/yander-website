@@ -276,7 +276,7 @@ export function TalentPage() {
             <span className="text-[#1e1044]">talent.</span>
           </h1>
           <p className="mt-4 text-lg text-gray-500 max-w-xl">
-            These are the roles Yander fills for companies. Top, culture-matched professionals across Latin America, Southeast Asia, South Africa, and Eastern Europe.
+            These are the roles Yander fills for companies. Top, culture-matched professionals sourced worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia.
           </p>
 
           {/* Stats */}

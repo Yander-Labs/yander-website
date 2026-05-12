@@ -92,11 +92,10 @@ export default function CalculatorPage() {
         <div className="py-20 md:py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
-              Offshore Hiring Cost Calculator
+              Remote Hiring Cost Calculator
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed mb-3">
-              See how much you could save by hiring from South America, Eastern
-              Europe, and South Africa. Add roles below to build your team.
+              See how much you could save by hiring from cost-effective markets like South America, Eastern Europe, and South Africa. Yander also sources premium talent from the US, Canada, UK, and Australia. Add roles below to build your team.
             </p>
             <p className="text-sm text-gray-400 leading-relaxed">
               These are estimates for experienced, qualified professionals. Salaries are slightly above local market rate to reflect what you should expect to pay to attract and retain top talent.
@@ -211,7 +210,7 @@ export default function CalculatorPage() {
                 </div>
                 <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
                   <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
-                    Offshore Cost
+                    Remote Cost
                   </p>
                   <p className="text-2xl font-semibold text-gray-900">
                     {formatCurrencyShort(results.totalOffshore)}
@@ -247,7 +246,7 @@ export default function CalculatorPage() {
                           US Salary
                         </th>
                         <th className="text-right px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
-                          Offshore
+                          Remote
                         </th>
                         <th className="text-right px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Savings

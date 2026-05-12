@@ -56,7 +56,7 @@ function JobPostVisual() {
         </div>
         <div className="flex-1 p-3 bg-white rounded-none border border-gray-200/60 shadow-soft">
           <p className="text-[10px] text-gray-400 uppercase tracking-wide">Region</p>
-          <p className="text-[13px] font-medium text-gray-900">South America</p>
+          <p className="text-[13px] font-medium text-gray-900">Worldwide</p>
         </div>
       </div>
     </div>
