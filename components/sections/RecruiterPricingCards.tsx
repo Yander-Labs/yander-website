@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
 import { cn } from "@/lib/utils";
-import { Check, Sparkles } from "lucide-react";
+import { Check } from "lucide-react";
 import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 
@@ -112,8 +112,7 @@ function PricingCard({
             {tier.name}
           </h3>
           {billing === "annual" && tier.annualSaveLabel && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
-              <Sparkles className="w-3 h-3" />
+            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
               {tier.annualSaveLabel}
             </span>
           )}
@@ -131,9 +130,14 @@ function PricingCard({
           </span>
           <span className="ml-2 text-sm text-gray-400">/mo</span>
         </div>
-        {!isFree && billing === "annual" && (
-          <p className="mt-1 text-[11px] text-gray-400">billed annually</p>
-        )}
+        <p
+          className={cn(
+            "mt-1 text-[11px] text-gray-400",
+            !(!isFree && billing === "annual") && "invisible"
+          )}
+        >
+          billed annually
+        </p>
       </div>
 
       {/* CTA */}
