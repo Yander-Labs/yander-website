@@ -87,15 +87,14 @@ interface Profile {
 }
 
 const profiles: Profile[] = [
-  { name: "Maria Santos", role: "Senior Full Stack Developer", salary: "$48k/yr", region: "São Paulo, Brazil", avatar: "/avatars/maria-santos.jpg", skills: ["React", "Node.js", "PostgreSQL"] },
+  { name: "Sarah Chen", role: "Senior Full Stack Engineer", salary: "$135k/yr", region: "San Francisco, USA", avatar: "/avatars/Sarah-chen.png", skills: ["React", "TypeScript", "AWS"] },
+  { name: "Lucas Ferreira", role: "Senior Backend Engineer", salary: "$58k/yr", region: "São Paulo, Brazil", avatar: "/avatars/lucas-ferreira.jpg", skills: ["Python", "Go", "PostgreSQL"] },
+  { name: "Marcus Johnson", role: "Senior Product Designer", salary: "$95k/yr", region: "Toronto, Canada", avatar: "/avatars/marcus-johnson.png", skills: ["Figma", "Design Systems"] },
+  { name: "Sofia Martinez", role: "Performance Marketing Lead", salary: "$38k/yr", region: "Bogotá, Colombia", avatar: "/avatars/sofia-martinez.jpg", skills: ["Google Ads", "Meta Ads"] },
   { name: "Raj Patel", role: "Senior ML Engineer", salary: "$52k/yr", region: "Bangalore, India", avatar: "/avatars/raj-patel.jpg", skills: ["Python", "PyTorch", "AWS"] },
-  { name: "James Ndaba", role: "Executive Assistant", salary: "$22k/yr", region: "Cape Town, South Africa", avatar: "/avatars/james-ndaba.jpg", skills: ["Calendar Mgmt", "Travel", "Notion"] },
-  { name: "Sofia Martinez", role: "Performance Marketing Lead", salary: "$38k/yr", region: "Bogota, Colombia", avatar: "/avatars/sofia-martinez.jpg", skills: ["Google Ads", "Meta Ads", "Analytics"] },
-  { name: "Priya Sharma", role: "Product Designer", salary: "$42k/yr", region: "Hyderabad, India", avatar: "/avatars/priya-sharma.jpg", skills: ["Figma", "UX Research", "Design Systems"] },
-  { name: "Lerato Molefe", role: "Customer Success Manager", salary: "$28k/yr", region: "Johannesburg, South Africa", avatar: "/avatars/lerato-molefe.jpg", skills: ["Account Mgmt", "Onboarding", "CRM"] },
-  { name: "Lucas Ferreira", role: "Backend Engineer", salary: "$45k/yr", region: "Rio de Janeiro, Brazil", avatar: "/avatars/lucas-ferreira.jpg", skills: ["Python", "Go", "Docker"] },
-  { name: "Miguel Reyes", role: "Data Analyst", salary: "$36k/yr", region: "Manila, Philippines", avatar: "/avatars/miguel-reyes.jpg", skills: ["SQL", "Python", "Tableau"] },
-  { name: "David Okonkwo", role: "Operations Manager", salary: "$32k/yr", region: "Durban, South Africa", avatar: "/avatars/david-okonkwo.jpg", skills: ["Process Design", "Project Mgmt", "SOPs"] },
+  { name: "Lerato Molefe", role: "Customer Success Manager", salary: "$28k/yr", region: "Johannesburg, South Africa", avatar: "/avatars/lerato-molefe.jpg", skills: ["Onboarding", "CRM"] },
+  { name: "Emily Rodriguez", role: "Senior Copywriter", salary: "$85k/yr", region: "Austin, USA", avatar: "/avatars/emily-rodriguez.png", skills: ["Direct Response", "Brand"] },
+  { name: "Priya Sharma", role: "Product Designer", salary: "$42k/yr", region: "Hyderabad, India", avatar: "/avatars/priya-sharma.jpg", skills: ["Figma", "UX Research"] },
 ];
 
 // ─── Feature data ───
@@ -123,23 +122,22 @@ function ProfileCard({ profile }: { profile: Profile }) {
       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#d4d4d4"; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = ""; }}
     >
-      <div className="p-5">
-        <div className="flex items-start gap-3 mb-3">
-          <Image src={profile.avatar} alt={profile.name} width={44} height={44} className="w-11 h-11 rounded-full object-cover" />
+      <div className="p-3.5">
+        <div className="flex items-start gap-2.5 mb-2.5">
+          <Image src={profile.avatar} alt={profile.name} width={36} height={36} className="w-9 h-9 rounded-full object-cover" />
           <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-semibold truncate" style={{ color: t.charcoal }}>{profile.name}</h4>
-            <p className="text-xs" style={{ color: t.midGray }}>{profile.role}</p>
+            <h4 className="text-[13px] font-semibold truncate" style={{ color: t.charcoal }}>{profile.name}</h4>
+            <p className="text-[11px] truncate" style={{ color: t.midGray }}>{profile.role}</p>
           </div>
-          <span className="text-xs font-medium px-2.5 py-1 rounded-none" style={{ color: t.midGray, backgroundColor: t.lightGray }}>Remote</span>
         </div>
-        <p className="text-lg font-bold mb-3" style={{ color: t.charcoal }}>{profile.salary}</p>
-        <div className="flex items-center gap-1.5 mb-3">
-          <MapPin className="w-3.5 h-3.5" style={{ color: "#d4d4d4" }} />
-          <span className="text-xs" style={{ color: t.midGray }}>{profile.region}</span>
+        <p className="text-sm font-bold mb-2" style={{ color: t.charcoal }}>{profile.salary}</p>
+        <div className="flex items-center gap-1 mb-2">
+          <MapPin className="w-3 h-3" style={{ color: "#d4d4d4" }} />
+          <span className="text-[11px] truncate" style={{ color: t.midGray }}>{profile.region}</span>
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          {profile.skills.map((s) => (
-            <span key={s} className="px-2 py-0.5 text-[11px] font-medium rounded-none" style={{ color: t.midGray, backgroundColor: t.lightGray }}>{s}</span>
+        <div className="flex flex-wrap gap-1">
+          {profile.skills.slice(0, 2).map((s) => (
+            <span key={s} className="px-1.5 py-0.5 text-[10px] font-medium rounded-none" style={{ color: t.midGray, backgroundColor: t.lightGray }}>{s}</span>
           ))}
         </div>
       </div>
@@ -176,9 +174,9 @@ function TalentSlider() {
 
   return (
     <div className="relative">
-      <div ref={scrollRef} className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth py-1 -my-1" style={{ scrollSnapType: "x mandatory" }}>
+      <div ref={scrollRef} className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth py-1 -my-1" style={{ scrollSnapType: "x mandatory" }}>
         {profiles.map((p) => (
-          <div key={p.name} className="w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] flex-shrink-0" style={{ scrollSnapAlign: "start" }}>
+          <div key={p.name} className="w-[calc(50%-8px)] md:w-[calc(33.333%-11px)] lg:w-[calc(25%-12px)] flex-shrink-0" style={{ scrollSnapAlign: "start" }}>
             <ProfileCard profile={p} />
           </div>
         ))}
@@ -409,12 +407,6 @@ export function V2HomePage() {
             </span>
           </div>
           <TalentSlider />
-          <div className="mt-8">
-            <Link href="/talent" className="inline-flex items-center gap-2 text-sm font-medium transition-opacity hover:opacity-60"
-              style={{ color: t.charcoal }}>
-              View all available roles <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </Container>
       </section>
 
