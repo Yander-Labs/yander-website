@@ -44,8 +44,15 @@ const tiers: RecruiterTier[] = [
     annualMonthly: 80, // 10% off (89 × 0.9 = 80.10, rounded)
     headlineFeature: "500 sourced candidates / month",
     cta: "Start Pro",
-    monthlyLink: "https://buy.stripe.com/7sY28t2DAgT4bMie0v0ZW07",
-    annualLink: "https://buy.stripe.com/8x24gBcea0U66rY3lR0ZW09",
+    // Sign-up first, then app.yander.ai/start-checkout mints the Stripe
+    // session for the selected plan + billing period. URL-encoded so the
+    // inner ?plan=&billing= survives the outer query string.
+    // Decoded redirect_url: https://app.yander.ai/start-checkout?plan=pro&billing=monthly
+    monthlyLink:
+      "https://app.yander.ai/sign-up?redirect_url=https%3A%2F%2Fapp.yander.ai%2Fstart-checkout%3Fplan%3Dpro%26billing%3Dmonthly",
+    // Decoded redirect_url: https://app.yander.ai/start-checkout?plan=pro&billing=annual
+    annualLink:
+      "https://app.yander.ai/sign-up?redirect_url=https%3A%2F%2Fapp.yander.ai%2Fstart-checkout%3Fplan%3Dpro%26billing%3Dannual",
     recommended: true,
     annualSaveLabel: "Save 10%",
   },
@@ -56,8 +63,12 @@ const tiers: RecruiterTier[] = [
     annualMonthly: 212, // 15% off (249 × 0.85 = 211.65, rounded)
     headlineFeature: "Unlimited sourced candidates",
     cta: "Start Max",
-    monthlyLink: "https://buy.stripe.com/00w14p3HE5am8A69Kf0ZW08",
-    annualLink: "https://buy.stripe.com/eVqdRbba646icQm9Kf0ZW0a",
+    // Decoded redirect_url: https://app.yander.ai/start-checkout?plan=max&billing=monthly
+    monthlyLink:
+      "https://app.yander.ai/sign-up?redirect_url=https%3A%2F%2Fapp.yander.ai%2Fstart-checkout%3Fplan%3Dmax%26billing%3Dmonthly",
+    // Decoded redirect_url: https://app.yander.ai/start-checkout?plan=max&billing=annual
+    annualLink:
+      "https://app.yander.ai/sign-up?redirect_url=https%3A%2F%2Fapp.yander.ai%2Fstart-checkout%3Fplan%3Dmax%26billing%3Dannual",
     annualSaveLabel: "Save 15%",
   },
 ];
