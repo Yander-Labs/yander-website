@@ -34,7 +34,8 @@ export function Navigation() {
       >
         <Container>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
+            {/* Left: Logo + primary links */}
+            <div className="flex items-center gap-8">
               <Link href="/" className="flex items-center text-gray-900">
                 <Image
                   src="/logo.svg"
@@ -45,34 +46,36 @@ export function Navigation() {
                   priority
                 />
               </Link>
+              <div className="hidden md:flex items-center gap-6">
+                <Link
+                  href="/pricing"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Pricing
+                </Link>
+                <Link
+                  href="/blog"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Blog
+                </Link>
+              </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-4">
-              <Link
-                href="/pricing"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/blog"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-4 py-2.5 text-sm min-h-[44px]"
-              >
-                Get Started Free
-              </Link>
+            {/* Right: CTAs */}
+            <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-4 py-2.5 text-sm min-h-[44px]"
               >
                 Book a Demo
               </button>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
+              >
+                Try for free
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -147,15 +150,8 @@ export function Navigation() {
 
             {/* Drawer Footer */}
             <div className="p-4 border-t border-[#E4E7EC] space-y-3">
-              <Link
-                href="/pricing"
-                onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-700 hover:text-gray-900 hover:bg-gray-50 border border-[#E4E7EC] px-5 py-3 text-sm min-h-[44px] w-full"
-              >
-                Get Started Free
-              </Link>
               <button
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-5 py-3 text-sm min-h-[44px] w-full"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openDemoModal();
@@ -163,6 +159,13 @@ export function Navigation() {
               >
                 Book a Demo
               </button>
+              <Link
+                href="/pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
+              >
+                Try for free
+              </Link>
             </div>
           </div>
         </div>
