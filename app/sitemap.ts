@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { client } from '@/lib/sanity'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 // Query to get all published blog posts with their dates
 const postsForSitemapQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {

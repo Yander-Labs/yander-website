@@ -35,7 +35,7 @@ Add production domain to Sanity:
 1. Go to https://www.sanity.io/manage
 2. Select project `s3r1d2vt`
 3. Navigate to API → CORS Origins
-4. Add production URL (e.g., `https://yander.io`)
+4. Add production URL (e.g., `https://yander.ai`)
 
 ## Pre-Deploy Checklist
 

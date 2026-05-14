@@ -12,7 +12,7 @@ export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Yander Comparisons | See How Yander Stacks Up',
   description: 'Honest comparisons between Yander and other hiring tools. See feature breakdowns, decision frameworks, and which tool is right for your team.',
-  alternates: { canonical: 'https://yander.io/compare' },
+  alternates: { canonical: 'https://yander.ai/compare' },
 }
 
 export default async function ComparisonsPage() {

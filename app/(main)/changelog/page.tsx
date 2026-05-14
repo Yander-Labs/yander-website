@@ -11,18 +11,18 @@ export const metadata: Metadata = {
   description:
     "See what's new in Yander. Track new features, improvements, and bug fixes.",
   alternates: {
-    canonical: 'https://yander.io/changelog'
+    canonical: 'https://yander.ai/changelog'
   },
   openGraph: {
     title: 'Changelog | Yander',
     description:
       "See what's new in Yander. Track new features, improvements, and bug fixes.",
-    url: 'https://yander.io/changelog',
+    url: 'https://yander.ai/changelog',
     siteName: 'Yander',
     type: 'website',
     images: [
       {
-        url: 'https://yander.io/og-image.png',
+        url: 'https://yander.ai/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Yander Changelog'
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'Changelog | Yander',
     description:
       "See what's new in Yander. Track new features, improvements, and bug fixes.",
-    images: ['https://yander.io/og-image.png']
+    images: ['https://yander.ai/og-image.png']
   }
 }
 

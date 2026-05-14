@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Yander",
   description: "Learn how Yander collects, uses, and protects your data. We're committed to transparency and your privacy.",
   alternates: {
-    canonical: "https://yander.io/privacy-policy",
+    canonical: "https://yander.ai/privacy-policy",
   },
   robots: "index, follow",
 };
@@ -311,7 +311,7 @@ export default function PrivacyPolicyPage() {
               <p className="leading-relaxed">
                 If your organization requires a Data Processing Agreement under GDPR Article 28 or similar legislation, our standard DPA is available at{" "}
                 <a href="/dpa" className="text-gray-900 underline hover:no-underline">
-                  yander.io/dpa
+                  yander.ai/dpa
                 </a>. The DPA is incorporated by reference into our Terms of Service for all customers processing personal data subject to applicable data protection laws.
               </p>
             </section>

@@ -5,7 +5,7 @@ import { industryPageBySlugQuery, industryPageSlugsQuery } from '@/lib/queries'
 import type { IndustryPage } from '@/lib/types'
 import { IndustryPageContent } from './IndustryPageContent'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 export const revalidate = 60
 

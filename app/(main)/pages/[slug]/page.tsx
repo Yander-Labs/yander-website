@@ -5,7 +5,7 @@ import { landingPageBySlugQuery, landingPageSlugsQuery } from '@/lib/queries'
 import type { LandingPage } from '@/lib/types'
 import { LandingPageContent } from './LandingPageContent'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 export const revalidate = 60
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Yander's Data Processing Agreement (DPA) outlines how we process personal data on behalf of our customers in compliance with GDPR and applicable data protection laws.",
   alternates: {
-    canonical: "https://yander.io/dpa",
+    canonical: "https://yander.ai/dpa",
   },
   robots: "index, follow",
 };

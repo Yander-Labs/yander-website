@@ -5,7 +5,7 @@ import { comparisonBySlugQuery, comparisonSlugsQuery } from '@/lib/queries'
 import type { Comparison } from '@/lib/types'
 import { ComparisonPage } from './ComparisonPage'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 export const revalidate = 60
 

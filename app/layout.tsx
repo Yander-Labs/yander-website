@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "worldwide recruiting",
     "remote team hiring",
   ],
-  metadataBase: new URL("https://yander.io"),
+  metadataBase: new URL("https://yander.ai"),
   alternates: {
     canonical: "/",
   },
@@ -49,11 +49,11 @@ export const metadata: Metadata = {
     title: "Yander - The First AI Agent That Recruits For You",
     description:
       "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
-    url: "https://yander.io",
+    url: "https://yander.ai",
     siteName: "Yander",
     images: [
       {
-        url: "https://yander.io/og-image.png",
+        url: "https://yander.ai/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yander - AI Recruiting Platform",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Yander - The First AI Agent That Recruits For You",
     description:
       "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
-    images: ["https://yander.io/og-image.png"],
+    images: ["https://yander.ai/og-image.png"],
     site: "@yanderlabs",
   },
 };
@@ -77,8 +77,8 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Yander",
-  url: "https://yander.io",
-  logo: "https://yander.io/logo.svg",
+  url: "https://yander.ai",
+  logo: "https://yander.ai/logo.svg",
   description:
     "AI recruiting platform that helps companies hire top remote talent worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia — without placement fees.",
   sameAs: [
@@ -97,7 +97,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Yander",
-  url: "https://yander.io",
+  url: "https://yander.ai",
   description:
     "Build a stronger remote team. Keep clients longer. Get live insights on engagement, workload, and sentiment.",
   publisher: {

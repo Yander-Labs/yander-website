@@ -9,8 +9,12 @@ interface ContactSalesRequest {
   message?: string;
 }
 
-// Allowed origins for CORS
+// Allowed origins for CORS. Both .ai and .io are listed during the
+// brand migration window so the API keeps working from yander.io until
+// SEO traffic fully shifts to yander.ai.
 const ALLOWED_ORIGINS = [
+  "https://yander.ai",
+  "https://www.yander.ai",
   "https://yander.io",
   "https://www.yander.io",
   "https://yander-website.vercel.app",

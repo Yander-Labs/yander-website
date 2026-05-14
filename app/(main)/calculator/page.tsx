@@ -300,7 +300,7 @@ export default function CalculatorPage() {
                       Get The Free Playbook
                     </Button>
                   </a>
-                  <a href="https://yander.io">
+                  <a href="https://yander.ai">
                     <Button>
                       Join The Yander Waitlist
                     </Button>

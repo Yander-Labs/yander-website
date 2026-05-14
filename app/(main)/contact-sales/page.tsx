@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   description:
     "Talk to our sales team about Enterprise pricing, custom onboarding, and dedicated support for your agency.",
   alternates: {
-    canonical: "https://yander.io/contact-sales",
+    canonical: "https://yander.ai/contact-sales",
   },
   robots: "index, follow",
   openGraph: {
     title: "Contact Sales | Yander",
     description:
       "Talk to our sales team about Enterprise pricing, custom onboarding, and dedicated support for your agency.",
-    url: "https://yander.io/contact-sales",
+    url: "https://yander.ai/contact-sales",
     siteName: "Yander",
     type: "website",
   },

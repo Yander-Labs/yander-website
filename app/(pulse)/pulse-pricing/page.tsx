@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   description:
     "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
   alternates: {
-    canonical: "https://yander.io/pulse-pricing",
+    canonical: "https://yander.ai/pulse-pricing",
   },
   robots: "index, follow",
   openGraph: {
     title: "Pulse Pricing | Yander",
     description:
       "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
-    url: "https://yander.io/pulse-pricing",
+    url: "https://yander.ai/pulse-pricing",
     siteName: "Yander",
     type: "website",
   },

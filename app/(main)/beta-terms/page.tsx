@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Terms and conditions for participating in the Yander beta program. Learn what data we access, how we use it, and your rights as a beta participant.",
   alternates: {
-    canonical: "https://yander.io/beta-terms",
+    canonical: "https://yander.ai/beta-terms",
   },
   robots: "index, follow",
 };

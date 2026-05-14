@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/studio/', '/waitlist-confirmation/', '/api/'],
       },
     ],
-    sitemap: 'https://yander.io/sitemap.xml',
+    sitemap: 'https://yander.ai/sitemap.xml',
   }
 }

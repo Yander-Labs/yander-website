@@ -12,7 +12,7 @@ import { ChangelogHeader } from '@/components/changelog/ChangelogHeader'
 import { ChangelogBody } from '@/components/changelog/ChangelogBody'
 import { RecentChangelogs } from '@/components/changelog/RecentChangelogs'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 export const revalidate = 60
 
@@ -60,7 +60,7 @@ export async function generateMetadata({
       publishedTime: entry.releaseDate,
       images: [
         {
-          url: 'https://yander.io/og-image.png',
+          url: 'https://yander.ai/og-image.png',
           width: 1200,
           height: 630,
           alt: `${entry.version}: ${entry.title}`
@@ -71,7 +71,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://yander.io/og-image.png']
+      images: ['https://yander.ai/og-image.png']
     }
   }
 }

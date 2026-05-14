@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Learn how Yander protects your data with enterprise-grade security, encryption, tenant isolation, and strict privacy controls.",
   alternates: {
-    canonical: "https://yander.io/security",
+    canonical: "https://yander.ai/security",
   },
   robots: "index, follow",
 };

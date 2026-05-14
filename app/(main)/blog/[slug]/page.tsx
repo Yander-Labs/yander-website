@@ -13,7 +13,7 @@ import { ShareButtons } from '@/components/blog/ShareButtons'
 import { AuthorCard } from '@/components/blog/AuthorCard'
 import { RelatedPosts } from '@/components/blog/RelatedPosts'
 
-const SITE_URL = 'https://yander.io'
+const SITE_URL = 'https://yander.ai'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 

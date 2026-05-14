@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   description:
     "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
   alternates: {
-    canonical: "https://yander.io/pricing",
+    canonical: "https://yander.ai/pricing",
   },
   robots: "index, follow",
   openGraph: {
     title: "Pricing | Yander",
     description:
       "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
-    url: "https://yander.io/pricing",
+    url: "https://yander.ai/pricing",
     siteName: "Yander",
     type: "website",
   },

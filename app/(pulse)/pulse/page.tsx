@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   description:
     "One dashboard for your team's daily engagement, workload, and quit risk — built from the tools you already use.",
   alternates: {
-    canonical: "https://yander.io/pulse",
+    canonical: "https://yander.ai/pulse",
   },
   robots: "index, follow",
   openGraph: {
     title: "Yander Pulse — Real-time team performance intelligence",
     description:
       "One dashboard for your team's daily engagement, workload, and quit risk — built from the tools you already use.",
-    url: "https://yander.io/pulse",
+    url: "https://yander.ai/pulse",
     siteName: "Yander",
     type: "website",
   },
