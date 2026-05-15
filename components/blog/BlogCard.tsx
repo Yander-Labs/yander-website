@@ -41,9 +41,9 @@ export function BlogCard({ post }: BlogCardProps) {
       )}
 
       {/* Title */}
-      <h3 className="font-medium text-gray-900 text-[15px] leading-snug mb-1.5 group-hover:text-gray-600 transition-colors line-clamp-2">
+      <h2 className="font-medium text-gray-900 text-[15px] leading-snug mb-1.5 group-hover:text-gray-600 transition-colors line-clamp-2">
         {post.title}
-      </h3>
+      </h2>
 
       {/* Excerpt */}
       {post.excerpt && (

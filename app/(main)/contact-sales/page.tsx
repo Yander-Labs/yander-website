@@ -1,24 +1,35 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ContactSalesForm } from "@/components/sections/ContactSalesForm";
 import { Check } from "lucide-react";
+import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
+import { pageMetadata } from "@/lib/page-metadata";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact Sales | Yander",
+export const metadata = pageMetadata({
+  title: "Contact Yander Sales — Enterprise Pricing, Onboarding & SSO",
   description:
-    "Talk to our sales team about Enterprise pricing, custom onboarding, and dedicated support for your agency.",
-  alternates: {
-    canonical: "https://yander.ai/contact-sales",
-  },
-  robots: "index, follow",
-  openGraph: {
-    title: "Contact Sales | Yander",
-    description:
-      "Talk to our sales team about Enterprise pricing, custom onboarding, and dedicated support for your agency.",
-    url: "https://yander.ai/contact-sales",
-    siteName: "Yander",
-    type: "website",
+    "Talk to Yander sales about Enterprise pricing, custom onboarding, SSO, dedicated Slack support, and tailored scoring cadence for your agency or team.",
+  path: "/contact-sales",
+  ogImageAlt: "Contact Yander Sales",
+});
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  url: `${SITE_URL}/contact-sales`,
+  name: "Contact Yander Sales",
+  description:
+    "Get in touch with Yander's sales team for Enterprise pricing, onboarding, and dedicated support.",
+  mainEntity: {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "jordan@yanderlabs.com",
+      availableLanguage: ["English"],
+    },
   },
 };
 
@@ -34,6 +45,7 @@ const benefits = [
 export default function ContactSalesPage() {
   return (
     <section className="pt-28 pb-20 md:pt-32 md:pb-28">
+      <SchemaJsonLd schema={contactPageSchema} />
       <Container>
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left column */}

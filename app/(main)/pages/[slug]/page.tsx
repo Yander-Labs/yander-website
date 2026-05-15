@@ -4,8 +4,10 @@ import { sanityFetch, urlFor } from '@/lib/sanity'
 import { landingPageBySlugQuery, landingPageSlugsQuery } from '@/lib/queries'
 import type { LandingPage } from '@/lib/types'
 import { LandingPageContent } from './LandingPageContent'
-
-const SITE_URL = 'https://yander.ai'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
+import { SchemaJsonLd, faqSchema } from '@/components/seo/SchemaJsonLd'
+import { Container } from '@/components/ui/Container'
+import { SITE_HANDLE, SITE_NAME, SITE_URL } from '@/lib/site'
 
 export const revalidate = 60
 
@@ -23,12 +25,16 @@ export async function generateMetadata({ params }: LandingPageProps): Promise<Me
   const page = await sanityFetch<LandingPage | null>(landingPageBySlugQuery, { slug })
 
   if (!page) {
-    return { title: 'Page Not Found | Yander' }
+    return { title: `Page Not Found | ${SITE_NAME}`, robots: { index: false, follow: false } }
   }
 
   const title = page.seo?.metaTitle || page.title
   const description = page.seo?.metaDescription || page.heroDescription
   const url = `${SITE_URL}/pages/${page.slug.current}`
+  const imageUrl = page.seo?.ogImage
+    ? urlFor(page.seo.ogImage).width(1200).height(630).url()
+    : `${SITE_URL}/og-image.png`
+  const imageAlt = page.seo?.ogImage?.alt || title
 
   return {
     title,
@@ -38,15 +44,19 @@ export async function generateMetadata({ params }: LandingPageProps): Promise<Me
     openGraph: {
       title,
       description,
-      type: 'website',
+      type: page.pageType === 'pillar' ? 'article' : 'website',
       url,
-      siteName: 'Yander',
-      ...(page.seo?.ogImage && {
-        images: [{ url: urlFor(page.seo.ogImage).width(1200).height(630).url(), width: 1200, height: 630 }],
-      }),
+      siteName: SITE_NAME,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }],
     },
-    twitter: { card: 'summary_large_image', title, description },
-    robots: page.seo?.noIndex ? 'noindex, nofollow' : 'index, follow',
+    twitter: {
+      card: 'summary_large_image',
+      site: SITE_HANDLE,
+      title,
+      description,
+      images: [imageUrl],
+    },
+    robots: page.seo?.noIndex ? { index: false, follow: false } : { index: true, follow: true },
   }
 }
 
@@ -58,21 +68,37 @@ export default async function LandingRoute({ params }: LandingPageProps) {
     notFound()
   }
 
+  const url = `${SITE_URL}/pages/${page.slug.current}`
+  const isPillar = page.pageType === 'pillar'
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
+    '@type': isPillar ? 'Article' : 'WebPage',
     name: page.title,
+    headline: page.title,
     description: page.heroDescription,
-    url: `${SITE_URL}/pages/${page.slug.current}`,
-    publisher: { '@type': 'Organization', name: 'Yander', url: SITE_URL },
+    url,
+    inLanguage: 'en-US',
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   }
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaJsonLd schema={jsonLd} />
+      {page.faqs && page.faqs.length > 0 && (
+        <SchemaJsonLd
+          schema={faqSchema(
+            page.faqs.map((f) => ({ question: f.question, answer: f.answer }))
+          )}
+        />
+      )}
+      <Container>
+        <Breadcrumbs
+          className="pt-32 pb-2"
+          items={[{ name: 'Home', href: '/' }, { name: page.title }]}
+        />
+      </Container>
       <LandingPageContent page={page} />
     </>
   )

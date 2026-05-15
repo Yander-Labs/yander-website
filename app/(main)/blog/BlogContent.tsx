@@ -44,7 +44,8 @@ export function BlogContent({
       {/* Header row: Title + Search + Filters */}
       <div className="flex flex-col md:flex-row gap-4 md:items-end">
         <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gray-900 flex-shrink-0">
-          Blog
+          Yander Blog
+          <span className="sr-only"> — AI recruiting, global hiring, and remote team insights</span>
         </h1>
         <div className="flex-1 max-w-sm">
           <BlogSearch

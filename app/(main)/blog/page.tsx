@@ -1,39 +1,21 @@
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
 import { sanityFetch } from '@/lib/sanity'
 import { paginatedPostsQuery, categoriesQuery, postsByCategoryQuery } from '@/lib/queries'
 import type { PostCard, Category, PaginatedPosts } from '@/lib/types'
 import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
+import { SchemaJsonLd } from '@/components/seo/SchemaJsonLd'
 import { BlogContent } from './BlogContent'
+import { pageMetadata } from '@/lib/page-metadata'
+import { SITE_URL } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Blog | Yander',
-  description: 'Insights on remote work, team productivity, and building better workplace culture.',
-  alternates: {
-    canonical: 'https://yander.ai/blog',
-  },
-  openGraph: {
-    title: 'Yander Blog - Remote Work & Team Productivity Insights',
-    description: 'Insights on remote work, team productivity, and building better workplace culture.',
-    url: 'https://yander.ai/blog',
-    siteName: 'Yander',
-    type: 'website',
-    images: [
-      {
-        url: 'https://yander.ai/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Yander Blog',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Yander Blog - Remote Work & Team Productivity Insights',
-    description: 'Insights on remote work, team productivity, and building better workplace culture.',
-    images: ['https://yander.ai/og-image.png'],
-  },
-}
+export const metadata = pageMetadata({
+  title: 'Yander Blog — AI Recruiting & Global Hiring Insights',
+  description:
+    'Deep dives on AI recruiting, global hiring strategy, and remote team management. Honest 2026 takes from operators who hire across 60+ countries.',
+  path: '/blog',
+  ogImageAlt: 'Yander Blog',
+})
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -73,11 +55,33 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   const totalPages = Math.ceil(total / POSTS_PER_PAGE)
 
+  const blogSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Yander Blog',
+    url: `${SITE_URL}/blog`,
+    description:
+      'Deep dives on AI recruiting, global hiring, remote team management, and the future of work.',
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    blogPost: posts.slice(0, 10).map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `${SITE_URL}/blog/${p.slug.current}`,
+      datePublished: p.publishedAt,
+      description: p.excerpt,
+      ...(p.author?.name ? { author: { '@type': 'Person', name: p.author.name } } : {}),
+    })),
+  }
+
   return (
     <main className="min-h-screen bg-white pt-28">
+      <SchemaJsonLd schema={blogSchema} />
       <section className="py-8">
         <Container>
-          <h1 className="sr-only">Yander Blog - Remote Work & Team Productivity Insights</h1>
+          <Breadcrumbs
+            className="mb-6"
+            items={[{ name: 'Home', href: '/' }, { name: 'Blog' }]}
+          />
           <Suspense fallback={<BlogContentSkeleton />}>
             <BlogContent
               initialPosts={posts}

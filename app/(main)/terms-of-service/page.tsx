@@ -1,14 +1,13 @@
 import { Container } from "@/components/ui/Container";
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Terms of Service | Yander",
-  description: "Terms and conditions for using Yander's remote team intelligence platform. Read our service agreement, usage policies, and legal terms.",
-  alternates: {
-    canonical: "https://yander.ai/terms-of-service",
-  },
-  robots: "index, follow",
-};
+  description:
+    "Terms and conditions for using Yander's AI recruiting platform — service agreement, acceptable use, payment terms, cancellation, and dispute resolution.",
+  path: "/terms-of-service",
+  ogImageAlt: "Yander Terms of Service",
+});
 
 export default function TermsOfServicePage() {
   return (

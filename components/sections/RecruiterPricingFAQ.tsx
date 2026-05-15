@@ -5,44 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
 import { ChevronDown } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
-
-const faqs = [
-  {
-    question: "What counts as a sourced candidate?",
-    answer:
-      "Each new person the AI surfaces and qualifies for one of your open roles counts as one sourced candidate. Re-surfacing the same person for a different role does not double-count.",
-  },
-  {
-    question: "What happens if I hit my monthly limit on Pro?",
-    answer:
-      "Sourcing pauses for the rest of the billing cycle until your next reset, or you can upgrade to Max for unlimited sourcing at any time. Pro-rated billing applies.",
-  },
-  {
-    question: "Do unused candidates roll over?",
-    answer:
-      "No. The monthly count resets each billing cycle so you always start fresh.",
-  },
-  {
-    question: "Can I change plans at any time?",
-    answer:
-      "Yes. Upgrade or downgrade whenever you need. Changes take effect immediately and billing is pro-rated.",
-  },
-  {
-    question: "Is there a free trial?",
-    answer:
-      "The Free plan is the trial — your first 200 sourced candidates are included with no time limit. Move to Pro or Max whenever you need more volume.",
-  },
-  {
-    question: "Do you charge placement fees?",
-    answer:
-      "No. Yander never charges per-hire or per-placement fees. The plan price is the total cost.",
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer:
-      "Yes. There are no contracts. Cancel anytime and you'll keep access until the end of your billing period.",
-  },
-];
+import { recruiterFaqs } from "@/lib/faqs";
 
 function FAQItem({
   question,
@@ -149,7 +112,7 @@ export function RecruiterPricingFAQ() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="lg:col-span-8"
           >
-            {faqs.map((faq, index) => (
+            {recruiterFaqs.map((faq, index) => (
               <FAQItem
                 key={index}
                 question={faq.question}

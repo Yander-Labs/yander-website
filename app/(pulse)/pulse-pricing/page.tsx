@@ -1,32 +1,37 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { PricingCards } from "@/components/sections/PricingCards";
 import { PricingComparison } from "@/components/sections/PricingComparison";
 import { PricingFAQ } from "@/components/sections/PricingFAQ";
+import { pulsePricingFaqs } from "@/lib/faqs";
+import { SchemaJsonLd, faqSchema } from "@/components/seo/SchemaJsonLd";
+import { pageMetadata } from "@/lib/page-metadata";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Pulse Pricing | Yander",
+export const metadata = pageMetadata({
+  title: "Yander Pulse Pricing — Workforce Analytics from $29 / Seat",
   description:
-    "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
-  alternates: {
-    canonical: "https://yander.ai/pulse-pricing",
-  },
-  robots: "index, follow",
-  openGraph: {
-    title: "Pulse Pricing | Yander",
-    description:
-      "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
-    url: "https://yander.ai/pulse-pricing",
-    siteName: "Yander",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pulse Pricing | Yander",
-    description:
-      "Simple, transparent pricing for remote team intelligence. Start with a 14-day free trial on our Starter plan.",
+    "Transparent per-seat pricing for Yander Pulse — 14-day free trial on Starter, scaling tiers for growing teams, Enterprise SSO. No long-term contracts.",
+  path: "/pulse-pricing",
+  ogImageAlt: "Yander Pulse Pricing",
+});
+
+const pulsePricingProductSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Yander Pulse",
+  description: "Workforce analytics for remote teams. Per-seat pricing.",
+  brand: { "@type": "Brand", name: "Yander" },
+  url: `${SITE_URL}/pulse-pricing`,
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "29",
+    highPrice: "99",
+    offerCount: "3",
+    url: `${SITE_URL}/pulse-pricing`,
+    availability: "https://schema.org/InStock",
   },
 };
 
@@ -41,6 +46,8 @@ const trustedCompanies = [
 export default function PricingPage() {
   return (
     <>
+      <SchemaJsonLd schema={pulsePricingProductSchema} />
+      <SchemaJsonLd schema={faqSchema(pulsePricingFaqs)} />
       {/* Hero */}
       <section className="pt-28 pb-6 md:pt-32 md:pb-8">
         <Container>

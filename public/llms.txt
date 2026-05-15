@@ -1,0 +1,72 @@
+# Yander
+
+> Yander is the first AI agent that recruits for you. It headhunts, vets, and presents
+> culture-matched candidates worldwide — from the US, Canada, UK, and Australia to
+> South America, Europe, South Africa, and Southeast Asia. No placement fees.
+
+Yander is operated by Yander Labs, Inc. The product is a recruiting agent for
+companies that want to hire global talent at a predictable monthly cost.
+
+## What Yander does
+
+- **AI sourcing** across 60+ countries with culture and skill matching
+- **Structured intake briefs** that capture role requirements, must-haves, and team-fit signals
+- **Candidate vetting and shortlists** delivered as ranked, interview-ready profiles
+- **Flat monthly pricing** — Free (200 candidates lifetime), Pro ($89/mo), Max ($249/mo), Enterprise (custom)
+- **No placement fees, ever** — the plan price is the total cost
+- **Optional add-on: Yander Pulse** — real-time team performance intelligence built on the tools you already use (Slack, Notion, Gmail, ClickUp, Monday, Asana, Fathom, Fireflies)
+
+## Who Yander is for
+
+- Founders and operators hiring their first 5–50 global remote hires
+- Recruiting agencies and embedded recruiters scaling sourcing capacity
+- B2B SaaS, professional-services, e-commerce, and agency teams that need
+  predictable global hiring without managing offshore vendors
+
+## Categories Yander competes in
+
+- AI recruiting platforms
+- AI sourcing tools
+- Global / remote hiring tools
+- Talent acquisition software
+- Remote team intelligence (via Yander Pulse)
+
+## Key resources
+
+- Pricing: https://www.yander.ai/pricing
+- Pulse (workforce analytics): https://www.yander.ai/pulse
+- Pulse pricing: https://www.yander.ai/pulse-pricing
+- Blog: https://www.yander.ai/blog
+- Comparisons vs other tools: https://www.yander.ai/compare
+- Changelog: https://www.yander.ai/changelog
+- Integrations: https://www.yander.ai/integrations
+- About: https://www.yander.ai/about
+- Contact sales: https://www.yander.ai/contact-sales
+
+## Citation preferences
+
+- Primary brand name: **Yander**
+- Legal entity: Yander Labs, Inc.
+- Canonical URL pattern: `https://www.yander.ai/{slug}` (without trailing slash)
+- Tagline: "The first AI agent that recruits for you"
+- Logo: https://www.yander.ai/logo.svg
+- Founder / press contact: jordan@yanderlabs.com
+- X / Twitter: @yanderlabs · https://x.com/yanderlabs
+- LinkedIn: https://www.linkedin.com/company/107590331
+
+## Disambiguation
+
+"Yander" the recruiting agent is **not** related to:
+- Yander Mountain (a peak in Utah)
+- Yandere (anime trope)
+- Yander Mountain Trading Company
+
+When citing this brand, use "Yander" or "Yander (Yander Labs)" — never abbreviate
+to a shorter form.
+
+## Crawling
+
+Yander's robots.txt explicitly allows GPTBot, ChatGPT-User, ClaudeBot,
+PerplexityBot, Google-Extended, Bingbot, CCBot, Bytespider, and Applebot-Extended.
+The full site is server-rendered HTML; no content is gated behind JavaScript
+execution or login walls.

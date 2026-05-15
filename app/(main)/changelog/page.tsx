@@ -1,42 +1,19 @@
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
 import { sanityFetch } from '@/lib/sanity'
 import { paginatedChangelogsQuery } from '@/lib/queries'
 import type { PaginatedChangelogs } from '@/lib/types'
 import { Container } from '@/components/ui/Container'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { ChangelogContent } from './ChangelogContent'
+import { pageMetadata } from '@/lib/page-metadata'
 
-export const metadata: Metadata = {
-  title: 'Changelog | Yander',
+export const metadata = pageMetadata({
+  title: 'Yander Changelog — Product Updates, Features & Improvements',
   description:
-    "See what's new in Yander. Track new features, improvements, and bug fixes.",
-  alternates: {
-    canonical: 'https://yander.ai/changelog'
-  },
-  openGraph: {
-    title: 'Changelog | Yander',
-    description:
-      "See what's new in Yander. Track new features, improvements, and bug fixes.",
-    url: 'https://yander.ai/changelog',
-    siteName: 'Yander',
-    type: 'website',
-    images: [
-      {
-        url: 'https://yander.ai/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Yander Changelog'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Changelog | Yander',
-    description:
-      "See what's new in Yander. Track new features, improvements, and bug fixes.",
-    images: ['https://yander.ai/og-image.png']
-  }
-}
+    "Every Yander product release — new AI sourcing capabilities, integrations, performance improvements, and bug fixes. Follow @yanderlabs for updates.",
+  path: '/changelog',
+  ogImageAlt: 'Yander Changelog',
+})
 
 export const revalidate = 60
 
@@ -71,6 +48,10 @@ export default async function ChangelogPage({
   return (
     <main className="min-h-screen bg-white pt-28 pb-16">
       <Container>
+        <Breadcrumbs
+          className="mb-6"
+          items={[{ name: 'Home', href: '/' }, { name: 'Changelog' }]}
+        />
         <Suspense fallback={<ChangelogSkeleton />}>
           <ChangelogContent
             entries={entries}

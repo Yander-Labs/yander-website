@@ -5,39 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ChevronDown } from "lucide-react";
-
-const faqs = [
-  {
-    question: "How does Yander work without tracking keystrokes or screenshots?",
-    answer:
-      "Yander analyses aggregate patterns from tools your team already uses: Slack activity, emails, meeting attendance, response times, project management activity, and more. We never capture screenshots, log keystrokes, or monitor private messages. Instead, we look at patterns across the platforms your team already uses.",
-  },
-  {
-    question: "What integrations does Yander support?",
-    answer:
-      "Yander integrates with Slack, Google Workspace (Gmail, Calendar, Meet), Microsoft 365 (Outlook, Teams, Calendar), Zoom, and project management tools like Notion, ClickUp, and Monday.com. Setup takes about 10 minutes. We're constantly adding new integrations based on customer feedback.",
-  },
-  {
-    question: "How is Yander different from time-tracking software?",
-    answer:
-      "Time-tracking software monitors hours worked and specific activities. Yander focuses on engagement quality, not quantity. We help you understand if someone is thriving or struggling — not how many hours they logged. It's the difference between surveillance and insight.",
-  },
-  {
-    question: "How quickly can I get started?",
-    answer:
-      "Most teams are fully set up in under 10 minutes. Connect your integrations, invite your team, and you'll start seeing initial insights within 24-48 hours as the system calibrates to your team's patterns. Full trend data typically appears after the first week.",
-  },
-  {
-    question: "Is my team's data secure?",
-    answer:
-      "Absolutely. We're SOC 2 Type II compliant and use enterprise-grade encryption for all data at rest and in transit. We never sell data, and you can request complete data deletion at any time. Your team's privacy is our top priority.",
-  },
-  {
-    question: "What size teams is Yander best for?",
-    answer:
-      "Yander works best for remote or hybrid teams of 5-500 people. Smaller teams benefit from the early warning signals and engagement tracking, while larger teams appreciate the ability to spot patterns across departments and identify at-risk employees before issues escalate.",
-  },
-];
+import { pulseFaqs } from "@/lib/faqs";
 
 function FAQItem({
   question,
@@ -118,7 +86,7 @@ export function PulseFAQ() {
             transition={{ duration: 0.5 }}
             className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] px-6 md:px-8"
           >
-            {faqs.map((faq, index) => (
+            {pulseFaqs.map((faq, index) => (
               <FAQItem
                 key={index}
                 question={faq.question}

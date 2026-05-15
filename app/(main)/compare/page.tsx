@@ -1,27 +1,52 @@
-import type { Metadata } from 'next'
 import { sanityFetch } from '@/lib/sanity'
 import { comparisonsQuery } from '@/lib/queries'
 import type { ComparisonCard } from '@/lib/types'
 import { Container } from '@/components/ui/Container'
 import { SectionLabel } from '@/components/ui/SectionLabel'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
+import { SchemaJsonLd } from '@/components/seo/SchemaJsonLd'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { pageMetadata } from '@/lib/page-metadata'
+import { SITE_URL } from '@/lib/site'
 
 export const revalidate = 60
 
-export const metadata: Metadata = {
-  title: 'Yander Comparisons | See How Yander Stacks Up',
-  description: 'Honest comparisons between Yander and other hiring tools. See feature breakdowns, decision frameworks, and which tool is right for your team.',
-  alternates: { canonical: 'https://yander.ai/compare' },
-}
+export const metadata = pageMetadata({
+  title: 'Yander Comparisons — Yander vs Other AI Hiring Tools',
+  description:
+    'Honest side-by-side comparisons of Yander vs Ashby, Eightfold, JuiceBox AI, Paradox, Fetcher. Feature breakdowns, real pricing, decision frameworks.',
+  path: '/compare',
+  ogImageAlt: 'Yander Comparisons',
+})
 
 export default async function ComparisonsPage() {
   const comparisons = await sanityFetch<ComparisonCard[]>(comparisonsQuery)
 
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Yander vs other hiring tools — comparison directory',
+    url: `${SITE_URL}/compare`,
+    description:
+      'Side-by-side comparisons of Yander vs other AI recruiting and hiring tools.',
+    hasPart: comparisons.map((c) => ({
+      '@type': 'Article',
+      name: `Yander vs ${c.competitorName}`,
+      url: `${SITE_URL}/compare/${c.slug.current}`,
+      description: c.heroDescription,
+    })),
+  }
+
   return (
     <main>
+      <SchemaJsonLd schema={collectionSchema} />
       <section className="pt-12 pb-16 md:pt-20 md:pb-24 bg-white">
         <Container>
+          <Breadcrumbs
+            className="mb-8"
+            items={[{ name: 'Home', href: '/' }, { name: 'Compare' }]}
+          />
           <div className="text-center mb-12">
             <SectionLabel centered>Comparisons</SectionLabel>
             <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em]">

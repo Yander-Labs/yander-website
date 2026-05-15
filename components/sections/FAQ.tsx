@@ -4,49 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
 import { ChevronDown } from "lucide-react";
-
-const faqs = [
-  {
-    question: "Why use Yander to hire?",
-    answer:
-      "Yander is AI sourcing software. Our agent surfaces qualified candidates outside your inbound and network, helps you evaluate them with structured assessments, and gets you interview-ready people in days. Used by hiring teams and recruiters alike. Start free with your first 200 candidates — paid plans from $89/month.",
-  },
-  {
-    question: "What countries do you source from?",
-    answer:
-      "We source candidates worldwide — including the US, Canada, UK, Australia, South America, Europe, South Africa, and Southeast Asia. Whether you want premium native-English expertise or cost-effective talent (where you can save 40-70% versus US rates), our AI surfaces strong candidates wherever they are.",
-  },
-  {
-    question: "How does the AI matching work?",
-    answer:
-      "You provide a job description or build one with Yander. Our AI agent searches talent pools for candidates who match on technical skills, experience, and company culture. Each candidate is assessed through skills tests and personality evaluations before being presented to you.",
-  },
-  {
-    question: "What does culture-fit assessment include?",
-    answer:
-      "Personality assessments evaluating remote work readiness, communication style, self-management, and collaboration preferences. The people you interview aren't just technically qualified. They'll work well with your team.",
-  },
-  {
-    question: "Can I send my own candidates through Yander?",
-    answer:
-      "Yes. Send candidates to a Yander assessment form where they'll complete structured evaluations. Ideal if you're getting inbound applicants and want organized, comparable profiles to review.",
-  },
-  {
-    question: "How fast do I get candidates?",
-    answer:
-      "Most roles have interview-ready candidates within days. The AI agent works continuously. No waiting on a recruiter's schedule.",
-  },
-  {
-    question: "What is Yander Pulse?",
-    answer:
-      "An optional add-on for retention. It tracks engagement, sentiment, and workload across your remote team, giving you early warnings before problems become resignations. Think of it as an HR assistant for the team you built with Yander.",
-  },
-  {
-    question: "Is Yander available now?",
-    answer:
-      "Yes. Get started free with your first 200 sourced candidates — no credit card required. Paid plans start at $89/month.",
-  },
-];
+import { homepageFaqs } from "@/lib/faqs";
 
 function FAQItem({
   question,
@@ -131,7 +89,7 @@ export function FAQ() {
             transition={{ duration: 0.5 }}
             className="bg-white rounded-none border border-gray-200/60 shadow-soft-lg px-6 md:px-8"
           >
-            {faqs.map((faq, index) => (
+            {homepageFaqs.map((faq, index) => (
               <FAQItem
                 key={index}
                 question={faq.question}

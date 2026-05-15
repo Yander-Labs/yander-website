@@ -4,7 +4,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { DarkCTA } from "@/components/sections/DarkCTA";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
 import { getIntegrationBySlug, getAllSlugs } from "@/lib/integrations";
+import { pageMetadata } from "@/lib/page-metadata";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { ArrowLeft, Check } from "lucide-react";
 
 interface PageProps {
@@ -18,16 +22,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const integration = getIntegrationBySlug(slug);
-  if (!integration) return {};
+  if (!integration) {
+    return { title: `Integration Not Found | ${SITE_NAME}`, robots: { index: false, follow: false } };
+  }
 
-  return {
-    title: `${integration.name} Integration | Yander`,
-    description: integration.description,
-    openGraph: {
-      title: `${integration.name} Integration | Yander`,
-      description: integration.description,
-    },
-  };
+  return pageMetadata({
+    title: `${integration.name} Integration for Yander — Pull Activity into One Dashboard`,
+    description: integration.longDescription || integration.description,
+    path: `/integrations/${integration.slug}`,
+    ogImageAlt: `${integration.name} integration for Yander`,
+  });
 }
 
 export default async function IntegrationDetailPage({ params }: PageProps) {
@@ -35,11 +39,34 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
   const integration = getIntegrationBySlug(slug);
   if (!integration) notFound();
 
+  const url = `${SITE_URL}/integrations/${integration.slug}`;
+  const integrationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `Yander × ${integration.name}`,
+    description: integration.longDescription || integration.description,
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: integration.categoryLabel,
+    operatingSystem: "Web",
+    url,
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD", url: `${SITE_URL}/pricing` },
+  };
+
   return (
     <>
+      <SchemaJsonLd schema={integrationSchema} />
       {/* Header */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-white">
         <Container>
+          <Breadcrumbs
+            className="mb-6"
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Integrations", href: "/integrations" },
+              { name: integration.name },
+            ]}
+          />
           <Link
             href="/integrations/all"
             className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-8"

@@ -27,14 +27,20 @@ const footerLinks = {
     { label: "Integrations", href: "/integrations" },
   ],
   company: [
+    { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
+    { label: "Compare", href: "/compare" },
+    { label: "Changelog", href: "/changelog" },
+    { label: "Remote Hiring Playbook", href: "/remote-hiring-playbook" },
+    { label: "Cost Calculator", href: "/calculator" },
+    { label: "Contact Sales", href: "/contact-sales" },
   ],
   resources: [
-    { label: "Changelog", href: "/changelog" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Data Processing Agreement", href: "/dpa" },
     { label: "Security", href: "/security" },
+    { label: "Beta Program Terms", href: "/beta-terms" },
   ],
 };
 
@@ -55,7 +61,7 @@ export function Footer() {
               <Link href="/" className="flex items-center text-gray-900">
                 <Image
                   src="/logo.svg"
-                  alt="Yander - Remote Team Intelligence"
+                  alt="Yander"
                   width={120}
                   height={35}
                   className="h-7 w-auto"

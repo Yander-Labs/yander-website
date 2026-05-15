@@ -1,12 +1,91 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./ui/Container";
 import { cn } from "@/lib/utils";
-import { X, Menu } from "lucide-react";
+import { X, Menu, ChevronDown } from "lucide-react";
 import { useDemoModal } from "./ui/DemoModal";
+
+const productLinks = [
+  { label: "Yander AI Recruiter", href: "/", description: "AI sourcing and vetting for global hires." },
+  { label: "Yander Pulse", href: "/pulse", description: "Real-time team performance intelligence." },
+  { label: "Integrations", href: "/integrations", description: "Slack, Notion, ClickUp, and more." },
+  { label: "Cost Calculator", href: "/calculator", description: "Compare global hiring costs." },
+];
+
+const resourcesLinks = [
+  { label: "Blog", href: "/blog", description: "AI recruiting and global hiring insights." },
+  { label: "Compare", href: "/compare", description: "Yander vs other hiring tools." },
+  { label: "Changelog", href: "/changelog", description: "Every product release." },
+  { label: "Remote Hiring Playbook", href: "/remote-hiring-playbook", description: "Free 2026 guide." },
+];
+
+function DesktopDropdown({
+  label,
+  items,
+}: {
+  label: string;
+  items: { label: string; href: string; description: string }[];
+}) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const handleLeave = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+        className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+      >
+        {label}
+        <ChevronDown
+          className={cn("w-3.5 h-3.5 transition-transform", open && "rotate-180")}
+          aria-hidden
+        />
+      </button>
+      <div
+        className={cn(
+          "absolute left-0 top-full pt-3 min-w-[280px] transition-all duration-150",
+          open
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 translate-y-1 pointer-events-none"
+        )}
+      >
+        <div className="bg-white border border-[#E4E7EC] rounded-lg shadow-elevated overflow-hidden">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block px-4 py-3 hover:bg-gray-50 transition-colors group"
+            >
+              <span className="block text-sm font-medium text-gray-900 group-hover:text-gray-700">
+                {item.label}
+              </span>
+              <span className="block text-xs text-gray-500 mt-0.5">
+                {item.description}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +118,7 @@ export function Navigation() {
               <Link href="/" className="flex items-center text-gray-900">
                 <Image
                   src="/logo.svg"
-                  alt="Yander - AI Offshore Recruitment"
+                  alt="Yander"
                   width={120}
                   height={35}
                   className="h-7 w-auto"
@@ -47,17 +126,19 @@ export function Navigation() {
                 />
               </Link>
               <div className="hidden md:flex items-center gap-6">
+                <DesktopDropdown label="Product" items={productLinks} />
                 <Link
                   href="/pricing"
                   className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
                 >
                   Pricing
                 </Link>
+                <DesktopDropdown label="Resources" items={resourcesLinks} />
                 <Link
-                  href="/blog"
+                  href="/about"
                   className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                  Blog
+                  About
                 </Link>
               </div>
             </div>
@@ -106,7 +187,7 @@ export function Navigation() {
         {/* Drawer */}
         <div
           className={cn(
-            "absolute top-0 right-0 h-full w-[280px] max-w-[85vw] bg-white shadow-xl transition-transform duration-300 ease-out",
+            "absolute top-0 right-0 h-full w-[320px] max-w-[85vw] bg-white shadow-xl transition-transform duration-300 ease-out overflow-y-auto",
             mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           )}
         >
@@ -124,7 +205,7 @@ export function Navigation() {
             </div>
 
             {/* Drawer Content */}
-            <div className="flex-1 p-4 space-y-2">
+            <div className="flex-1 p-4 space-y-1 overflow-y-auto">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
@@ -132,19 +213,45 @@ export function Navigation() {
               >
                 Home
               </Link>
+              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                Product
+              </p>
+              {productLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
                 href="/pricing"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                className="block px-4 py-3 mt-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
               >
                 Pricing
               </Link>
+              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+                Resources
+              </p>
+              {resourcesLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
-                href="/blog"
+                href="/about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                className="block px-4 py-3 mt-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
               >
-                Blog
+                About
               </Link>
             </div>
 

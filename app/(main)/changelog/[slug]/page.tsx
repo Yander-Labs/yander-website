@@ -11,8 +11,8 @@ import { Container } from '@/components/ui/Container'
 import { ChangelogHeader } from '@/components/changelog/ChangelogHeader'
 import { ChangelogBody } from '@/components/changelog/ChangelogBody'
 import { RecentChangelogs } from '@/components/changelog/RecentChangelogs'
-
-const SITE_URL = 'https://yander.ai'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
+import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 export const revalidate = 60
 
@@ -29,12 +29,10 @@ export async function generateMetadata({
   params
 }: ChangelogDetailPageProps): Promise<Metadata> {
   const { slug } = await params
-  const entry = await sanityFetch<Changelog | null>(changelogBySlugQuery, {
-    slug
-  })
+  const entry = await sanityFetch<Changelog | null>(changelogBySlugQuery, { slug })
 
   if (!entry) {
-    return { title: 'Release Not Found | Yander' }
+    return { title: `Release Not Found | ${SITE_NAME}`, robots: { index: false, follow: false } }
   }
 
   const title =
@@ -42,25 +40,23 @@ export async function generateMetadata({
   const description =
     entry.seo?.metaDescription ||
     entry.summary ||
-    `Yander release ${entry.version} - ${entry.title}`
+    `Yander release ${entry.version} — ${entry.title}`
   const entryUrl = `${SITE_URL}/changelog/${entry.slug.current}`
 
   return {
     title,
     description,
-    alternates: {
-      canonical: entryUrl
-    },
+    alternates: { canonical: entryUrl },
     openGraph: {
       title,
       description,
       type: 'article',
       url: entryUrl,
-      siteName: 'Yander',
+      siteName: SITE_NAME,
       publishedTime: entry.releaseDate,
       images: [
         {
-          url: 'https://yander.ai/og-image.png',
+          url: `${SITE_URL}/og-image.png`,
           width: 1200,
           height: 630,
           alt: `${entry.version}: ${entry.title}`
@@ -71,50 +67,21 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://yander.ai/og-image.png']
-    }
-  }
-}
-
-function generateBreadcrumbLD(entry: Changelog) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: SITE_URL
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Changelog',
-        item: `${SITE_URL}/changelog`
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: `${entry.version}: ${entry.title}`,
-        item: `${SITE_URL}/changelog/${entry.slug.current}`
-      }
-    ]
+      images: [`${SITE_URL}/og-image.png`]
+    },
+    robots: entry.seo?.noIndex ? { index: false, follow: false } : { index: true, follow: true },
   }
 }
 
 function generateArticleLD(entry: Changelog) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'TechArticle',
     headline: `${entry.version}: ${entry.title}`,
     description: entry.summary,
     datePublished: entry.releaseDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Yander',
-      url: SITE_URL
-    },
+    inLanguage: 'en-US',
+    publisher: { '@id': `${SITE_URL}/#organization` },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/changelog/${entry.slug.current}`
@@ -136,24 +103,26 @@ export default async function ChangelogDetailPage({
     notFound()
   }
 
-  // Filter out current entry from recent entries
   const otherEntries = recentEntries.filter((e) => e._id !== entry._id)
-
-  const breadcrumbLd = generateBreadcrumbLD(entry)
   const articleLd = generateArticleLD(entry)
 
   return (
     <main className="min-h-screen bg-white">
-      {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
 
+      <Container>
+        <Breadcrumbs
+          className="pt-32 pb-2"
+          items={[
+            { name: 'Home', href: '/' },
+            { name: 'Changelog', href: '/changelog' },
+            { name: `${entry.version}: ${entry.title}` },
+          ]}
+        />
+      </Container>
       <ChangelogHeader entry={entry} />
 
       <Container size="narrow">

@@ -41,9 +41,9 @@ export function ChangelogCard({ entry, isFirst = false }: ChangelogCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-2xl md:text-3xl text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+        <h2 className="font-serif text-2xl md:text-3xl text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
           {entry.title}
-        </h3>
+        </h2>
 
         {/* Summary */}
         {entry.summary && (

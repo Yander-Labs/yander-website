@@ -1,15 +1,13 @@
 import { Container } from "@/components/ui/Container";
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Data Processing Agreement | Yander",
   description:
-    "Yander's Data Processing Agreement (DPA) outlines how we process personal data on behalf of our customers in compliance with GDPR and applicable data protection laws.",
-  alternates: {
-    canonical: "https://yander.ai/dpa",
-  },
-  robots: "index, follow",
-};
+    "Yander's Data Processing Agreement (DPA) — how we process personal data on behalf of customers under GDPR, UK-GDPR, and applicable data protection laws.",
+  path: "/dpa",
+  ogImageAlt: "Yander Data Processing Agreement",
+});
 
 export default function DpaPage() {
   return (

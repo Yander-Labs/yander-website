@@ -1,14 +1,13 @@
 import { Container } from "@/components/ui/Container";
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy | Yander",
-  description: "Learn how Yander collects, uses, and protects your data. We're committed to transparency and your privacy.",
-  alternates: {
-    canonical: "https://yander.ai/privacy-policy",
-  },
-  robots: "index, follow",
-};
+  description:
+    "How Yander Labs collects, uses, stores, and protects your data — Privacy Policy covering candidate data, customer accounts, GDPR, CCPA, and your rights.",
+  path: "/privacy-policy",
+  ogImageAlt: "Yander Privacy Policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

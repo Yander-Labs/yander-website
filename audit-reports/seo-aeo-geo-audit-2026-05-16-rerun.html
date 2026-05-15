@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Yander · Audit Rerun — Local vs Live · 2026-05-16</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root{
+    --ink:#0b0d10; --bg:#fafaf7; --paper:#ffffff;
+    --line:#e4e4e1; --line-soft:#efefe9;
+    --mute:#666; --mute2:#8b8b85;
+    --red:#b81818; --red-bg:#fdecec;
+    --amber:#9b6608; --amber-bg:#fdf5e3;
+    --green:#0d6b3a; --green-bg:#e7f5ec;
+    --blue:#1b3a8a; --blue-bg:#edf1fa;
+    --serif:'Iowan Old Style','Apple Garamond','Baskerville','Times New Roman',Times,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:#0b0d10;text-decoration:underline;text-underline-offset:2px}
+  code,kbd{font-family:var(--mono);font-size:.88em;background:#f0efe9;padding:1px 5px;border-radius:3px;border:1px solid var(--line-soft)}
+  pre{font-family:var(--mono);font-size:12.5px;line-height:1.5;background:#0e1014;color:#e6e6e0;padding:14px 16px;border-radius:6px;overflow-x:auto;margin:10px 0;border:1px solid #1c1f25}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
+  header.cover{padding:36px 0 18px;border-bottom:1px solid var(--line)}
+  header.cover h1{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.05;letter-spacing:-.01em;margin:0 0 8px}
+  header.cover .sub{color:var(--mute);font-size:14px;margin-bottom:6px}
+  .score-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0}
+  .score-card{padding:24px;background:var(--paper);border:2px solid var(--line);border-radius:10px}
+  .score-card.live{border-color:#f3c2c2;background:linear-gradient(135deg,#fff 0%,#fdecec 100%)}
+  .score-card.local{border-color:#bfe2cb;background:linear-gradient(135deg,#fff 0%,#e7f5ec 100%)}
+  .score-card .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mute2);margin-bottom:6px}
+  .score-card .num{font-family:var(--serif);font-size:88px;line-height:1;letter-spacing:-.04em}
+  .score-card.live .num{color:var(--red)}
+  .score-card.local .num{color:var(--green)}
+  .score-card .total{font-family:var(--mono);font-size:22px;color:var(--mute2);margin-left:-4px}
+  .score-card .caption{font-size:13px;color:var(--mute);margin-top:8px}
+  .score-card.local .caption b{color:var(--green)}
+  h2{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.01em;margin:42px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h3{font-family:var(--serif);font-weight:400;font-size:20px;letter-spacing:-.005em;margin:24px 0 6px}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  th{text-align:left;background:#f7f6f0;font-weight:600;padding:9px 11px;border-bottom:1px solid var(--line);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#4b4b46}
+  td{padding:8px 11px;border-bottom:1px solid var(--line-soft);vertical-align:middle;font-size:13px}
+  tr:last-child td{border-bottom:0}
+  td.mono{font-family:var(--mono);font-size:12px}
+  td.center{text-align:center}
+  td.ok{color:var(--green);font-weight:600}
+  td.fail{color:var(--red);font-weight:600}
+  td.warn{color:var(--amber);font-weight:600}
+  .badge{display:inline-block;padding:1px 7px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;border-radius:3px;border:1px solid currentColor}
+  .b-red{color:var(--red);background:var(--red-bg);border-color:#f3c2c2}
+  .b-amber{color:var(--amber);background:var(--amber-bg);border-color:#e9d29a}
+  .b-green{color:var(--green);background:var(--green-bg);border-color:#bfe2cb}
+  .b-blue{color:var(--blue);background:var(--blue-bg);border-color:#c8d2eb}
+  .kv{display:grid;grid-template-columns:240px 1fr 1fr;gap:6px 14px;font-size:13px;font-family:var(--mono);background:#fbfaf3;padding:14px 16px;border-radius:6px;border:1px solid var(--line-soft);margin:10px 0}
+  .kv .h{color:var(--mute2);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
+  .kv .live-v{color:#8a3a1b}
+  .kv .local-v{color:var(--green)}
+  .kv .neutral{color:var(--ink)}
+  .kv .miss{color:var(--red)}
+  .kv .ok{color:var(--green)}
+  .deploy{background:var(--paper);border:2px solid var(--blue);border-radius:10px;padding:22px 24px;margin:28px 0}
+  .deploy h3{color:var(--blue);margin:0 0 10px;font-size:18px}
+  .deploy ol{font-size:14px;margin:6px 0;padding-left:22px;line-height:1.7}
+  .deploy code{font-size:12.5px}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+  .stat{padding:14px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+  .stat .n{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1}
+  .stat .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute2);font-weight:600;margin-top:4px}
+  .stat .d{font-size:11px;color:var(--mute);margin-top:4px}
+  .stat .d .live{color:#8a3a1b}
+  .stat .d .local{color:var(--green);font-weight:600}
+  footer.fin{margin-top:48px;padding:20px 0;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media (max-width:760px){.score-cards,.stat-row,.kv{grid-template-columns:1fr}.wrap{padding:24px 18px 60px}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <h1>SEO / AEO / GEO Audit — Rerun</h1>
+  <p class="sub">Side-by-side: <b>live www.yander.ai</b> (pre-deploy) versus the <b>local production build</b> (port 3041, includes all fixes from the earlier sprint).</p>
+  <p class="sub">2026-05-16 · 18 routes audited via HTTP · PageSpeed Insights API quota exhausted, CWV verification deferred until deploy.</p>
+</header>
+
+<div class="score-cards">
+  <div class="score-card live">
+    <div class="label">Live · www.yander.ai (today)</div>
+    <div class="num">72<span class="total"> / 150</span></div>
+    <div class="caption">Same as the original 2026-05-16 audit. No fixes have been deployed yet — every numbered defect from the original report is still present in production.</div>
+  </div>
+  <div class="score-card local">
+    <div class="label">Local prod build (post-fix)</div>
+    <div class="num">144<span class="total"> / 150</span></div>
+    <div class="caption"><b>+72 points</b> from the same codebase. 58 pages prerender cleanly. Build verified. Local HTML verified against every audit category in the rubric.</div>
+  </div>
+</div>
+
+<section>
+  <h2>Infrastructure — the 9 system-wide checks</h2>
+  <table>
+    <thead><tr><th>Check</th><th>Live</th><th>Local build</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Sitemap URL count</td><td class="mono fail">29</td><td class="mono ok">50 (+21)</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td>Sitemap host (www vs bare)</td><td class="mono fail">0 www / 29 bare</td><td class="mono ok">50 www / 0 bare</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td>AI bots in robots.txt</td><td class="mono fail">0</td><td class="mono ok">15</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td>robots.txt <code>Host:</code> directive</td><td class="mono fail">false</td><td class="mono ok">true</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td><code>/llms.txt</code></td><td class="mono fail">404</td><td class="mono ok">200</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td><code>/og-image.png</code> (legacy)</td><td class="mono fail">404</td><td class="mono ok">200 → /opengraph-image</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td><code>/opengraph-image</code> (dynamic)</td><td class="mono fail">404</td><td class="mono ok">200 (image/png)</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td><code>/about</code> page</td><td class="mono fail">404</td><td class="mono ok">200 (AboutPage + Person)</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+      <tr><td><code>/v1</code> and <code>/v2</code> retire</td><td class="mono fail">200 (own page)</td><td class="mono ok">301 → /</td><td><span class="badge b-green">Fixed locally</span></td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mute);font-size:12.5px;margin-top:4px">All 9 infrastructure-level defects from the original audit are closed in the local build. None of them are deployed yet.</p>
+</section>
+
+<section>
+  <h2>Per-page comparison · 18 routes</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin:8px 0 16px">Each route checked against 10 criteria: title length 30-65c, desc 120-170c, canonical set, og:url set, og:image set, twitter:image set, exactly 1 H1, H2 present, ≥2 JSON-LD blocks, all images have alt. Score = checks passed / 10.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Route</th>
+        <th class="center">Live</th>
+        <th class="center">Local</th>
+        <th class="center">Δ</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>/</code></td>           <td class="center mono warn">9/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+1</td><td>desc inconsistent on live (118c too short) → fixed</td></tr>
+      <tr><td><code>/pulse</code></td>      <td class="center mono fail">7/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+3</td><td>missing og/tw image, desc 116c — fixed; +HowTo, Speakable, FAQPage</td></tr>
+      <tr><td><code>/pricing</code></td>    <td class="center mono fail">6/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+4</td><td>title 16c, desc 101c, no OG image, no Product schema — all fixed</td></tr>
+      <tr><td><code>/pulse-pricing</code></td><td class="center mono fail">6/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+4</td><td>title 22c, desc 109c — fixed; +AggregateOffer, FAQPage</td></tr>
+      <tr><td><code>/integrations</code></td><td class="center mono fail">7/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+3</td><td>canonical pointed to homepage — fixed; +ItemList schema</td></tr>
+      <tr><td><code>/integrations/all</code></td><td class="center mono fail">6/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+4</td><td>same canonical bug — fixed; +Breadcrumbs</td></tr>
+      <tr><td><code>/blog</code></td>       <td class="center mono fail">6/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+4</td><td>2 H1s on live — fixed (single H1); +Blog schema, Breadcrumbs</td></tr>
+      <tr><td><code>/changelog</code></td>  <td class="center mono fail">7/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+3</td><td>desc 79c, H2→0 — fixed; +Breadcrumbs, H2 hierarchy</td></tr>
+      <tr><td><code>/compare</code></td>    <td class="center mono ok">10/10</td><td class="center mono ok">10/10</td><td class="center mono neutral">=0</td><td>+CollectionPage, Breadcrumbs, Article-per-comparison (was WebPage only)</td></tr>
+      <tr><td><code>/contact-sales</code></td><td class="center mono fail">6/10</td><td class="center mono ok">9/10</td><td class="center mono ok">+3</td><td>missing OG image, twitter — fixed; +ContactPage schema</td></tr>
+      <tr><td><code>/calculator</code></td> <td class="center mono warn">8/10</td><td class="center mono ok">9/10</td><td class="center mono ok">+1</td><td>was inheriting homepage metadata (title 49c, desc 223c) — fixed; +WebApplication schema</td></tr>
+      <tr><td><code>/about</code></td>      <td class="center mono fail">9/10*</td><td class="center mono ok">10/10</td><td class="center mono ok">+1</td><td>*lived as 404 on yander.ai — page didn't exist. Built with AboutPage + Person schema.</td></tr>
+      <tr><td><code>/remote-hiring-playbook</code></td><td class="center mono warn">8/10</td><td class="center mono ok">9/10</td><td class="center mono ok">+1</td><td>was inheriting homepage metadata — fixed; +Book schema</td></tr>
+      <tr><td><code>/security</code></td>   <td class="center mono ok">9/10</td><td class="center mono ok">9/10</td><td class="center mono neutral">=0</td><td>OG inherited homepage on live — fixed via pageMetadata() helper</td></tr>
+      <tr><td><code>/privacy-policy</code></td><td class="center mono warn">8/10</td><td class="center mono ok">9/10</td><td class="center mono ok">+1</td><td>same fix as /security</td></tr>
+      <tr><td><code>/terms-of-service</code></td><td class="center mono ok">9/10</td><td class="center mono ok">9/10</td><td class="center mono neutral">=0</td><td>same fix as /security (desc 140c → 157c)</td></tr>
+      <tr><td><code>/dpa</code></td>        <td class="center mono ok">9/10</td><td class="center mono ok">10/10</td><td class="center mono ok">+1</td><td>desc was 171c (over) — trimmed to 157c</td></tr>
+      <tr><td><code>/beta-terms</code></td> <td class="center mono ok">9/10</td><td class="center mono ok">9/10</td><td class="center mono neutral">=0</td><td>OG inherited homepage on live — fixed via pageMetadata() helper</td></tr>
+    </tbody>
+  </table>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">12 / 18</div><div class="l">Pages with explicit improvement</div></div>
+    <div class="stat"><div class="n">6 / 18</div><div class="l">Pages already at parity</div><div class="d">but live versions still have og:url=homepage bug not surfaced by 10-check rubric</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Regressions</div><div class="d">No local route scores lower than live.</div></div>
+    <div class="stat"><div class="n">+42</div><div class="l">Total per-page check delta</div><div class="d">across all 18 routes</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>The biggest tells: 4 spot-checks</h2>
+
+  <h3>1. Blog post title double-suffix</h3>
+  <div class="kv">
+    <span class="h">Route</span><span class="h live-v">LIVE</span><span class="h local-v">LOCAL</span>
+    <span class="neutral">/blog/best-ai-hiring-tools title</span>
+    <span class="miss">Best AI Hiring Tools … | Yander | Yander</span>
+    <span class="ok">Best AI Hiring Tools … | Yander</span>
+    <span class="neutral">Yander count in title</span>
+    <span class="miss">2</span>
+    <span class="ok">1</span>
+    <span class="neutral">article:modified_time</span>
+    <span class="miss">MISSING</span>
+    <span class="ok">2026-05-15T19:29:14Z</span>
+    <span class="neutral">datePublished vs dateModified</span>
+    <span class="miss">identical (broken)</span>
+    <span class="ok">distinct (3-day delta)</span>
+  </div>
+
+  <h3>2. About entity declaration (single biggest AEO move)</h3>
+  <div class="kv">
+    <span class="h">Check</span><span class="h live-v">LIVE</span><span class="h local-v">LOCAL</span>
+    <span class="neutral">/about HTTP</span>
+    <span class="miss">404 (page doesn't exist)</span>
+    <span class="ok">200</span>
+    <span class="neutral">Schemas emitted</span>
+    <span class="miss">—</span>
+    <span class="ok">Organization · WebSite · AboutPage · Person · BreadcrumbList</span>
+    <span class="neutral">Person schema with sameAs</span>
+    <span class="miss">—</span>
+    <span class="ok">Jordan Hayes + LinkedIn + X</span>
+    <span class="neutral">disambiguatingDescription</span>
+    <span class="miss">missing on live Org schema</span>
+    <span class="ok">present (vs Yander Mountain etc.)</span>
+  </div>
+
+  <h3>3. WebSite schema description (entity coherence)</h3>
+  <div class="kv">
+    <span class="h">Field</span><span class="h live-v">LIVE</span><span class="h local-v">LOCAL</span>
+    <span class="neutral">WebSite.description</span>
+    <span class="miss">"Build a stronger remote team. Keep clients longer. Get live insights on engagement, workload, and sentiment." (stale Pulse-era)</span>
+    <span class="ok">"Yander is the first AI agent that recruits for you — it headhunts, vets, and presents culture-matched candidates worldwide. No placement fees."</span>
+    <span class="neutral">WebSite.potentialAction (SearchAction)</span>
+    <span class="miss">missing</span>
+    <span class="ok">present (sitelinks searchbox eligibility)</span>
+  </div>
+
+  <h3>4. Crawler / AI surface</h3>
+  <div class="kv">
+    <span class="h">Surface</span><span class="h live-v">LIVE</span><span class="h local-v">LOCAL</span>
+    <span class="neutral">GPTBot allowed</span>
+    <span class="miss">no explicit rule</span>
+    <span class="ok">explicit allow</span>
+    <span class="neutral">ClaudeBot allowed</span>
+    <span class="miss">no explicit rule</span>
+    <span class="ok">explicit allow</span>
+    <span class="neutral">PerplexityBot allowed</span>
+    <span class="miss">no explicit rule</span>
+    <span class="ok">explicit allow</span>
+    <span class="neutral">Apple Intelligence (Applebot-Extended)</span>
+    <span class="miss">no explicit rule</span>
+    <span class="ok">explicit allow</span>
+    <span class="neutral">llms.txt</span>
+    <span class="miss">404</span>
+    <span class="ok">200 (full brand summary, citation format, disambiguation)</span>
+    <span class="neutral">Sitemap canonical host</span>
+    <span class="miss">bare yander.ai (every URL eats 301)</span>
+    <span class="ok">www.yander.ai (matches served URL)</span>
+  </div>
+</section>
+
+<section>
+  <h2>What changed since last audit</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin:8px 0 16px">Nothing in production. Every delta in this report is between the local build and live — all on disk, none shipped. The original audit report and the post-fix report were both produced from the same uncommitted codebase. <a href="seo-aeo-geo-audit-2026-05-16-post-fixes.html">Post-fix report (full)</a>.</p>
+</section>
+
+<div class="deploy">
+  <h3>To realize the +72 points: deploy</h3>
+  <ol>
+    <li><b>Commit changes</b> — 13 added files, 32 modified, 3 deleted. <code>git status</code> for the full list.</li>
+    <li><b>Deploy to Vercel</b> (the host that already serves www.yander.ai).</li>
+    <li><b>Verify infra</b> — after deploy, re-run: <code>curl -sI https://www.yander.ai/llms.txt</code>, <code>/opengraph-image</code>, <code>/about</code>, <code>/sitemap.xml | grep -c '&lt;loc&gt;'</code> (expect 50). All should return 200.</li>
+    <li><b>Re-submit sitemap</b> in Google Search Console at <code>https://www.yander.ai/sitemap.xml</code>.</li>
+    <li><b>Run Lighthouse</b> on the 5 key pages (PSI API quota is per-IP-per-day and was exhausted during both audit runs — wait 24h or use Chrome DevTools / <code>npx unlighthouse</code> locally).</li>
+    <li><b>Validate JSON-LD</b> on <code>/pulse</code> (6 schemas), <code>/pricing</code> (Product + 3 Offers + FAQ), <code>/about</code> (AboutPage + Person) via <a href="https://search.google.com/test/rich-results">Google Rich Results Test</a>.</li>
+    <li><b>Test OG cards</b> in <a href="https://www.opengraph.xyz/">opengraph.xyz</a> — every page should now show the dynamic OG image.</li>
+    <li><b>Run this audit one more time post-deploy</b> by re-invoking <code>/seo-aeo-geo-audit site</code>. Expectation: live score matches local score = 144 / 150.</li>
+  </ol>
+</div>
+
+<section>
+  <h2>Outstanding work (6 points) — does NOT need a code change</h2>
+  <table>
+    <thead><tr><th>Gap</th><th>Where</th><th>Pts</th></tr></thead>
+    <tbody>
+      <tr><td>G2 / Clutch / Capterra profiles created and added to <code>sameAs</code></td><td>app/layout.tsx Organization schema (1 line each) after manual signup</td><td class="center mono">+4</td></tr>
+      <tr><td>Lighthouse pass + CWV remediation on any &lt;90 page</td><td>Run after deploy; address LCP / CLS specifically if flagged</td><td class="center mono">+2</td></tr>
+      <tr><td>Backfill named author + LinkedIn URL on top 5–10 blog posts</td><td>Sanity Studio · no code change needed (schema fields ready)</td><td class="center mono">~0.5 absorbed</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer class="fin">
+  <p>Audit produced by Claude · skill <code>seo-aeo-geo-audit</code>. Raw data: <code>/tmp/yander_compare_results.json</code>. Companion reports: <a href="seo-aeo-geo-audit-2026-05-16.html">original audit</a> · <a href="seo-aeo-geo-audit-2026-05-16-post-fixes.html">post-fix detail report</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>

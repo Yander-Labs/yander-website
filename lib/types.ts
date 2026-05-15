@@ -24,6 +24,11 @@ export interface Author {
   image?: Image
   bio?: string
   role?: string
+  linkedinUrl?: string
+  twitterUrl?: string
+  yearsExperience?: number
+  expertise?: string[]
+  certifications?: string[]
 }
 
 export interface Category {
@@ -36,6 +41,8 @@ export interface Category {
 
 export interface Post {
   _id: string
+  /** Sanity system field — the last time the doc was modified, used for dateModified. */
+  _updatedAt?: string
   title: string
   slug: { current: string }
   author?: Author

@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
-import { V2HomePage } from "../(main)/v2/V2HomePage";
+import { V2HomePage } from "@/components/sections/V2HomePage";
 
-export const metadata: Metadata = {
-  title: "Yander - The First AI Agent That Recruits For You",
-  description:
-    "Tell Yander who you need to hire. It headhunts, evaluates, and presents culture-matched candidates ready to interview.",
-};
+// Homepage inherits metadata from app/layout.tsx — the root metadata IS the
+// homepage metadata. Avoiding a partial override here means description fields
+// stay consistent across <meta>, og:, and twitter:.
 
 export default function Home() {
   return <V2HomePage />;

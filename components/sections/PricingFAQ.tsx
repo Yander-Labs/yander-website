@@ -4,44 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
 import { ChevronDown } from "lucide-react";
-
-const faqs = [
-  {
-    question: "What counts as an employee?",
-    answer:
-      "Each employee you track in Yander counts as one seat toward your plan limit.",
-  },
-  {
-    question: "Can I change plans at any time?",
-    answer:
-      "Yes. Upgrade or downgrade anytime. Changes take effect immediately, and billing adjusts pro-rata.",
-  },
-  {
-    question: "What happens after my 14-day trial?",
-    answer:
-      "The 14-day free trial is available on the Starter plan only. After your trial ends, you'll be prompted to choose a plan. If you don't, your account pauses \u2014 no surprise charges.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept all major credit cards and can arrange invoicing for Enterprise plans.",
-  },
-  {
-    question: "Is there a setup fee?",
-    answer:
-      "No. All plans include free onboarding and setup support.",
-  },
-  {
-    question: "Can I add more employees beyond my plan limit?",
-    answer:
-      "Yes. Additional employees are billed at the extra employee rate for your plan tier.",
-  },
-  {
-    question: "What's included in the Enterprise plan?",
-    answer:
-      "Custom scoring cadence, negotiated per-employee pricing, dedicated support, SSO, and a tailored onboarding experience. Contact sales to discuss your needs.",
-  },
-];
+import { pulsePricingFaqs } from "@/lib/faqs";
 
 function FAQItem({
   question,
@@ -117,7 +80,7 @@ export function PricingFAQ() {
             transition={{ duration: 0.5 }}
             className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] px-6 md:px-8"
           >
-            {faqs.map((faq, index) => (
+            {pulsePricingFaqs.map((faq, index) => (
               <FAQItem
                 key={index}
                 question={faq.question}

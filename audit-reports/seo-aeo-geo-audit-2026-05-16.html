@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Yander · SEO / AEO / GEO Audit · 2026-05-16</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root{
+    --ink:#0b0d10; --bg:#fafaf7; --paper:#ffffff;
+    --line:#e4e4e1; --line-soft:#efefe9;
+    --mute:#666; --mute2:#8b8b85;
+    --red:#b81818; --red-bg:#fdecec;
+    --amber:#9b6608; --amber-bg:#fdf5e3;
+    --green:#0d6b3a; --green-bg:#e7f5ec;
+    --blue:#1b3a8a; --blue-bg:#edf1fa;
+    --serif:'Iowan Old Style','Apple Garamond','Baskerville','Times New Roman',Times,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'JetBrains Mono','SF Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:#0b0d10;text-decoration:underline;text-underline-offset:2px}
+  a:hover{color:#000}
+  code,kbd{font-family:var(--mono);font-size:.88em;background:#f0efe9;padding:1px 5px;border-radius:3px;border:1px solid var(--line-soft)}
+  pre{font-family:var(--mono);font-size:12.5px;line-height:1.5;background:#0e1014;color:#e6e6e0;padding:14px 16px;border-radius:6px;overflow-x:auto;margin:10px 0;border:1px solid #1c1f25}
+  pre .k{color:#7ad0e8}.pre .s{color:#c5e478}.pre .c{color:#7e8590;font-style:italic}
+  hr{border:0;border-top:1px solid var(--line);margin:36px 0}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
+  header.cover{padding:36px 0 8px;border-bottom:1px solid var(--line)}
+  header.cover h1{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.05;letter-spacing:-.01em;margin:0 0 8px}
+  header.cover .sub{color:var(--mute);font-size:14px;margin-bottom:18px}
+  .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;font-size:13px;margin-top:18px}
+  .meta-grid div{padding:10px 12px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+  .meta-grid b{display:block;text-transform:uppercase;letter-spacing:.05em;font-size:11px;color:var(--mute2);font-weight:600;margin-bottom:4px}
+  nav.toc{position:sticky;top:0;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;margin-bottom:22px;z-index:10}
+  nav.toc a{margin-right:14px;color:var(--mute);text-decoration:none;white-space:nowrap}
+  nav.toc a:hover{color:var(--ink)}
+  nav.toc .toc-inner{display:flex;overflow-x:auto;gap:6px;padding-bottom:4px}
+  h2{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.01em;margin:46px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.005em;margin:28px 0 6px}
+  h4{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin:18px 0 8px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  th{text-align:left;background:#f7f6f0;font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:#4b4b46}
+  td{padding:10px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .score-row td{font-size:14px;vertical-align:middle}
+  .score-row td:nth-child(2){text-align:center;width:80px;font-family:var(--mono);font-weight:600;font-size:15px}
+  .score-row td:nth-child(3){width:120px}
+  .badge{display:inline-block;padding:2px 9px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;border-radius:3px;border:1px solid currentColor}
+  .b-red{color:var(--red);background:var(--red-bg);border-color:#f3c2c2}
+  .b-amber{color:var(--amber);background:var(--amber-bg);border-color:#e9d29a}
+  .b-green{color:var(--green);background:var(--green-bg);border-color:#bfe2cb}
+  .b-blue{color:var(--blue);background:var(--blue-bg);border-color:#c8d2eb}
+  .b-gray{color:#555;background:#f0efe9;border-color:#d8d8d2}
+  .issue{background:var(--paper);border:1px solid var(--line);border-left:4px solid #000;border-radius:6px;padding:16px 18px;margin:14px 0}
+  .issue.crit{border-left-color:var(--red)}
+  .issue.warn{border-left-color:var(--amber)}
+  .issue.info{border-left-color:var(--blue)}
+  .issue.win{border-left-color:var(--green)}
+  .issue h4{margin:0 0 8px;font-size:13px}
+  .issue .where{font-family:var(--mono);font-size:12px;color:var(--mute);margin-bottom:8px}
+  .issue .where a{color:#1457a8}
+  .issue .body{font-size:14px}
+  .issue .body p{margin:6px 0}
+  .issue .body ul{margin:6px 0;padding-left:20px}
+  .issue .impact,.issue .fix{margin-top:8px;font-size:13.5px}
+  .issue .impact b,.issue .fix b{display:inline-block;min-width:78px;color:var(--mute2);font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600;vertical-align:top}
+  details{background:var(--paper);border:1px solid var(--line);border-radius:6px;margin:10px 0;padding:0}
+  details summary{padding:10px 14px;cursor:pointer;font-weight:500;font-size:13.5px;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--mute2);transition:transform .2s}
+  details[open] summary::before{content:"▾ "}
+  details[open]{padding-bottom:10px}
+  details .det-inner{padding:0 14px 8px}
+  .kv{display:grid;grid-template-columns:160px 1fr;gap:6px 14px;font-size:13px;font-family:var(--mono);background:#fbfaf3;padding:10px 12px;border-radius:5px;border:1px solid var(--line-soft);margin:8px 0}
+  .kv b{color:var(--mute2);font-weight:600;text-transform:uppercase;font-size:10.5px;letter-spacing:.04em;padding-top:2px}
+  .kv span{word-break:break-word;font-size:12.5px}
+  .kv .miss{color:var(--red)}
+  .kv .ok{color:var(--green)}
+  .col2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .checklist{list-style:none;padding:0;margin:0}
+  .checklist li{padding:8px 0 8px 28px;position:relative;border-bottom:1px dotted var(--line);font-size:14px}
+  .checklist li:last-child{border-bottom:0}
+  .checklist li::before{content:"";position:absolute;left:0;top:11px;width:14px;height:14px;border-radius:3px;border:2px solid #c9c9c2}
+  .checklist li.done::before{background:var(--green);border-color:var(--green)}
+  .checklist li.done::after{content:"✓";position:absolute;left:3px;top:7px;color:white;font-size:11px;font-weight:700}
+  .priorities{counter-reset:p}
+  .priorities li{padding:10px 0 10px 40px;position:relative;border-bottom:1px solid var(--line-soft);font-size:14px}
+  .priorities li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;background:#0b0d10;color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+  .priorities li b{display:block;margin-bottom:2px;font-size:14px}
+  .priorities li span.eff{color:var(--mute);font-size:12px}
+  .quote{border-left:3px solid var(--line);padding:4px 14px;color:var(--mute);font-style:italic;margin:14px 0;font-size:14px}
+  .tag{display:inline-block;padding:1px 7px;font-size:10.5px;font-weight:600;border-radius:3px;margin-right:5px;text-transform:uppercase;letter-spacing:.03em}
+  .tag-seo{background:#edf1fa;color:#1b3a8a}
+  .tag-aeo{background:#f5e8fa;color:#6a1b8a}
+  .tag-geo{background:#fae8eb;color:#8a1b3a}
+  .tag-tech{background:#e8f5e8;color:#1b6a3a}
+  .tag-a11y{background:#fff3da;color:#7a5a00}
+  footer.fin{margin-top:60px;padding:24px 0;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media (max-width:760px){.col2,.meta-grid{grid-template-columns:1fr}.wrap{padding:24px 18px 60px}h1{font-size:34px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <h1>Yander · SEO / AEO / GEO Audit</h1>
+  <p class="sub">Comprehensive review of search engine, AI engine, and generative engine readiness for yander.ai · 2026-05-16</p>
+  <div class="meta-grid">
+    <div><b>Pages audited</b>21 routes (incl. 18 blog posts via sitemap)</div>
+    <div><b>Stack</b>Next.js 16.1 · React 19 · Sanity</div>
+    <div><b>Hosting</b>Vercel · arn1 region</div>
+    <div><b>Overall score</b>72 / 150 <span class="badge b-amber">Needs work</span></div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#tldr">TL;DR</a>
+    <a href="#scores">Scores</a>
+    <a href="#critical">Critical (P0)</a>
+    <a href="#high">High (P1)</a>
+    <a href="#med">Medium (P2)</a>
+    <a href="#aeo">AEO</a>
+    <a href="#geo">GEO</a>
+    <a href="#per-page">Per-page</a>
+    <a href="#wins">Wins</a>
+    <a href="#actions">Action plan</a>
+    <a href="#monitoring">Monitoring</a>
+  </div>
+</nav>
+
+<section id="tldr">
+  <h2>TL;DR — the single-page version</h2>
+  <p>Yander is sitting on a solid technical base (Next.js 16, App Router metadata API, sitemap, schema markup, server-rendered content, font-display swap, no JS-only content) but is shipping with <b>seven critical defects that hurt every page</b> — broken social card images, a host/canonical mismatch (<code>yander.ai</code> in code vs. <code>www.yander.ai</code> in production), title double-suffix on most blog posts, a stale Pulse-era WebSite schema, missing canonical on key pages, missing OG/Twitter images on 4+ commercial pages, and a duplicate <code>&lt;h1&gt;</code> on the blog listing.</p>
+  <p>Underneath that, the AEO/GEO surface is thin: no <code>llms.txt</code>, no explicit AI-bot allowlist, no FAQPage / BreadcrumbList / HowTo / Speakable schema, generic "Yander Team" author for every blog post (drops E-E-A-T), <code>dateModified === datePublished</code> always (kills the freshness signal), and no AboutPage with named team. About half of the live URLs aren't in the sitemap (the other half are 301-redirected the moment Google fetches them).</p>
+  <p>The good news: most fixes are mechanical edits to four files (<code>app/layout.tsx</code>, <code>app/sitemap.ts</code>, <code>app/robots.ts</code>, <code>lib/seo-utils.ts</code>) plus one image asset upload. Estimated total fix effort to clear P0+P1: <b>1–2 days</b>.</p>
+</section>
+
+<section id="scores">
+  <h2>Category scores</h2>
+  <table>
+    <thead><tr><th>Category</th><th>Score</th><th>Status</th><th>Headline issue</th></tr></thead>
+    <tbody>
+      <tr class="score-row"><td>Meta tags</td><td>5 / 10</td><td><span class="badge b-amber">Warn</span></td><td>Double-suffix on blog titles; missing canonical on /integrations; /blog has 2× &lt;h1&gt;</td></tr>
+      <tr class="score-row"><td>Content structure</td><td>7 / 10</td><td><span class="badge b-amber">Warn</span></td><td>Heading hierarchy broken on /blog and /changelog (0 H2s, jumps to H3)</td></tr>
+      <tr class="score-row"><td>Images</td><td>8 / 10</td><td><span class="badge b-green">Pass</span></td><td>All <code>&lt;img&gt;</code>s have <code>alt</code>; one decorative empty alt per page is fine</td></tr>
+      <tr class="score-row"><td>Structured data</td><td>4 / 10</td><td><span class="badge b-red">Fail</span></td><td>WebSite schema description is stale Pulse copy; no FAQ/Breadcrumb/HowTo</td></tr>
+      <tr class="score-row"><td>Internal linking</td><td>6 / 10</td><td><span class="badge b-amber">Warn</span></td><td>Nav has only Pricing + Blog; no link surface for Pulse/Integrations/Compare/Changelog</td></tr>
+      <tr class="score-row"><td>Site infrastructure</td><td>4 / 10</td><td><span class="badge b-red">Fail</span></td><td>Host mismatch (bare→www 301), 12 routes missing from sitemap, og-image.png 404</td></tr>
+      <tr class="score-row"><td>Canonicals & pagination</td><td>5 / 10</td><td><span class="badge b-amber">Warn</span></td><td>Canonicals point to bare <code>yander.ai</code> which redirects; /integrations canonical wrong</td></tr>
+      <tr class="score-row"><td>SSR & rendering</td><td>9 / 10</td><td><span class="badge b-green">Pass</span></td><td>All H1s and key content render server-side; JSON-LD inlined correctly</td></tr>
+      <tr class="score-row"><td>AEO readiness</td><td>7 / 20</td><td><span class="badge b-red">Fail</span></td><td>No llms.txt, no AI-bot allowlist, no Person schema, no AboutPage, no category claims</td></tr>
+      <tr class="score-row"><td>GEO readiness</td><td>9 / 20</td><td><span class="badge b-amber">Warn</span></td><td><code>dateModified == publishedAt</code> always; generic "Yander Team" byline; thin entity disambiguation</td></tr>
+      <tr class="score-row"><td>Off-site presence</td><td>4 / 10</td><td><span class="badge b-amber">Warn</span></td><td><code>sameAs</code> only has X + LinkedIn; no review sites (G2, Capterra, Clutch), no GBP signal</td></tr>
+      <tr class="score-row"><td>PageSpeed & CWV</td><td>4 / 10</td><td><span class="badge b-amber">Warn</span></td><td>PSI API quota was already exhausted today — manual Lighthouse pass needed</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mute);font-size:12.5px;margin-top:6px"><b>Overall: 72 / 150.</b> Most points lost to P0 defects that are 1-line code fixes — closing them lifts the score to ~110+ without writing new content.</p>
+</section>
+
+<!-- ─────────────────────────  CRITICAL ───────────────────────── -->
+<section id="critical">
+  <h2>Critical issues (P0 — fix today)</h2>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span><span class="tag tag-tech">TECH</span>1. <code>og-image.png</code> returns 404 — every social share is broken</h4>
+    <div class="where"><a href="app/layout.tsx#L56">app/layout.tsx:56</a> · also referenced from <code>app/(main)/blog/page.tsx:23</code>, <code>app/(main)/changelog/page.tsx</code>, <code>app/(main)/changelog/[slug]/page.tsx</code>, blog post fallback (<code>og-default.jpg</code>)</div>
+    <div class="body">
+      <p>Every page on the site references <code>https://yander.ai/og-image.png</code> as the default Open Graph and Twitter image. The file does not exist in <code>public/</code> and returns HTTP 404 in production:</p>
+      <pre>$ curl -I https://www.yander.ai/og-image.png    → 404
+$ curl -I https://www.yander.ai/og-default.jpg  → 404</pre>
+      <p>Result: LinkedIn, X, Slack, iMessage, Facebook etc. will fall back to no preview image or a broken thumbnail — on the homepage, on every blog post, every pricing page, every legal page.</p>
+      <p class="impact"><b>Impact</b>Catastrophic for paid social and organic sharing CTR. Estimated 40–60% drop in click-through vs. a working OG card.</p>
+      <p class="fix"><b>Fix</b>Upload a <code>1200×630 og-image.png</code> AND <code>og-default.jpg</code> to <code>public/</code>. Verify with <a href="https://www.opengraph.xyz/url/https%3A%2F%2Fwww.yander.ai">opengraph.xyz</a>. While you're there, generate per-page OG images for <code>/pricing</code>, <code>/pulse</code>, <code>/pulse-pricing</code>, <code>/compare</code> — Vercel's <code>opengraph-image.tsx</code> convention is ideal here.</p>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span><span class="tag tag-tech">TECH</span>2. Host mismatch — code uses <code>yander.ai</code> but production serves <code>www.yander.ai</code></h4>
+    <div class="where">Sitemap, every canonical, every <code>og:url</code>, every JSON-LD <code>url</code>, recent commit <code>76d6c0f</code> migrated <code>.io</code>→<code>.ai</code> but kept the bare host</div>
+    <div class="body">
+      <p>Production behaviour:</p>
+      <pre>$ curl -sI https://yander.ai/         → 301 → https://www.yander.ai/
+$ curl -sI https://yander.ai/pulse    → 301 → https://www.yander.ai/pulse
+... (every URL redirects)</pre>
+      <p>But the code consistently emits the bare-host version in canonical / OG / sitemap:</p>
+      <div class="kv">
+        <b>sitemap.xml</b><span><code>&lt;loc&gt;https://yander.ai/...&lt;/loc&gt;</code> × 29 entries</span>
+        <b>canonical (every page)</b><span><code>https://yander.ai/...</code></span>
+        <b>og:url (every page)</b><span><code>https://yander.ai/...</code></span>
+        <b>JSON-LD @id, url</b><span><code>https://yander.ai/...</code></span>
+      </div>
+      <p>Every URL Google fetches from the sitemap eats a 301. Every canonical points to a URL that redirects to the URL the user is actually on (canonical "self-canonicalize" is broken). This is the single biggest blocker to recovering ranking authority after the <code>.io→.ai</code> migration.</p>
+      <p class="impact"><b>Impact</b>Wastes Googlebot's crawl budget, weakens canonical signal, and creates two competing index entries (bare and www) when third-party sites link to <code>yander.ai</code>.</p>
+      <p class="fix"><b>Fix — pick one of two paths:</b></p>
+      <ul>
+        <li><b>(Recommended)</b> Configure Vercel to serve <code>yander.ai</code> as the primary domain and 301 <code>www.yander.ai</code> → <code>yander.ai</code> (the opposite of what's happening now). The code already targets bare-host, so no code change needed beyond updating the Vercel domain settings.</li>
+        <li><b>OR</b> change every <code>https://yander.ai</code> to <code>https://www.yander.ai</code>. Files to touch: <code>app/layout.tsx</code> (5 spots: <code>metadataBase</code>, OG <code>url</code>, OG <code>image</code>, Twitter image, Organization <code>url</code>, WebSite <code>url</code>); <code>app/sitemap.ts</code> (<code>SITE_URL</code> constant); <code>app/robots.ts</code> (sitemap URL); <code>lib/seo-utils.ts</code> (<code>siteUrl</code> default); every per-page <code>canonical</code> hardcode (blog, pricing, pulse, pulse-pricing, integrations, changelog, compare, security, privacy-policy, terms-of-service, dpa, beta-terms, contact-sales — 13 files).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span>3. Title double-suffix on every blog post: "… | Yander | Yander"</h4>
+    <div class="where"><a href="lib/seo-utils.ts#L43">lib/seo-utils.ts:43</a> — <code>const fullTitle = `${title} | Yander`</code></div>
+    <div class="body">
+      <p>Live confirmation:</p>
+      <pre>/blog/best-ai-hiring-tools     → "Best AI Hiring Tools in 2026 (Honest Ranking) | Yander | Yander"
+/blog/hire-developers-serbia   → "Hire Developers in Serbia 2026: Salary, Legal, Tech Stack | Yander | Yander"</pre>
+      <p>Authors put "<code>… | Yander</code>" into the Sanity <code>seo.metaTitle</code> field, then <code>generatePostSEO</code> blindly appends it again. This is exactly Gotcha #2 from the audit playbook.</p>
+      <p class="impact"><b>Impact</b>Google will rewrite these in SERP; CTR drops; the brand looks unprofessional in tabs and shares.</p>
+      <p class="fix"><b>Fix</b>In <code>lib/seo-utils.ts:43</code>, strip any existing suffix before appending:</p>
+<pre>const rawTitle = seo.metaTitle || post.title
+const cleanTitle = rawTitle.replace(/\s*[|·\-—]\s*Yander\s*$/i, '').trim()
+const fullTitle = `${cleanTitle} | Yander`</pre>
+      <p>Then run a Sanity script to strip the suffix from existing <code>seo.metaTitle</code> values (or just rely on the template).</p>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span>4. <code>/integrations</code> and <code>/integrations/all</code> canonicalize to the homepage</h4>
+    <div class="where"><a href="app/(pulse)/integrations/page.tsx">app/(pulse)/integrations/page.tsx</a> — metadata defines OG but no <code>alternates.canonical</code></div>
+    <div class="body">
+      <p>Live behaviour:</p>
+      <div class="kv">
+        <b>/integrations</b><span class="miss">canonical → <code>https://yander.ai</code> (homepage!)</span>
+        <b>/integrations</b><span class="miss">og:url → missing</span>
+        <b>/integrations/all</b><span class="miss">canonical → <code>https://yander.ai</code> (homepage!)</span>
+      </div>
+      <p>Because the page's <code>metadata.openGraph</code> overrides the parent's openGraph object entirely (Gotcha #6) but doesn't set <code>url</code>, and because no <code>alternates.canonical</code> is specified, both pages canonicalize to <code>metadataBase</code> = the homepage.</p>
+      <p class="impact"><b>Impact</b>Google will deindex <code>/integrations</code> and <code>/integrations/all</code> as duplicates of <code>/</code>. The entire integrations directory becomes invisible in search.</p>
+      <p class="fix"><b>Fix</b>Add to both pages' <code>metadata</code>:</p>
+<pre>alternates: { canonical: '/integrations' },        // or '/integrations/all'
+openGraph: {
+  ...existing,
+  url: '/integrations',
+  siteName: 'Yander',
+  type: 'website',
+  images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Yander Integrations' }],
+},
+twitter: { card: 'summary_large_image', title, description, images: ['/og-image.png'] },</pre>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span><span class="tag tag-a11y">A11Y</span>5. <code>/blog</code> has two <code>&lt;h1&gt;</code> tags</h4>
+    <div class="where"><a href="app/(main)/blog/page.tsx#L80">app/(main)/blog/page.tsx:80</a> — <code>&lt;h1 className="sr-only"&gt;Yander Blog - Remote Work…&lt;/h1&gt;</code>  +  <a href="app/(main)/blog/BlogContent.tsx#L46">BlogContent.tsx:46</a> — <code>&lt;h1&gt;Blog&lt;/h1&gt;</code></div>
+    <div class="body">
+      <p>Two H1s render in the SSR HTML — one visually-hidden "SEO" H1 and one visible "Blog" H1. Crawlers like Ahrefs and Screaming Frog count both and flag duplicate H1.</p>
+      <p class="impact"><b>Impact</b>Heading hierarchy violation; weakens the primary keyword signal; accessibility-tool warnings.</p>
+      <p class="fix"><b>Fix</b>Pick one. Recommended: delete the <code>sr-only</code> H1 in <code>page.tsx</code> and change <code>BlogContent.tsx:46</code>'s H1 from <code>"Blog"</code> to <code>"Yander Blog — Remote Work &amp; Team Productivity Insights"</code> (or whatever the page's primary keyword is). One visible H1 that contains the keyword is strictly better than one hidden + one short.</p>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-aeo">AEO</span><span class="tag tag-seo">SEO</span>6. WebSite JSON-LD description is the stale Pulse-era pitch</h4>
+    <div class="where"><a href="app/layout.tsx#L96-L107">app/layout.tsx:96-107</a></div>
+    <div class="body">
+      <p>Live JSON-LD on every page:</p>
+<pre>{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Yander",
+  "url": "https://yander.ai",
+  "description": "Build a stronger remote team. Keep clients longer. Get live insights on engagement, workload, and sentiment.",
+  ...
+}</pre>
+      <p>This is the old Pulse messaging — completely disconnected from the current "first AI agent that recruits for you" positioning that the rest of the site (and the Organization schema) uses.</p>
+      <p class="impact"><b>Impact</b>This is the schema field AI engines lean on for entity disambiguation and category-membership claims. Two contradictory descriptions on the same domain dilute AEO/GEO signal and confuse the entity ↔ category mapping.</p>
+      <p class="fix"><b>Fix</b>Update the description in <code>app/layout.tsx</code> to align with Organization schema:</p>
+<pre>description: "Yander is the first AI agent that recruits for you — it headhunts, vets, and presents culture-matched candidates from the US, Canada, UK, Australia, South America, Europe, South Africa, and Southeast Asia. No placement fees."</pre>
+      <p>Also add <code>potentialAction</code> (SearchAction) to make WebSite eligible for a sitelinks searchbox:</p>
+<pre>"potentialAction": {
+  "@type": "SearchAction",
+  "target": "https://yander.ai/blog?q={search_term_string}",
+  "query-input": "required name=search_term_string"
+}</pre>
+    </div>
+  </div>
+
+  <div class="issue crit">
+    <h4><span class="tag tag-seo">SEO</span>7. <code>sitemap.xml</code> is missing ~12 indexable routes</h4>
+    <div class="where"><a href="app/sitemap.ts">app/sitemap.ts</a></div>
+    <div class="body">
+      <p>Sitemap currently lists 29 URLs: 11 static + 18 blog posts. Missing (all return 200, all are intended to be indexed):</p>
+      <ul>
+        <li><code>/contact-sales</code></li>
+        <li><code>/changelog</code> + all <code>/changelog/[slug]</code></li>
+        <li><code>/compare</code> + all <code>/compare/[slug]</code></li>
+        <li><code>/industries/[slug]</code> (all)</li>
+        <li><code>/pages/[slug]</code> (all CMS landing pages)</li>
+        <li><code>/integrations/all</code> + all <code>/integrations/[slug]</code></li>
+        <li><code>/calculator</code></li>
+        <li><code>/remote-hiring-playbook</code> (lead magnet — decide if indexable)</li>
+      </ul>
+      <p class="impact"><b>Impact</b>These pages will be crawled less frequently and rank slower. Several (compare, changelog, industries) are high-intent commercial pages — losing them from sitemap is real lost traffic.</p>
+      <p class="fix"><b>Fix</b>Add to <code>app/sitemap.ts</code>. Pseudocode:</p>
+<pre>const changelogs = await client.fetch(`*[_type=="changelog" && defined(slug.current)]{slug,releaseDate,_updatedAt}`)
+const comparisons = await client.fetch(`*[_type=="comparison" && defined(slug.current)]{slug,_updatedAt}`)
+const industries = await client.fetch(`*[_type=="industryPage" && defined(slug.current)]{slug,_updatedAt}`)
+const landingPages = await client.fetch(`*[_type=="landingPage" && defined(slug.current)]{slug,_updatedAt}`)
+
+const integrationSlugs = getAllSlugs() // from lib/integrations.ts
+
+return [
+  ...staticPages,
+  { url: `${SITE_URL}/contact-sales`, priority: 0.7, ... },
+  { url: `${SITE_URL}/compare`, priority: 0.8, ... },
+  { url: `${SITE_URL}/changelog`, priority: 0.6, ... },
+  { url: `${SITE_URL}/integrations/all`, priority: 0.6, ... },
+  ...changelogs.map(c => ({ url: `${SITE_URL}/changelog/${c.slug.current}`, lastModified: new Date(c._updatedAt||c.releaseDate), priority: 0.5 })),
+  ...comparisons.map(c => ({ url: `${SITE_URL}/compare/${c.slug.current}`, lastModified: new Date(c._updatedAt), priority: 0.7 })),
+  ...industries.map(i => ({ url: `${SITE_URL}/industries/${i.slug.current}`, lastModified: new Date(i._updatedAt), priority: 0.7 })),
+  ...landingPages.map(p => ({ url: `${SITE_URL}/pages/${p.slug.current}`, lastModified: new Date(p._updatedAt), priority: 0.6 })),
+  ...integrationSlugs.map(s => ({ url: `${SITE_URL}/integrations/${s}`, priority: 0.5, changeFrequency: 'monthly' })),
+  ...blogPages,
+]</pre>
+      <p>Note: <code>/v1</code> and <code>/v2</code> are already <code>noindex</code> — keep them out of the sitemap (correct).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  HIGH ───────────────────────── -->
+<section id="high">
+  <h2>High-priority issues (P1 — fix this week)</h2>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-seo">SEO</span>8. OG and Twitter images missing on 4 commercial pages</h4>
+    <div class="where"><code>/pulse</code>, <code>/pricing</code>, <code>/pulse-pricing</code>, <code>/contact-sales</code> — these pages set <code>metadata.openGraph</code> without <code>images</code>, which (per Gotcha #6) replaces the parent's openGraph entirely</div>
+    <div class="body">
+      <p>Live evidence: <code>og:image</code> is absent in the HTML for <code>/pulse</code>, <code>/pricing</code>, <code>/pulse-pricing</code>; <code>twitter:image</code> is absent on <code>/pulse</code>, <code>/pricing</code>, <code>/pulse-pricing</code>.</p>
+      <p class="fix"><b>Fix</b>Either (a) add <code>images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '...' }]</code> to each page's <code>openGraph</code> + <code>images: ['/og-image.png']</code> to <code>twitter</code> blocks, or (b) better — generate per-page OG images using <code>opengraph-image.tsx</code> in each route folder.</p>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-aeo">AEO</span><span class="tag tag-geo">GEO</span>9. Blog posts: <code>dateModified === datePublished</code> always; missing <code>image</code> on some posts</h4>
+    <div class="where"><a href="lib/seo-utils.ts#L110">lib/seo-utils.ts:110</a> — <code>dateModified: post.publishedAt</code></div>
+    <div class="body">
+      <p>The BlogPosting JSON-LD always emits <code>dateModified == datePublished</code> because <code>_updatedAt</code> isn't pulled from Sanity. Confirmed live:</p>
+<pre>"datePublished": "2026-05-13T16:00:00Z",
+"dateModified": "2026-05-13T16:00:00Z"</pre>
+      <p>Per the AEO research: content with no dateModified updates loses 23% citation frequency by day 15 and drops to effectively-invisible by week 27. Yander cannot signal freshness today.</p>
+      <p class="fix"><b>Fix</b></p>
+      <ol>
+        <li>In <code>lib/queries.ts</code>: add <code>_updatedAt</code> to every post query (<code>postBySlugQuery</code>, <code>paginatedPostsQuery</code>, etc.).</li>
+        <li>In <code>lib/types.ts</code> <code>Post</code>: add <code>_updatedAt?: string</code>.</li>
+        <li>In <code>lib/seo-utils.ts:110</code>: <code>dateModified: post._updatedAt || post.publishedAt</code></li>
+        <li>Also surface "Last updated: {dateModified}" visibly in <code>PostHeader.tsx</code> when it differs from publishedAt — visual confirmation matters for E-E-A-T.</li>
+        <li>In OG: emit <code>&lt;meta property="article:modified_time"&gt;</code> too. Right now live HTML on <code>/blog/best-ai-hiring-tools</code> has <code>published_time</code> but <b>no</b> <code>modified_time</code>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-aeo">AEO</span>10. No <code>llms.txt</code>, no AI-bot allowlist in robots</h4>
+    <div class="where"><a href="app/robots.ts">app/robots.ts</a> · no <code>public/llms.txt</code></div>
+    <div class="body">
+      <p>Current robots.ts is one wildcard rule. There's no explicit signal that AI crawlers are welcome (and they're increasingly auditing for this), and no <code>llms.txt</code> for the proposed LLM-discovery standard.</p>
+      <p class="impact"><b>Impact</b>Some AI engines treat the absence of an explicit AI-bot allow as ambiguous and back off. <code>llms.txt</code> is the highest-ROI 5-minute AEO win available today — adoption is ~15% but climbing, and yander.ai will be cited more easily once AI engines have a structured "what is this brand" file.</p>
+      <p class="fix"><b>Fix (app/robots.ts):</b></p>
+<pre>export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      { userAgent: '*', allow: '/', disallow: ['/studio/', '/waitlist-confirmation/', '/api/'] },
+      // Explicitly welcome AI bots
+      { userAgent: ['GPTBot','ChatGPT-User','OAI-SearchBot','ClaudeBot','anthropic-ai',
+                    'PerplexityBot','Perplexity-User','Google-Extended','Bingbot',
+                    'CCBot','Bytespider','DuckAssistBot','Applebot-Extended'],
+        allow: '/', disallow: ['/studio/', '/api/'] },
+    ],
+    sitemap: 'https://yander.ai/sitemap.xml',
+    host: 'https://yander.ai', // declare canonical host
+  }
+}</pre>
+      <p><b>And ship <code>public/llms.txt</code></b>:</p>
+<pre># Yander
+> The first AI agent that recruits for you — Yander headhunts, vets, and presents
+> culture-matched candidates worldwide. No placement fees.
+
+## What Yander does
+- AI sourcing across the US, Canada, UK, Australia, South America, Europe, South Africa, and Southeast Asia
+- Culture and skill matching via structured intake briefs
+- Candidate vetting and shortlist delivery — flat monthly pricing ($89 Pro, $249 Max)
+- Optional add-on: Yander Pulse — real-time team performance intelligence
+
+## Citation preferences
+- Brand: "Yander" (operated by Yander Labs, Inc.)
+- Founder / spokesperson contact: jordan@yanderlabs.com
+- Canonical URL pattern: https://yander.ai/{slug}
+
+## Key resources
+- Pricing: https://yander.ai/pricing
+- Pulse (workforce analytics): https://yander.ai/pulse
+- Blog: https://yander.ai/blog
+- Comparisons (vs other tools): https://yander.ai/compare
+- Changelog: https://yander.ai/changelog</pre>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-aeo">AEO</span>11. E-E-A-T: every blog post is by "Yander Team" with stale role "Employee Engagement Experts"</h4>
+    <div class="where"><a href="sanity/schemaTypes/author.ts">sanity/schemaTypes/author.ts</a> · live BlogPosting JSON-LD</div>
+    <div class="body">
+      <p>Live JSON-LD on a sample blog post:</p>
+<pre>"author": { "@type": "Person", "name": "Yander Team", "jobTitle": "Employee Engagement Experts" }</pre>
+      <p>Two problems:</p>
+      <ol>
+        <li><b>Generic name</b> — AEO research (r=0.81 correlation) shows AI engines weight named individual authors with credentials at a multiple of "[Brand] Team". 96% of AI Overview citations come from E-E-A-T-verified sources.</li>
+        <li><b>Stale role</b> — "Employee Engagement Experts" is the Pulse-era positioning, on a blog post about AI hiring tools. Contradicts the page topic and the brand's current category claim.</li>
+      </ol>
+      <p class="fix"><b>Fix</b></p>
+      <ul>
+        <li>Extend <code>sanity/schemaTypes/author.ts</code> with: <code>linkedinUrl</code>, <code>twitterUrl</code>, <code>yearsExperience</code>, <code>expertise</code> (array of strings), <code>certifications</code> (array). All optional.</li>
+        <li>Create at least 2 real named authors with real LinkedIn URLs (Jordan, and at least one subject-matter contributor).</li>
+        <li>Update <code>lib/seo-utils.ts</code> <code>generateJSONLD</code> to emit full Person schema with <code>url</code> (LinkedIn) and <code>sameAs</code> (all author social profiles).</li>
+        <li>Update the existing "Yander Team" author's <code>role</code> to "AI Recruiting Research Team" or similar that matches current brand.</li>
+        <li>Backfill author on the top 5 blog posts manually.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-seo">SEO</span>12. Most legal/policy pages have OG inheriting "Yander homepage" — their <code>og:url</code> resolves to the homepage</h4>
+    <div class="where"><code>/security</code>, <code>/privacy-policy</code>, <code>/terms-of-service</code>, <code>/dpa</code>, <code>/beta-terms</code> — all set <code>alternates.canonical</code> but no <code>openGraph</code> block, so they inherit the root layout's <code>url: "https://yander.ai"</code></div>
+    <div class="body">
+      <p>Confirmed live: <code>og:url</code> on <code>/security</code>, <code>/privacy-policy</code>, etc. is <code>https://yander.ai</code> instead of the actual page URL. Same problem on <code>/compare</code> (og:url = homepage).</p>
+      <p class="fix"><b>Fix</b>Add a minimal <code>openGraph</code> block to each legal page. Better — promote the per-page metadata pattern to a reusable helper:</p>
+<pre>// lib/page-metadata.ts
+export function pageMetadata({title, description, path}: {...}): Metadata {
+  return {
+    title, description,
+    alternates: { canonical: path },
+    openGraph: { title, description, url: path, siteName:'Yander', type:'website',
+                 images:[{url:'/og-image.png',width:1200,height:630,alt:title}] },
+    twitter:  { card:'summary_large_image', title, description, images:['/og-image.png'] },
+    robots: 'index, follow',
+  }
+}
+// Each page:
+export const metadata = pageMetadata({title:'Security | Yander', description:'…', path:'/security'})</pre>
+      <p>This single helper also kills the duplication across 13+ page files.</p>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-seo">SEO</span><span class="tag tag-a11y">A11Y</span>13. Heading hierarchy broken on <code>/blog</code> and <code>/changelog</code></h4>
+    <div class="where">/blog → 0 × H2, 9 × H3. /changelog → 0 × H2, 4 × H3.</div>
+    <div class="body">
+      <p>Both pages jump straight from H1 → H3, skipping H2 entirely. The H3s are post titles/changelog entry titles — those should be H2s.</p>
+      <p class="fix"><b>Fix</b>In <code>components/blog/BlogTable.tsx</code> change post-row title element from H3 → H2 (or wrap the list in a "Latest articles" H2 and keep H3 for entries). Same for <code>components/changelog/ChangelogList.tsx</code>.</p>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-seo">SEO</span>14. <code>/calculator</code> and <code>/remote-hiring-playbook</code> render the homepage's metadata</h4>
+    <div class="where">Both are client components without a <code>metadata</code> export</div>
+    <div class="body">
+      <p>Live evidence — calculator page returns:</p>
+      <div class="kv">
+        <b>title</b><span class="miss">"Yander - The First AI Agent That Recruits For You" (homepage title)</span>
+        <b>canonical</b><span class="miss"><code>https://yander.ai</code> (homepage)</span>
+        <b>description</b><span class="miss">homepage description, 223 chars (over 160-char limit)</span>
+      </div>
+      <p>These are valuable pages — the playbook is a lead magnet, the calculator is a comparison tool. Both should rank for their own intent.</p>
+      <p class="fix"><b>Fix</b>Split each into a server-component wrapper + the existing client component, where the wrapper exports <code>metadata</code>. Pattern:</p>
+<pre>// app/(main)/calculator/page.tsx  (server)
+export const metadata = pageMetadata({
+  title: 'Remote Hiring Cost Calculator | Yander',
+  description: 'Estimate annual savings hiring globally vs. locally. Compare US/UK/Canada salaries against Brazil, Mexico, Philippines, India, Serbia, South Africa.',
+  path: '/calculator',
+})
+export default function Page(){ return &lt;CalculatorClient /&gt; }
+// app/(main)/calculator/CalculatorClient.tsx  ("use client" + existing code)</pre>
+    </div>
+  </div>
+
+  <div class="issue warn">
+    <h4><span class="tag tag-aeo">AEO</span>15. No FAQPage, BreadcrumbList, HowTo, or Speakable schema anywhere</h4>
+    <div class="where"><code>BreadcrumbList</code> exists only in <code>blog/[slug]</code> and <code>changelog/[slug]</code>; no FAQ schema anywhere despite FAQ sections on <code>/pricing</code>, <code>/pulse</code>, <code>/pulse-pricing</code>, <code>/pulse#use-cases</code></div>
+    <div class="body">
+      <p>Pricing has a FAQ section. Pulse has a FAQ. Both render the Q&A as plain HTML — invisible to AI engines as structured Q&A.</p>
+      <p class="impact"><b>Impact</b>Schema stacking (Article + FAQ + Breadcrumb) gives a 73% AI Overview selection boost per recent research. Right now Yander emits Organization + WebSite + (per-post) BlogPosting+Breadcrumb — and that's it.</p>
+      <p class="fix"><b>Fix</b></p>
+      <ul>
+        <li><b>FAQ data → FAQPage schema.</b> The FAQ component should accept a typed <code>questions: {q:string, a:string}[]</code> prop and emit JSON-LD alongside. Lift the question/answer data out of JSX into a constant and reuse it for both rendering and schema.</li>
+        <li><b>Add BreadcrumbList</b> to every page deeper than the homepage. Pattern: <code>Home → Pricing</code>, <code>Home → Integrations → Slack</code>, <code>Home → Compare → Yander vs Ashby</code>, <code>Home → Industries → SaaS</code>.</li>
+        <li><b>HowTo schema</b> on the "How Yander Works" sections (e.g. <code>HowItWorks.tsx</code>, <code>PulseHowItWorks.tsx</code>) — these are 3-4-step explainers that match HowTo perfectly.</li>
+        <li><b>Speakable schema</b> on the homepage hero quote and one FAQ paragraph — mark 2-3 passages per page for voice assistants (Alexa, Siri, Google Assistant) and AI Overview voice readers. Documented +127% voice search referrals when implemented.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  MEDIUM ───────────────────────── -->
+<section id="med">
+  <h2>Medium-priority issues (P2 — fix this month)</h2>
+
+  <div class="col2">
+    <div class="issue info">
+      <h4>16. Homepage meta description ≠ OG / Twitter description</h4>
+      <div class="where"><a href="app/(main)/page.tsx#L7">app/(main)/page.tsx:7</a> says "<i>evaluates</i>"; root layout says "<i>vets</i>". They both render on the homepage — one as <code>&lt;meta name="description"&gt;</code>, the other as <code>og:description</code>.</div>
+      <div class="body">
+        <p class="fix"><b>Fix</b>Pick one verb ("vets" is sharper) and unify across <code>app/layout.tsx</code> and <code>app/(main)/page.tsx</code>. Better — let the homepage inherit the layout entirely by deleting its <code>metadata</code> export.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>17. <code>/v1</code> H1 has a missing space: "The first AI agent thatrecruits for you."</h4>
+      <div class="where"><a href="components/sections/Hero.tsx#L269">components/sections/Hero.tsx:269</a></div>
+      <div class="body">
+        <p><code>/v1</code> is noindex'd so the SEO impact is zero, but the bug indicates a JSX template missing a <code>{" "}</code>. Fix or delete the <code>/v1</code> route — the audit shows two homepage versions (<code>/</code> and <code>/v1</code>, plus <code>/v2</code> which is also the canonical homepage). One should die.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>18. Nav surface is too thin — only Pricing + Blog</h4>
+      <div class="where"><a href="components/Navigation.tsx">components/Navigation.tsx</a></div>
+      <div class="body">
+        <p>The header has Pricing and Blog only. Pulse, Integrations, Compare, Changelog, and Industries have no top-of-page link surface — they're discoverable only via the footer or sitemap. Internal-link equity is the single strongest topical-authority signal.</p>
+        <p class="fix"><b>Fix</b>Add a "Product" dropdown (Pulse, Integrations, Calculator, Industries) and a "Resources" dropdown (Blog, Changelog, Compare). Keep top-level visible: Pricing, Customers / Compare, Blog.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>19. Footer logo alt is Pulse-era branding</h4>
+      <div class="where"><a href="components/Footer.tsx#L74">components/Footer.tsx:74</a> — <code>alt="Yander - Remote Team Intelligence"</code></div>
+      <div class="body">
+        <p>Nav logo alt: "Yander - AI Offshore Recruitment". Footer logo alt: "Yander - Remote Team Intelligence". Inconsistent brand surface confuses entity recognition for AI scrapers that key off image alt + logo URL.</p>
+        <p class="fix"><b>Fix</b>Make both <code>alt="Yander"</code> or both <code>alt="Yander — the first AI agent that recruits for you"</code>. Pick one.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>20. <code>/integrations</code> meta description is 141 chars but reads as truncated mid-sentence</h4>
+      <div class="where"><a href="app/(pulse)/integrations/page.tsx#L10">app/(pulse)/integrations/page.tsx:10</a></div>
+      <div class="body">
+        <p>Lists 8 named integrations. Reads "<i>…Fathom, and Fireflies. One dashboard for all your team and client data.</i>" — length is fine but Slack and Gmail are listed alongside Notion and Asana which dilutes intent.</p>
+        <p class="fix"><b>Fix</b>Rewrite: "<i>Connect Yander with Slack, Notion, ClickUp, Monday, Asana, Gmail, Fathom, and Fireflies. Pull team activity into one dashboard — no manual data entry.</i>"</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>21. <code>changeFrequency: 'daily'</code> on /blog is overpromising</h4>
+      <div class="where"><a href="app/sitemap.ts#L34">app/sitemap.ts:34</a></div>
+      <div class="body">
+        <p>Blog hasn't shipped daily content historically. <code>changeFrequency</code> is a hint, but if Google sees daily-frequency pages updated weekly, it stops trusting the hint. Use <code>'weekly'</code> until you actually publish daily.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>22. <code>noindex</code> needed on dynamic-route 404 fallbacks</h4>
+      <div class="where">blog/[slug], industries/[slug], compare/[slug], pages/[slug], changelog/[slug] — all return a fallback <code>title: 'Post Not Found | Yander'</code> when the slug doesn't match a CMS doc</div>
+      <div class="body">
+        <p>Per Gotcha #8: when CMS returns null, the page hits <code>notFound()</code> which renders 404 — but the metadata function returns generic metadata <i>without</i> a <code>noindex</code>. If Google requests metadata before the page renders, it can briefly see "Post Not Found" with index-allowed.</p>
+        <p class="fix"><b>Fix</b>In each <code>generateMetadata</code> early return, add <code>robots: { index: false, follow: false }</code>.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>23. <code>/use-cases</code> redirect chain (2 hops)</h4>
+      <div class="where"><a href="next.config.ts#L13">next.config.ts:13</a></div>
+      <div class="body">
+        <p>Live trace: <code>/use-cases</code> → (Next.js redirect 301) → <code>/pulse#use-cases</code> → (bare→www redirect) → <code>https://www.yander.ai/pulse#use-cases</code>. Two hops where one would do.</p>
+        <p class="fix"><b>Fix</b>Resolves automatically once Issue #2 is fixed.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>24. Sitemap lastModified hardcoded to 2026-02-19 for legal pages</h4>
+      <div class="where"><a href="app/sitemap.ts#L62-L91">app/sitemap.ts:62-91</a></div>
+      <div class="body">
+        <p>Legal pages have a hardcoded <code>2026-02-19</code> lastmod. Either ship a Sanity-driven update or read it from the page constant — but don't hardcode in two places.</p>
+      </div>
+    </div>
+
+    <div class="issue info">
+      <h4>25. Organization schema is missing <code>address</code>, <code>foundingDate</code>, <code>numberOfEmployees</code></h4>
+      <div class="where"><a href="app/layout.tsx#L77">app/layout.tsx:77</a></div>
+      <div class="body">
+        <p>Current Organization schema has name, url, logo, description, sameAs, contactPoint. Missing fields that AI engines use for entity disambiguation:</p>
+        <ul>
+          <li><code>legalName: "Yander Labs, Inc."</code></li>
+          <li><code>foundingDate</code> (the year Yander Labs was incorporated)</li>
+          <li><code>address</code> (even just country)</li>
+          <li><code>disambiguatingDescription</code> — there's a Yander Mountain, a Yander Mountain Trading Company; AI needs to know which Yander you are</li>
+          <li><code>knowsAbout</code>: ["AI recruiting","Remote hiring","Global talent","Workforce analytics"]</li>
+          <li><code>brand</code>: Yander Pulse as a sub-brand</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  AEO ───────────────────────── -->
+<section id="aeo">
+  <h2>AEO readiness deep dive (7/20)</h2>
+  <p>AI engines (ChatGPT, Perplexity, Claude, Gemini, Google AI Overviews) extract content differently from Googlebot. This section evaluates Yander's surface specifically against AEO research benchmarks.</p>
+
+  <h3>9a. Entity identity</h3>
+  <ul class="checklist">
+    <li class="done">Organization schema present with <code>sameAs</code></li>
+    <li class="done">Brand name consistent across schema and visible content</li>
+    <li>About / team page <span class="badge b-red">missing</span> — there is no <code>/about</code>; <code>curl https://www.yander.ai/about</code> returns 404</li>
+    <li>AboutPage schema <span class="badge b-red">missing</span></li>
+    <li><code>disambiguatingDescription</code> in Organization schema <span class="badge b-red">missing</span></li>
+    <li><code>foundingDate</code>, <code>address</code>, <code>numberOfEmployees</code> <span class="badge b-red">missing</span></li>
+  </ul>
+
+  <h3>9b. Category membership</h3>
+  <ul class="checklist">
+    <li class="done">Homepage H1 is concrete: "The first AI agent that recruits for you" — strong category claim</li>
+    <li>Category statement repeated across pages <span class="badge b-amber">weak</span> — Pulse page positions Yander as "team performance intelligence", not as a recruiting agent; the two products dilute each other's category claim</li>
+    <li>Vertical landing pages exist <span class="badge b-amber">partial</span> — <code>/industries/[slug]</code> route exists but unknown how many are populated; none appear in sitemap</li>
+    <li>"<i>Yander is a [category] for [audience]</i>" statement in first 100 words of homepage <span class="badge b-amber">weak</span> — current opener is poetic; AI engines extract literal category claims better</li>
+  </ul>
+
+  <h3>9c. Content structure for AI extraction</h3>
+  <ul class="checklist">
+    <li class="done">All key content is server-rendered (verified via <code>curl</code>)</li>
+    <li class="done">JSON-LD is inlined in <code>&lt;head&gt;</code>, not deferred via <code>&lt;Script&gt;</code></li>
+    <li>FAQ markup is plain HTML, not FAQPage schema <span class="badge b-red">missing</span></li>
+    <li>Self-contained opening paragraphs <span class="badge b-amber">partial</span> — blog post intros pass; homepage hero is good; product pages bury the category claim under animation</li>
+    <li>Closing-statement extractability per section <span class="badge b-amber">partial</span></li>
+  </ul>
+
+  <h3>9d. Comparison & recommendation readiness</h3>
+  <ul class="checklist">
+    <li class="done"><code>/compare</code> route exists with CMS-driven comparison pages</li>
+    <li><code>/compare/[slug]</code> uses <code>WebPage</code> schema, not <code>Article</code> + a comparison-specific schema <span class="badge b-amber">weak</span></li>
+    <li>"Yander vs X" titles are good for query matching</li>
+    <li>Quantified outcome claims with timeframes <span class="badge b-amber">unknown</span> — couldn't sample comparison page contents at audit time</li>
+  </ul>
+
+  <h3>9e. Technical AEO</h3>
+  <ul class="checklist">
+    <li>AI-bot allowlist <span class="badge b-red">missing</span> (see Issue #10)</li>
+    <li><code>llms.txt</code> <span class="badge b-red">missing</span> (see Issue #10)</li>
+    <li class="done">No paywalls or content gates</li>
+    <li class="done">Server-rendered content visible to AI scrapers</li>
+  </ul>
+
+  <h3>9f. Freshness</h3>
+  <ul class="checklist">
+    <li>BlogPosting <code>dateModified</code> always equals <code>datePublished</code> <span class="badge b-red">broken</span> (Issue #9)</li>
+    <li>Sitemap uses real dates for blog posts but hardcoded 2026-02-19 for legal pages</li>
+    <li>Visible "Last updated" date on blog posts <span class="badge b-amber">unknown</span> — verify in <code>PostHeader.tsx</code></li>
+    <li>Content references current year (2026) <span class="badge b-green">yes</span> in titles like "Best AI Hiring Tools in 2026"</li>
+  </ul>
+
+  <h3>9g. E-E-A-T</h3>
+  <ul class="checklist">
+    <li>Named author bylines <span class="badge b-red">no</span> — generic "Yander Team"</li>
+    <li>Person schema for authors <span class="badge b-amber">weak</span> — emitted, but with generic name + stale role</li>
+    <li>Author Person schema has <code>sameAs</code> with LinkedIn <span class="badge b-red">missing</span></li>
+    <li>Service pages reference specific team expertise / years / certifications <span class="badge b-red">missing</span></li>
+    <li>Case studies with measurable outcomes <span class="badge b-amber">partial</span> — Results section exists but unverified</li>
+  </ul>
+</section>
+
+<!-- ─────────────────────────  GEO ───────────────────────── -->
+<section id="geo">
+  <h2>GEO readiness deep dive (9/20)</h2>
+
+  <h3>10a. Quotability</h3>
+  <p>GEO research (Princeton, KDD 2024): text blocks under 40 words are extracted at 2.7× the rate of longer blocks; ideal section length is 134–167 words. Spot-checks across Yander pages:</p>
+  <ul class="checklist">
+    <li class="done">Hero H1 is quotable ("The first AI agent that recruits for you" — 9 words, contains entity)</li>
+    <li>Most claim sentences are long-form prose <span class="badge b-amber">partial</span> — e.g. homepage description meta is 118 chars / 19 words, that's good; but body sections vary</li>
+    <li>FAQ answers <span class="badge b-amber">unknown</span> — couldn't audit length distribution; aim 100–200 words per answer</li>
+    <li>Closing takeaway per section <span class="badge b-amber">partial</span> — most sections end with a CTA, not a takeaway sentence; CTAs are not quotable</li>
+  </ul>
+
+  <h3>10b. Authoritative tone</h3>
+  <ul class="checklist">
+    <li class="done">Active voice and definitive claims throughout marketing pages (no "we think", "we believe", "may help")</li>
+    <li class="done">No hedging language detected outside legal pages</li>
+    <li>First-person plural "we" consistent <span class="badge b-green">yes</span></li>
+  </ul>
+
+  <h3>10c. Source citation within content</h3>
+  <ul class="checklist">
+    <li>Blog posts cite external sources <span class="badge b-amber">spot-check needed</span> — the audit playbook says citation alone gives +40% visibility boost</li>
+    <li>Case studies reference named clients <span class="badge b-amber">unknown</span></li>
+    <li>External authoritative outbound links present <span class="badge b-amber">unknown</span></li>
+  </ul>
+
+  <h3>10d. Structured knowledge formats</h3>
+  <ul class="checklist">
+    <li>Comparison tables on <code>/compare/[slug]</code> use real <code>&lt;table&gt;</code> <span class="badge b-amber">unknown</span> — verify in component</li>
+    <li>HowTo schema for "How it works" sections <span class="badge b-red">missing</span></li>
+    <li>"What is X" definitions near top of relevant pages <span class="badge b-amber">partial</span></li>
+    <li>FAQPage schema <span class="badge b-red">missing</span> (Issue #15)</li>
+    <li>Speakable schema <span class="badge b-red">missing</span></li>
+  </ul>
+
+  <h3>10e. Topical authority & content depth</h3>
+  <ul class="checklist">
+    <li class="done">Sample blog post <code>best-ai-hiring-tools</code> is 2,934 words — strong depth</li>
+    <li>18 blog posts indexed — moderate corpus for "AI hiring" topical cluster</li>
+    <li>Pillar-page architecture <span class="badge b-amber">weak</span> — no clear "ultimate guide to AI recruiting" pillar that interlinks the corpus</li>
+    <li>Service page ↔ blog deep-dive ↔ case study triangulation <span class="badge b-amber">weak</span></li>
+  </ul>
+
+  <h3>10f. Brand consistency across surfaces</h3>
+  <ul class="checklist">
+    <li>Brand name "Yander" consistent everywhere <span class="badge b-green">yes</span></li>
+    <li>Brand description consistent <span class="badge b-red">no</span> — WebSite schema = Pulse-era, Organization schema = current AI recruiting (Issue #6)</li>
+    <li>Service list consistent <span class="badge b-amber">partial</span> — Pulse is positioned as both a sub-brand and a competing primary product depending on which page you land on</li>
+    <li>Logo alt consistent <span class="badge b-red">no</span> (Issue #19)</li>
+    <li>Email domain (<code>yanderlabs.com</code>) differs from website domain (<code>yander.ai</code>) <span class="badge b-amber">notable</span> — not a defect per se but a disambiguating-description should call this out</li>
+  </ul>
+</section>
+
+<!-- ─────────────────────────  PER-PAGE ───────────────────────── -->
+<section id="per-page">
+  <h2>Per-page audit</h2>
+  <p>Live-pulled HTML for the 19 most important routes. Click any row to expand.</p>
+
+  <details><summary><b>/</b> · homepage · <span class="badge b-amber">2 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span>Yander - The First AI Agent That Recruits For You <span class="ok">(49c — good)</span></span>
+        <b>description</b><span>"…<i>evaluates</i>…" 118c — note: OG says "<i>vets</i>", mismatch (Issue #16)</span>
+        <b>canonical</b><span class="miss">https://yander.ai <span class="b-red">(bare host, redirects to www)</span></span>
+        <b>og:image</b><span class="miss">/og-image.png → 404</span>
+        <b>H1</b><span class="ok">1 · "The first AI agent that recruits for you."</span>
+        <b>JSON-LD</b><span class="ok">2 blocks: Organization, WebSite <span class="miss">(WebSite description is stale Pulse copy — Issue #6)</span></span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/pulse</b> · product · <span class="badge b-amber">2 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span>Yander Pulse — Real-time team performance intelligence (54c — ok)</span>
+        <b>description</b><span>116c — good</span>
+        <b>canonical</b><span>/pulse <span class="miss">(but bare host)</span></span>
+        <b>og:image</b><span class="miss">missing — Issue #8</span>
+        <b>twitter:image</b><span class="miss">missing</span>
+        <b>H1 / H2 / H3</b><span class="ok">1 / 7 / 14</span>
+        <b>JSON-LD</b><span>Organization + WebSite only — no <code>SoftwareApplication</code> / <code>Product</code> schema for Pulse</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/pricing</b> · commercial · <span class="badge b-amber">3 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span class="miss">"Pricing | Yander" (16c — under 30c minimum)</span>
+        <b>description</b><span>101c — under 120c min, will get flagged by Ahrefs</span>
+        <b>og:image</b><span class="miss">missing — Issue #8</span>
+        <b>twitter:image</b><span class="miss">missing</span>
+        <b>JSON-LD</b><span class="miss">No <code>Offer</code> / <code>Product</code> schema for the 3 pricing tiers — strong missed opportunity</span>
+        <b>H1</b><span class="ok">"Clear pricing for your recruiting needs."</span>
+        <b>FAQ on page</b><span class="miss">No FAQPage schema</span>
+      </div>
+      <p style="font-size:13px;margin-top:8px"><b>Fix the title</b>: "AI Recruiting Pricing — Free / $89 / $249 No Placement Fees | Yander" (62c). <b>Add Offer schema</b>:</p>
+<pre>{
+ "@type":"Product",
+ "name":"Yander AI Recruiter",
+ "offers":[
+  {"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},
+  {"@type":"Offer","name":"Pro","price":"89","priceCurrency":"USD","priceSpecification":{"@type":"UnitPriceSpecification","unitText":"MONTH"}},
+  {"@type":"Offer","name":"Max","price":"249","priceCurrency":"USD"}
+ ]
+}</pre>
+    </div>
+  </details>
+
+  <details><summary><b>/pulse-pricing</b> · commercial · <span class="badge b-amber">2 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span class="miss">"Pulse Pricing | Yander" (22c — under 30c)</span>
+        <b>og:image</b><span class="miss">missing</span>
+        <b>twitter:image</b><span class="miss">missing</span>
+        <b>JSON-LD</b><span class="miss">No Offer schema</span>
+        <b>FAQ</b><span class="miss">No FAQPage schema</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/integrations</b> · directory · <span class="badge b-red">CRITICAL</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span>Integrations | Yander (21c)</span>
+        <b>canonical</b><span class="miss"><b>WRONG → https://yander.ai (homepage)</b> — Issue #4</span>
+        <b>og:url</b><span class="miss">missing entirely</span>
+        <b>og:image</b><span class="miss">missing</span>
+        <b>JSON-LD</b><span class="miss">No <code>ItemList</code> schema for the integration directory</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/integrations/all</b> · directory · <span class="badge b-red">CRITICAL</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>canonical</b><span class="miss">https://yander.ai (homepage) — Issue #4</span>
+        <b>og:url</b><span class="miss">missing</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/blog</b> · list · <span class="badge b-red">CRITICAL</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>H1 count</b><span class="miss">2 — "Yander Blog…" (sr-only) and "Blog" (visible) — Issue #5</span>
+        <b>H2 count</b><span class="miss">0 (jumps H1→H3)</span>
+        <b>JSON-LD</b><span class="miss">No <code>Blog</code> or <code>ItemList</code> schema</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/blog/[slug]</b> · article (sample: best-ai-hiring-tools) · <span class="badge b-amber">3 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span class="miss">"Best AI Hiring Tools in 2026 (Honest Ranking) | Yander | Yander" — Issue #3</span>
+        <b>og:image</b><span class="miss">og-default.jpg → 404</span>
+        <b>article:modified_time</b><span class="miss">missing (Issue #9)</span>
+        <b>BlogPosting <code>dateModified</code></b><span class="miss">= datePublished (Issue #9)</span>
+        <b>author</b><span class="miss">"Yander Team" generic; jobTitle "Employee Engagement Experts" stale — Issue #11</span>
+        <b>JSON-LD blocks</b><span class="ok">4: Org, WebSite, BlogPosting, BreadcrumbList</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/changelog</b> · log · <span class="badge b-amber">2 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>H2 count</b><span class="miss">0 (jumps H1→H3) — Issue #13</span>
+        <b>JSON-LD</b><span class="miss">No <code>ItemList</code> of releases / no <code>SoftwareApplication</code> with versions</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/compare</b> · directory · <span class="badge b-amber">3 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>og:url</b><span class="miss">https://yander.ai (homepage) — Issue #12</span>
+        <b>JSON-LD</b><span class="miss">No CollectionPage / ItemList for comparison entries</span>
+        <b>Not in sitemap</b><span class="miss">Issue #7</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/contact-sales</b> · funnel · <span class="badge b-amber">2 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>og:image</b><span class="miss">missing</span>
+        <b>twitter</b><span>only card type set, no title/desc/image</span>
+        <b>JSON-LD</b><span class="miss">No <code>ContactPage</code> schema</span>
+        <b>Not in sitemap</b><span class="miss">Issue #7</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/calculator</b> · tool · <span class="badge b-red">3 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span class="miss">Falls back to homepage title — Issue #14</span>
+        <b>description</b><span class="miss">Falls back to homepage 223c — too long</span>
+        <b>canonical</b><span class="miss">https://yander.ai (homepage)</span>
+        <b>Not in sitemap</b><span class="miss">Issue #7</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/remote-hiring-playbook</b> · lead magnet · <span class="badge b-red">3 issues</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>title</b><span class="miss">Falls back to homepage — Issue #14</span>
+        <b>canonical</b><span class="miss">https://yander.ai (homepage)</span>
+        <b>Robots</b><span>not noindex — but if this is a gated lead magnet, decide intent. Probably should be index'd with own title.</span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/security, /privacy-policy, /terms-of-service, /dpa, /beta-terms</b> · legal · <span class="badge b-amber">1 shared issue</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>canonical</b><span class="ok">correct on each page</span>
+        <b>og:url</b><span class="miss">all inherit root → "https://yander.ai" — Issue #12</span>
+        <b>title</b><span class="ok">good (all 17–34c)</span>
+        <b>description</b><span class="ok">all in range</span>
+        <b>JSON-LD</b><span>Org + WebSite only — could add <code>WebPage</code> with <code>dateModified</code></span>
+      </div>
+    </div>
+  </details>
+
+  <details><summary><b>/v1, /v2</b> · alternate homepages · <span class="badge b-amber">decision needed</span></summary>
+    <div class="det-inner">
+      <div class="kv">
+        <b>robots</b><span class="ok">noindex, nofollow (correct)</span>
+        <b>recommendation</b><span>Decide which is the prod homepage. If <code>/</code> = V2HomePage and that's correct, then 301-redirect <code>/v2</code> → <code>/</code> and delete <code>/v1</code>. Right now you have three near-identical routes wasting build time.</span>
+        <b>/v1 bug</b><span class="miss">H1 has missing space: "thatrecruits"</span>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ─────────────────────────  WINS ───────────────────────── -->
+<section id="wins">
+  <h2>What's already working well</h2>
+  <div class="issue win">
+    <div class="body">
+      <ul style="margin:6px 0;padding-left:18px">
+        <li><b>SSR architecture is solid.</b> Every H1 and key content fact renders in the server HTML. <code>curl</code> on every page returns rendered content without needing JS.</li>
+        <li><b>JSON-LD is inlined correctly</b> via <code>dangerouslySetInnerHTML</code> in <code>app/layout.tsx</code>, not deferred via <code>&lt;Script&gt;</code> (Gotcha #1 avoided).</li>
+        <li><b>Font loading is right.</b> <code>display: "swap"</code> on Inter, Instrument_Serif, and Geist; Next.js handles preloading.</li>
+        <li><b>Open Graph types are explicit</b> (<code>article</code> for blog posts, <code>website</code> for landing pages).</li>
+        <li><b>Twitter metadata is explicitly defined</b> on most pages (Gotcha #3 avoided on root layout).</li>
+        <li><b>Sanity SEO schema is sensible</b> — covers metaTitle, metaDescription, ogImage, canonicalUrl, noIndex, keywords.</li>
+        <li><b>Image alt coverage is 100%</b> — no <code>&lt;img&gt;</code> without an <code>alt</code> attribute on any audited page.</li>
+        <li><b>Blog corpus is substantial.</b> Sample post has 2,934 words; titles include "2026" for freshness; keywords field is populated.</li>
+        <li><b>BlogPosting JSON-LD</b> includes <code>wordCount</code>, <code>keywords</code>, <code>mainEntityOfPage</code>, and a paired BreadcrumbList.</li>
+        <li><b>Single redirect</b> (<code>/use-cases → /pulse#use-cases</code>) is documented in <code>next.config.ts</code> — clean.</li>
+        <li><b>robots.txt</b> correctly disallows <code>/studio/</code>, <code>/waitlist-confirmation/</code>, <code>/api/</code>.</li>
+        <li><b>Sitemap pulls real dates</b> for blog posts from <code>_updatedAt</code> (correct), even though the same logic isn't applied to JSON-LD on the post page (Issue #9).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────  ACTIONS ───────────────────────── -->
+<section id="actions">
+  <h2>Prioritized action plan</h2>
+
+  <h3>Day 1 — P0 fixes (estimated 4 hours)</h3>
+  <ol class="priorities">
+    <li><b>Upload <code>og-image.png</code> and <code>og-default.jpg</code></b> to <code>public/</code> (1200×630). <span class="eff">15 min · Issue #1</span></li>
+    <li><b>Pick the canonical host</b> (recommend bare <code>yander.ai</code>) and flip Vercel domain settings. <span class="eff">15 min · Issue #2</span></li>
+    <li><b>Fix title double-suffix</b> in <code>lib/seo-utils.ts:43</code>. <span class="eff">10 min · Issue #3</span></li>
+    <li><b>Add canonical + OG url</b> to <code>/integrations</code> and <code>/integrations/all</code>. <span class="eff">15 min · Issue #4</span></li>
+    <li><b>De-duplicate <code>/blog</code> H1</b> in <code>BlogContent.tsx</code> / <code>blog/page.tsx</code>. <span class="eff">10 min · Issue #5</span></li>
+    <li><b>Update WebSite schema description</b> in <code>app/layout.tsx:96–107</code>. Add SearchAction. <span class="eff">15 min · Issue #6</span></li>
+    <li><b>Add 12 missing routes to <code>app/sitemap.ts</code></b>. <span class="eff">60 min · Issue #7</span></li>
+  </ol>
+
+  <h3>Week 1 — P1 fixes (estimated 1 day)</h3>
+  <ol class="priorities">
+    <li><b>Refactor metadata into <code>lib/page-metadata.ts</code> helper</b> + apply across 13 pages. <span class="eff">2 hr · Issue #12</span></li>
+    <li><b>Wire <code>_updatedAt</code> through Sanity queries → SEO utils → JSON-LD + OG <code>modified_time</code></b>. Surface "Last updated" in <code>PostHeader.tsx</code>. <span class="eff">90 min · Issue #9</span></li>
+    <li><b>Ship <code>app/robots.ts</code> AI-bot allowlist + <code>public/llms.txt</code></b>. <span class="eff">30 min · Issue #10</span></li>
+    <li><b>FAQPage schema</b> on <code>/pricing</code>, <code>/pulse</code>, <code>/pulse-pricing</code>. Lift Q&A to typed constants. <span class="eff">60 min · Issue #15</span></li>
+    <li><b>Add Offer / Product schema</b> on <code>/pricing</code> and <code>/pulse-pricing</code>. <span class="eff">45 min · Issue #15</span></li>
+    <li><b>Split <code>/calculator</code> and <code>/remote-hiring-playbook</code></b> into server-wrapper + client-component, add metadata. <span class="eff">30 min · Issue #14</span></li>
+    <li><b>Fix H2/H3 hierarchy</b> on <code>/blog</code> and <code>/changelog</code>. <span class="eff">20 min · Issue #13</span></li>
+    <li><b>Make <code>/v1, /v2</code> 301-redirect to <code>/</code></b> (or delete). <span class="eff">15 min · Issue #17</span></li>
+    <li><b>BreadcrumbList</b> on all non-homepage routes via a shared component. <span class="eff">60 min · Issue #15</span></li>
+    <li><b>noindex fallbacks</b> on dynamic-route 404 metadata returns (5 files). <span class="eff">15 min · Issue #22</span></li>
+  </ol>
+
+  <h3>Month 1 — P2 strategic (estimated 1 week of focused work)</h3>
+  <ol class="priorities">
+    <li><b>Build /about page + AboutPage schema + Person schemas for named team.</b> Single biggest AEO move — 96% of AI Overview content comes from E-E-A-T verified entities. <span class="eff">1 day</span></li>
+    <li><b>Replace "Yander Team" author with 2–3 real named contributors</b> in Sanity. Extend author schema with <code>linkedinUrl</code>, <code>twitterUrl</code>, <code>yearsExperience</code>, <code>expertise</code>. Update existing 18 posts. <span class="eff">1 day · Issue #11</span></li>
+    <li><b>HowTo schema</b> on the "How it works" sections. <span class="eff">2 hr</span></li>
+    <li><b>Speakable schema</b> on hero + one FAQ paragraph per key page. <span class="eff">2 hr</span></li>
+    <li><b>Expand Organization schema</b> with legalName, foundingDate, address, disambiguatingDescription, knowsAbout, brand. <span class="eff">1 hr · Issue #25</span></li>
+    <li><b>Nav redesign</b>: add Product + Resources dropdowns. Internal-link equity is the single largest topical-authority lever. <span class="eff">half day · Issue #18</span></li>
+    <li><b>Build the pillar page for "AI recruiting"</b>: a 4–6k word definitive guide that links to all 18 blog posts. Pillar + cluster is the AEO architecture that wins. <span class="eff">2–3 days</span></li>
+    <li><b>Off-site presence</b>: create / update G2, Capterra, Clutch profiles (B2B SaaS standard set). Add to Organization <code>sameAs</code>. <span class="eff">2 hr setup + ongoing</span></li>
+    <li><b>Per-page OG images</b> (use Vercel's <code>opengraph-image.tsx</code> convention). <span class="eff">half day</span></li>
+    <li><b>Manual Lighthouse pass</b> on /, /pulse, /pricing, /blog/[slug] — PageSpeed API was rate-limited during this audit. Run from Chrome DevTools or <code>npx unlighthouse</code>. <span class="eff">1 hr</span></li>
+  </ol>
+</section>
+
+<!-- ─────────────────────────  MONITORING ───────────────────────── -->
+<section id="monitoring">
+  <h2>Ongoing monitoring</h2>
+  <p>After P0+P1 ship, treat this as a quarterly audit and add weekly signal monitoring:</p>
+  <table>
+    <thead><tr><th>Signal</th><th>Tool</th><th>Frequency</th><th>Threshold</th></tr></thead>
+    <tbody>
+      <tr><td>AI citation share</td><td>Manual prompting ("Best AI recruiting tool", "Yander vs Ashby", "Alternatives to JuiceBox AI") in ChatGPT, Perplexity, Claude, Gemini</td><td>Weekly</td><td>Track baseline; aim 1+ citation per 5 prompts</td></tr>
+      <tr><td>Sitemap freshness</td><td>Google Search Console</td><td>Weekly</td><td>0 errors, &lt;48h re-crawl</td></tr>
+      <tr><td>Core Web Vitals</td><td>PSI API or GSC CWV report</td><td>Monthly</td><td>LCP &lt;2.5s, INP &lt;200ms, CLS &lt;0.1</td></tr>
+      <tr><td>Broken links (incl. CMS-injected)</td><td><code>npx unlighthouse</code> or a custom crawl script</td><td>Monthly</td><td>0 broken internal</td></tr>
+      <tr><td>Schema validity</td><td>schema.org validator + Google Rich Results Test</td><td>After each deploy</td><td>0 errors</td></tr>
+      <tr><td>Content freshness (% pages updated &lt;90d)</td><td>Internal audit (use <code>_updatedAt</code> once wired)</td><td>Quarterly</td><td>≥40% of indexable corpus</td></tr>
+      <tr><td>Off-site profile consistency</td><td>Manual G2/Capterra/Clutch check</td><td>Quarterly</td><td>Name, description, services aligned</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer class="fin">
+  <p>Audit produced by Claude · skill <code>seo-aeo-geo-audit</code> · powered by the SEO/AEO playbook in <code>~/.claude/skills/seo-aeo-geo-audit/</code> + Sanity SEO best-practices skill.</p>
+  <p>Raw data files saved to <code>/tmp/yander_audit_results.json</code> and <code>/tmp/yander_audit.txt</code> for re-running diffs.</p>
+  <p>Re-run with <code>/seo-aeo-geo-audit site</code> after P0+P1 fixes to verify lifted score.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -9,7 +9,7 @@ import type { Post } from '@/lib/types'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 
 interface PostHeaderProps {
-  post: Post
+  post: Post & { _updatedAt?: string }
 }
 
 function formatDate(dateString?: string) {
@@ -88,13 +88,31 @@ export function PostHeader({ post }: PostHeaderProps) {
             </div>
           </div>
 
-          {/* Date */}
+          {/* Published date */}
           {post.publishedAt && (
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <time
+              dateTime={post.publishedAt}
+              className="flex items-center gap-2 text-sm text-gray-500"
+            >
               <Calendar className="w-4 h-4" />
               {formatDate(post.publishedAt)}
-            </div>
+            </time>
           )}
+
+          {/* Last updated — only show if meaningfully later than publish */}
+          {post._updatedAt &&
+            post.publishedAt &&
+            new Date(post._updatedAt).getTime() - new Date(post.publishedAt).getTime() >
+              1000 * 60 * 60 * 24 && (
+              <time
+                dateTime={post._updatedAt}
+                className="flex items-center gap-2 text-sm text-gray-500"
+                aria-label="Last updated"
+              >
+                <span className="text-gray-400">·</span>
+                Updated {formatDate(post._updatedAt)}
+              </time>
+            )}
 
           {/* Read Time */}
           {post.readTime && (

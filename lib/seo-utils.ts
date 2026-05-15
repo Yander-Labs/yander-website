@@ -1,31 +1,49 @@
-import type { Post, SEO } from './types'
-import { urlFor } from './sanity'
+import type { Post, SEO } from "./types";
+import { urlFor } from "./sanity";
+import { SITE_HANDLE, SITE_NAME, SITE_URL } from "./site";
+
+// =============================================================================
+// Title cleaner — defends against authors leaving "| Yander" in metaTitle
+// =============================================================================
+
+/**
+ * Strip any trailing brand suffix from a title so we never produce
+ * "Title | Yander | Yander". The Sanity metaTitle field commonly contains
+ * the brand because authors copy-paste from preview output.
+ */
+function cleanTitle(raw: string): string {
+  return raw.replace(/\s*[|·\-—]\s*Yander\s*$/i, "").trim();
+}
 
 // =============================================================================
 // SEO Metadata Generation
 // =============================================================================
 
 export interface SEOMetadata {
-  title: string
-  description: string
-  canonical: string
+  title: string;
+  description: string;
+  canonical: string;
   openGraph: {
-    title: string
-    description: string
-    type: string
-    url: string
-    images: Array<{ url: string; width: number; height: number; alt: string }>
-    siteName: string
-  }
+    title: string;
+    description: string;
+    type: string;
+    url: string;
+    images: Array<{ url: string; width: number; height: number; alt: string }>;
+    siteName: string;
+    publishedTime?: string;
+    modifiedTime?: string;
+  };
   twitter: {
-    card: string
-    title: string
-    description: string
-    images: string[]
-    site?: string
-  }
-  robots: string
-  keywords?: string[]
+    card: string;
+    title: string;
+    description: string;
+    images: string[];
+    site?: string;
+  };
+  robots: string;
+  keywords?: string[];
+  datePublished?: string;
+  dateModified?: string;
 }
 
 /**
@@ -34,33 +52,35 @@ export interface SEOMetadata {
  */
 export function generatePostSEO(
   post: Post,
-  siteUrl: string = 'https://yander.ai'
+  siteUrl: string = SITE_URL
 ): SEOMetadata {
-  const postUrl = `${siteUrl}/blog/${post.slug.current}`
-  const seo = post.seo || {}
+  const postUrl = `${siteUrl}/blog/${post.slug.current}`;
+  const seo = post.seo || {};
 
-  // Title: SEO override > post title
-  const title = seo.metaTitle || post.title
-  const fullTitle = `${title} | Yander`
+  // Title: SEO override > post title — strip any existing " | Yander" before appending.
+  const rawTitle = seo.metaTitle || post.title;
+  const fullTitle = `${cleanTitle(rawTitle)} | ${SITE_NAME}`;
 
   // Description: SEO override > excerpt > fallback
   const description =
-    seo.metaDescription ||
-    post.excerpt ||
-    `Read ${post.title} on the Yander blog.`
+    seo.metaDescription || post.excerpt || `Read ${post.title} on the Yander blog.`;
 
   // Image: SEO OG image > main image > default
-  const ogImage = seo.ogImage || post.mainImage
+  const ogImage = seo.ogImage || post.mainImage;
   const imageUrl = ogImage
     ? urlFor(ogImage).width(1200).height(630).url()
-    : `${siteUrl}/og-default.jpg`
-  const imageAlt = ogImage?.alt || post.title
+    : `${siteUrl}/og-image.png`;
+  const imageAlt = ogImage?.alt || post.title;
 
   // Canonical: SEO override > post URL
-  const canonical = seo.canonicalUrl || postUrl
+  const canonical = seo.canonicalUrl || postUrl;
+
+  // Dates — use Sanity's _updatedAt for dateModified to surface real freshness.
+  const datePublished = post.publishedAt;
+  const dateModified = post._updatedAt || post.publishedAt;
 
   // Robots directive
-  const robots = seo.noIndex ? 'noindex, nofollow' : 'index, follow'
+  const robots = seo.noIndex ? "noindex, nofollow" : "index, follow";
 
   return {
     title: fullTitle,
@@ -69,21 +89,25 @@ export function generatePostSEO(
     openGraph: {
       title: fullTitle,
       description,
-      type: 'article',
+      type: "article",
       url: postUrl,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: imageAlt }],
-      siteName: 'Yander',
+      siteName: SITE_NAME,
+      publishedTime: datePublished,
+      modifiedTime: dateModified,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: fullTitle,
       description,
       images: [imageUrl],
-      site: '@yanderlabs',
+      site: SITE_HANDLE,
     },
     robots,
     keywords: seo.keywords,
-  }
+    datePublished,
+    dateModified,
+  };
 }
 
 // =============================================================================
@@ -92,44 +116,63 @@ export function generatePostSEO(
 
 /**
  * Generate JSON-LD structured data for a blog post.
- * Follows schema.org BlogPosting specification.
+ * Follows schema.org BlogPosting specification with full Person + Organization
+ * references and proper dateModified handling.
  */
 export function generateJSONLD(
   post: Post,
-  siteUrl: string = 'https://yander.ai'
+  siteUrl: string = SITE_URL
 ): object {
-  const seo = generatePostSEO(post, siteUrl)
+  const seo = generatePostSEO(post, siteUrl);
+
+  // Build a richer Person schema when the author has structured data.
+  const authorSchema = post.author
+    ? {
+        "@type": "Person",
+        name: post.author.name,
+        ...(post.author.role ? { jobTitle: post.author.role } : {}),
+        ...(post.author.bio ? { description: post.author.bio } : {}),
+        ...(post.author.slug?.current
+          ? { url: `${siteUrl}/about#${post.author.slug.current}` }
+          : {}),
+        ...(post.author.linkedinUrl || post.author.twitterUrl
+          ? {
+              sameAs: [
+                post.author.linkedinUrl,
+                post.author.twitterUrl,
+              ].filter(Boolean),
+            }
+          : {}),
+      }
+    : undefined;
 
   return {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: post.title,
     description: seo.description,
     image: seo.openGraph.images[0]?.url,
-    datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
-    author: post.author
-      ? {
-          '@type': 'Person',
-          name: post.author.name,
-          jobTitle: post.author.role,
-        }
-      : undefined,
+    datePublished: seo.datePublished,
+    dateModified: seo.dateModified,
+    ...(authorSchema ? { author: authorSchema } : {}),
     publisher: {
-      '@type': 'Organization',
-      name: 'Yander',
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: SITE_NAME,
       logo: {
-        '@type': 'ImageObject',
-        url: `${siteUrl}/logo.png`,
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo.svg`,
       },
     },
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': seo.canonical,
+      "@type": "WebPage",
+      "@id": seo.canonical,
     },
     wordCount: post.readTime ? post.readTime * 200 : undefined,
-    keywords: seo.keywords?.join(', '),
-  }
+    keywords: seo.keywords?.join(", "),
+    isAccessibleForFree: true,
+    inLanguage: "en-US",
+  };
 }
 
 // =============================================================================
@@ -137,15 +180,15 @@ export function generateJSONLD(
 // =============================================================================
 
 export interface SEOIssue {
-  type: 'error' | 'warning' | 'info'
-  field: string
-  message: string
+  type: "error" | "warning" | "info";
+  field: string;
+  message: string;
 }
 
 export interface SEOAuditResult {
-  score: number
-  issues: SEOIssue[]
-  suggestions: string[]
+  score: number;
+  issues: SEOIssue[];
+  suggestions: string[];
 }
 
 /**
@@ -157,102 +200,121 @@ export interface SEOAuditResult {
  * - Info: no deduction (suggestions only)
  */
 export function auditPostSEO(post: Post): SEOAuditResult {
-  const issues: SEOIssue[] = []
-  const suggestions: string[] = []
-  let score = 100
+  const issues: SEOIssue[] = [];
+  const suggestions: string[] = [];
+  let score = 100;
 
   // -------------------------------------------------------------------------
   // Title Analysis
   // -------------------------------------------------------------------------
-  const title = post.seo?.metaTitle || post.title
+  const title = post.seo?.metaTitle || post.title;
 
   if (!title) {
     issues.push({
-      type: 'error',
-      field: 'title',
-      message: 'Missing title - critical for SEO',
-    })
-    score -= 20
+      type: "error",
+      field: "title",
+      message: "Missing title - critical for SEO",
+    });
+    score -= 20;
   } else if (title.length > 60) {
     issues.push({
-      type: 'warning',
-      field: 'title',
+      type: "warning",
+      field: "title",
       message: `Title too long (${title.length} chars). Google truncates at ~60.`,
-    })
-    score -= 5
+    });
+    score -= 5;
   } else if (title.length < 30) {
     issues.push({
-      type: 'info',
-      field: 'title',
+      type: "info",
+      field: "title",
       message: `Title is short (${title.length} chars). Consider 40-60 for better CTR.`,
-    })
-    suggestions.push('Expand title to 40-60 characters for better click-through rate')
+    });
+    suggestions.push("Expand title to 40-60 characters for better click-through rate");
+  }
+
+  // Catch the double-suffix early.
+  if (title && /\s*[|·\-—]\s*Yander\s*$/i.test(title)) {
+    issues.push({
+      type: "warning",
+      field: "title",
+      message:
+        "Meta title already ends with '| Yander' — template will append again. Strip the brand suffix from the metaTitle field.",
+    });
+    score -= 5;
   }
 
   // -------------------------------------------------------------------------
   // Meta Description Analysis
   // -------------------------------------------------------------------------
-  const description = post.seo?.metaDescription || post.excerpt
+  const description = post.seo?.metaDescription || post.excerpt;
 
   if (!description) {
     issues.push({
-      type: 'error',
-      field: 'metaDescription',
-      message: 'Missing meta description - Google will auto-generate one',
-    })
-    score -= 15
+      type: "error",
+      field: "metaDescription",
+      message: "Missing meta description - Google will auto-generate one",
+    });
+    score -= 15;
   } else if (description.length > 160) {
     issues.push({
-      type: 'warning',
-      field: 'metaDescription',
+      type: "warning",
+      field: "metaDescription",
       message: `Description too long (${description.length} chars). Google truncates at ~160.`,
-    })
-    score -= 5
-  } else if (description.length < 70) {
+    });
+    score -= 5;
+  } else if (description.length < 120) {
     issues.push({
-      type: 'info',
-      field: 'metaDescription',
-      message: `Description is short (${description.length} chars). Aim for 120-160.`,
-    })
-    suggestions.push('Expand meta description to 120-160 characters')
+      type: "warning",
+      field: "metaDescription",
+      message: `Description is short (${description.length} chars). Ahrefs flags under 120. Aim 120-160.`,
+    });
+    score -= 5;
   }
 
   // -------------------------------------------------------------------------
   // Image Analysis
   // -------------------------------------------------------------------------
-  const hasImage = post.mainImage || post.seo?.ogImage
+  const hasImage = post.mainImage || post.seo?.ogImage;
 
   if (!hasImage) {
     issues.push({
-      type: 'warning',
-      field: 'image',
-      message: 'No featured image for social sharing',
-    })
-    score -= 10
-    suggestions.push('Add a main image or OG image (1200x630px recommended)')
+      type: "warning",
+      field: "image",
+      message: "No featured image for social sharing",
+    });
+    score -= 10;
+    suggestions.push("Add a main image or OG image (1200x630px recommended)");
   } else {
-    // Check for alt text
-    const imageAlt = post.mainImage?.alt || post.seo?.ogImage?.alt
+    const imageAlt = post.mainImage?.alt || post.seo?.ogImage?.alt;
     if (!imageAlt) {
       issues.push({
-        type: 'warning',
-        field: 'imageAlt',
-        message: 'Image missing alt text - important for accessibility and SEO',
-      })
-      score -= 5
+        type: "warning",
+        field: "imageAlt",
+        message: "Image missing alt text - important for accessibility and SEO",
+      });
+      score -= 5;
     }
   }
 
   // -------------------------------------------------------------------------
-  // Author Analysis
+  // Author Analysis (E-E-A-T)
   // -------------------------------------------------------------------------
   if (!post.author) {
     issues.push({
-      type: 'info',
-      field: 'author',
-      message: 'No author assigned - reduces E-E-A-T signals',
-    })
-    suggestions.push('Assign an author to improve Experience, Expertise, Authority, Trust')
+      type: "warning",
+      field: "author",
+      message:
+        "No author assigned - drops E-E-A-T (single biggest AI citation signal: r=0.81)",
+    });
+    score -= 8;
+    suggestions.push("Assign a named author with LinkedIn URL to improve E-E-A-T");
+  } else if (/team|staff|editor/i.test(post.author.name)) {
+    issues.push({
+      type: "info",
+      field: "author",
+      message: `Author is a generic name ("${post.author.name}") - named individuals get cited 2-3x more by AI engines`,
+    });
+    suggestions.push("Replace generic team author with a named expert");
   }
 
   // -------------------------------------------------------------------------
@@ -260,64 +322,64 @@ export function auditPostSEO(post: Post): SEOAuditResult {
   // -------------------------------------------------------------------------
   if (!post.categories || post.categories.length === 0) {
     issues.push({
-      type: 'info',
-      field: 'categories',
-      message: 'No categories assigned',
-    })
-    suggestions.push('Add categories for better site structure and internal linking')
+      type: "info",
+      field: "categories",
+      message: "No categories assigned",
+    });
+    suggestions.push("Add categories for better site structure and internal linking");
   }
 
   // -------------------------------------------------------------------------
   // Keywords Analysis
   // -------------------------------------------------------------------------
   if (!post.seo?.keywords || post.seo.keywords.length === 0) {
-    suggestions.push('Add 3-5 focus keywords for content optimization')
+    suggestions.push("Add 3-5 focus keywords for content optimization");
   } else if (post.seo.keywords.length > 7) {
     issues.push({
-      type: 'info',
-      field: 'keywords',
+      type: "info",
+      field: "keywords",
       message: `Too many keywords (${post.seo.keywords.length}). Focus on 3-5 for better targeting.`,
-    })
+    });
   }
 
   // -------------------------------------------------------------------------
   // Excerpt/Body Analysis
   // -------------------------------------------------------------------------
   if (!post.excerpt) {
-    suggestions.push('Add an excerpt for better control over search result snippets')
+    suggestions.push("Add an excerpt for better control over search result snippets");
   }
 
   if (!post.body || post.body.length === 0) {
     issues.push({
-      type: 'error',
-      field: 'body',
-      message: 'Post has no content',
-    })
-    score -= 20
+      type: "error",
+      field: "body",
+      message: "Post has no content",
+    });
+    score -= 20;
   }
 
   // Ensure score doesn't go below 0
-  score = Math.max(0, score)
+  score = Math.max(0, score);
 
-  return { score, issues, suggestions }
+  return { score, issues, suggestions };
 }
 
 /**
  * Get a human-readable summary of the audit score.
  */
 export function getScoreLabel(score: number): {
-  label: string
-  color: string
-  publishable: boolean
+  label: string;
+  color: string;
+  publishable: boolean;
 } {
   if (score >= 90) {
-    return { label: 'Excellent', color: 'emerald', publishable: true }
+    return { label: "Excellent", color: "emerald", publishable: true };
   } else if (score >= 80) {
-    return { label: 'Good', color: 'blue', publishable: true }
+    return { label: "Good", color: "blue", publishable: true };
   } else if (score >= 60) {
-    return { label: 'Needs Work', color: 'amber', publishable: false }
+    return { label: "Needs Work", color: "amber", publishable: false };
   } else {
-    return { label: 'Poor', color: 'rose', publishable: false }
+    return { label: "Poor", color: "rose", publishable: false };
   }
 }
 
@@ -325,31 +387,31 @@ export function getScoreLabel(score: number): {
  * Format audit results as a readable string.
  */
 export function formatAuditReport(post: Post): string {
-  const audit = auditPostSEO(post)
-  const { label, publishable } = getScoreLabel(audit.score)
+  const audit = auditPostSEO(post);
+  const { label, publishable } = getScoreLabel(audit.score);
 
   const lines: string[] = [
     `SEO Audit: ${post.title}`,
     `Score: ${audit.score}/100 (${label})`,
-    `Publishable: ${publishable ? 'Yes' : 'No - fix issues first'}`,
-    '',
-  ]
+    `Publishable: ${publishable ? "Yes" : "No - fix issues first"}`,
+    "",
+  ];
 
   if (audit.issues.length > 0) {
-    lines.push('Issues:')
+    lines.push("Issues:");
     for (const issue of audit.issues) {
-      const icon = issue.type === 'error' ? '❌' : issue.type === 'warning' ? '⚠️' : 'ℹ️'
-      lines.push(`  ${icon} [${issue.field}] ${issue.message}`)
+      const icon = issue.type === "error" ? "❌" : issue.type === "warning" ? "⚠️" : "ℹ️";
+      lines.push(`  ${icon} [${issue.field}] ${issue.message}`);
     }
-    lines.push('')
+    lines.push("");
   }
 
   if (audit.suggestions.length > 0) {
-    lines.push('Suggestions:')
+    lines.push("Suggestions:");
     for (const suggestion of audit.suggestions) {
-      lines.push(`  • ${suggestion}`)
+      lines.push(`  • ${suggestion}`);
     }
   }
 
-  return lines.join('\n')
+  return lines.join("\n");
 }

@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
 import { IntegrationsHero } from "@/components/sections/IntegrationsHero";
 import { IntegrationsCategorySection } from "@/components/sections/IntegrationsCategorySection";
 import { DarkCTA } from "@/components/sections/DarkCTA";
-import { getIntegrationsByCategory, categories } from "@/lib/integrations";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
+import { getIntegrationsByCategory, categories, integrations } from "@/lib/integrations";
+import { pageMetadata } from "@/lib/page-metadata";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Integrations | Yander",
+export const metadata = pageMetadata({
+  title: "Yander Integrations — Slack, Notion, ClickUp, Monday, Asana",
   description:
-    "Connect Yander with Slack, Gmail, Notion, ClickUp, Monday.com, Asana, Fathom, and Fireflies. One dashboard for all your team and client data.",
-  openGraph: {
-    title: "Integrations | Yander",
-    description:
-      "Connect Yander with the tools your team already uses. Communication, project management, and meeting tools in one dashboard.",
-  },
-};
+    "Connect Yander with Slack, Notion, ClickUp, Monday, Asana, Gmail, Microsoft 365, Fathom, Fireflies. Pull team activity into one dashboard, no manual entry.",
+  path: "/integrations",
+  ogImageAlt: "Yander Integrations",
+});
 
 const categoryHeadings: Record<string, string> = {
   communication: "Communication tools",
@@ -21,9 +21,29 @@ const categoryHeadings: Record<string, string> = {
   "meeting-import": "Meeting recordings",
 };
 
+const integrationsListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Yander integrations",
+  description:
+    "All third-party tools that Yander connects with for team activity, communication, and meetings.",
+  numberOfItems: integrations.length,
+  itemListElement: integrations.map((it, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "SoftwareApplication",
+      name: it.name,
+      url: `${SITE_URL}/integrations/${it.slug}`,
+      applicationCategory: it.categoryLabel,
+    },
+  })),
+};
+
 export default function IntegrationsPage() {
   return (
     <>
+      <SchemaJsonLd schema={integrationsListSchema} />
       <IntegrationsHero />
       {categories.map((cat, idx) => (
         <IntegrationsCategorySection

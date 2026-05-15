@@ -1,15 +1,13 @@
 import { Container } from "@/components/ui/Container";
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Beta Program Terms | Yander",
   description:
-    "Terms and conditions for participating in the Yander beta program. Learn what data we access, how we use it, and your rights as a beta participant.",
-  alternates: {
-    canonical: "https://yander.ai/beta-terms",
-  },
-  robots: "index, follow",
-};
+    "Terms for the Yander beta program — what data we access, how we use it, your rights as a beta participant, and how feedback is handled.",
+  path: "/beta-terms",
+  ogImageAlt: "Yander Beta Program Terms",
+});
 
 export default function BetaTermsPage() {
   return (

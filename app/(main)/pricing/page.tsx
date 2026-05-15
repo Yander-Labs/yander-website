@@ -1,38 +1,79 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
 import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
 import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
+import { recruiterFaqs } from "@/lib/faqs";
 import { RecruiterPricingClosingCTA } from "@/components/sections/RecruiterPricingClosingCTA";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { SchemaJsonLd, faqSchema } from "@/components/seo/SchemaJsonLd";
+import { pageMetadata } from "@/lib/page-metadata";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Pricing | Yander",
+export const metadata = pageMetadata({
+  title: "Yander Pricing — Free / $89 / $249 · No Placement Fees",
   description:
-    "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
-  alternates: {
-    canonical: "https://yander.ai/pricing",
-  },
-  robots: "index, follow",
-  openGraph: {
-    title: "Pricing | Yander",
-    description:
-      "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
-    url: "https://yander.ai/pricing",
-    siteName: "Yander",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing | Yander",
-    description:
-      "Clear pricing for your recruiting needs. Free plan, $89/mo Pro, $249/mo Max. No placement fees, ever.",
-  },
+    "Transparent AI recruiting pricing: Free plan (200 candidates), Pro at $89/mo, Max at $249/mo, Enterprise custom. No placement fees, no contracts. Cancel anytime.",
+  path: "/pricing",
+  ogImageAlt: "Yander Pricing — Free / $89 / $249, No Placement Fees",
+});
+
+const pricingProductSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Yander AI Recruiter",
+  description:
+    "AI sourcing, vetting, and presentation of culture-matched global candidates. No placement fees.",
+  brand: { "@type": "Brand", name: "Yander" },
+  url: `${SITE_URL}/pricing`,
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Free",
+      description: "200 sourced candidates, no time limit.",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+    {
+      "@type": "Offer",
+      name: "Pro",
+      description: "AI sourcing, vetting, and shortlists — billed monthly. No placement fees.",
+      price: "89",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "89",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+    {
+      "@type": "Offer",
+      name: "Max",
+      description: "Unlimited sourcing for high-velocity teams. No placement fees.",
+      price: "249",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "249",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/pricing`,
+    },
+  ],
 };
 
 export default function PricingPage() {
   return (
     <>
+      <SchemaJsonLd schema={pricingProductSchema} />
+      <SchemaJsonLd schema={faqSchema(recruiterFaqs)} />
       {/* ── Section 1: Hero ── */}
       <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden bg-[#fafaf7]">
         {/* Tonal gradient (cream → white) */}

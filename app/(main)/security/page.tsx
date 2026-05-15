@@ -1,15 +1,13 @@
 import { Container } from "@/components/ui/Container";
-import { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Security | Yander",
   description:
-    "Learn how Yander protects your data with enterprise-grade security, encryption, tenant isolation, and strict privacy controls.",
-  alternates: {
-    canonical: "https://yander.ai/security",
-  },
-  robots: "index, follow",
-};
+    "How Yander protects your data — enterprise-grade encryption, tenant isolation, SOC2-aligned controls, and strict access policies for every team member.",
+  path: "/security",
+  ogImageAlt: "Yander Security",
+});
 
 export default function SecurityPage() {
   return (

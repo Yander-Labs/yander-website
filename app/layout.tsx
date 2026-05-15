@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Instrument_Serif, Geist } from "next/font/google";
 import { CookieBanner } from "@/components/ui/CookieBanner";
+import {
+  BRAND_DESCRIPTION,
+  SITE_HANDLE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,12 +29,17 @@ const geist = Geist({
   variable: "--font-geist",
 });
 
+const HOMEPAGE_TITLE = "Yander — The First AI Agent That Recruits For You";
+const HOMEPAGE_DESCRIPTION =
+  "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates from the US, UK, LatAm, Europe, and SEA. No placement fees.";
+
 export const metadata: Metadata = {
-  title: "Yander - The First AI Agent That Recruits For You",
-  description:
-    "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia. No placement fees.",
+  title: HOMEPAGE_TITLE,
+  description: HOMEPAGE_DESCRIPTION,
   keywords: [
     "AI recruiting",
+    "AI recruiter",
+    "AI hiring",
     "global hiring",
     "remote talent",
     "AI recruitment platform",
@@ -37,26 +48,20 @@ export const metadata: Metadata = {
     "worldwide recruiting",
     "remote team hiring",
   ],
-  metadataBase: new URL("https://yander.ai"),
-  alternates: {
-    canonical: "/",
-  },
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-  },
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon.png", apple: "/favicon.png" },
   openGraph: {
-    title: "Yander - The First AI Agent That Recruits For You",
-    description:
-      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
-    url: "https://yander.ai",
-    siteName: "Yander",
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: "https://yander.ai/og-image.png",
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Yander - AI Recruiting Platform",
+        alt: "Yander — AI Recruiting Platform",
       },
     ],
     locale: "en_US",
@@ -64,23 +69,47 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yander - The First AI Agent That Recruits For You",
-    description:
-      "Tell Yander who you need to hire. It headhunts, vets, and presents culture-matched candidates ready to interview. No placement fees.",
-    images: ["https://yander.ai/og-image.png"],
-    site: "@yanderlabs",
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
+    images: [`${SITE_URL}/og-image.png`],
+    site: SITE_HANDLE,
   },
 };
 
-// Organization structured data for SEO
+// Organization structured data — single source of truth for the Yander entity.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Yander",
-  url: "https://yander.ai",
-  logo: "https://yander.ai/logo.svg",
-  description:
-    "AI recruiting platform that helps companies hire top remote talent worldwide — from the US, Canada, UK, and Australia to South America, Europe, South Africa, and Southeast Asia — without placement fees.",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  legalName: "Yander Labs, Inc.",
+  url: SITE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/logo.svg`,
+    width: 200,
+    height: 60,
+  },
+  description: BRAND_DESCRIPTION,
+  disambiguatingDescription:
+    "Yander (Yander Labs, Inc.) is an AI recruiting platform — not related to Yander Mountain, the anime trope 'yandere', or Yander Mountain Trading Company.",
+  foundingDate: "2025",
+  knowsAbout: [
+    "AI recruiting",
+    "Global remote hiring",
+    "Talent acquisition",
+    "Candidate sourcing",
+    "Workforce analytics",
+    "Remote team management",
+  ],
+  brand: [
+    {
+      "@type": "Brand",
+      name: "Yander Pulse",
+      description:
+        "Real-time team performance intelligence — engagement, workload, and quit-risk signals built from the tools your team already uses.",
+    },
+  ],
   sameAs: [
     "https://x.com/yanderlabs",
     "https://www.linkedin.com/company/107590331",
@@ -89,20 +118,28 @@ const organizationJsonLd = {
     "@type": "ContactPoint",
     email: "jordan@yanderlabs.com",
     contactType: "customer service",
+    availableLanguage: ["English"],
   },
 };
 
-// WebSite structured data for SEO
+// WebSite structured data — aligned with current AI Recruiter positioning,
+// with a SearchAction to enable the SERP sitelinks searchbox.
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Yander",
-  url: "https://yander.ai",
-  description:
-    "Build a stronger remote team. Keep clients longer. Get live insights on engagement, workload, and sentiment.",
-  publisher: {
-    "@type": "Organization",
-    name: "Yander",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: BRAND_DESCRIPTION,
+  inLanguage: "en-US",
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/blog?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
   },
 };
 

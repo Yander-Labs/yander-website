@@ -43,6 +43,7 @@ export const postsByCategoryQuery = `*[_type == "post" && publishedAt <= now() &
 // Get single post by slug
 export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   _id,
+  _updatedAt,
   title,
   slug,
   body,
@@ -58,7 +59,7 @@ export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
     noIndex,
     keywords
   },
-  "author": author->{name, image, role, bio},
+  "author": author->{name, slug, image, role, bio, linkedinUrl, twitterUrl, expertise, yearsExperience, certifications},
   "categories": categories[]->{_id, title, slug, color}
 }`
 
