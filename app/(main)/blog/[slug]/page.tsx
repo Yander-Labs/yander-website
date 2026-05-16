@@ -13,6 +13,8 @@ import { ShareButtons } from '@/components/blog/ShareButtons'
 import { AuthorCard } from '@/components/blog/AuthorCard'
 import { RelatedPosts } from '@/components/blog/RelatedPosts'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
+import { SchemaJsonLd, faqSchema } from '@/components/seo/SchemaJsonLd'
+import { extractFaqsFromBody } from '@/lib/extract-faqs-from-body'
 import { SITE_HANDLE, SITE_NAME, SITE_URL } from '@/lib/site'
 
 export const revalidate = 60 // Revalidate every 60 seconds
@@ -96,12 +98,19 @@ export default async function PostPage({ params }: PostPageProps) {
   const postUrl = `${SITE_URL}/blog/${slug}`
   const jsonLd = generateJSONLD(post, SITE_URL)
 
+  // Extract FAQ section from Portable Text body and emit FAQPage schema.
+  // The walker detects the convention used in Yander blog posts:
+  //   ## FAQ → **Question?** → answer paragraph(s) → next **Question?** ...
+  // Returns [] if no FAQ section exists, in which case we skip the FAQPage schema.
+  const faqs = extractFaqsFromBody(post.body)
+
   return (
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqs.length > 0 && <SchemaJsonLd schema={faqSchema(faqs)} />}
 
       <ReadingProgress />
       <PostHeader post={post} />
