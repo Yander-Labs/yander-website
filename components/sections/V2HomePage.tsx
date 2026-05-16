@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { useDemoModal } from "@/components/ui/DemoModal";
 import { ArrowRight, Search, MapPin, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { CaseStudyHayes } from "@/components/sections/CaseStudyHayes";
 
 // ─── Design tokens (Cal.com inspired) ───
 const t = {
@@ -504,6 +505,9 @@ export function V2HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* ── Case study: Hayes Media ── */}
+      <CaseStudyHayes />
 
       {/* ── Bottom CTA ── */}
       <section className="py-24 md:py-32" style={{ backgroundColor: t.accent }}>

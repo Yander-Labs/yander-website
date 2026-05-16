@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
+import { CaseStudyHayes } from "@/components/sections/CaseStudyHayes";
 import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
 import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
 import { recruiterFaqs } from "@/lib/faqs";
@@ -96,12 +98,25 @@ export default function PricingPage() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em] leading-[1.1] lg:whitespace-nowrap">
               Clear pricing for your recruiting needs.
             </h1>
+            <p className="mt-5 text-xs text-gray-400">
+              Looking for{" "}
+              <Link
+                href="/pulse-pricing"
+                className="text-gray-500 underline underline-offset-2 hover:text-gray-900 transition-colors"
+              >
+                Yander Pulse pricing
+              </Link>
+              ?
+            </p>
           </AnimatedSection>
         </Container>
       </section>
 
       {/* ── Section 2: Pricing cards ── */}
       <RecruiterPricingCards />
+
+      {/* ── Section 2.5: Hayes Media case study ── */}
+      <CaseStudyHayes />
 
       {/* ── Section 3 (NEW): Proof / Why this beats an agency ── */}
       <RecruiterPricingProof />

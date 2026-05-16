@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { Button } from "@/components/ui/Button";
 import { pageMetadata } from "@/lib/page-metadata";
 import { BRAND_DESCRIPTION, SITE_URL } from "@/lib/site";
+import { AboutContactButtons } from "./AboutContactButtons";
 
 export const metadata = pageMetadata({
   title: "About Yander — The First AI Agent That Recruits For You",
@@ -20,18 +19,22 @@ const team = [
   {
     slug: "jordan-hayes",
     name: "Jordan Hayes",
-    role: "Founder & CEO, Yander Labs",
-    bio: "Jordan founded Yander Labs after 12 years building remote and offshore teams across LatAm, Europe, and Southeast Asia. Previously led talent for two B2B SaaS scale-ups.",
+    role: "Co-founder, Yander",
+    bio: "Jordan started in marketing in 2016 running Facebook ads as a freelancer. In 2020 he founded Hayes Media, a remote-first eCommerce marketing agency that now spans 18 team members across 10 countries and has put $10M+ into ad creatives for its clients. Yander is built on the same hiring playbook that scaled Hayes Media — globally, fast, with no recruiters in the loop.",
     image: "/jordan-hayes.png",
-    linkedinUrl: "https://www.linkedin.com/in/jordan-hayes-yander",
-    twitterUrl: "https://x.com/yanderlabs",
-    yearsExperience: 12,
-    expertise: [
-      "Global remote hiring",
-      "AI recruiting",
-      "B2B SaaS scaling",
-      "Offshore team building",
-    ],
+    linkedinUrl: "https://www.linkedin.com/in/jordanhayesdtc/",
+    twitterUrl: "https://x.com/jordanhayesdtc",
+    yearsExperience: 10,
+  },
+  {
+    slug: "arnel-bukva",
+    name: "Arnel Bukva",
+    role: "Co-founder, Yander",
+    bio: "Arnel has run Loudface, a creative and performance agency working with brands like Montblanc and Radisson Hotels. He's been hiring remote talent with AI for years and has built many successful companies using the latest AI tools. He co-founded Yander to channel that passion into a platform that helps businesses find and retain their best talent.",
+    image: "/arnel-bukva.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/arnel-bukva/",
+    twitterUrl: "https://x.com/BukvaArnel",
+    yearsExperience: 10,
   },
 ];
 
@@ -58,7 +61,6 @@ const peopleSchema = team.map((member) => ({
   image: `${SITE_URL}${member.image}`,
   url: `${SITE_URL}/about#${member.slug}`,
   worksFor: { "@id": `${SITE_URL}/#organization` },
-  knowsAbout: member.expertise,
   sameAs: [member.linkedinUrl, member.twitterUrl].filter(Boolean),
 }));
 
@@ -85,10 +87,10 @@ export default function AboutPage() {
               The first AI agent that recruits for you.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl">
-              Yander Labs is the company behind Yander — an AI agent that
-              headhunts, vets, and presents culture-matched candidates for any
-              role, anywhere in the world. We do this without placement fees
-              because the recruiting industry's pricing model is broken.
+              Yander is an AI agent that headhunts, vets, and presents
+              culture-matched candidates for any role, anywhere in the world.
+              We do this without placement fees because the recruiting
+              industry's pricing model is broken.
             </p>
           </div>
 
@@ -110,8 +112,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-base text-gray-600 leading-relaxed">
                 Across the US, Canada, UK, Australia, South America, Europe,
-                South Africa, and Southeast Asia. The companies we serve
-                typically hire 5–50 global remote roles per year.
+                South Africa, and Southeast Asia.
               </p>
             </div>
           </div>
@@ -146,18 +147,6 @@ export default function AboutPage() {
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">
                   {member.bio}
                 </p>
-                {member.expertise.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {member.expertise.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-block text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
                 <div className="flex items-center gap-3 text-sm">
                   {member.linkedinUrl && (
                     <a
@@ -193,17 +182,7 @@ export default function AboutPage() {
               tell us what's broken about your current hiring stack? Pick your
               path:
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contact-sales">
-                <Button variant="primary">Contact sales</Button>
-              </Link>
-              <Link href="/pricing">
-                <Button variant="secondary">See pricing</Button>
-              </Link>
-              <a href="mailto:jordan@yanderlabs.com">
-                <Button variant="ghost">jordan@yanderlabs.com</Button>
-              </a>
-            </div>
+            <AboutContactButtons />
           </div>
         </Container>
       </section>
