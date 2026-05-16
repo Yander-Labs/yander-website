@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
-import { CaseStudyHayes } from "@/components/sections/CaseStudyHayes";
 import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
 import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
 import { recruiterFaqs } from "@/lib/faqs";
@@ -114,9 +113,6 @@ export default function PricingPage() {
 
       {/* ── Section 2: Pricing cards ── */}
       <RecruiterPricingCards />
-
-      {/* ── Section 2.5: Hayes Media case study ── */}
-      <CaseStudyHayes />
 
       {/* ── Section 3 (NEW): Proof / Why this beats an agency ── */}
       <RecruiterPricingProof />
