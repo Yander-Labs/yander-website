@@ -9,6 +9,28 @@ import { SchemaJsonLd, faqSchema } from '@/components/seo/SchemaJsonLd'
 import { Container } from '@/components/ui/Container'
 import { SITE_HANDLE, SITE_NAME, SITE_URL } from '@/lib/site'
 
+/**
+ * Build a Person object for the page author. Mirrors the Article author shape
+ * used by blog posts in lib/seo-utils.ts so pillar pages get E-E-A-T parity.
+ */
+function buildAuthorSchema(author: LandingPage['author']) {
+  if (!author) return undefined
+  return {
+    '@type': 'Person' as const,
+    name: author.name,
+    ...(author.role ? { jobTitle: author.role } : {}),
+    ...(author.bio ? { description: author.bio } : {}),
+    ...(author.slug?.current
+      ? { url: `${SITE_URL}/about#${author.slug.current}` }
+      : {}),
+    ...(author.linkedinUrl || author.twitterUrl
+      ? {
+          sameAs: [author.linkedinUrl, author.twitterUrl].filter(Boolean),
+        }
+      : {}),
+  }
+}
+
 export const revalidate = 60
 
 interface LandingPageProps {
@@ -71,17 +93,40 @@ export default async function LandingRoute({ params }: LandingPageProps) {
   const url = `${SITE_URL}/pages/${page.slug.current}`
   const isPillar = page.pageType === 'pillar'
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': isPillar ? 'Article' : 'WebPage',
-    name: page.title,
-    headline: page.title,
-    description: page.heroDescription,
-    url,
-    inLanguage: 'en-US',
-    publisher: { '@id': `${SITE_URL}/#organization` },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-  }
+  const authorSchema = buildAuthorSchema(page.author)
+  const ogImageUrl = page.seo?.ogImage
+    ? urlFor(page.seo.ogImage).width(1200).height(630).url()
+    : `${SITE_URL}/og-image.png`
+
+  // Pillar pages get the rich Article schema (matches blog post E-E-A-T parity).
+  // Plain landing pages stay as WebPage.
+  const jsonLd = isPillar
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        name: page.title,
+        headline: page.title,
+        description: page.heroDescription,
+        url,
+        inLanguage: 'en-US',
+        ...(page.publishedAt ? { datePublished: page.publishedAt } : {}),
+        ...(page._updatedAt ? { dateModified: page._updatedAt } : {}),
+        ...(authorSchema ? { author: authorSchema } : {}),
+        image: ogImageUrl,
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: page.title,
+        headline: page.title,
+        description: page.heroDescription,
+        url,
+        inLanguage: 'en-US',
+        publisher: { '@id': `${SITE_URL}/#organization` },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      }
 
   return (
     <>
