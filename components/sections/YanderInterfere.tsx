@@ -490,64 +490,53 @@ function MiniRail() {
 function CandidateMain() {
   return (
     <div className="flex min-w-0 flex-col bg-white">
-      <div className="px-8 py-7">
-        <div className="flex items-center gap-4">
-          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-1 ring-[rgba(0,0,0,0.06)]">
-            <Image
-              src="/avatars/maria-santos.jpg"
-              alt="Maria Santos"
-              fill
-              sizes="56px"
-              className="object-cover"
-            />
-          </div>
-          <div>
-            <p className="font-[var(--font-geist-mono)] text-[11px] uppercase tracking-[0.14em] text-[#171717]/40">
-              #C-2814 · Sourced by Yander
-            </p>
-            <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#171717]">
-              Maria Santos
-            </h3>
-            <p className="text-[13.5px] text-[#171717]/60">
-              Senior Full-Stack Engineer · São Paulo, Brazil · 7 yrs
-            </p>
-          </div>
-          <div className="ml-auto flex items-center gap-3">
-            <button className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-3 text-[12.5px] font-medium text-[#171717]">
-              <MessageSquare className="h-3.5 w-3.5" /> Message
-            </button>
-            <button className="inline-flex h-8 items-center gap-1.5 rounded-md bg-[#171717] px-3 text-[12.5px] font-medium text-white">
-              Send to interview <ArrowUpRight className="h-3.5 w-3.5" />
-            </button>
-          </div>
+      <div className="px-10 py-8">
+        {/* Large icon block — matches Interfere's key-icon at top of issue */}
+        <div className="grid h-14 w-14 place-items-center rounded-lg bg-black/[0.04] text-[#171717]/50">
+          <BriefcaseIcon className="h-6 w-6" />
         </div>
 
-        <p className="mt-5 max-w-2xl text-[13.5px] leading-relaxed text-[#171717]/60">
-          Surfaced from the LatAm passive talent pool. Built payment
-          infrastructure at two Series B startups. Strong async-first
-          communication and a track record of shipping under-budget.
+        {/* ID label (mono, muted) */}
+        <p className="mt-7 font-[var(--font-geist-mono)] text-[12px] text-[#171717]/45">
+          #C-2814
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {["TypeScript", "PostgreSQL", "Distributed Systems", "Stripe", "AWS"].map(
-            (s) => (
-              <span
-                key={s}
-                className="inline-flex h-6 items-center rounded border border-[rgba(0,0,0,0.06)] bg-white px-2 font-[var(--font-geist-mono)] text-[10.5px] text-[#171717]/60"
-              >
-                {s}
-              </span>
-            ),
-          )}
-        </div>
+        {/* Big bold title */}
+        <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#171717]">
+          Senior Engineer — São Paulo
+        </h3>
+
+        {/* Description paragraph — narrow column like Interfere */}
+        <p className="mt-3 max-w-xl text-[13.5px] leading-relaxed text-[#171717]/65">
+          Yander surfaced Maria from the LatAm passive talent pool after a
+          spike in qualified matches against your job scorecard. She&apos;s
+          shipped payment infrastructure at two Series B startups.
+        </p>
 
         <Tabs />
 
         <CandidateActivity />
-
-        <SuggestionCard />
       </div>
     </div>
+  )
+}
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="7" width="18" height="13" rx="2" />
+      <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+      <path d="M3 13h18" />
+    </svg>
   )
 }
 
