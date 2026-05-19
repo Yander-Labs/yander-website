@@ -16,11 +16,11 @@ export function ChangelogContent({
   return (
     <div>
       {/* Page Header */}
-      <div className="mb-12 pb-8 border-b border-[#E4E7EC]">
-        <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-3">
+      <div className="mb-12 pb-8 border-b border-[var(--color-border-canon)]">
+        <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-3">
           Changelog
         </h1>
-        <p className="text-lg text-gray-500 max-w-2xl">
+        <p className="text-lg text-[var(--color-ink-secondary)] max-w-2xl">
           New updates and improvements to Yander.
         </p>
       </div>
@@ -30,7 +30,7 @@ export function ChangelogContent({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="mt-16 pt-8 border-t border-[#E4E7EC]">
+        <div className="mt-16 pt-8 border-t border-[var(--color-border-canon)]">
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
