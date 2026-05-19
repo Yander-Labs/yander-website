@@ -295,8 +295,8 @@ function Hero() {
   return (
     <section className="relative">
       <div className="relative mx-auto max-w-[1240px] px-6 pt-24 pb-10 lg:pt-32 lg:pb-14">
-        <div className="grid items-end gap-10 lg:grid-cols-2 lg:gap-12">
-          <h1 className="text-balance font-medium leading-[0.95] tracking-[-0.025em] text-[#171717] text-[clamp(2.5rem,6vw,3.625rem)]">
+        <div className="grid items-end gap-10 lg:grid-cols-[1.55fr_1fr] lg:gap-12">
+          <h1 className="font-medium leading-[1] tracking-[-0.025em] text-[#171717] text-[clamp(2.25rem,5vw,3.25rem)]">
             <AnimatedWords>The first AI agent that</AnimatedWords>
             <br />
             <AccentSerif className="text-[1.08em]">
