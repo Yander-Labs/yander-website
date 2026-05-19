@@ -42,14 +42,14 @@ const BORDER = "border-[rgba(0,0,0,0.06)]"
 const PANEL = "bg-[#F7F7F6]"
 
 /**
- * Interfere "screenshot floating off paper" shadow — multi-stop drops
+ * Interfere "screenshot floating off paper" shadow · multi-stop drops
  * decreasing in blur, plus a 0.5px hairline border. Six layers stacked.
  */
 const MOCKUP_SHADOW =
   "shadow-[0_149px_199px_rgba(0,0,0,0.07),0_70px_96px_rgba(0,0,0,0.05),0_35px_48px_rgba(0,0,0,0.04),0_17px_24px_rgba(0,0,0,0.03),0_8px_12px_rgba(0,0,0,0.02),0_4px_6px_rgba(0,0,0,0.015),inset_0_0_0_0.5px_rgba(0,0,0,0.04)]"
 
 /**
- * Accent wrapper — kept as a semantic component for accent phrases, but
+ * Accent wrapper · kept as a semantic component for accent phrases, but
  * renders inline with the surrounding text. No italic, no font swap.
  * Single-typeface aesthetic (Inter throughout).
  */
@@ -67,7 +67,7 @@ function AccentSerif({
 
 const EASE_OUT: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98]
 
-// Words start visible — animation is a "land softer" polish, never blocks paint.
+// Words start visible · animation is a "land softer" polish, never blocks paint.
 const wordVariants: Variants = {
   hidden: { opacity: 0.55, y: 8, filter: "blur(3px)" },
   visible: {
@@ -89,7 +89,7 @@ const fadeUp: Variants = {
 }
 
 /**
- * AnimatedWords — splits a string into words and staggers each through
+ * AnimatedWords · splits a string into words and staggers each through
  * the wordVariants entrance. Wrap in a motion container with stagger.
  * Even at "hidden" state, content is readable (opacity 0.55) so the
  * page never paints blank.
@@ -128,7 +128,7 @@ function AnimatedWords({
 }
 
 /**
- * Highlighted word with mono superscript — Interfere's signature
+ * Highlighted word with mono superscript · Interfere's signature
  * three-step-pitch treatment.
  */
 function HighlightWord({
@@ -312,7 +312,7 @@ function Hero() {
               className="max-w-md text-[15px] leading-relaxed text-[#171717]/60 lg:text-right"
             >
               Tell Yander who you need to hire. It headhunts, evaluates, and
-              presents culture-matched candidates ready to interview — in days,
+              presents culture-matched candidates ready to interview in days,
               not weeks.
             </motion.p>
             <motion.div
@@ -365,10 +365,10 @@ function TopGradientWash() {
       style={{ height: "1500px" }}
       aria-hidden
     >
-      {/* Subtle vertical shell-to-page wash — barely-there warm cream tint */}
+      {/* Subtle vertical shell-to-page wash · barely-there warm cream tint */}
       <div className="absolute inset-x-0 top-0 h-[800px] bg-gradient-to-b from-[#fefaf6] from-50% to-transparent" />
 
-      {/* The signature rainbow bar — orange → pink → purple → blue at 20% opacity,
+      {/* The signature rainbow bar · orange → pink → purple → blue at 20% opacity,
           50px blur, very wide & rounded so it reads as an ambient glow */}
       <div
         className="absolute left-1/2 -translate-x-1/2 rounded-[300px]"
@@ -388,7 +388,7 @@ function TopGradientWash() {
   )
 }
 
-// MockupGradientWash is no longer needed — TopGradientWash spans both
+// MockupGradientWash is no longer needed · TopGradientWash spans both
 function MockupGradientWash() {
   return null
 }
@@ -444,7 +444,7 @@ function CandidateTopBar() {
           <Briefcase className="h-3.5 w-3.5" /> Pipeline
         </button>
         <span className="text-[#171717]/30">›</span>
-        <span className="text-[#171717]">Senior Engineer — São Paulo</span>
+        <span className="text-[#171717]">Senior Engineer · São Paulo</span>
       </div>
       <div className="flex items-center gap-3">
         <AvatarStack />
@@ -508,7 +508,7 @@ function CandidateMain() {
   return (
     <div className="flex min-w-0 flex-col bg-white">
       <div className="px-10 py-8">
-        {/* Large icon block — matches Interfere's key-icon at top of issue */}
+        {/* Large icon block · matches Interfere's key-icon at top of issue */}
         <div className="grid h-14 w-14 place-items-center rounded-lg bg-black/[0.04] text-[#171717]/50">
           <BriefcaseIcon className="h-6 w-6" />
         </div>
@@ -520,10 +520,10 @@ function CandidateMain() {
 
         {/* Big bold title */}
         <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#171717]">
-          Senior Engineer — São Paulo
+          Senior Engineer · São Paulo
         </h3>
 
-        {/* Description paragraph — narrow column like Interfere */}
+        {/* Description paragraph · narrow column like Interfere */}
         <p className="mt-3 max-w-xl text-[13.5px] leading-relaxed text-[#171717]/65">
           Yander surfaced Maria from the LatAm passive talent pool after a
           spike in qualified matches against your job scorecard. She&apos;s
@@ -534,7 +534,7 @@ function CandidateMain() {
 
         <CandidateActivity />
 
-        {/* Comment input row — mirrors Interfere's "Leave a comment / Send" */}
+        {/* Comment input row · mirrors Interfere's "Leave a comment / Send" */}
         <div className="mt-6 flex items-center justify-between gap-3 rounded-lg border border-[rgba(0,0,0,0.08)] bg-white px-3.5 py-2">
           <span className="text-[13.5px] text-[#171717]/40">Leave a comment</span>
           <button className="rounded-md bg-black/[0.04] px-3 py-1 text-[12.5px] font-medium text-[#171717]/40">
@@ -682,7 +682,7 @@ function CandidateActivity() {
         text={
           <>
             <span className="text-[#171717]">Luke Shiels</span> shortlisted for{" "}
-            <span className="text-[#171717]">Senior Engineer — São Paulo</span>
+            <span className="text-[#171717]">Senior Engineer · São Paulo</span>
           </>
         }
         time="32 min ago"
@@ -696,7 +696,7 @@ function CandidateActivity() {
         }
         time="14 min ago"
       />
-      {/* Comment block — wrapped in a soft bordered card like Interfere */}
+      {/* Comment block · wrapped in a soft bordered card like Interfere */}
       <div>
         <div className="flex items-center gap-2.5 text-[12.5px] text-[#171717]/60">
           <MiniAvatar tone="amber" letter="L" />
@@ -706,12 +706,12 @@ function CandidateActivity() {
           <span className="text-[#171717]/40">30 min ago</span>
         </div>
         <div className="mt-1.5 ml-8 rounded-md border border-[rgba(0,0,0,0.06)] bg-white px-3.5 py-2.5 text-[13.5px] text-[#171717]">
-          Strongest candidate this week — let&apos;s move her into the founder
+          Strongest candidate this week. Let&apos;s move her into the founder
           screen.
         </div>
       </div>
 
-      {/* Faded AI-suggestion item — mirrors Interfere's "Suggesting a fix..." */}
+      {/* Faded AI-suggestion item · mirrors Interfere's "Suggesting a fix..." */}
       <div className="opacity-45">
         <div className="flex items-center gap-2.5 text-[12.5px]">
           <Sparkles className="h-3.5 w-3.5 text-[#E05000]" />
@@ -800,7 +800,7 @@ function CandidateMeta() {
     <aside className="flex flex-col border-l border-[rgba(0,0,0,0.06)] bg-white">
       <MetaGroup>
         <MetaRow label="Title">
-          <span>Senior Engineer — São Paulo</span>
+          <span>Senior Engineer · São Paulo</span>
         </MetaRow>
         <MetaRow label="ID">
           <span className="font-[var(--font-geist-mono)] text-[12.5px]">
@@ -914,7 +914,7 @@ function PipelineChart() {
         </defs>
         {/* "Now" vertical guide */}
         <line x1="180" y1="6" x2="180" y2="100" stroke="rgba(0,0,0,0.06)" />
-        {/* "Hire" milestone marker — same pattern as Interfere's "Fix" label */}
+        {/* "Hire" milestone marker · same pattern as Interfere's "Fix" label */}
         <line
           x1="235"
           y1="6"
@@ -980,7 +980,7 @@ function LogoStrip() {
   return (
     <section className="bg-white py-14">
       <div className="relative flex items-center gap-8 overflow-hidden">
-        {/* Left caption pill — same vertical row as the marquee */}
+        {/* Left caption pill · same vertical row as the marquee */}
         <div className="z-10 shrink-0 pl-8 lg:pl-16">
           <span className="inline-flex items-center rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-3 py-1.5 text-[12px] font-medium tracking-[-0.01em] text-[#171717]/65 shadow-[0_1px_0_rgba(0,0,0,0.02)]">
             Trusted by
@@ -1057,7 +1057,7 @@ function PreviewCards() {
     {
       num: "03",
       title: "See problems before they leave.",
-      body: "Pulse turns daily tool activity into team-health signals — quit-risk, workload spikes, engagement drops — flagged in Slack.",
+      body: "Pulse turns daily tool activity into team-health signals like quit-risk, workload spikes, and engagement drops, flagged in Slack.",
       visual: <PreviewPulseMini />,
     },
   ]
@@ -1122,7 +1122,7 @@ function SkeletonBar({
   )
 }
 
-// Card 1 — Wireframe candidate inbox with ONE highlighted lead
+// Card 1 · Wireframe candidate inbox with ONE highlighted lead
 function PreviewInboxMini() {
   return (
     <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
@@ -1139,7 +1139,7 @@ function PreviewInboxMini() {
         <div className="flex flex-1 flex-col gap-2.5">
           <SkeletonBar w="50%" />
           <SkeletonBar w="35%" tone="muted" />
-          {/* THE highlighted item — Interfere uses an orange-tinted pill here */}
+          {/* THE highlighted item · Interfere uses an orange-tinted pill here */}
           <div className="mt-1.5 inline-flex w-fit items-center gap-1.5 rounded border border-[#f59e0b]/40 bg-[#fef3c7]/60 px-2 py-1 font-[var(--font-geist-mono)] text-[9px] uppercase tracking-[0.12em] text-[#92400e]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#f59e0b]" />
             C-2814 · Maria Santos
@@ -1152,7 +1152,7 @@ function PreviewInboxMini() {
   )
 }
 
-// Card 2 — Candidate-detail wireframe with two status pills at the bottom
+// Card 2 · Candidate-detail wireframe with two status pills at the bottom
 function PreviewAssessmentMini() {
   return (
     <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
@@ -1193,7 +1193,7 @@ function PreviewAssessmentMini() {
   )
 }
 
-// Card 3 — Pulse Slack-alert wireframe — interfere uses code; we use a Slack-style alert (Pulse posts to Slack)
+// Card 3 · Pulse Slack-alert wireframe · interfere uses code; we use a Slack-style alert (Pulse posts to Slack)
 function PreviewPulseMini() {
   return (
     <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
@@ -1204,7 +1204,7 @@ function PreviewPulseMini() {
         team-pulse · just now
       </div>
 
-      {/* Yander bot message — the HIGHLIGHTED row */}
+      {/* Yander bot message · the HIGHLIGHTED row */}
       <div className="flex items-start gap-2">
         <span className="grid h-5 w-5 shrink-0 place-items-center rounded bg-[#E05000]/15 text-[10px] text-[#E05000]">
           <Sparkles className="h-2.5 w-2.5" />
@@ -1218,7 +1218,7 @@ function PreviewPulseMini() {
             <span className="rounded bg-[#fef3c7] px-1 py-px text-[#92400e]">
               Quit-risk
             </span>{" "}
-            elevated for Emily — workload up 28%.
+            elevated for Emily. Workload up 28%.
           </p>
         </div>
       </div>
@@ -1305,7 +1305,7 @@ function FeatureFrame({
               {body}
             </p>
 
-            {/* Categorized capabilities list — Interfere's pattern */}
+            {/* Categorized capabilities list · Interfere's pattern */}
             <div className="mt-12">
               <p className="border-t border-[rgba(0,0,0,0.08)] pt-5 text-[14px] font-medium tracking-[-0.01em] text-[#171717]">
                 {capabilityLabel ?? eyebrow}
@@ -1347,7 +1347,7 @@ function FeatureSource() {
           <AccentSerif>can&apos;t reach.</AccentSerif>
         </>
       }
-      body="AI sourcing surfaces passive candidates across 428 million profiles. Real understanding of skills, work style, and culture — not keyword matching."
+      body="AI sourcing surfaces passive candidates across 428 million profiles. Real understanding of skills, work style, and culture, not keyword matching."
       chips={chips}
       visual={<InboxMockup />}
     />
@@ -1375,7 +1375,7 @@ function FeatureEvaluate() {
           <AccentSerif>busywork.</AccentSerif>
         </>
       }
-      body="Structured async assessments replace 30-minute screening calls. Yander runs the whole loop — you review when there's a signal worth your time."
+      body="Structured async assessments replace 30-minute screening calls. Yander runs the whole loop. You review when there's a signal worth your time."
       chips={chips}
       visual={<DiffMockup />}
     />
@@ -1402,7 +1402,7 @@ function FeatureRetain() {
           <AccentSerif>before they leave.</AccentSerif>
         </>
       }
-      body="Yander Pulse turns daily tool activity into team-health signals. Quit-risk, workload spikes, and engagement drops — surfaced before they cost you a hire."
+      body="Yander Pulse turns daily tool activity into team-health signals. Quit-risk, workload spikes, and engagement drops, surfaced before they cost you a hire."
       chips={chips}
       visual={<PulseMockup />}
     />
@@ -1488,7 +1488,7 @@ function InboxMockup() {
 }
 
 /**
- * Non-technical assessment-dashboard mockup — shows what an evaluator
+ * Non-technical assessment-dashboard mockup · shows what an evaluator
  * actually sees when reviewing a candidate. Score, rubric breakdown,
  * trait observations. No code.
  */
@@ -1696,7 +1696,7 @@ function PullQuote() {
 
 function EnvelopeFlourish() {
   // Two-envelope flap pattern that mirrors Interfere's quote panel.
-  // Hairline strokes only — no fills — so the gradient backdrop reads first.
+  // Hairline strokes only · no fills · so the gradient backdrop reads first.
   return (
     <svg
       viewBox="0 0 1200 480"
@@ -1716,7 +1716,7 @@ function EnvelopeFlourish() {
         <path d="M740 140 L950 300 L1160 140" />
         <path d="M740 420 L950 300 L1160 420" />
       </g>
-      {/* Subtle diagonals — depth */}
+      {/* Subtle diagonals · depth */}
       <g stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.5">
         <path d="M40 60 L460 340" />
         <path d="M460 60 L40 340" />
@@ -1850,7 +1850,7 @@ function ChangelogSection() {
   )
 }
 
-/* Inline mini-previews — small visuals that hint at what each release ships */
+/* Inline mini-previews · small visuals that hint at what each release ships */
 
 function PreviewChart() {
   return (
