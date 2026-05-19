@@ -3,10 +3,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { TrackedLink } from "@/components/ui/TrackedLink";
+import { TrackedButton } from "@/components/ui/TrackedButton";
 import { useDemoModal } from "@/components/ui/DemoModal";
 import { ArrowRight, Search, MapPin, ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { FeatureCards } from "./FeatureCards";
 
 // ─── Design tokens (Cal.com inspired) ───
 const t = {
@@ -116,7 +118,11 @@ const steps = [
 
 function ProfileCard({ profile }: { profile: Profile }) {
   return (
-    <Link
+    <TrackedLink
+      ctaId="talent_profile_card"
+      ctaLocation="homepage_talent_slider"
+      ctaLabel={profile.name}
+      ctaVariant="link"
       href="/pricing"
       className="block bg-white flex-shrink-0 w-full cursor-pointer transition-shadow duration-200 border border-gray-200"
       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#d4d4d4"; }}
@@ -141,7 +147,7 @@ function ProfileCard({ profile }: { profile: Profile }) {
           ))}
         </div>
       </div>
-    </Link>
+    </TrackedLink>
   );
 }
 
@@ -357,17 +363,26 @@ export function V2HomePage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
             >
-              <Link href="/pricing"
+              <TrackedLink
+                ctaId="hero_get_started_free"
+                ctaLocation="homepage_hero"
+                ctaVariant="primary"
+                href="/pricing"
                 className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-80 group w-full sm:w-auto"
                 style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <button onClick={openDemoModal}
+              </TrackedLink>
+              <TrackedButton
+                ctaId="hero_book_demo"
+                ctaLocation="homepage_hero"
+                ctaDestination="demo_modal"
+                ctaVariant="secondary"
+                onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-shadow w-full sm:w-auto"
                 style={{ color: t.charcoal, backgroundColor: t.white, boxShadow: t.shadowCard }}>
                 Book a Demo
-              </button>
+              </TrackedButton>
             </motion.div>
 
             {/* Role pills */}
@@ -444,6 +459,9 @@ export function V2HomePage() {
       {/* ── Features (sticky scroll) ── */}
       <StickyFeatures />
 
+      {/* ── Platform primitives (Tailark-adapted, wonderful.ai cues) ── */}
+      <FeatureCards />
+
       {/* ── Cost comparison ── */}
       <section className="py-24 md:py-32" style={{ backgroundColor: t.white }}>
         <Container>
@@ -473,17 +491,25 @@ export function V2HomePage() {
                 ))}
               </div>
               <div className="mt-10 flex flex-col sm:flex-row items-start gap-3">
-                <Link href="/pricing"
+                <TrackedLink
+                  ctaId="cost_comparison_get_started_free"
+                  ctaLocation="homepage_cost_comparison"
+                  ctaVariant="primary"
+                  href="/pricing"
                   className="inline-flex items-center justify-center gap-2 font-medium text-white px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-80 group w-full sm:w-auto"
                   style={{ backgroundColor: t.accent, boxShadow: t.shadowButton }}>
                   Get Started Free
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-                <Link href="/pricing"
+                </TrackedLink>
+                <TrackedLink
+                  ctaId="cost_comparison_see_pricing"
+                  ctaLocation="homepage_cost_comparison"
+                  ctaVariant="secondary"
+                  href="/pricing"
                   className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-shadow w-full sm:w-auto"
                   style={{ color: t.charcoal, backgroundColor: t.white, boxShadow: t.shadowCard }}>
                   See full pricing
-                </Link>
+                </TrackedLink>
               </div>
             </div>
             <div className="p-8 rounded-none" style={{ backgroundColor: t.lightGray }}>
@@ -516,15 +542,24 @@ export function V2HomePage() {
               AI sourcing brings in qualified candidates outside your network. More options, faster, more cost-effective to fill roles. Start free with your first 200 sourced candidates.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/pricing"
+              <TrackedLink
+                ctaId="final_cta_get_started_free"
+                ctaLocation="homepage_final_cta"
+                ctaVariant="primary"
+                href="/pricing"
                 className="inline-flex items-center justify-center gap-2 font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-opacity hover:opacity-90 group w-full sm:w-auto"
                 style={{ backgroundColor: t.white, color: t.charcoal }}>
                 Get Started Free <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <button onClick={openDemoModal}
+              </TrackedLink>
+              <TrackedButton
+                ctaId="final_cta_book_demo"
+                ctaLocation="homepage_final_cta"
+                ctaDestination="demo_modal"
+                ctaVariant="outline"
+                onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium px-8 py-4 text-base min-h-[52px] rounded-none transition-colors text-white border border-white/20 hover:bg-white/10 w-full sm:w-auto">
                 Book a Demo
-              </button>
+              </TrackedButton>
             </div>
           </div>
         </Container>

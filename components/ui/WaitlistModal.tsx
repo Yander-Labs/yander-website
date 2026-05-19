@@ -4,6 +4,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Loader2 } from "lucide-react";
+import { capture } from "@/lib/posthog";
 
 // Context for modal state
 interface WaitlistModalContextType {
@@ -68,6 +69,7 @@ function WaitlistModal() {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        capture("waitlist_submitted");
         closeModal();
         setEmail("");
         setStatus("idle");

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./ui/Container";
+import { TrackedLink } from "./ui/TrackedLink";
 import { Mail } from "lucide-react";
 
 function XIcon({ className }: { className?: string }) {
@@ -109,16 +110,34 @@ export function Footer() {
                 Company
               </h4>
               <ul className="space-y-3">
-                {footerLinks.company.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {footerLinks.company.map((link) => {
+                  const isContactSales = link.href === "/contact-sales";
+                  if (isContactSales) {
+                    return (
+                      <li key={link.label}>
+                        <TrackedLink
+                          ctaId="footer_contact_sales"
+                          ctaLocation="footer"
+                          ctaVariant="link"
+                          href={link.href}
+                          className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                        >
+                          {link.label}
+                        </TrackedLink>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 

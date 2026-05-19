@@ -3,8 +3,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { useWaitlistModal } from "../ui/WaitlistModal";
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
@@ -192,13 +193,18 @@ function ProfileCard({ profile }: { profile: CandidateProfile }) {
         </div>
 
         {/* CTA */}
-        <button
+        <TrackedButton
+          ctaId="featured_talent_view_profile"
+          ctaLocation="featured_talent"
+          ctaLabel={profile.name}
+          ctaDestination="waitlist_modal"
+          ctaVariant="outline"
           onClick={openModal}
           className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-[#1e1044] border border-gray-200/60 hover:bg-[#fafafa] transition-colors"
         >
           View profile
           <ArrowRight className="w-3.5 h-3.5" />
-        </button>
+        </TrackedButton>
       </div>
     </div>
   );
@@ -341,13 +347,16 @@ export function FeaturedTalent() {
 
           {/* View all link */}
           <div className="mt-8 flex items-center justify-between">
-            <Link
+            <TrackedLink
+              ctaId="featured_talent_view_all_roles"
+              ctaLocation="featured_talent"
+              ctaVariant="link"
               href="/talent"
               className="inline-flex items-center gap-2 text-sm font-medium text-[#1e1044] hover:text-[#0a0a0a] transition-colors"
             >
               View all available roles
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </TrackedLink>
           </div>
         </motion.div>
       </Container>

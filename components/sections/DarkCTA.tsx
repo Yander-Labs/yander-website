@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { ArrowRight } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
 
@@ -49,19 +50,26 @@ export function DarkCTA() {
 
             {/* CTAs */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
+              <TrackedLink
+                ctaId="dark_cta_get_started_free"
+                ctaLocation="dark_cta"
+                ctaVariant="primary"
                 href="/pricing"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0a0a0a] rounded-none font-medium text-base hover:bg-gray-100 transition-all group w-full sm:w-auto shadow-subtle hover:shadow-elevated"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-              <button
+              </TrackedLink>
+              <TrackedButton
+                ctaId="dark_cta_book_demo"
+                ctaLocation="dark_cta"
+                ctaDestination="demo_modal"
+                ctaVariant="outline"
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white rounded-none font-medium text-base hover:bg-white/15 transition-colors border border-white/10 w-full sm:w-auto"
               >
                 Book a Demo
-              </button>
+              </TrackedButton>
             </div>
           </div>
 

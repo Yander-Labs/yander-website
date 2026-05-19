@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { capture } from "@/lib/posthog";
 
 const companySizes = [
   "1–25 employees",
@@ -46,6 +47,7 @@ export function ContactSalesForm() {
         throw new Error(body.error || "Something went wrong");
       }
 
+      capture("contact_sales_submitted", { company_size: data.companySize });
       setStatus("success");
     } catch (err) {
       setErrorMessage(err instanceof Error ? err.message : "Something went wrong");

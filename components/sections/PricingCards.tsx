@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
 import { Badge } from "../ui/Badge";
 import { cn } from "@/lib/utils";
@@ -161,12 +162,16 @@ function PricingCard({ tier, billing }: { tier: PricingTier; billing: BillingPer
       </div>
 
       {/* CTA */}
-      <a
+      <TrackedLink
+        ctaId={`pulse_pricing_${tier.name.toLowerCase()}`}
+        ctaLocation="pulse_pricing_cards"
+        ctaLabel={tier.cta}
+        ctaVariant="primary"
         href={link}
         className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] px-5 py-3 text-sm min-h-[44px] w-full bg-gray-900 text-white hover:bg-gray-800"
       >
         {tier.cta}
-      </a>
+      </TrackedLink>
 
       {/* Divider */}
       <div className="border-t border-[#E4E7EC] my-5" />

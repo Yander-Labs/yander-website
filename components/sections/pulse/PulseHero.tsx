@@ -2,8 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { TrackedButton } from "@/components/ui/TrackedButton";
 import {
   ShieldCheck,
   TrendingUp,
@@ -345,10 +345,26 @@ export function PulseHero() {
             }}
             className="mt-8 flex flex-row items-center justify-center gap-3"
           >
-            <Button size="lg" onClick={openModal}>Join Waitlist</Button>
-            <Button variant="secondary" size="lg" onClick={openDemoModal}>
+            <TrackedButton
+              ctaId="pulse_hero_join_waitlist"
+              ctaLocation="pulse_hero"
+              ctaDestination="waitlist_modal"
+              ctaVariant="primary"
+              onClick={openModal}
+              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900/20 bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]"
+            >
+              Join Waitlist
+            </TrackedButton>
+            <TrackedButton
+              ctaId="pulse_hero_book_demo"
+              ctaLocation="pulse_hero"
+              ctaDestination="demo_modal"
+              ctaVariant="secondary"
+              onClick={openDemoModal}
+              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900/20 bg-white text-gray-900 border border-[#e5e5e5] hover:bg-gray-50 hover:border-gray-300 px-6 py-3.5 text-base min-h-[48px]"
+            >
               Book a Demo
-            </Button>
+            </TrackedButton>
           </motion.div>
 
           <motion.div

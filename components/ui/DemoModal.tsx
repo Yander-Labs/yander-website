@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { capture } from "@/lib/posthog";
 
 // Context for modal state
 interface DemoModalContextType {
@@ -25,8 +26,11 @@ export function useDemoModal() {
 export function DemoModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = useCallback(() => {
+    setIsOpen(true);
+    capture("demo_modal_opened");
+  }, []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
 
   return (
     <DemoModalContext.Provider value={{ isOpen, openModal, closeModal }}>

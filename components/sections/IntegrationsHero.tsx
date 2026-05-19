@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
 import { ArrowRight } from "lucide-react";
 
 export function IntegrationsHero() {
@@ -22,19 +22,25 @@ export function IntegrationsHero() {
             Yander pulls data from your communication, project management, and meeting tools to give you one unified view of team and client health.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
+            <TrackedLink
+              ctaId="integrations_browse_all"
+              ctaLocation="integrations_hero"
+              ctaVariant="primary"
               href="/integrations/all"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-[6px] font-medium text-sm hover:bg-gray-800 transition-colors group min-h-[44px]"
             >
               Browse all integrations
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <a
+            </TrackedLink>
+            <TrackedLink
+              ctaId="integrations_get_started_free"
+              ctaLocation="integrations_hero"
+              ctaVariant="secondary"
               href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 border border-[#E4E7EC] rounded-[6px] font-medium text-sm hover:bg-gray-50 transition-colors min-h-[44px]"
             >
               Get Started Free
-            </a>
+            </TrackedLink>
           </div>
         </motion.div>
 

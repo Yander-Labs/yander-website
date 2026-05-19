@@ -2,7 +2,8 @@
 
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
-import { Button } from "../ui/Button";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { Clock, ShieldCheck, Award } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
 
@@ -22,10 +23,25 @@ export function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-            <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]">Get Started Free</a>
-            <Button variant="secondary" size="lg" onClick={openDemoModal}>
+            <TrackedLink
+              ctaId="cta_section_get_started_free"
+              ctaLocation="cta_section"
+              ctaVariant="primary"
+              href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
+              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]"
+            >
+              Get Started Free
+            </TrackedLink>
+            <TrackedButton
+              ctaId="cta_section_book_demo"
+              ctaLocation="cta_section"
+              ctaDestination="demo_modal"
+              ctaVariant="secondary"
+              onClick={openDemoModal}
+              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-white text-gray-900 border border-[#e5e5e5] hover:bg-gray-50 hover:border-gray-300 px-6 py-3.5 text-base min-h-[48px]"
+            >
               Book a Demo
-            </Button>
+            </TrackedButton>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-400">

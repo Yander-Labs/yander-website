@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { useWaitlistModal } from "../ui/WaitlistModal";
 import { useDemoModal } from "../ui/DemoModal";
 import { ArrowRight, Search } from "lucide-react";
@@ -289,19 +290,26 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <Link
+            <TrackedLink
+              ctaId="hero_get_started_free"
+              ctaLocation="legacy_hero"
+              ctaVariant="primary"
               href="/pricing"
               className="inline-flex items-center justify-center gap-2 font-medium rounded-none bg-[#0a0a0a] text-white hover:bg-[#171717] px-8 py-4 text-base min-h-[52px] transition-all group w-full sm:w-auto"
             >
               Get Started Free
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <button
+            </TrackedLink>
+            <TrackedButton
+              ctaId="hero_book_demo"
+              ctaLocation="legacy_hero"
+              ctaDestination="demo_modal"
+              ctaVariant="secondary"
               onClick={openDemoModal}
               className="inline-flex items-center justify-center font-medium rounded-none bg-white border border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-900 px-8 py-4 text-base min-h-[52px] transition-all w-full sm:w-auto"
             >
               Book a Demo
-            </button>
+            </TrackedButton>
           </motion.div>
 
           {/* Roles */}

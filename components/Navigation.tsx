@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./ui/Container";
+import { TrackedLink } from "./ui/TrackedLink";
+import { TrackedButton } from "./ui/TrackedButton";
 import { cn } from "@/lib/utils";
 import { X, Menu, ChevronDown } from "lucide-react";
 import { useDemoModal } from "./ui/DemoModal";
@@ -145,18 +147,25 @@ export function Navigation() {
 
             {/* Right: CTAs */}
             <div className="hidden md:flex items-center gap-3">
-              <button
+              <TrackedButton
+                ctaId="nav_book_demo"
+                ctaLocation="nav"
+                ctaDestination="demo_modal"
+                ctaVariant="ghost"
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-4 py-2.5 text-sm min-h-[44px]"
               >
                 Book a Demo
-              </button>
-              <Link
+              </TrackedButton>
+              <TrackedLink
+                ctaId="nav_try_free"
+                ctaLocation="nav"
+                ctaVariant="primary"
                 href="/pricing"
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
               >
                 Try for free
-              </Link>
+              </TrackedLink>
             </div>
 
             {/* Mobile Menu Button */}
@@ -257,7 +266,11 @@ export function Navigation() {
 
             {/* Drawer Footer */}
             <div className="p-4 border-t border-[#E4E7EC] space-y-3">
-              <button
+              <TrackedButton
+                ctaId="nav_book_demo"
+                ctaLocation="nav_mobile"
+                ctaDestination="demo_modal"
+                ctaVariant="ghost"
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-5 py-3 text-sm min-h-[44px] w-full"
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -265,14 +278,17 @@ export function Navigation() {
                 }}
               >
                 Book a Demo
-              </button>
-              <Link
+              </TrackedButton>
+              <TrackedLink
+                ctaId="nav_try_free"
+                ctaLocation="nav_mobile"
+                ctaVariant="primary"
                 href="/pricing"
                 onClick={() => setMobileMenuOpen(false)}
                 className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
               >
                 Try for free
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </div>

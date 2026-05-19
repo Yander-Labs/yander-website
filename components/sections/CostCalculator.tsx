@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
+import { TrackedButton } from "../ui/TrackedButton";
 import { ArrowRight } from "lucide-react";
 import { useWaitlistModal } from "../ui/WaitlistModal";
 
@@ -159,13 +160,17 @@ export function CostCalculator() {
                           <p className="text-4xl font-bold text-[#0a0a0a] mt-2 tracking-tight">
                             {formatCurrency(savings)}
                           </p>
-                          <button
+                          <TrackedButton
+                            ctaId="cost_calculator_start_saving"
+                            ctaLocation="cost_calculator"
+                            ctaDestination="waitlist_modal"
+                            ctaVariant="link"
                             onClick={openModal}
                             className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#0a0a0a] hover:text-gray-600 transition-colors"
                           >
                             Start saving with Yander
                             <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
+                          </TrackedButton>
                         </div>
                       )}
                     </div>

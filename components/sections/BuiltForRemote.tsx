@@ -2,6 +2,7 @@
 
 import { AnimatedSection } from "../ui/AnimatedSection";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
 import { SectionLabel } from "../ui/SectionLabel";
 import { MiniChart } from "../ui/MiniChart";
 import { Check, TrendingUp, MessageCircle, Zap, Clock, ChevronRight } from "lucide-react";
@@ -74,7 +75,15 @@ export function BuiltForRemote() {
               ))}
             </ul>
 
-            <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly" className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px]">Get Started Free</a>
+            <TrackedLink
+              ctaId="built_for_remote_get_started_free"
+              ctaLocation="built_for_remote"
+              ctaVariant="primary"
+              href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
+              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-[6px] bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px]"
+            >
+              Get Started Free
+            </TrackedLink>
           </AnimatedSection>
 
           {/* Visual - Enhanced Engagement Signals */}
