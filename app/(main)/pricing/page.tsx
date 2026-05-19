@@ -76,8 +76,8 @@ export default function PricingPage() {
     <>
       <SchemaJsonLd schema={pricingProductSchema} />
       <SchemaJsonLd schema={faqSchema(recruiterFaqs)} />
-      {/* ── Section 1: Hero — homepage canon: white bg, font-geist headline, Eyebrow primitive ── */}
-      <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden bg-white">
+      {/* ── Section 1: Hero — homepage canon: hero scale, font-geist, generous breathing room ── */}
+      <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden bg-white">
         {/* Subtle vertical rhythm lines on edges (signature component) */}
         <div
           className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
@@ -89,14 +89,20 @@ export default function PricingPage() {
         />
 
         <Container>
-          <AnimatedSection className="relative text-center max-w-5xl mx-auto">
-            <div className="mb-5 flex justify-center">
-              <Eyebrow>Pricing</Eyebrow>
+          <AnimatedSection className="relative text-center max-w-4xl mx-auto">
+            <div className="mb-6 flex justify-center">
+              <Eyebrow number="01">Pricing</Eyebrow>
             </div>
-            <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] lg:whitespace-nowrap">
-              Clear pricing for your recruiting needs.
+            {/* Hero-scale headline — matches V2HomePage line 343 */}
+            <h1 className="font-geist font-bold text-[40px] sm:text-5xl md:text-6xl lg:text-[64px] text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
+              Clear pricing for your<br className="hidden md:inline" /> recruiting needs.
             </h1>
-            <p className="mt-5 text-xs text-[var(--color-ink-disabled)]">
+            {/* Substantive subhead — homepage hero rhythm */}
+            <p className="mt-6 text-lg md:text-xl text-[var(--color-ink-secondary)] max-w-2xl mx-auto leading-relaxed">
+              Pay monthly or annually. No placement fees, no contracts, cancel
+              anytime. Start free and only pay when you&apos;re actively hiring.
+            </p>
+            <p className="mt-8 text-xs text-[var(--color-ink-disabled)]">
               Looking for{" "}
               <Link
                 href="/pulse-pricing"

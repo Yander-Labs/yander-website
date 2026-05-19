@@ -101,27 +101,38 @@ function PricingCard({
   const isFree = tier.monthlyPrice === 0;
   const usePlaceholder = isPlaceholderLink(link);
 
+  // Step number for the homepage's numbered eyebrow pattern (01/02/03).
+  const stepNumber =
+    tier.name === "Free" ? "01" : tier.name === "Pro" ? "02" : "03";
+
   return (
     <div
       className={cn(
-        "relative border p-8 flex flex-col h-full transition-all duration-200 rounded-none",
+        "relative border p-10 md:p-12 flex flex-col h-full transition-all duration-200 rounded-none",
         tier.recommended
-          ? "bg-[var(--color-surface-subtle)] border-[var(--color-accent-primary)] border-2 shadow-[0_8px_30px_rgba(30,16,68,0.08)] hover:shadow-[0_12px_40px_rgba(30,16,68,0.12)]"
+          ? "bg-[var(--color-surface-subtle)] border-[var(--color-accent-primary)] border-2 shadow-[0_12px_40px_rgba(30,16,68,0.12)] hover:shadow-[0_20px_60px_rgba(30,16,68,0.18)]"
           : "bg-white border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] hover:shadow-[var(--shadow-canon-card-hover)]"
       )}
     >
       {tier.recommended && (
-        <div className="absolute -top-3 left-8">
+        <div className="absolute -top-3 left-10 md:left-12">
           <span className="inline-flex items-center px-3 py-1 text-[10px] font-[var(--font-geist-mono)] font-semibold uppercase tracking-[0.22em] bg-[var(--color-accent-primary)] text-white rounded-none">
             Most Popular
           </span>
         </div>
       )}
 
+      {/* Numbered eyebrow — homepage signature */}
+      <div className="mb-3 inline-flex items-baseline gap-2 font-[var(--font-geist-mono)] text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-disabled)]">
+        <span>{stepNumber}</span>
+        <span className="h-px w-6 bg-[var(--color-border-canon)]" />
+        <span className="text-[var(--color-ink-muted)]">{tier.name === "Free" ? "Try" : tier.name === "Pro" ? "Scale" : "Velocity"}</span>
+      </div>
+
       {/* Plan name & description */}
-      <div className="mb-6">
+      <div className="mb-8">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-geist font-bold text-3xl text-[var(--color-ink-primary)] tracking-tight">
+          <h3 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
             {tier.name}
           </h3>
           {billing === "annual" && tier.annualSaveLabel && (
@@ -130,22 +141,22 @@ function PricingCard({
             </span>
           )}
         </div>
-        <p className="mt-2 text-sm text-[var(--color-ink-muted)] leading-snug min-h-[40px]">
+        <p className="mt-3 text-base text-[var(--color-ink-secondary)] leading-snug min-h-[48px]">
           {tier.description}
         </p>
       </div>
 
-      {/* Price — homepage-style font-geist wow moment */}
-      <div className="mb-6">
+      {/* Price — homepage hero scale wow moment */}
+      <div className="mb-8">
         <div className="flex items-baseline">
-          <span className="font-geist font-bold text-4xl text-[var(--color-ink-primary)] tracking-tight">
+          <span className="font-geist font-bold text-5xl md:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-none">
             ${isFree ? 0 : price}
           </span>
-          <span className="ml-2 text-sm text-[var(--color-ink-faded)]">/mo</span>
+          <span className="ml-2 text-base text-[var(--color-ink-faded)]">/mo</span>
         </div>
         <p
           className={cn(
-            "mt-1 text-[11px] text-[var(--color-ink-faded)]",
+            "mt-2 text-[11px] font-[var(--font-geist-mono)] uppercase tracking-[0.22em] text-[var(--color-ink-faded)]",
             !(!isFree && billing === "annual") && "invisible"
           )}
         >
@@ -163,7 +174,7 @@ function PricingCard({
           ctaVariant="primary"
           onClick={onWaitlistClick}
           className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full rounded-none",
+            "inline-flex items-center justify-center font-medium transition-all duration-150 px-6 py-4 text-base min-h-[52px] w-full rounded-none",
             tier.recommended
               ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
               : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
@@ -179,7 +190,7 @@ function PricingCard({
           ctaVariant="primary"
           href={link}
           className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full rounded-none",
+            "inline-flex items-center justify-center font-medium transition-all duration-150 px-6 py-4 text-base min-h-[52px] w-full rounded-none",
             tier.recommended
               ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
               : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
@@ -208,10 +219,10 @@ function PricingCard({
       </TrackedButton>
 
       {/* Divider */}
-      <div className="border-t border-[var(--color-border-canon)] my-6" />
+      <div className="border-t border-[var(--color-border-canon)] my-8" />
 
-      {/* Headline feature + shared features */}
-      <div className="space-y-3.5 flex-1">
+      {/* Headline feature + shared features — slightly larger for hero-scale cards */}
+      <div className="space-y-4 flex-1">
         <FeatureItem text={tier.headlineFeature} bold />
         {sharedFeatures.map((feature) => (
           <FeatureItem key={feature} text={feature} />
@@ -243,7 +254,7 @@ export function RecruiterPricingCards() {
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
-    <section className="relative pt-2 pb-20 md:pb-24 bg-white overflow-hidden">
+    <section className="relative pt-4 pb-24 md:pb-32 bg-white overflow-hidden">
       {/* Vertical rhythm lines — signature component */}
       <div
         className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
