@@ -460,29 +460,44 @@ function CandidateTopBar() {
 
 function MiniRail() {
   const items = [
-    { Icon: YanderMark, active: true, label: "Yander" },
-    { Icon: Briefcase, label: "Hiring", active: true },
+    { Icon: Briefcase, label: "Pipeline", active: true },
     { Icon: MessageSquare, label: "Messages" },
-    { Icon: Users, label: "Pipeline" },
+    { Icon: Users, label: "Candidates" },
     { Icon: BarChart3, label: "Pulse" },
     { Icon: FileText, label: "Notes" },
   ]
   return (
-    <aside className="flex flex-col items-center gap-1 border-r border-[rgba(0,0,0,0.06)] bg-white py-3">
-      {items.map(({ Icon, active, label }, i) => (
+    <aside className="flex w-12 flex-col items-center border-r border-[rgba(0,0,0,0.06)] bg-white pt-3 pb-2.5">
+      {/* Yander brand mark at top, in a darker tile */}
+      <div className="grid h-7 w-7 place-items-center rounded-md bg-[#171717] text-white">
+        <YanderMark className="h-3.5 w-3.5" />
+      </div>
+
+      {/* Main nav */}
+      <div className="mt-4 flex flex-col items-center gap-1">
+        {items.map(({ Icon, active, label }, i) => (
+          <button
+            key={i}
+            aria-label={label}
+            className={cn(
+              "grid h-7 w-7 place-items-center rounded-md text-[#171717]/45 transition-colors",
+              active ? "bg-black/[0.05] text-[#171717]" : "hover:bg-black/[0.04] hover:text-[#171717]",
+            )}
+          >
+            <Icon className="h-3.5 w-3.5" />
+          </button>
+        ))}
+      </div>
+
+      {/* Help icon pinned to the bottom */}
+      <div className="mt-auto">
         <button
-          key={i}
-          aria-label={label}
-          className={cn(
-            "grid h-8 w-8 place-items-center rounded-md text-[#171717]/45 transition-colors",
-            active && i === 1 && "bg-[#171717] text-white",
-            !active && "hover:bg-[#0a1d08]/5 hover:text-[#171717]",
-            i === 0 && "mb-2 text-[#171717]",
-          )}
+          aria-label="Help"
+          className="grid h-7 w-7 place-items-center rounded-full border border-[rgba(0,0,0,0.08)] bg-white text-[#171717]/55 transition-colors hover:text-[#171717]"
         >
-          <Icon className="h-4 w-4" />
+          <span className="font-[var(--font-geist-mono)] text-[11px]">?</span>
         </button>
-      ))}
+      </div>
     </aside>
   )
 }
@@ -516,6 +531,14 @@ function CandidateMain() {
         <Tabs />
 
         <CandidateActivity />
+
+        {/* Comment input row — mirrors Interfere's "Leave a comment / Send" */}
+        <div className="mt-6 flex items-center justify-between gap-3 rounded-lg border border-[rgba(0,0,0,0.08)] bg-white px-3.5 py-2">
+          <span className="text-[13.5px] text-[#171717]/40">Leave a comment</span>
+          <button className="rounded-md bg-black/[0.04] px-3 py-1 text-[12.5px] font-medium text-[#171717]/40">
+            Send
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -671,17 +694,30 @@ function CandidateActivity() {
         }
         time="14 min ago"
       />
+      {/* Comment block — wrapped in a soft bordered card like Interfere */}
       <div>
         <div className="flex items-center gap-2.5 text-[12.5px] text-[#171717]/60">
           <MiniAvatar tone="amber" letter="L" />
           <span className="text-[#171717]">Luke Shiels</span>
           <span>commented</span>
           <span className="text-[#171717]/30">·</span>
-          <span className="text-[#171717]/40">just now</span>
+          <span className="text-[#171717]/40">30 min ago</span>
         </div>
-        <p className="mt-1.5 pl-8 text-[14px] text-[#171717]">
+        <div className="mt-1.5 ml-8 rounded-md border border-[rgba(0,0,0,0.06)] bg-white px-3.5 py-2.5 text-[13.5px] text-[#171717]">
           Strongest candidate this week — let&apos;s move her into the founder
           screen.
+        </div>
+      </div>
+
+      {/* Faded AI-suggestion item — mirrors Interfere's "Suggesting a fix..." */}
+      <div className="opacity-45">
+        <div className="flex items-center gap-2.5 text-[12.5px]">
+          <Sparkles className="h-3.5 w-3.5 text-[#E05000]" />
+          <span className="text-[#171717]/70">Yander suggests a next step…</span>
+        </div>
+        <p className="mt-1.5 max-w-2xl pl-6 text-[13.5px] text-[#171717]/60">
+          Send Maria a founder-screen invite for Tue 21st, 10:00 AM SP / 09:00 AM
+          ET. She&apos;s scored above bar on every rubric so far.
         </p>
       </div>
     </div>
@@ -761,8 +797,8 @@ function CandidateMeta() {
   return (
     <aside className="flex flex-col border-l border-[rgba(0,0,0,0.06)] bg-white">
       <MetaGroup>
-        <MetaRow label="Name">
-          <span>Maria Santos</span>
+        <MetaRow label="Title">
+          <span>Senior Engineer — São Paulo</span>
         </MetaRow>
         <MetaRow label="ID">
           <span className="font-[var(--font-geist-mono)] text-[12.5px]">
@@ -775,13 +811,18 @@ function CandidateMeta() {
             <span>High</span>
           </span>
         </MetaRow>
-        <MetaRow label="Role">
-          <span>Senior Engineer</span>
-        </MetaRow>
-        <MetaRow label="Location">
+        <MetaRow label="Recruiter">
           <span className="flex items-center gap-1.5">
-            <Globe className="h-3.5 w-3.5 text-[#171717]/45" />
-            São Paulo, BR
+            <MiniAvatar tone="amber" letter="L" />
+            Luke Shiels
+          </span>
+        </MetaRow>
+        <MetaRow label="Status">
+          <span className="flex items-center gap-1.5">
+            <span className="relative grid h-3 w-3 place-items-center">
+              <span className="block h-2 w-2 rounded-full bg-amber-400" />
+            </span>
+            Active
           </span>
         </MetaRow>
         <MetaRow label="Source">
@@ -837,7 +878,7 @@ function MatchBars() {
 }
 
 function MetaGroup({ children }: { children: React.ReactNode }) {
-  return <div className="flex flex-col gap-3 px-6 py-5">{children}</div>
+  return <div className="flex flex-col gap-2.5 px-6 py-5">{children}</div>
 }
 
 function MetaRow({
@@ -848,9 +889,9 @@ function MetaRow({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 text-[13px]">
+    <div className="grid grid-cols-[80px_1fr] items-center gap-4 text-[13px]">
       <span className="text-[#171717]/45">{label}</span>
-      <span className="text-right text-[#171717]">{children}</span>
+      <span className="truncate text-right text-[#171717]">{children}</span>
     </div>
   )
 }
