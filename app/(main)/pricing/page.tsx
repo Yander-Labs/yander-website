@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
 import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
 import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
@@ -76,44 +73,60 @@ export default function PricingPage() {
     <>
       <SchemaJsonLd schema={pricingProductSchema} />
       <SchemaJsonLd schema={faqSchema(recruiterFaqs)} />
-      {/* ── Section 1: Hero — homepage canon: hero scale, font-geist, generous breathing room ── */}
-      <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden bg-white">
-        {/* Subtle vertical rhythm lines on edges (signature component) */}
+      {/* ── Hero — /yander-interfere DNA: asymmetric 2-col + rainbow gradient wash + Inter Medium ── */}
+      <section className="relative overflow-hidden bg-white text-[#171717]" style={{ fontFamily: "var(--font-inter), ui-sans-serif, system-ui, sans-serif", fontWeight: 500, letterSpacing: "-0.011em" }}>
+        {/* Top gradient wash · same recipe as /yander-interfere's TopGradientWash */}
         <div
-          className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-y-0 right-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
-          aria-hidden="true"
-        />
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 overflow-hidden"
+          style={{ height: "900px" }}
+          aria-hidden
+        >
+          {/* Warm cream tint */}
+          <div className="absolute inset-x-0 top-0 h-[600px] bg-gradient-to-b from-[#fefaf6] from-50% to-transparent" />
+          {/* Signature rainbow bar — orange → pink → purple → blue at 20%, 50px blur */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 rounded-[300px]"
+            style={{
+              top: "440px",
+              width: "1700px",
+              height: "560px",
+              backgroundImage:
+                "linear-gradient(90deg, rgba(255,59,0,0.20) 0%, rgba(246,0,157,0.20) 38%, rgba(151,62,198,0.20) 71%, rgba(0,142,255,0.20) 100%)",
+              filter: "blur(50px)",
+            }}
+          />
+          {/* Fade-to-white at the bottom */}
+          <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-white" />
+        </div>
 
-        <Container>
-          <AnimatedSection className="relative text-center max-w-4xl mx-auto">
-            <div className="mb-6 flex justify-center">
-              <Eyebrow number="01">Pricing</Eyebrow>
-            </div>
-            {/* Hero-scale headline — matches V2HomePage line 343 */}
-            <h1 className="font-geist font-bold text-[40px] sm:text-5xl md:text-6xl lg:text-[64px] text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
-              Clear pricing for your<br className="hidden md:inline" /> recruiting needs.
+        <div className="relative mx-auto max-w-[1240px] px-6 pt-24 pb-10 lg:pt-32 lg:pb-14">
+          <div className="grid items-end gap-10 lg:grid-cols-[1.55fr_1fr] lg:gap-12">
+            <h1 className="font-medium leading-[1] tracking-[-0.025em] text-[#171717] text-[clamp(2.25rem,5vw,3.25rem)]">
+              Clear pricing for your{" "}
+              <span className="text-[1.08em]">recruiting needs.</span>
             </h1>
-            {/* Substantive subhead — homepage hero rhythm */}
-            <p className="mt-6 text-lg md:text-xl text-[var(--color-ink-secondary)] max-w-2xl mx-auto leading-relaxed">
-              Pay monthly or annually. No placement fees, no contracts, cancel
-              anytime. Start free and only pay when you&apos;re actively hiring.
-            </p>
-            <p className="mt-8 text-xs text-[var(--color-ink-disabled)]">
-              Looking for{" "}
-              <Link
-                href="/pulse-pricing"
-                className="text-[var(--color-ink-muted)] underline underline-offset-2 hover:text-[var(--color-ink-primary)] transition-colors"
-              >
-                Yander Pulse pricing
-              </Link>
-              ?
-            </p>
-          </AnimatedSection>
-        </Container>
+            <div className="flex flex-col items-start gap-6 lg:items-end">
+              <p className="max-w-md text-[15px] leading-relaxed text-[#171717]/60 lg:text-right">
+                Free to start. Paid plans from $89/mo. No placement fees, no
+                contracts, cancel anytime.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 lg:justify-end">
+                <Link
+                  href="/pulse-pricing"
+                  className="inline-flex h-10 items-center rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-6 text-[13.5px] font-medium text-[#171717] transition-colors hover:border-[#171717]/30"
+                >
+                  Yander Pulse pricing
+                </Link>
+                <a
+                  href="https://app.yander.ai/sign-up?plan=free&product=recruiter"
+                  className="inline-flex h-10 items-center rounded-md bg-[#171717] px-6 text-[13.5px] font-medium text-white transition-colors hover:bg-black"
+                >
+                  Get started free
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── Section 2: Pricing cards ── */}

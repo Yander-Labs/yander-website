@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Container } from "../ui/Container";
 import { TrackedLink } from "../ui/TrackedLink";
 import { TrackedButton } from "../ui/TrackedButton";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
@@ -101,62 +100,69 @@ function PricingCard({
   const isFree = tier.monthlyPrice === 0;
   const usePlaceholder = isPlaceholderLink(link);
 
-  // Step number for the homepage's numbered eyebrow pattern (01/02/03).
+  // /yander-interfere numbered-eyebrow pattern (01/02/03 with horizontal rule).
   const stepNumber =
     tier.name === "Free" ? "01" : tier.name === "Pro" ? "02" : "03";
 
   return (
     <div
       className={cn(
-        "relative border p-10 md:p-12 flex flex-col h-full transition-all duration-200 rounded-none",
+        "group relative flex flex-col h-full overflow-hidden rounded-2xl border p-8 md:p-10 transition-shadow duration-200",
+        // Card chrome — double-stop drop shadow, exact /yander-interfere recipe.
         tier.recommended
-          ? "bg-[var(--color-surface-subtle)] border-[var(--color-accent-primary)] border-2 shadow-[0_12px_40px_rgba(30,16,68,0.12)] hover:shadow-[0_20px_60px_rgba(30,16,68,0.18)]"
-          : "bg-white border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] hover:shadow-[var(--shadow-canon-card-hover)]"
+          ? "border-[rgba(0,0,0,0.08)] bg-[#fafaf9] shadow-[0_1px_2px_rgba(0,0,0,0.03),0_28px_60px_-20px_rgba(0,0,0,0.14)]"
+          : "border-[rgba(0,0,0,0.06)] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.025),0_18px_48px_-20px_rgba(0,0,0,0.10)] hover:shadow-[0_1px_2px_rgba(0,0,0,0.03),0_28px_60px_-20px_rgba(0,0,0,0.14)]"
       )}
     >
+      {/* "Most Popular" — charcoal chip, not purple */}
       {tier.recommended && (
-        <div className="absolute -top-3 left-10 md:left-12">
-          <span className="inline-flex items-center px-3 py-1 text-[10px] font-[var(--font-geist-mono)] font-semibold uppercase tracking-[0.22em] bg-[var(--color-accent-primary)] text-white rounded-none">
+        <div className="absolute right-6 top-6">
+          <span className="inline-flex items-center rounded-full bg-[#171717] px-2.5 py-1 font-[var(--font-geist-mono)] text-[10px] uppercase tracking-[0.18em] text-white">
             Most Popular
           </span>
         </div>
       )}
 
-      {/* Numbered eyebrow — homepage signature */}
-      <div className="mb-3 inline-flex items-baseline gap-2 font-[var(--font-geist-mono)] text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-disabled)]">
+      {/* Numbered eyebrow */}
+      <div className="inline-flex items-baseline gap-2 font-[var(--font-geist-mono)] text-[11px] uppercase tracking-[0.18em] text-[#171717]/40">
         <span>{stepNumber}</span>
-        <span className="h-px w-6 bg-[var(--color-border-canon)]" />
-        <span className="text-[var(--color-ink-muted)]">{tier.name === "Free" ? "Try" : tier.name === "Pro" ? "Scale" : "Velocity"}</span>
+        <span className="h-px w-6 bg-[rgba(0,0,0,0.12)]" />
+        <span className="text-[#171717]/50">
+          {tier.name === "Free" ? "Try" : tier.name === "Pro" ? "Scale" : "Velocity"}
+        </span>
       </div>
 
-      {/* Plan name & description */}
-      <div className="mb-8">
+      {/* Plan name + description */}
+      <div className="mt-5">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
+          <h3 className="text-[22px] font-medium leading-snug tracking-[-0.02em] text-[#171717]">
             {tier.name}
           </h3>
           {billing === "annual" && tier.annualSaveLabel && (
-            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-none">
+            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-100">
               {tier.annualSaveLabel}
             </span>
           )}
         </div>
-        <p className="mt-3 text-base text-[var(--color-ink-secondary)] leading-snug min-h-[48px]">
+        <p className="mt-2 text-[14px] leading-[1.6] text-[#171717]/60 min-h-[44px]">
           {tier.description}
         </p>
       </div>
 
-      {/* Price — homepage hero scale wow moment */}
-      <div className="mb-8">
+      {/* Price — clamp scale, Inter Medium, single ink color (no Geist Bold) */}
+      <div className="mt-8">
         <div className="flex items-baseline">
-          <span className="font-geist font-bold text-5xl md:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-none">
+          <span
+            className="font-medium tracking-[-0.025em] leading-[0.97] text-[#171717]"
+            style={{ fontSize: "clamp(2.5rem, 5vw, 3.25rem)" }}
+          >
             ${isFree ? 0 : price}
           </span>
-          <span className="ml-2 text-base text-[var(--color-ink-faded)]">/mo</span>
+          <span className="ml-2 text-[14px] text-[#171717]/40">/mo</span>
         </div>
         <p
           className={cn(
-            "mt-2 text-[11px] font-[var(--font-geist-mono)] uppercase tracking-[0.22em] text-[var(--color-ink-faded)]",
+            "mt-2 font-[var(--font-geist-mono)] text-[10.5px] uppercase tracking-[0.18em] text-[#171717]/40",
             !(!isFree && billing === "annual") && "invisible"
           )}
         >
@@ -164,65 +170,57 @@ function PricingCard({
         </p>
       </div>
 
-      {/* CTA */}
-      {usePlaceholder ? (
-        <TrackedButton
-          ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_waitlist`}
-          ctaLocation="recruiter_pricing_cards"
-          ctaLabel={tier.cta}
-          ctaDestination="waitlist_modal"
-          ctaVariant="primary"
-          onClick={onWaitlistClick}
-          className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-6 py-4 text-base min-h-[52px] w-full rounded-none",
-            tier.recommended
-              ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
-              : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
-          )}
-        >
-          {tier.cta}
-        </TrackedButton>
-      ) : (
-        <TrackedLink
-          ctaId={`recruiter_pricing_${tier.name.toLowerCase()}`}
-          ctaLocation="recruiter_pricing_cards"
-          ctaLabel={tier.cta}
-          ctaVariant="primary"
-          href={link}
-          className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-6 py-4 text-base min-h-[52px] w-full rounded-none",
-            tier.recommended
-              ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
-              : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
-          )}
-        >
-          {tier.cta}
-        </TrackedLink>
-      )}
+      {/* CTA — charcoal #171717, rounded-md, h-11 — exact /yander-interfere button */}
+      <div className="mt-8">
+        {usePlaceholder ? (
+          <TrackedButton
+            ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_waitlist`}
+            ctaLocation="recruiter_pricing_cards"
+            ctaLabel={tier.cta}
+            ctaDestination="waitlist_modal"
+            ctaVariant="primary"
+            onClick={onWaitlistClick}
+            className="inline-flex h-11 w-full items-center justify-center rounded-md bg-[#171717] px-6 text-[14px] font-medium text-white transition-colors hover:bg-black"
+          >
+            {tier.cta}
+          </TrackedButton>
+        ) : (
+          <TrackedLink
+            ctaId={`recruiter_pricing_${tier.name.toLowerCase()}`}
+            ctaLocation="recruiter_pricing_cards"
+            ctaLabel={tier.cta}
+            ctaVariant="primary"
+            href={link}
+            className="inline-flex h-11 w-full items-center justify-center rounded-md bg-[#171717] px-6 text-[14px] font-medium text-white transition-colors hover:bg-black"
+          >
+            {tier.cta}
+          </TrackedLink>
+        )}
 
-      {/* Book a demo link */}
-      <TrackedButton
-        ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_book_demo`}
-        ctaLocation="recruiter_pricing_cards"
-        ctaDestination="demo_modal"
-        ctaVariant="link"
-        onClick={onBookDemo}
-        className="mt-3 text-xs text-[var(--color-ink-muted)] hover:text-[var(--color-ink-primary)] transition-colors w-full text-center inline-flex items-center justify-center gap-1.5 group"
-      >
-        <span>Book a demo</span>
-        <span
-          aria-hidden="true"
-          className="transition-transform duration-150 group-hover:translate-x-0.5"
+        {/* Book a demo — quiet ghost link */}
+        <TrackedButton
+          ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_book_demo`}
+          ctaLocation="recruiter_pricing_cards"
+          ctaDestination="demo_modal"
+          ctaVariant="link"
+          onClick={onBookDemo}
+          className="mt-3 group inline-flex w-full items-center justify-center gap-1.5 text-[13px] text-[#171717]/60 transition-colors hover:text-[#171717]"
         >
-          →
-        </span>
-      </TrackedButton>
+          <span>Book a demo</span>
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-150 group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </TrackedButton>
+      </div>
 
       {/* Divider */}
-      <div className="border-t border-[var(--color-border-canon)] my-8" />
+      <div className="my-7 border-t border-[rgba(0,0,0,0.06)]" />
 
-      {/* Headline feature + shared features — slightly larger for hero-scale cards */}
-      <div className="space-y-4 flex-1">
+      {/* Features */}
+      <div className="space-y-3 flex-1">
         <FeatureItem text={tier.headlineFeature} bold />
         {sharedFeatures.map((feature) => (
           <FeatureItem key={feature} text={feature} />
@@ -235,11 +233,11 @@ function PricingCard({
 function FeatureItem({ text, bold = false }: { text: string; bold?: boolean }) {
   return (
     <div className="flex items-start gap-2.5">
-      <Check className="w-4 h-4 text-[var(--color-accent-primary)] flex-shrink-0 mt-0.5" />
+      <Check className="w-4 h-4 text-[#171717]/40 flex-shrink-0 mt-0.5" />
       <span
         className={cn(
-          "text-sm",
-          bold ? "text-[var(--color-ink-primary)] font-medium" : "text-[var(--color-ink-secondary)]"
+          "text-[14px] leading-[1.6]",
+          bold ? "text-[#171717] font-medium" : "text-[#171717]/60"
         )}
       >
         {text}
@@ -254,34 +252,31 @@ export function RecruiterPricingCards() {
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
-    <section className="relative pt-4 pb-24 md:pb-32 bg-white overflow-hidden">
-      {/* Vertical rhythm lines — signature component */}
-      <div
-        className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-y-0 right-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <Container>
-        {/* Billing Toggle */}
-        <AnimatedSection className="flex justify-center mb-8">
-          <div className="inline-flex items-center bg-[var(--color-surface-muted)] p-1 rounded-none">
+    <section
+      className="relative pt-4 pb-24 md:pb-32 bg-white text-[#171717] overflow-hidden"
+      style={{
+        fontFamily: "var(--font-inter), ui-sans-serif, system-ui, sans-serif",
+        fontWeight: 500,
+        letterSpacing: "-0.011em",
+      }}
+    >
+      <div className="mx-auto max-w-[1240px] px-6">
+        {/* Billing Toggle — rounded-full pill matching /yander-interfere chip aesthetic */}
+        <AnimatedSection className="flex justify-center mb-10">
+          <div className="inline-flex items-center rounded-full border border-[rgba(0,0,0,0.06)] bg-white p-1">
             <button
               onClick={() => setBilling("monthly")}
               className={cn(
-                "relative px-6 py-2 text-sm font-medium transition-all duration-200",
+                "relative h-9 rounded-full px-5 text-[13px] font-medium transition-colors",
                 billing === "monthly"
                   ? "text-white"
-                  : "text-[var(--color-ink-secondary)] hover:text-[var(--color-ink-primary)]"
+                  : "text-[#171717]/60 hover:text-[#171717]"
               )}
             >
               {billing === "monthly" && (
                 <motion.div
                   layoutId="recruiter-billing-pill"
-                  className="absolute inset-0 bg-[var(--color-ink-primary)]"
+                  className="absolute inset-0 rounded-full bg-[#171717]"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
@@ -290,23 +285,23 @@ export function RecruiterPricingCards() {
             <button
               onClick={() => setBilling("annual")}
               className={cn(
-                "relative px-6 py-2 text-sm font-medium transition-all duration-200",
+                "relative h-9 rounded-full px-5 text-[13px] font-medium transition-colors",
                 billing === "annual"
                   ? "text-white"
-                  : "text-[var(--color-ink-secondary)] hover:text-[var(--color-ink-primary)]"
+                  : "text-[#171717]/60 hover:text-[#171717]"
               )}
             >
               {billing === "annual" && (
                 <motion.div
                   layoutId="recruiter-billing-pill"
-                  className="absolute inset-0 bg-[var(--color-ink-primary)]"
+                  className="absolute inset-0 rounded-full bg-[#171717]"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
               <span className="relative z-10 flex items-center gap-2">
                 Annual
-                <span className="inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-700 rounded-none">
-                  Save up to 15%
+                <span className="inline-flex rounded-full bg-emerald-100/80 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700">
+                  Save 15%
                 </span>
               </span>
             </button>
@@ -314,7 +309,7 @@ export function RecruiterPricingCards() {
         </AnimatedSection>
 
         {/* Pricing Grid */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-[1100px] mx-auto">
           {tiers.map((tier) => (
             <StaggerItem key={tier.name}>
               <PricingCard
@@ -328,10 +323,10 @@ export function RecruiterPricingCards() {
         </StaggerContainer>
 
         {/* Footnote */}
-        <p className="mt-12 text-center text-xs text-[var(--color-ink-faded)] tracking-wide">
+        <p className="mt-12 text-center text-[13px] text-[#171717]/45">
           No setup fees. No contracts. Switch plans anytime.
         </p>
-      </Container>
+      </div>
     </section>
   );
 }
