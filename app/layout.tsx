@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Instrument_Serif, Geist } from "next/font/google";
+import { Inter, Instrument_Serif, Geist, Geist_Mono } from "next/font/google";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import {
   BRAND_DESCRIPTION,
@@ -27,6 +27,13 @@ const geist = Geist({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-geist",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-geist-mono",
 });
 
 const HOMEPAGE_TITLE = "Yander — The First AI Agent That Recruits For You";
@@ -149,7 +156,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${geist.variable}`}>
+    <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} ${geist.variable} ${geistMono.variable}`}>
       <head>
         {/* Organization and WebSite Structured Data */}
         <script

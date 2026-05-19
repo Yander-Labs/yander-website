@@ -6,8 +6,6 @@ import Link from "next/link"
 import { motion, type Variants } from "framer-motion"
 import { useDemoModal } from "@/components/ui/DemoModal"
 import { useWaitlistModal } from "@/components/ui/WaitlistModal"
-import { Navigation } from "@/components/Navigation"
-import { Footer as SiteFooter } from "@/components/Footer"
 import {
   ChevronDown,
   ArrowUpRight,
@@ -160,16 +158,18 @@ function HighlightWord({
 }
 
 export function YanderInterfere() {
+  // Nav + Footer are provided by app/(main)/layout.tsx — this component
+  // renders only the body of the homepage, scoped to the Inter Medium
+  // aesthetic via the wrapper style.
   return (
     <div
-      className="relative min-h-screen overflow-x-clip bg-white text-[#171717] antialiased"
+      className="relative overflow-x-clip bg-white text-[#171717] antialiased"
       style={{
         fontFamily: "var(--font-inter), ui-sans-serif, system-ui, sans-serif",
         fontWeight: 500,
         letterSpacing: "-0.011em",
       }}
     >
-      <Navigation />
       <main className="relative">
         <TopGradientWash />
         <Hero />
@@ -184,7 +184,6 @@ export function YanderInterfere() {
         <ChangelogSection />
         <FinalCTA />
       </main>
-      <SiteFooter />
     </div>
   )
 }
