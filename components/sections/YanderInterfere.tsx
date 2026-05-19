@@ -1068,110 +1068,143 @@ function PreviewCards() {
   )
 }
 
+/* ──── Preview mini-mockups (wireframe style, Interfere pattern) ──── */
+/* Each shows a different Yander app surface with skeleton placeholders
+   and exactly ONE highlighted element drawing the eye. No rotation. */
+
+function SkeletonBar({
+  w = "100%",
+  tone = "default",
+}: {
+  w?: string
+  tone?: "default" | "muted"
+}) {
+  return (
+    <span
+      className="block h-2 rounded-full"
+      style={{
+        width: w,
+        background: tone === "muted" ? "rgba(0,0,0,0.04)" : "rgba(0,0,0,0.07)",
+      }}
+    />
+  )
+}
+
+// Card 1 — Wireframe candidate inbox with ONE highlighted lead
 function PreviewInboxMini() {
-  const rows = [
-    { tag: "NEW", id: "C-2814", name: "Maria Santos" },
-    { tag: "NEW", id: "C-2813", name: "Raj Patel" },
-    { tag: "SHORT", id: "C-2790", name: "Lucas Ferreira" },
-  ]
   return (
-    <div className="absolute left-6 top-6 right-0 origin-top-left rotate-[2deg] rounded-xl border border-[rgba(0,0,0,0.06)] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-      <div className="flex items-center gap-2 border-b border-[rgba(0,0,0,0.06)] bg-[#fafaf9] px-3 py-2 font-[var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#171717]/40">
-        <Users className="h-3 w-3" /> Candidate inbox
-      </div>
-      <div className="divide-y divide-[rgba(0,0,0,0.06)]">
-        {rows.map((r, i) => (
-          <div key={i} className="flex items-center gap-2 px-3 py-2 text-[11px]">
-            <span className="rounded bg-amber-50 px-1.5 py-0.5 font-[var(--font-geist-mono)] text-[9px] text-[#4a3212]">
-              {r.tag}
-            </span>
-            <span className="font-[var(--font-geist-mono)] text-[#171717]/40">
-              {r.id}
-            </span>
-            <span className="text-[#171717]">{r.name}</span>
+    <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+      <div className="flex gap-3">
+        {/* Mini icon rail */}
+        <div className="flex w-3 flex-col items-center gap-1.5 pt-0.5">
+          <span className="block h-2.5 w-2.5 rounded-sm bg-black/15" />
+          <span className="block h-2.5 w-2.5 rounded-sm bg-black/[0.06]" />
+          <span className="block h-2.5 w-2.5 rounded-sm bg-black/[0.06]" />
+          <span className="block h-2.5 w-2.5 rounded-sm bg-black/[0.06]" />
+          <span className="block h-2.5 w-2.5 rounded-sm bg-black/[0.06]" />
+        </div>
+        {/* Main inbox area */}
+        <div className="flex flex-1 flex-col gap-2.5">
+          <SkeletonBar w="50%" />
+          <SkeletonBar w="35%" tone="muted" />
+          {/* THE highlighted item — Interfere uses an orange-tinted pill here */}
+          <div className="mt-1.5 inline-flex w-fit items-center gap-1.5 rounded border border-[#f59e0b]/40 bg-[#fef3c7]/60 px-2 py-1 font-[var(--font-geist-mono)] text-[9px] uppercase tracking-[0.12em] text-[#92400e]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#f59e0b]" />
+            C-2814 · Maria Santos
           </div>
-        ))}
+          <SkeletonBar w="65%" tone="muted" />
+          <SkeletonBar w="42%" tone="muted" />
+        </div>
       </div>
     </div>
   )
 }
 
+// Card 2 — Candidate-detail wireframe with two status pills at the bottom
 function PreviewAssessmentMini() {
-  const rows = [
-    { label: "Systems thinking", score: 9 },
-    { label: "Communication", score: 8 },
-    { label: "Ownership", score: 9 },
-  ]
   return (
-    <div className="absolute left-6 top-6 right-0 origin-top-left -rotate-[1.5deg] rounded-xl border border-[rgba(0,0,0,0.06)] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-      <div className="flex items-center justify-between border-b border-[rgba(0,0,0,0.06)] bg-[#fafaf9] px-3 py-2">
-        <span className="font-[var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#171717]/40">
-          Assessment · Maria Santos
+    <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+      <div className="mb-3 flex items-center justify-between">
+        <span className="font-[var(--font-geist-mono)] text-[10px] text-[#171717]/40">
+          #C-2814
         </span>
-        <span className="font-[var(--font-geist-mono)] text-[10px] text-[#15803d]">
-          9.2 / 10
+        <span className="h-4 w-4 rounded-full bg-black/[0.08]" />
+      </div>
+      <div className="mb-3 flex items-center gap-1.5">
+        <span className="grid h-4 w-4 place-items-center rounded-md bg-black/[0.06] text-[10px]">
+          ⌘
+        </span>
+        <span className="text-[11px] font-medium text-[#171717]">
+          Senior Engineer · candidate review
         </span>
       </div>
-      <div className="space-y-2 px-3 py-3">
-        {rows.map((r) => (
-          <div key={r.label} className="flex items-center gap-2 text-[10.5px]">
-            <span className="w-[80px] shrink-0 text-[#171717]/70">{r.label}</span>
-            <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-[#0a0a0a]/[0.06]">
-              <span
-                className="absolute inset-y-0 left-0 rounded-full bg-emerald-500/85"
-                style={{ width: `${r.score * 10}%` }}
-              />
-            </div>
-            <span className="w-5 shrink-0 text-right font-[var(--font-geist-mono)] text-[10px] text-[#171717]">
-              {r.score}
-            </span>
-          </div>
-        ))}
+      <div className="mb-4 space-y-1.5">
+        <SkeletonBar w="100%" />
+        <SkeletonBar w="80%" tone="muted" />
+        <SkeletonBar w="55%" tone="muted" />
+      </div>
+      <div className="flex gap-1.5">
+        <span className="inline-flex items-center gap-1 rounded-md border border-black/[0.07] bg-white px-2 py-0.5 text-[10px] font-medium text-[#171717]/65">
+          <Sparkles className="h-2.5 w-2.5 text-[#E05000]" />
+          Assessing…
+        </span>
+        <span className="inline-flex items-center gap-1 rounded-md border border-black/[0.07] bg-white px-2 py-0.5 text-[10px] font-medium text-[#171717]/65">
+          <svg viewBox="0 0 16 16" className="h-2.5 w-2.5 fill-current text-[#171717]/45" aria-hidden="true">
+            <rect x="2" y="10" width="2" height="3" />
+            <rect x="7" y="6" width="2" height="7" />
+            <rect x="12" y="2" width="2" height="11" />
+          </svg>
+          High match
+        </span>
       </div>
     </div>
   )
 }
 
+// Card 3 — Pulse Slack-alert wireframe — interfere uses code; we use a Slack-style alert (Pulse posts to Slack)
 function PreviewPulseMini() {
-  const team = [
-    { name: "Sarah Chen", score: 9, tone: "emerald" as const },
-    { name: "Emily Rodriguez", score: 5, tone: "rose" as const },
-    { name: "Ryan Peters", score: 9, tone: "emerald" as const },
-  ]
   return (
-    <div className="absolute left-6 top-6 right-0 origin-top-left rotate-[1.5deg] rounded-xl border border-[rgba(0,0,0,0.06)] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-      <div className="flex items-center justify-between border-b border-[rgba(0,0,0,0.06)] bg-[#fafaf9] px-3 py-2">
-        <span className="font-[var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#171717]/40">
-          Pulse · this week
+    <div className="absolute inset-x-5 top-5 origin-top rounded-lg border border-[rgba(0,0,0,0.06)] bg-white p-3 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+      <div className="mb-2.5 flex items-center gap-1.5 font-[var(--font-geist-mono)] text-[9px] uppercase tracking-[0.14em] text-[#171717]/40">
+        <span className="grid h-3 w-3 place-items-center rounded-sm bg-[#4a154b]/85 text-[8px] text-white">
+          #
         </span>
-        <span className="font-[var(--font-geist-mono)] text-[9px] text-amber-700">
-          1 flag
-        </span>
+        team-pulse · just now
       </div>
-      <div className="divide-y divide-[rgba(0,0,0,0.06)]">
-        {team.map((m) => (
-          <div key={m.name} className="flex items-center gap-2 px-3 py-2 text-[11px]">
-            <span
-              className={cn(
-                "grid h-4 w-4 place-items-center rounded-full text-[8px] font-medium",
-                m.tone === "emerald" && "bg-emerald-100 text-[#171717]",
-                m.tone === "rose" && "bg-rose-100 text-[#171717]",
-              )}
-            >
-              {m.name[0]}
-            </span>
-            <span className="flex-1 truncate text-[#171717]">{m.name}</span>
-            <span
-              className={cn(
-                "font-[var(--font-geist-mono)] text-[10px]",
-                m.tone === "emerald" && "text-[#15803d]",
-                m.tone === "rose" && "text-[#b91c1c]",
-              )}
-            >
-              {m.score}.0
-            </span>
-          </div>
-        ))}
+
+      {/* Yander bot message — the HIGHLIGHTED row */}
+      <div className="flex items-start gap-2">
+        <span className="grid h-5 w-5 shrink-0 place-items-center rounded bg-[#E05000]/15 text-[10px] text-[#E05000]">
+          <Sparkles className="h-2.5 w-2.5" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-[10px]">
+            <span className="font-semibold text-[#171717]">Yander</span>
+            <span className="ml-1 text-[#171717]/40">9:08 AM</span>
+          </p>
+          <p className="mt-1 text-[10.5px] leading-snug text-[#171717]/85">
+            <span className="rounded bg-[#fef3c7] px-1 py-px text-[#92400e]">
+              Quit-risk
+            </span>{" "}
+            elevated for Emily — workload up 28%.
+          </p>
+        </div>
+      </div>
+
+      {/* Two skeleton-only follow-ups */}
+      <div className="mt-2.5 flex items-start gap-2 opacity-70">
+        <span className="h-5 w-5 shrink-0 rounded-full bg-rose-100" />
+        <div className="flex-1 space-y-1 pt-0.5">
+          <SkeletonBar w="40%" />
+          <SkeletonBar w="80%" tone="muted" />
+        </div>
+      </div>
+      <div className="mt-2 flex items-start gap-2 opacity-50">
+        <span className="h-5 w-5 shrink-0 rounded-full bg-emerald-100" />
+        <div className="flex-1 space-y-1 pt-0.5">
+          <SkeletonBar w="35%" />
+          <SkeletonBar w="60%" tone="muted" />
+        </div>
       </div>
     </div>
   )
