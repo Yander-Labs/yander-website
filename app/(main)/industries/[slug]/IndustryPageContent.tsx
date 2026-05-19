@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Button } from '@/components/ui/Button'
 import { useDemoModal } from '@/components/ui/DemoModal'
 import { Check, ChevronDown, ArrowRight, Sparkles } from 'lucide-react'
 import type { IndustryPage } from '@/lib/types'
@@ -19,13 +20,13 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
   onToggle: () => void
 }) {
   return (
-    <div className="border-b border-[#e5e5e5] last:border-b-0">
+    <div className="border-b border-[var(--color-border-canon)] last:border-b-0">
       <button onClick={onToggle} className="w-full py-5 flex items-center justify-between text-left group">
-        <span className="text-base font-medium text-[#171717] pr-4 md:pr-8 group-hover:text-gray-600 transition-colors">
+        <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
           {question}
         </span>
-        <div className={`w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[#171717] border-[#171717]' : ''}`}>
-          <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-gray-500'}`} />
+        <div className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
+          <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-[var(--color-ink-muted)]'}`} />
         </div>
       </button>
       <AnimatePresence initial={false}>
@@ -37,7 +38,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#737373] text-sm leading-relaxed pr-12">{answer}</p>
+            <p className="pb-5 text-[var(--color-ink-muted)] text-sm leading-relaxed pr-12">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -60,29 +61,27 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <SectionLabel centered>{page.industry}</SectionLabel>
+            <div className="flex justify-center">
+              <Eyebrow>{page.industry}</Eyebrow>
+            </div>
 
-            <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em] leading-tight mt-4">
+            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mt-4">
               {page.headline}
             </h1>
-            <p className="mt-4 text-base md:text-lg text-[#737373] max-w-2xl mx-auto">
+            <p className="mt-4 text-base md:text-lg text-[var(--color-ink-muted)] max-w-2xl mx-auto">
               {page.heroDescription}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#171717] text-white rounded-[6px] font-medium text-sm hover:bg-gray-800 transition-colors group"
-              >
-                Try Yander Free
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly">
+                <Button variant="primary" size="lg" className="group">
+                  Try Yander Free
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </a>
-              <button
-                onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#171717] rounded-[6px] font-medium text-sm border border-[#e5e5e5] hover:bg-gray-50 hover:border-gray-300 transition-colors"
-              >
+              <Button variant="secondary" size="lg" onClick={openDemoModal}>
                 Book a Demo
-              </button>
+              </Button>
             </div>
           </motion.div>
         </Container>
@@ -90,7 +89,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
 
       {/* Stats */}
       {page.stats && page.stats.length > 0 && (
-        <section className="py-12 md:py-16 bg-[#fafafa] border-y border-[#e5e5e5]">
+        <section className="py-12 md:py-16 bg-[var(--color-surface-subtle)] border-y border-[var(--color-border-canon)]">
           <Container>
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
               {page.stats.map((stat, i) => (
@@ -102,8 +101,8 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="text-2xl md:text-3xl font-semibold text-[#171717]">{stat.value}</p>
-                  <p className="text-sm text-[#737373] mt-1">{stat.label}</p>
+                  <p className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
+                  <p className="text-sm text-[var(--color-ink-muted)] mt-1">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -116,8 +115,8 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
         <section className="py-16 md:py-24 bg-white">
           <Container>
             <div className="text-center mb-12">
-              <SectionLabel number="01" centered>The Problem</SectionLabel>
-              <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+              <div className="flex justify-center mb-4"><Eyebrow number="01">The Problem</Eyebrow></div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                 Hiring challenges for {page.industry.toLowerCase()}
               </h2>
             </div>
@@ -130,10 +129,10 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6"
+                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
                 >
-                  <h3 className="font-semibold text-base text-[#171717] mb-2">{point.problem}</h3>
-                  <p className="text-sm text-[#737373] leading-relaxed">{point.solution}</p>
+                  <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{point.problem}</h3>
+                  <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{point.solution}</p>
                 </motion.div>
               ))}
             </div>
@@ -143,11 +142,11 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
 
       {/* Features */}
       {page.features && page.features.length > 0 && (
-        <section className="py-16 md:py-24 bg-[#fafafa] border-y border-[#e5e5e5]">
+        <section className="py-16 md:py-24 bg-[var(--color-surface-subtle)] border-y border-[var(--color-border-canon)]">
           <Container>
             <div className="text-center mb-12">
-              <SectionLabel number="02" centered>How Yander Helps</SectionLabel>
-              <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+              <div className="flex justify-center mb-4"><Eyebrow number="02">How Yander Helps</Eyebrow></div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                 Built for {page.industry.toLowerCase()}
               </h2>
             </div>
@@ -160,13 +159,13 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6"
+                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center mb-4">
-                    <Check className="w-4 h-4 text-emerald-500" />
+                  <div className="w-8 h-8 rounded-none bg-emerald-50 flex items-center justify-center mb-4">
+                    <Check className="w-4 h-4 text-[var(--color-accent-alive)]" />
                   </div>
-                  <h3 className="font-semibold text-base text-[#171717] mb-2">{feat.feature}</h3>
-                  <p className="text-sm text-[#737373] leading-relaxed">{feat.description}</p>
+                  <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{feat.feature}</h3>
+                  <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{feat.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -176,7 +175,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
 
       {/* Testimonial */}
       {page.testimonial?.quote && (
-        <section className="py-16 md:py-20 bg-white border-b border-[#e5e5e5]">
+        <section className="py-16 md:py-20 bg-white border-b border-[var(--color-border-canon)]">
           <Container size="narrow">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -185,14 +184,14 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <blockquote className="font-serif text-xl md:text-2xl text-[#171717] leading-relaxed italic">
+              <blockquote className="font-geist text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
                 &ldquo;{page.testimonial.quote}&rdquo;
               </blockquote>
               {page.testimonial.name && (
                 <div className="mt-6">
-                  <p className="text-sm font-medium text-[#171717]">{page.testimonial.name}</p>
+                  <p className="text-sm font-medium text-[var(--color-ink-primary)]">{page.testimonial.name}</p>
                   {(page.testimonial.role || page.testimonial.company) && (
-                    <p className="text-sm text-[#737373]">
+                    <p className="text-sm text-[var(--color-ink-muted)]">
                       {[page.testimonial.role, page.testimonial.company].filter(Boolean).join(', ')}
                     </p>
                   )}
@@ -205,12 +204,12 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
 
       {/* FAQ */}
       {page.faqs && page.faqs.length > 0 && (
-        <section className="py-16 md:py-24 bg-[#fafafa] border-b border-[#e5e5e5]">
+        <section className="py-16 md:py-24 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-canon)]">
           <Container>
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <SectionLabel number="03" centered>FAQ</SectionLabel>
-                <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+                <div className="flex justify-center mb-4"><Eyebrow number="03">FAQ</Eyebrow></div>
+                <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                   Frequently asked questions
                 </h2>
               </div>
@@ -220,7 +219,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] px-6 md:px-8"
+                className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
               >
                 {page.faqs.map((faq, index) => (
                   <FAQItem
@@ -237,52 +236,43 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 md:py-28 bg-white">
+      {/* CTA — homepage canon: dark #111111 flat section */}
+      <section className="py-20 md:py-28 bg-[var(--color-ink-midnight)] text-white">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
+            className="flex flex-col lg:flex-row items-center justify-between gap-8"
           >
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-amber-500/10 to-rose-500/10 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '32px 32px'
-            }} />
-
-            <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="text-center lg:text-left max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
-                  <Sparkles className="w-4 h-4 text-emerald-400" />
-                  <span className="text-sm text-white/80">Built for {page.industry.toLowerCase()}</span>
-                </div>
-                <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] leading-tight">
-                  Start hiring smarter today
-                </h2>
-                <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
-                  See how Yander helps you hire for {page.industry.toLowerCase()}. Join the waitlist for early access.
-                </p>
+            <div className="text-center lg:text-left max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-none bg-white/5 border border-white/10 mb-6">
+                <Sparkles className="w-4 h-4 text-[var(--color-accent-alive)]" />
+                <span className="text-sm text-white/80">Built for {page.industry.toLowerCase()}</span>
               </div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
+                Start hiring smarter today
+              </h2>
+              <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
+                See how Yander helps you hire for {page.industry.toLowerCase()}. Join the waitlist for early access.
+              </p>
+            </div>
 
-              <div className="flex flex-col gap-3 w-full sm:w-auto">
-                <a
-                  href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
-                >
-                  Get Started Free
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <button
-                  onClick={openDemoModal}
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
-                >
-                  Book a Demo
-                </button>
-              </div>
+            <div className="flex flex-col gap-3 w-full sm:w-auto">
+              <a
+                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
+              >
+                Get Started Free
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <button
+                onClick={openDemoModal}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
+              >
+                Book a Demo
+              </button>
             </div>
           </motion.div>
         </Container>

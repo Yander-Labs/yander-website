@@ -14,16 +14,16 @@ export default function DpaPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4">
+          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
             Data Processing Agreement
           </h1>
-          <p className="text-sm text-gray-500 mb-8">
+          <p className="text-sm text-[var(--color-ink-muted)] mb-8">
             Last updated: February 19, 2026
           </p>
 
-          <div className="space-y-8 text-gray-600">
+          <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 1. Introduction
               </h2>
               <p className="leading-relaxed">
@@ -55,7 +55,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 2. Definitions
               </h2>
               <p className="leading-relaxed">
@@ -112,7 +112,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 3. Scope and Roles
               </h2>
               <p className="leading-relaxed">
@@ -151,7 +151,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 4. Customer Obligations
               </h2>
               <p className="leading-relaxed">
@@ -191,7 +191,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 5. Yander&apos;s Obligations
               </h2>
               <p className="leading-relaxed">
@@ -199,7 +199,7 @@ export default function DpaPage() {
                 obligations:
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.1 Processing Instructions
               </h3>
               <p className="leading-relaxed">
@@ -210,7 +210,7 @@ export default function DpaPage() {
                 an instruction infringes applicable data protection laws.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.2 Confidentiality
               </h3>
               <p className="leading-relaxed">
@@ -221,7 +221,7 @@ export default function DpaPage() {
                 require such access to perform the Service.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.3 Security Measures
               </h3>
               <p className="leading-relaxed">
@@ -231,7 +231,7 @@ export default function DpaPage() {
                 Section 7 of this DPA.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.4 Data Subject Requests
               </h3>
               <p className="leading-relaxed">
@@ -241,7 +241,7 @@ export default function DpaPage() {
                 9 of this DPA.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.5 Breach Notification
               </h3>
               <p className="leading-relaxed">
@@ -251,7 +251,7 @@ export default function DpaPage() {
                 further described in Section 8 of this DPA.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.6 Data Protection Impact Assessments
               </h3>
               <p className="leading-relaxed">
@@ -262,7 +262,7 @@ export default function DpaPage() {
                 Processing and the information available to Yander.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.7 Deletion and Return of Data
               </h3>
               <p className="leading-relaxed">
@@ -273,7 +273,7 @@ export default function DpaPage() {
                 this DPA.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 5.8 Audit and Compliance
               </h3>
               <p className="leading-relaxed">
@@ -285,7 +285,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 6. Sub-processors
               </h2>
               <p className="leading-relaxed">
@@ -315,88 +315,88 @@ export default function DpaPage() {
                 obligations.
               </p>
 
-              <h3 className="font-medium text-gray-900 mt-4 mb-2">
+              <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">
                 Schedule 1: Sub-processors
               </h3>
               <div className="mt-3 overflow-x-auto">
-                <table className="w-full text-sm border-collapse border border-gray-200">
+                <table className="w-full text-sm border-collapse border border-[var(--color-border-canon)]">
                   <thead>
                     <tr className="bg-gray-50">
-                      <th className="text-left p-3 border border-gray-200 font-medium text-gray-900">
+                      <th className="text-left p-3 border border-[var(--color-border-canon)] font-medium text-[var(--color-ink-primary)]">
                         Sub-processor
                       </th>
-                      <th className="text-left p-3 border border-gray-200 font-medium text-gray-900">
+                      <th className="text-left p-3 border border-[var(--color-border-canon)] font-medium text-[var(--color-ink-primary)]">
                         Purpose
                       </th>
-                      <th className="text-left p-3 border border-gray-200 font-medium text-gray-900">
+                      <th className="text-left p-3 border border-[var(--color-border-canon)] font-medium text-[var(--color-ink-primary)]">
                         Location
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Railway (AWS)
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Application hosting, database infrastructure, and Redis
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">Clerk</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">Clerk</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Authentication and user management
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">Nango</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">Nango</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         OAuth and integration API proxy
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States / European Union
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">OpenRouter</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">OpenRouter</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         LLM inference (AI processing)
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">Stripe</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">Stripe</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Payment processing
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">Sentry</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">Sentry</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Error monitoring (no personally identifiable information
                         transmitted)
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-3 border border-gray-200">PostHog</td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">PostHog</td>
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         Product analytics (anonymous event data)
                       </td>
-                      <td className="p-3 border border-gray-200">
+                      <td className="p-3 border border-[var(--color-border-canon)]">
                         United States / European Union
                       </td>
                     </tr>
@@ -406,7 +406,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 7. Data Security
               </h2>
               <p className="leading-relaxed">
@@ -461,7 +461,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 8. Data Breach Notification
               </h2>
               <p className="leading-relaxed">
@@ -506,7 +506,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 9. Data Subject Rights
               </h2>
               <p className="leading-relaxed">
@@ -551,7 +551,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 10. International Transfers
               </h2>
               <p className="leading-relaxed">
@@ -581,7 +581,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 11. Data Retention and Deletion
               </h2>
               <p className="leading-relaxed">
@@ -608,7 +608,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 12. Audit Rights
               </h2>
               <p className="leading-relaxed">
@@ -653,7 +653,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 13. Liability
               </h2>
               <p className="leading-relaxed">
@@ -673,7 +673,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 14. Term and Termination
               </h2>
               <p className="leading-relaxed">
@@ -696,15 +696,15 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 15. Contact
               </h2>
               <p className="leading-relaxed">
                 If you have questions about this Data Processing Agreement or
                 wish to exercise any rights under it, please contact us:
               </p>
-              <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="font-medium text-gray-900">Yander Labs, Inc.</p>
+              <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-[var(--color-border-canon)]">
+                <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>
                 <p className="mt-1">

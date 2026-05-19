@@ -69,14 +69,14 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
           />
           <Link
             href="/integrations/all"
-            className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-8"
+            className="inline-flex items-center gap-1.5 text-sm text-[var(--color-ink-muted)] hover:text-[var(--color-ink-primary)] transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             All integrations
           </Link>
 
           <div className="flex items-start gap-5">
-            <div className="flex-shrink-0 w-16 h-16 rounded-2xl border border-[#E4E7EC] bg-gray-50 flex items-center justify-center overflow-hidden p-2">
+            <div className="flex-shrink-0 w-16 h-16 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center overflow-hidden p-2">
               <Image
                 src={integration.logo}
                 alt={integration.name}
@@ -87,19 +87,19 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
             </div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-[-0.02em]">
+                <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                   {integration.name}
                 </h1>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                <span className="inline-flex items-center px-3 py-1 rounded-none text-xs font-medium bg-[var(--color-surface-muted)] text-[var(--color-ink-secondary)] border border-[var(--color-border-canon)]">
                   {integration.categoryLabel}
                 </span>
                 {integration.isImportOnly && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700">
+                  <span className="inline-flex items-center px-3 py-1 rounded-none text-xs font-medium bg-[var(--color-accent-primary)]/10 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/20">
                     Import Only
                   </span>
                 )}
               </div>
-              <p className="mt-3 text-lg text-gray-500 max-w-2xl">
+              <p className="mt-3 text-lg text-[var(--color-ink-secondary)] max-w-2xl">
                 {integration.longDescription}
               </p>
             </div>
@@ -108,18 +108,18 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
       </section>
 
       {/* Features */}
-      <section className="py-12 md:py-16 bg-[#fafafa]">
+      <section className="py-12 md:py-16 bg-[var(--color-surface-subtle)]">
         <Container>
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-[-0.02em]">
+          <h2 className="font-geist font-bold text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
             What Yander pulls from {integration.name}
           </h2>
           <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {integration.features.map((feature) => (
               <li key={feature} className="flex items-start gap-3">
                 <span className="flex-shrink-0 mt-0.5 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-                  <Check className="w-3 h-3 text-emerald-600" />
+                  <Check className="w-3 h-3 text-[var(--color-accent-alive)]" />
                 </span>
-                <span className="text-sm text-gray-700">{feature}</span>
+                <span className="text-sm text-[var(--color-ink-secondary)]">{feature}</span>
               </li>
             ))}
           </ul>
@@ -129,22 +129,22 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
       {/* How It Works */}
       <section className="py-12 md:py-16 bg-white">
         <Container>
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-[-0.02em]">
+          <h2 className="font-geist font-bold text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
             How it works
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {integration.howItWorks.map((step, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-[#E4E7EC] bg-white p-6"
+                className="rounded-none border border-[var(--color-border-canon)] bg-white shadow-[var(--shadow-canon-card)] p-6"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-900 text-white text-sm font-semibold mb-4">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-none bg-[var(--color-ink-primary)] text-white text-sm font-semibold mb-4 font-[var(--font-geist-mono)]">
                   {idx + 1}
                 </span>
-                <h3 className="text-base font-semibold text-gray-900">
+                <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight">
                   {step.step}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
                   {step.description}
                 </p>
               </div>

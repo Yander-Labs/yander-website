@@ -14,16 +14,16 @@ export default function SecurityPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4">
+          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
             Security
           </h1>
-          <p className="text-sm text-gray-500 mb-8">
+          <p className="text-sm text-[var(--color-ink-muted)] mb-8">
             Last updated: February 19, 2026
           </p>
 
-          <div className="space-y-8 text-gray-600">
+          <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Our Commitment
               </h2>
               <p className="leading-relaxed">
@@ -39,7 +39,7 @@ export default function SecurityPage() {
                 reach out to our team at{" "}
                 <a
                   href="mailto:jordan@yanderlabs.com"
-                  className="text-gray-900 underline hover:no-underline"
+                  className="text-[var(--color-ink-primary)] underline hover:no-underline"
                 >
                   jordan@yanderlabs.com
                 </a>
@@ -48,7 +48,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Infrastructure
               </h2>
               <p className="leading-relaxed">
@@ -68,7 +68,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Encryption
               </h2>
               <p className="leading-relaxed">
@@ -76,25 +76,25 @@ export default function SecurityPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>
-                  <strong className="text-gray-900">At rest:</strong> All data
+                  <strong className="text-[var(--color-ink-primary)]">At rest:</strong> All data
                   is encrypted using AES-256 encryption via our infrastructure
                   provider (Railway on AWS), the same standard used by financial
                   institutions and government agencies.
                 </li>
                 <li>
-                  <strong className="text-gray-900">In transit:</strong> All
+                  <strong className="text-[var(--color-ink-primary)]">In transit:</strong> All
                   network communication is secured with TLS 1.3 via our edge
                   proxy. Every connection to our API, dashboard, and third-party
                   integrations is encrypted.
                 </li>
                 <li>
-                  <strong className="text-gray-900">OAuth tokens:</strong>{" "}
+                  <strong className="text-[var(--color-ink-primary)]">OAuth tokens:</strong>{" "}
                   Integration credentials are managed by our sub-processor
                   Nango, which handles OAuth token storage and rotation
                   separately from our application database.
                 </li>
                 <li>
-                  <strong className="text-gray-900">
+                  <strong className="text-[var(--color-ink-primary)]">
                     Database connections:
                   </strong>{" "}
                   All connections between our application services and database
@@ -104,7 +104,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Authentication and Access Control
               </h2>
               <p className="leading-relaxed">
@@ -135,7 +135,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Tenant Isolation
               </h2>
               <p className="leading-relaxed">
@@ -161,7 +161,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Data Handling
               </h2>
               <p className="leading-relaxed">
@@ -198,7 +198,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Logging and Monitoring
               </h2>
               <p className="leading-relaxed">
@@ -222,7 +222,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Data Retention and Deletion
               </h2>
               <ul className="list-disc pl-5 space-y-2 mt-2">
@@ -248,7 +248,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Incident Response
               </h2>
               <p className="leading-relaxed">
@@ -276,7 +276,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Compliance
               </h2>
               <p className="leading-relaxed">
@@ -285,12 +285,12 @@ export default function SecurityPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>
-                  <strong className="text-gray-900">GDPR:</strong> We are
+                  <strong className="text-[var(--color-ink-primary)]">GDPR:</strong> We are
                   GDPR-ready with a Data Processing Agreement (DPA) available
                   for all customers. Our{" "}
                   <a
                     href="/dpa"
-                    className="text-gray-900 underline hover:no-underline"
+                    className="text-[var(--color-ink-primary)] underline hover:no-underline"
                   >
                     DPA
                   </a>{" "}
@@ -298,7 +298,7 @@ export default function SecurityPage() {
                   rights as a data controller.
                 </li>
                 <li>
-                  <strong className="text-gray-900">
+                  <strong className="text-[var(--color-ink-primary)]">
                     International transfers:
                   </strong>{" "}
                   Standard Contractual Clauses (SCCs) are included in our DPA
@@ -306,7 +306,7 @@ export default function SecurityPage() {
                   Economic Area.
                 </li>
                 <li>
-                  <strong className="text-gray-900">SOC 2 Type II:</strong> We
+                  <strong className="text-[var(--color-ink-primary)]">SOC 2 Type II:</strong> We
                   are actively pursuing SOC 2 Type II certification to formally
                   validate our security, availability, and confidentiality
                   controls.
@@ -319,7 +319,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Sub-Processors
               </h2>
               <p className="leading-relaxed">
@@ -332,13 +332,13 @@ export default function SecurityPage() {
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-2 pr-4 font-medium text-gray-900">
+                      <th className="text-left py-2 pr-4 font-medium text-[var(--color-ink-primary)]">
                         Sub-Processor
                       </th>
-                      <th className="text-left py-2 pr-4 font-medium text-gray-900">
+                      <th className="text-left py-2 pr-4 font-medium text-[var(--color-ink-primary)]">
                         Purpose
                       </th>
-                      <th className="text-left py-2 font-medium text-gray-900">
+                      <th className="text-left py-2 font-medium text-[var(--color-ink-primary)]">
                         Location
                       </th>
                     </tr>
@@ -399,7 +399,7 @@ export default function SecurityPage() {
                 in our{" "}
                 <a
                   href="/dpa"
-                  className="text-gray-900 underline hover:no-underline"
+                  className="text-[var(--color-ink-primary)] underline hover:no-underline"
                 >
                   Data Processing Agreement
                 </a>
@@ -408,7 +408,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Responsible Disclosure
               </h2>
               <p className="leading-relaxed">
@@ -421,7 +421,7 @@ export default function SecurityPage() {
                   Report vulnerabilities to{" "}
                   <a
                     href="mailto:jordan@yanderlabs.com"
-                    className="text-gray-900 underline hover:no-underline"
+                    className="text-[var(--color-ink-primary)] underline hover:no-underline"
                   >
                     jordan@yanderlabs.com
                   </a>{" "}
@@ -440,22 +440,22 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl text-gray-900 mb-3">
+              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Contact
               </h2>
               <p className="leading-relaxed">
                 Have questions about our security practices or need
                 documentation for your security review? We are here to help.
               </p>
-              <div className="mt-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="font-medium text-gray-900">Yander Labs, Inc.</p>
+              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-none border border-[var(--color-border-canon)]">
+                <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>
                 <p className="mt-1">
                   Security inquiries:{" "}
                   <a
                     href="mailto:jordan@yanderlabs.com"
-                    className="text-gray-900 underline hover:no-underline"
+                    className="text-[var(--color-ink-primary)] underline hover:no-underline"
                   >
                     jordan@yanderlabs.com
                   </a>
@@ -464,7 +464,7 @@ export default function SecurityPage() {
                   Legal and privacy:{" "}
                   <a
                     href="mailto:jordan@yanderlabs.com"
-                    className="text-gray-900 underline hover:no-underline"
+                    className="text-[var(--color-ink-primary)] underline hover:no-underline"
                   >
                     jordan@yanderlabs.com
                   </a>

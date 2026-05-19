@@ -41,10 +41,10 @@ export function PlaybookClient() {
       <main className="min-h-screen flex items-center">
         <Container size="narrow">
           <div className="py-24 md:py-32 text-center max-w-xl mx-auto">
-            <h2 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4">
+            <h2 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
               You&apos;re in.
             </h2>
-            <p className="text-lg text-gray-500 mb-10 leading-relaxed">
+            <p className="text-lg text-[var(--color-ink-secondary)] mb-10 leading-relaxed">
               Access the playbook below.
             </p>
             <a
@@ -67,7 +67,7 @@ export function PlaybookClient() {
       <Container>
         <div className="py-24 md:py-32">
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">
+            <div className="inline-flex items-center gap-2 bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-full px-3 py-1.5">
               <Image
                 src="/jordan-hayes.png"
                 alt="Jordan Hayes"
@@ -75,16 +75,16 @@ export function PlaybookClient() {
                 height={20}
                 className="rounded-full object-cover w-5 h-5"
               />
-              <span className="text-xs text-gray-600 font-medium">Made by Jordan Hayes</span>
+              <span className="text-xs text-[var(--color-ink-secondary)] font-medium">Made by Jordan Hayes</span>
             </div>
           </div>
           <div className="flex flex-col md:flex-row md:gap-16 md:items-start">
             {/* Left: headline + subheadline (desktop) */}
             <div className="md:flex-1">
-              <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
+              <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4 leading-[1.15] tracking-tight">
                 The Remote Offshore Talent Playbook
               </h1>
-              <p className="text-lg text-gray-500 mb-8 md:mb-6 leading-relaxed">
+              <p className="text-lg text-[var(--color-ink-secondary)] mb-8 md:mb-6 leading-relaxed">
                 The exact system for hiring A-players from South America,
                 Eastern Europe, and South Africa. From someone who&apos;s made
                 60+ hires in these regions.
@@ -110,8 +110,8 @@ export function PlaybookClient() {
 
             {/* Right: form (desktop) */}
             <div className="md:flex-1 md:max-w-md">
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8">
-                <div className="mb-6 rounded-lg overflow-hidden border border-gray-200">
+              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-6 md:p-8 shadow-[var(--shadow-canon-card)]">
+                <div className="mb-6 rounded-none overflow-hidden border border-[var(--color-border-canon)]">
                   <Image
                     src="/playbook-preview.png"
                     alt="Preview of The Remote Offshore Talent Playbook"
@@ -124,7 +124,7 @@ export function PlaybookClient() {
                   <div className="mb-4">
                     <label
                       htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700 mb-1.5"
+                      className="block text-sm font-medium text-[var(--color-ink-secondary)] mb-1.5"
                     >
                       First name
                     </label>
@@ -135,13 +135,13 @@ export function PlaybookClient() {
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="Your name"
                       required
-                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
+                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
                     />
                   </div>
                   <div className="mb-6">
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1.5"
+                      className="block text-sm font-medium text-[var(--color-ink-secondary)] mb-1.5"
                     >
                       Email address
                     </label>
@@ -152,7 +152,7 @@ export function PlaybookClient() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@company.com"
                       required
-                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg bg-white text-gray-900 outline-none transition-colors focus:border-gray-900 placeholder:text-gray-400"
+                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
                     />
                   </div>
                   <Button
@@ -181,8 +181,8 @@ export function PlaybookClient() {
               "Onboarding framework that makes new hires productive in 2 weeks.",
               "LinkedIn outreach templates and candidate scoring rubric.",
             ].map((item, i) => (
-              <li key={i} className="flex gap-3 text-gray-600">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gray-900 flex-shrink-0" />
+              <li key={i} className="flex gap-3 text-[var(--color-ink-secondary)]">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-ink-primary)] flex-shrink-0" />
                 <span className="leading-relaxed">{item}</span>
               </li>
             ))}
