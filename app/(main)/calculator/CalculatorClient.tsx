@@ -91,13 +91,13 @@ export function CalculatorClient() {
       <Container>
         <div className="py-20 md:py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="font-instrument text-4xl md:text-5xl text-gray-900 mb-4 leading-[1.15] tracking-tight">
+            <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] mb-4 leading-[1.1] tracking-tight">
               Remote Hiring Cost Calculator
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed mb-3">
+            <p className="text-lg text-[var(--color-ink-secondary)] leading-relaxed mb-3">
               See how much you could save by hiring from cost-effective markets like South America, Eastern Europe, and South Africa. Yander also sources premium talent from the US, Canada, UK, and Australia. Add roles below to build your team.
             </p>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-[var(--color-ink-faded)] leading-relaxed">
               These are estimates for experienced, qualified professionals. Salaries are slightly above local market rate to reflect what you should expect to pay to attract and retain top talent.
             </p>
           </div>
@@ -108,7 +108,7 @@ export function CalculatorClient() {
               {team.map((member) => (
                 <div
                   key={member.id}
-                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-gray-50 border border-gray-200 rounded-xl p-4"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-4"
                 >
                   {/* Count */}
                   <div className="flex items-center gap-2 sm:w-20">
@@ -118,18 +118,18 @@ export function CalculatorClient() {
                           count: Math.max(1, member.count - 1),
                         })
                       }
-                      className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 text-sm font-medium"
+                      className="w-8 h-8 flex items-center justify-center rounded-none border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
                     >
                       -
                     </button>
-                    <span className="w-6 text-center text-sm font-medium text-gray-900">
+                    <span className="w-6 text-center text-sm font-medium text-[var(--color-ink-primary)]">
                       {member.count}
                     </span>
                     <button
                       onClick={() =>
                         updateMember(member.id, { count: member.count + 1 })
                       }
-                      className="w-8 h-8 flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-50 text-sm font-medium"
+                      className="w-8 h-8 flex items-center justify-center rounded-none border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
                     >
                       +
                     </button>
@@ -144,7 +144,7 @@ export function CalculatorClient() {
                           roleIndex: parseInt(e.target.value),
                         })
                       }
-                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg bg-white text-gray-900 outline-none focus:border-gray-900"
+                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
                     >
                       {roles.map((role, i) => (
                         <option key={role.slug} value={i}>
@@ -152,7 +152,7 @@ export function CalculatorClient() {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-ink-faded)] pointer-events-none" />
                   </div>
 
                   {/* Country Select */}
@@ -162,7 +162,7 @@ export function CalculatorClient() {
                       onChange={(e) =>
                         updateMember(member.id, { countryId: e.target.value })
                       }
-                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg bg-white text-gray-900 outline-none focus:border-gray-900"
+                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
                     >
                       {countries.map((country) => (
                         <option key={country.id} value={country.id}>
@@ -170,13 +170,13 @@ export function CalculatorClient() {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-ink-faded)] pointer-events-none" />
                   </div>
 
                   {/* Remove */}
                   <button
                     onClick={() => removeRole(member.id)}
-                    className="sm:w-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                    className="sm:w-8 flex items-center justify-center text-[var(--color-ink-faded)] hover:text-red-500 transition-colors"
                     disabled={team.length === 1}
                   >
                     <Trash2 className="w-4 h-4" />
@@ -187,7 +187,7 @@ export function CalculatorClient() {
 
             <button
               onClick={addRole}
-              className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-gray-600 border border-dashed border-gray-300 rounded-xl hover:border-gray-400 hover:text-gray-900 transition-colors"
+              className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-[var(--color-ink-secondary)] border border-dashed border-[var(--color-border-canon-strong)] rounded-none hover:border-[var(--color-ink-primary)] hover:text-[var(--color-ink-primary)] transition-colors"
             >
               <Plus className="w-4 h-4" />
               Add Role
@@ -197,58 +197,58 @@ export function CalculatorClient() {
           {/* Results */}
           {team.length > 0 && (
             <div className="max-w-3xl mx-auto">
-              {/* Summary Cards */}
+              {/* Summary Cards — accent purple on "You Save" for the wow moment */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
+                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-5">
+                  <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-1">
                     US Cost
                   </p>
-                  <p className="text-2xl font-semibold text-gray-900">
+                  <p className="font-geist font-bold text-2xl text-[var(--color-ink-primary)] tracking-tight">
                     {formatCurrencyShort(results.totalUS)}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">per year</p>
+                  <p className="text-xs text-[var(--color-ink-faded)] mt-1">per year</p>
                 </div>
-                <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
+                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-5">
+                  <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-1">
                     Remote Cost
                   </p>
-                  <p className="text-2xl font-semibold text-gray-900">
+                  <p className="font-geist font-bold text-2xl text-[var(--color-ink-primary)] tracking-tight">
                     {formatCurrencyShort(results.totalOffshore)}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">per year</p>
+                  <p className="text-xs text-[var(--color-ink-faded)] mt-1">per year</p>
                 </div>
-                <div className="bg-gray-900 rounded-xl p-5">
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">
+                <div className="bg-[var(--color-accent-primary)] rounded-none p-5">
+                  <p className="text-[11px] font-[var(--font-geist-mono)] text-white/60 uppercase tracking-[0.22em] mb-1">
                     You Save
                   </p>
-                  <p className="text-2xl font-semibold text-white">
+                  <p className="font-geist font-bold text-2xl text-white tracking-tight">
                     {formatCurrencyShort(results.totalSavings)}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <p className="text-xs text-white/60 mt-1">
                     {results.totalSavingsPercent}% less per year
                   </p>
                 </div>
               </div>
 
               {/* Breakdown Table */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
+              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      <tr className="border-b border-[var(--color-border-canon)]">
+                        <th className="text-left px-5 py-3 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                           Role
                         </th>
-                        <th className="text-left px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        <th className="text-left px-5 py-3 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                           Region
                         </th>
-                        <th className="text-right px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        <th className="text-right px-5 py-3 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                           US Salary
                         </th>
-                        <th className="text-right px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        <th className="text-right px-5 py-3 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                           Remote
                         </th>
-                        <th className="text-right px-5 py-3 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        <th className="text-right px-5 py-3 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                           Savings
                         </th>
                       </tr>
@@ -257,28 +257,28 @@ export function CalculatorClient() {
                       {results.breakdown.map((row) => (
                         <tr
                           key={row.id}
-                          className="border-b border-gray-100 last:border-0"
+                          className="border-b border-[var(--color-border-canon-subtle)] last:border-0"
                         >
-                          <td className="px-5 py-3 text-gray-900 font-medium">
+                          <td className="px-5 py-3 text-[var(--color-ink-primary)] font-medium">
                             {row.count > 1 && (
-                              <span className="text-gray-400 mr-1">
+                              <span className="text-[var(--color-ink-faded)] mr-1">
                                 {row.count}x
                               </span>
                             )}
                             {row.role}
                           </td>
-                          <td className="px-5 py-3 text-gray-600">
+                          <td className="px-5 py-3 text-[var(--color-ink-secondary)]">
                             {row.country?.flag} {row.country?.label}
                           </td>
-                          <td className="px-5 py-3 text-right text-gray-600">
+                          <td className="px-5 py-3 text-right text-[var(--color-ink-secondary)]">
                             {formatCurrency(row.usTotal)}
                           </td>
-                          <td className="px-5 py-3 text-right text-gray-600">
+                          <td className="px-5 py-3 text-right text-[var(--color-ink-secondary)]">
                             {formatCurrency(row.offshoreTotal)}
                           </td>
-                          <td className="px-5 py-3 text-right font-medium text-gray-900">
+                          <td className="px-5 py-3 text-right font-medium text-[var(--color-ink-primary)]">
                             {formatCurrency(row.savings)}
-                            <span className="text-gray-400 text-xs ml-1">
+                            <span className="text-[var(--color-ink-faded)] text-xs ml-1">
                               ({row.savingsPercent}%)
                             </span>
                           </td>
@@ -291,22 +291,22 @@ export function CalculatorClient() {
 
               {/* CTA */}
               <div className="mt-10 text-center">
-                <p className="text-gray-500 mb-4">
+                <p className="text-[var(--color-ink-secondary)] mb-4">
                   Want to find A-player talent in these regions without the guesswork?
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a href="/remote-hiring-playbook">
-                    <Button variant="secondary">
+                    <Button variant="secondary" size="lg">
                       Get The Free Playbook
                     </Button>
                   </a>
                   <a href="https://yander.ai">
-                    <Button>
+                    <Button variant="accent" size="lg">
                       Join The Yander Waitlist
                     </Button>
                   </a>
                 </div>
-                <p className="text-xs text-gray-400 mt-6 max-w-lg mx-auto leading-relaxed">
+                <p className="text-xs text-[var(--color-ink-faded)] mt-6 max-w-lg mx-auto leading-relaxed">
                   Salary estimates based on data from PayScale, Howdy, Pnet, Glassdoor, and regional benchmarks, combined with first-hand experience hiring 60+ people across these regions. Figures reflect competitive rates to attract and retain experienced talent. All numbers are estimates and may not represent exact market rates.
                 </p>
               </div>

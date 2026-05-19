@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Button } from '@/components/ui/Button'
 import { useDemoModal } from '@/components/ui/DemoModal'
 import { Check, ChevronDown, ArrowRight, Sparkles } from 'lucide-react'
 import type { Comparison } from '@/lib/types'
@@ -18,7 +19,7 @@ function YanderLogo({ size = 'md' }: { size?: 'sm' | 'md' }) {
   const dimensions = size === 'sm' ? 'w-10 h-10' : 'w-14 h-14 md:w-16 md:h-16'
   const imgSize = size === 'sm' ? 24 : 36
   return (
-    <div className={`${dimensions} rounded-xl border border-[#e5e5e5] bg-white flex items-center justify-center shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden p-2`}>
+    <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
       <Image src="/logo.svg" alt="Yander" width={imgSize} height={imgSize} className="object-contain" />
     </div>
   )
@@ -30,7 +31,7 @@ function CompetitorLogo({ comparison, size = 'md' }: { comparison: Comparison; s
 
   if (comparison.competitorLogo) {
     return (
-      <div className={`${dimensions} rounded-xl border border-[#e5e5e5] bg-white flex items-center justify-center shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden p-2`}>
+      <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
         <Image
           src={urlFor(comparison.competitorLogo).width(imgSize * 2).height(imgSize * 2).url()}
           alt={comparison.competitorName}
@@ -46,7 +47,7 @@ function CompetitorLogo({ comparison, size = 'md' }: { comparison: Comparison; s
   if (comparison.competitorUrl) {
     const domain = new URL(comparison.competitorUrl).hostname
     return (
-      <div className={`${dimensions} rounded-xl border border-[#e5e5e5] bg-white flex items-center justify-center shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] overflow-hidden p-2`}>
+      <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
         <img
           src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
           alt={comparison.competitorName}
@@ -72,13 +73,13 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
   onToggle: () => void
 }) {
   return (
-    <div className="border-b border-[#e5e5e5] last:border-b-0">
+    <div className="border-b border-[var(--color-border-canon)] last:border-b-0">
       <button onClick={onToggle} className="w-full py-5 flex items-center justify-between text-left group">
-        <span className="text-base font-medium text-[#171717] pr-4 md:pr-8 group-hover:text-gray-600 transition-colors">
+        <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
           {question}
         </span>
-        <div className={`w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[#171717] border-[#171717]' : ''}`}>
-          <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-gray-500'}`} />
+        <div className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
+          <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-[var(--color-ink-muted)]'}`} />
         </div>
       </button>
       <AnimatePresence initial={false}>
@@ -90,7 +91,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#737373] text-sm leading-relaxed pr-12">{answer}</p>
+            <p className="pb-5 text-[var(--color-ink-muted)] text-sm leading-relaxed pr-12">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -113,36 +114,34 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <SectionLabel centered>Comparison</SectionLabel>
+            <div className="flex justify-center">
+              <Eyebrow>Comparison</Eyebrow>
+            </div>
 
             {/* Logos */}
             <div className="flex items-center justify-center gap-4 md:gap-6 my-8">
               <YanderLogo />
-              <span className="text-sm font-medium text-gray-400">vs</span>
+              <span className="text-sm font-medium text-[var(--color-ink-faded)]">vs</span>
               <CompetitorLogo comparison={comparison} />
             </div>
 
-            <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em] leading-tight">
+            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               {comparison.headline}
             </h1>
-            <p className="mt-4 text-base md:text-lg text-[#737373] max-w-2xl mx-auto">
+            <p className="mt-4 text-base md:text-lg text-[var(--color-ink-muted)] max-w-2xl mx-auto">
               {comparison.heroDescription}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#171717] text-white rounded-[6px] font-medium text-sm hover:bg-gray-800 transition-colors group"
-              >
-                Try Yander Free
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <a href="https://app.yander.ai/sign-up?plan=starter&billing=monthly">
+                <Button variant="primary" size="lg" className="group">
+                  Try Yander Free
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </a>
-              <button
-                onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#171717] rounded-[6px] font-medium text-sm border border-[#e5e5e5] hover:bg-gray-50 hover:border-gray-300 transition-colors"
-              >
+              <Button variant="secondary" size="lg" onClick={openDemoModal}>
                 Book a Demo
-              </button>
+              </Button>
             </div>
           </motion.div>
         </Container>
@@ -157,13 +156,13 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 md:p-8"
+              className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
             >
               <div className="mb-4">
                 <YanderLogo size="sm" />
               </div>
-              <h3 className="font-semibold text-lg text-[#171717] mb-2">Yander</h3>
-              <p className="text-sm text-[#737373] leading-relaxed">{comparison.yanderSummary}</p>
+              <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">Yander</h3>
+              <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.yanderSummary}</p>
             </motion.div>
 
             <motion.div
@@ -171,13 +170,13 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 md:p-8"
+              className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
             >
                 <div className="mb-4">
                 <CompetitorLogo comparison={comparison} size="sm" />
               </div>
-              <h3 className="font-semibold text-lg text-[#171717] mb-2">{comparison.competitorName}</h3>
-              <p className="text-sm text-[#737373] leading-relaxed">{comparison.competitorSummary}</p>
+              <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">{comparison.competitorName}</h3>
+              <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.competitorSummary}</p>
             </motion.div>
           </div>
         </Container>
@@ -197,8 +196,8 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="text-2xl md:text-3xl font-semibold text-[#171717]">{stat.value}</p>
-                  <p className="text-sm text-[#737373] mt-1">{stat.label}</p>
+                  <p className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
+                  <p className="text-sm text-[var(--color-ink-muted)] mt-1">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -211,8 +210,10 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
         <section className="py-16 md:py-24 bg-white">
           <Container>
             <div className="text-center mb-12">
-              <SectionLabel number="01" centered>Feature Comparison</SectionLabel>
-              <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+              <div className="flex justify-center mb-4">
+                <Eyebrow number="01">Feature Comparison</Eyebrow>
+              </div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                 How they compare
               </h2>
             </div>
@@ -222,35 +223,35 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto overflow-hidden rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px]"
+              className="max-w-4xl mx-auto overflow-hidden rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)]"
             >
               {/* Table Header */}
-              <div className="grid grid-cols-3 bg-[#fafafa] border-b border-[#e5e5e5]">
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wide px-4 md:px-6 py-3">
+              <div className="grid grid-cols-3 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-canon)]">
+                <div className="text-left text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] px-4 md:px-6 py-3">
                   Feature
                 </div>
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wide px-4 md:px-6 py-3">
+                <div className="text-left text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] px-4 md:px-6 py-3">
                   Yander
                 </div>
-                <div className="text-left text-xs font-medium text-gray-500 uppercase tracking-wide px-4 md:px-6 py-3">
+                <div className="text-left text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] px-4 md:px-6 py-3">
                   {comparison.competitorName}
                 </div>
               </div>
 
               {/* Table Body */}
               {comparison.featureRows.map((row, i) => (
-                <div key={i} className="grid grid-cols-3 border-b border-[#f5f5f5] last:border-b-0 hover:bg-gray-50/50 transition-colors">
+                <div key={i} className="grid grid-cols-3 border-b border-[var(--color-border-canon-subtle)] last:border-b-0 hover:bg-[var(--color-surface-subtle)]/50 transition-colors">
                   <div className="px-4 md:px-6 py-4">
-                    <p className="text-sm font-medium text-[#171717]">{row.feature}</p>
+                    <p className="text-sm font-medium text-[var(--color-ink-primary)]">{row.feature}</p>
                     {row.whyItMatters && (
-                      <p className="text-xs text-[#a3a3a3] mt-1">{row.whyItMatters}</p>
+                      <p className="text-xs text-[var(--color-ink-faded)] mt-1">{row.whyItMatters}</p>
                     )}
                   </div>
                   <div className="px-4 md:px-6 py-4 flex items-start">
-                    <p className="text-sm text-[#525252]">{row.yander}</p>
+                    <p className="text-sm text-[var(--color-ink-secondary)]">{row.yander}</p>
                   </div>
                   <div className="px-4 md:px-6 py-4 flex items-start">
-                    <p className="text-sm text-[#525252]">{row.competitor}</p>
+                    <p className="text-sm text-[var(--color-ink-secondary)]">{row.competitor}</p>
                   </div>
                 </div>
               ))}
@@ -264,8 +265,10 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
         <section className="py-16 md:py-24 bg-[#fafafa] border-y border-[#e5e5e5]">
           <Container>
             <div className="text-center mb-12">
-              <SectionLabel number="02" centered>Decision Framework</SectionLabel>
-              <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+              <div className="flex justify-center mb-4">
+                <Eyebrow number="02">Decision Framework</Eyebrow>
+              </div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                 Which one is right for you?
               </h2>
             </div>
@@ -278,16 +281,16 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 md:p-8"
+                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
                 >
-                  <h3 className="font-semibold text-lg text-[#171717] mb-6">Choose Yander if you...</h3>
+                  <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose Yander if you...</h3>
                   <ul className="space-y-3">
                     {comparison.chooseYander.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-emerald-500" />
+                          <Check className="w-3 h-3 text-[var(--color-accent-alive)]" />
                         </div>
-                        <span className="text-sm text-[#525252] leading-relaxed">{item}</span>
+                        <span className="text-sm text-[var(--color-ink-secondary)] leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -301,16 +304,16 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 md:p-8"
+                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
                 >
-                  <h3 className="font-semibold text-lg text-[#171717] mb-6">Choose {comparison.competitorName} if you...</h3>
+                  <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose {comparison.competitorName} if you...</h3>
                   <ul className="space-y-3">
                     {comparison.chooseCompetitor.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-gray-400" />
+                        <div className="w-5 h-5 rounded-full bg-[var(--color-surface-muted)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-[var(--color-ink-faded)]" />
                         </div>
-                        <span className="text-sm text-[#525252] leading-relaxed">{item}</span>
+                        <span className="text-sm text-[var(--color-ink-secondary)] leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -325,19 +328,19 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-8 max-w-3xl mx-auto bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 md:p-8"
+                className="mt-8 max-w-3xl mx-auto bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
               >
-                <h3 className="font-semibold text-base text-[#171717] mb-3">The bottom line</h3>
-                <p className="text-sm text-[#737373] leading-relaxed">{comparison.verdict}</p>
+                <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-3">The bottom line</h3>
+                <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.verdict}</p>
               </motion.div>
             )}
           </Container>
         </section>
       )}
 
-      {/* Testimonial */}
+      {/* Testimonial — homepage canon: grotesque, not italic serif */}
       {comparison.testimonial?.quote && (
-        <section className="py-16 md:py-20 bg-white border-b border-[#e5e5e5]">
+        <section className="py-16 md:py-20 bg-white border-b border-[var(--color-border-canon)]">
           <Container size="narrow">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -346,14 +349,14 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <blockquote className="font-serif text-xl md:text-2xl text-[#171717] leading-relaxed italic">
+              <blockquote className="font-geist text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
                 &ldquo;{comparison.testimonial.quote}&rdquo;
               </blockquote>
               {comparison.testimonial.name && (
                 <div className="mt-6">
-                  <p className="text-sm font-medium text-[#171717]">{comparison.testimonial.name}</p>
+                  <p className="text-sm font-medium text-[var(--color-ink-primary)]">{comparison.testimonial.name}</p>
                   {(comparison.testimonial.role || comparison.testimonial.company) && (
-                    <p className="text-sm text-[#737373]">
+                    <p className="text-sm text-[var(--color-ink-muted)]">
                       {[comparison.testimonial.role, comparison.testimonial.company].filter(Boolean).join(', ')}
                     </p>
                   )}
@@ -366,12 +369,14 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
 
       {/* FAQ */}
       {comparison.faqs && comparison.faqs.length > 0 && (
-        <section className="py-16 md:py-24 bg-[#fafafa] border-b border-[#e5e5e5]">
+        <section className="py-16 md:py-24 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-canon)]">
           <Container>
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <SectionLabel number="03" centered>FAQ</SectionLabel>
-                <h2 className="font-semibold text-2xl md:text-3xl text-[#171717] tracking-[-0.02em]">
+                <div className="flex justify-center mb-4">
+                  <Eyebrow number="03">FAQ</Eyebrow>
+                </div>
+                <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
                   Frequently asked questions
                 </h2>
               </div>
@@ -381,7 +386,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] px-6 md:px-8"
+                className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
               >
                 {comparison.faqs.map((faq, index) => (
                   <FAQItem
@@ -398,52 +403,43 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 md:py-28 bg-white">
+      {/* CTA — homepage canon: dark #111111 flat section, no rainbow gradients */}
+      <section className="py-20 md:py-28 bg-[var(--color-ink-midnight)] text-white">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
+            className="flex flex-col lg:flex-row items-center justify-between gap-8"
           >
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-amber-500/10 to-rose-500/10 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-              backgroundSize: '32px 32px'
-            }} />
-
-            <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="text-center lg:text-left max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
-                  <Sparkles className="w-4 h-4 text-emerald-400" />
-                  <span className="text-sm text-white/80">Ready to switch?</span>
-                </div>
-                <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-white tracking-[-0.02em] leading-tight">
-                  See why teams choose Yander over {comparison.competitorName}
-                </h2>
-                <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
-                  Start your free trial today. No credit card required. Set up your first hiring pipeline in minutes.
-                </p>
+            <div className="text-center lg:text-left max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-none bg-white/5 border border-white/10 mb-6">
+                <Sparkles className="w-4 h-4 text-[var(--color-accent-alive)]" />
+                <span className="text-sm text-white/80">Ready to switch?</span>
               </div>
+              <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
+                See why teams choose Yander over {comparison.competitorName}
+              </h2>
+              <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
+                Start your free trial today. No credit card required. Set up your first hiring pipeline in minutes.
+              </p>
+            </div>
 
-              <div className="flex flex-col gap-3 w-full sm:w-auto">
-                <a
-                  href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
-                >
-                  Get Started Free
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <button
-                  onClick={openDemoModal}
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
-                >
-                  Book a Demo
-                </button>
-              </div>
+            <div className="flex flex-col gap-3 w-full sm:w-auto">
+              <a
+                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
+              >
+                Get Started Free
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <button
+                onClick={openDemoModal}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
+              >
+                Book a Demo
+              </button>
             </div>
           </motion.div>
         </Container>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { RecruiterPricingCards } from "@/components/sections/RecruiterPricingCards";
 import { RecruiterPricingProof } from "@/components/sections/RecruiterPricingProof";
 import { RecruiterPricingFAQ } from "@/components/sections/RecruiterPricingFAQ";
@@ -75,33 +76,31 @@ export default function PricingPage() {
     <>
       <SchemaJsonLd schema={pricingProductSchema} />
       <SchemaJsonLd schema={faqSchema(recruiterFaqs)} />
-      {/* ── Section 1: Hero ── */}
-      <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden bg-[#fafaf7]">
-        {/* Tonal gradient (cream → white) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#fafaf7] via-white to-white pointer-events-none" />
+      {/* ── Section 1: Hero — homepage canon: white bg, font-geist headline, Eyebrow primitive ── */}
+      <section className="relative pt-24 pb-6 md:pt-28 md:pb-8 overflow-hidden bg-white">
         {/* Subtle vertical rhythm lines on edges (signature component) */}
         <div
-          className="absolute inset-y-0 left-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+          className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-y-0 right-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+          className="absolute inset-y-0 right-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
           aria-hidden="true"
         />
 
         <Container>
           <AnimatedSection className="relative text-center max-w-5xl mx-auto">
-            <p className="text-[11px] font-medium text-gray-500 uppercase tracking-[0.22em] mb-5">
-              Pricing
-            </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em] leading-[1.1] lg:whitespace-nowrap">
+            <div className="mb-5 flex justify-center">
+              <Eyebrow>Pricing</Eyebrow>
+            </div>
+            <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] lg:whitespace-nowrap">
               Clear pricing for your recruiting needs.
             </h1>
-            <p className="mt-5 text-xs text-gray-400">
+            <p className="mt-5 text-xs text-[var(--color-ink-disabled)]">
               Looking for{" "}
               <Link
                 href="/pulse-pricing"
-                className="text-gray-500 underline underline-offset-2 hover:text-gray-900 transition-colors"
+                className="text-[var(--color-ink-muted)] underline underline-offset-2 hover:text-[var(--color-ink-primary)] transition-colors"
               >
                 Yander Pulse pricing
               </Link>

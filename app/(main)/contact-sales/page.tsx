@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ContactSalesForm } from "@/components/sections/ContactSalesForm";
 import { Check } from "lucide-react";
 import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
@@ -50,34 +51,34 @@ export default function ContactSalesPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left column */}
           <AnimatedSection>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em]">
+            <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               Talk to our sales team
             </h1>
-            <p className="mt-4 text-base text-gray-500 max-w-md">
+            <p className="mt-4 text-base text-[var(--color-ink-secondary)] max-w-md">
               Get help with Enterprise pricing, schedule a demo, and explore how
               Yander fits your agency.
             </p>
 
             <div className="mt-10">
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
-                What&apos;s included in Enterprise
-              </p>
+              <div className="mb-4">
+                <Eyebrow>What&apos;s included in Enterprise</Eyebrow>
+              </div>
               <ul className="space-y-3">
                 {benefits.map((benefit) => (
                   <li key={benefit} className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                    <span className="text-sm text-gray-600">{benefit}</span>
+                    <Check className="w-4 h-4 text-[var(--color-accent-alive)] flex-shrink-0" />
+                    <span className="text-sm text-[var(--color-ink-secondary)]">{benefit}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-[#E4E7EC]">
-              <p className="text-sm text-gray-500">
+            <div className="mt-10 pt-8 border-t border-[var(--color-border-canon)]">
+              <p className="text-sm text-[var(--color-ink-secondary)]">
                 Not sure if Enterprise is right for you?{" "}
                 <a
                   href="/pricing"
-                  className="text-gray-900 font-medium hover:underline"
+                  className="text-[var(--color-ink-primary)] font-medium hover:underline"
                 >
                   Compare all plans
                 </a>

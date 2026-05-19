@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PricingCards } from "@/components/sections/PricingCards";
 import { PricingComparison } from "@/components/sections/PricingComparison";
 import { PricingFAQ } from "@/components/sections/PricingFAQ";
@@ -48,14 +49,14 @@ export default function PricingPage() {
     <>
       <SchemaJsonLd schema={pulsePricingProductSchema} />
       <SchemaJsonLd schema={faqSchema(pulsePricingFaqs)} />
-      {/* Hero */}
+      {/* Hero — homepage canon: font-geist headline, Eyebrow primitive */}
       <section className="pt-28 pb-6 md:pt-32 md:pb-8">
         <Container>
           <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-[0.15em] mb-4">
-              Pulse Pricing
-            </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-[-0.02em]">
+            <div className="mb-4 flex justify-center">
+              <Eyebrow>Pulse Pricing</Eyebrow>
+            </div>
+            <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               One dashboard for your team's performance
             </h1>
           </AnimatedSection>
@@ -66,7 +67,7 @@ export default function PricingPage() {
       <section className="hidden md:block pb-6 md:pb-8">
         <Container>
           <AnimatedSection>
-            <p className="text-center text-[10px] text-gray-600 uppercase tracking-[0.15em] mb-6">
+            <p className="text-center text-[10px] text-[var(--color-ink-secondary)] uppercase tracking-[0.22em] font-[var(--font-geist-mono)] mb-6">
               Trusted by teams behind
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:gap-x-10">

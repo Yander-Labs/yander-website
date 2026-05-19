@@ -2,7 +2,7 @@ import { sanityFetch } from '@/lib/sanity'
 import { comparisonsQuery } from '@/lib/queries'
 import type { ComparisonCard } from '@/lib/types'
 import { Container } from '@/components/ui/Container'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { SchemaJsonLd } from '@/components/seo/SchemaJsonLd'
 import Link from 'next/link'
@@ -48,11 +48,13 @@ export default async function ComparisonsPage() {
             items={[{ name: 'Home', href: '/' }, { name: 'Compare' }]}
           />
           <div className="text-center mb-12">
-            <SectionLabel centered>Comparisons</SectionLabel>
-            <h1 className="font-semibold text-2xl md:text-3xl lg:text-4xl text-[#171717] tracking-[-0.02em]">
+            <div className="mb-4 flex justify-center">
+              <Eyebrow>Comparisons</Eyebrow>
+            </div>
+            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               How Yander compares
             </h1>
-            <p className="mt-4 text-base text-[#737373] max-w-xl mx-auto">
+            <p className="mt-4 text-base text-[var(--color-ink-muted)] max-w-xl mx-auto">
               Honest, side-by-side breakdowns of Yander vs other hiring tools. We show you where we win and where the other tool might be a better fit.
             </p>
           </div>
@@ -63,26 +65,26 @@ export default async function ComparisonsPage() {
                 <Link
                   key={comparison._id}
                   href={`/compare/${comparison.slug.current}`}
-                  className="group bg-white rounded-[12px] border border-[#e5e5e5] shadow-[rgba(0,0,0,0.04)_0px_1px_2px_0px] p-6 hover:shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:-translate-y-0.5 hover:border-gray-300 transition-all duration-150"
+                  className="group bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 hover:shadow-[var(--shadow-canon-card-hover)] hover:-translate-y-0.5 transition-all duration-150"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-lg border border-[#e5e5e5] bg-[#fafafa] flex items-center justify-center">
-                      <span className="text-xs font-semibold text-[#171717]">Y</span>
+                    <div className="w-8 h-8 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
+                      <span className="text-xs font-semibold text-[var(--color-ink-primary)]">Y</span>
                     </div>
-                    <span className="text-xs font-medium text-gray-400">vs</span>
-                    <div className="w-8 h-8 rounded-lg border border-[#e5e5e5] bg-[#fafafa] flex items-center justify-center">
-                      <span className="text-xs font-semibold text-gray-400">{comparison.competitorName[0]}</span>
+                    <span className="text-xs font-medium text-[var(--color-ink-faded)]">vs</span>
+                    <div className="w-8 h-8 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
+                      <span className="text-xs font-semibold text-[var(--color-ink-faded)]">{comparison.competitorName[0]}</span>
                     </div>
                   </div>
 
-                  <h2 className="font-semibold text-base text-[#171717] mb-2 group-hover:text-gray-600 transition-colors">
+                  <h2 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2 group-hover:text-[var(--color-ink-secondary)] transition-colors">
                     Yander vs {comparison.competitorName}
                   </h2>
-                  <p className="text-sm text-[#737373] leading-relaxed line-clamp-2">
+                  <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed line-clamp-2">
                     {comparison.heroDescription}
                   </p>
 
-                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-[#171717] group-hover:text-gray-600 transition-colors">
+                  <div className="mt-4 flex items-center gap-1 text-sm font-medium text-[var(--color-ink-primary)] group-hover:text-[var(--color-ink-secondary)] transition-colors">
                     View comparison
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -91,7 +93,7 @@ export default async function ComparisonsPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-sm text-[#737373]">Comparison pages coming soon.</p>
+              <p className="text-sm text-[var(--color-ink-muted)]">Comparison pages coming soon.</p>
             </div>
           )}
         </Container>
