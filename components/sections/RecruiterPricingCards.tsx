@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "../ui/AnimatedSection";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
@@ -102,15 +104,15 @@ function PricingCard({
   return (
     <div
       className={cn(
-        "relative border p-8 flex flex-col h-full transition-all duration-200",
+        "relative border p-8 flex flex-col h-full transition-all duration-200 rounded-none",
         tier.recommended
-          ? "bg-[#fafaf7] border-[#1e1044] border-2 shadow-[0_8px_30px_rgba(30,16,68,0.08)] hover:shadow-[0_12px_40px_rgba(30,16,68,0.12)]"
-          : "bg-white border-[#E4E7EC] hover:border-gray-300"
+          ? "bg-[var(--color-surface-subtle)] border-[var(--color-accent-primary)] border-2 shadow-[0_8px_30px_rgba(30,16,68,0.08)] hover:shadow-[0_12px_40px_rgba(30,16,68,0.12)]"
+          : "bg-white border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] hover:shadow-[var(--shadow-canon-card-hover)]"
       )}
     >
       {tier.recommended && (
         <div className="absolute -top-3 left-8">
-          <span className="inline-flex items-center px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] bg-[#1e1044] text-white">
+          <span className="inline-flex items-center px-3 py-1 text-[10px] font-[var(--font-geist-mono)] font-semibold uppercase tracking-[0.22em] bg-[var(--color-accent-primary)] text-white rounded-none">
             Most Popular
           </span>
         </div>
@@ -119,31 +121,31 @@ function PricingCard({
       {/* Plan name & description */}
       <div className="mb-6">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="text-3xl font-semibold text-gray-900 tracking-tight">
+          <h3 className="font-geist font-bold text-3xl text-[var(--color-ink-primary)] tracking-tight">
             {tier.name}
           </h3>
           {billing === "annual" && tier.annualSaveLabel && (
-            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-none">
               {tier.annualSaveLabel}
             </span>
           )}
         </div>
-        <p className="mt-2 text-sm text-gray-500 leading-snug min-h-[40px]">
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)] leading-snug min-h-[40px]">
           {tier.description}
         </p>
       </div>
 
-      {/* Price */}
+      {/* Price — homepage-style font-geist wow moment */}
       <div className="mb-6">
         <div className="flex items-baseline">
-          <span className="text-2xl font-bold text-gray-900">
+          <span className="font-geist font-bold text-4xl text-[var(--color-ink-primary)] tracking-tight">
             ${isFree ? 0 : price}
           </span>
-          <span className="ml-2 text-sm text-gray-400">/mo</span>
+          <span className="ml-2 text-sm text-[var(--color-ink-faded)]">/mo</span>
         </div>
         <p
           className={cn(
-            "mt-1 text-[11px] text-gray-400",
+            "mt-1 text-[11px] text-[var(--color-ink-faded)]",
             !(!isFree && billing === "annual") && "invisible"
           )}
         >
@@ -153,35 +155,48 @@ function PricingCard({
 
       {/* CTA */}
       {usePlaceholder ? (
-        <button
+        <TrackedButton
+          ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_waitlist`}
+          ctaLocation="recruiter_pricing_cards"
+          ctaLabel={tier.cta}
+          ctaDestination="waitlist_modal"
+          ctaVariant="primary"
           onClick={onWaitlistClick}
           className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full",
+            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full rounded-none",
             tier.recommended
-              ? "bg-[#1e1044] text-white hover:bg-[#2a1860]"
-              : "bg-[#0a0a0a] text-white hover:bg-gray-800"
+              ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
+              : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
           )}
         >
           {tier.cta}
-        </button>
+        </TrackedButton>
       ) : (
-        <a
+        <TrackedLink
+          ctaId={`recruiter_pricing_${tier.name.toLowerCase()}`}
+          ctaLocation="recruiter_pricing_cards"
+          ctaLabel={tier.cta}
+          ctaVariant="primary"
           href={link}
           className={cn(
-            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full",
+            "inline-flex items-center justify-center font-medium transition-all duration-150 px-5 py-3.5 text-sm min-h-[48px] w-full rounded-none",
             tier.recommended
-              ? "bg-[#1e1044] text-white hover:bg-[#2a1860]"
-              : "bg-[#0a0a0a] text-white hover:bg-gray-800"
+              ? "bg-[var(--color-accent-primary)] text-white hover:opacity-90"
+              : "bg-[var(--color-ink-primary)] text-white hover:bg-[var(--color-ink-midnight)]"
           )}
         >
           {tier.cta}
-        </a>
+        </TrackedLink>
       )}
 
       {/* Book a demo link */}
-      <button
+      <TrackedButton
+        ctaId={`recruiter_pricing_${tier.name.toLowerCase()}_book_demo`}
+        ctaLocation="recruiter_pricing_cards"
+        ctaDestination="demo_modal"
+        ctaVariant="link"
         onClick={onBookDemo}
-        className="mt-3 text-xs text-gray-500 hover:text-[#0a0a0a] transition-colors w-full text-center inline-flex items-center justify-center gap-1.5 group"
+        className="mt-3 text-xs text-[var(--color-ink-muted)] hover:text-[var(--color-ink-primary)] transition-colors w-full text-center inline-flex items-center justify-center gap-1.5 group"
       >
         <span>Book a demo</span>
         <span
@@ -190,10 +205,10 @@ function PricingCard({
         >
           →
         </span>
-      </button>
+      </TrackedButton>
 
       {/* Divider */}
-      <div className="border-t border-[#E4E7EC] my-6" />
+      <div className="border-t border-[var(--color-border-canon)] my-6" />
 
       {/* Headline feature + shared features */}
       <div className="space-y-3.5 flex-1">
@@ -209,11 +224,11 @@ function PricingCard({
 function FeatureItem({ text, bold = false }: { text: string; bold?: boolean }) {
   return (
     <div className="flex items-start gap-2.5">
-      <Check className="w-4 h-4 text-[#1e1044] flex-shrink-0 mt-0.5" />
+      <Check className="w-4 h-4 text-[var(--color-accent-primary)] flex-shrink-0 mt-0.5" />
       <span
         className={cn(
           "text-sm",
-          bold ? "text-[#0a0a0a] font-medium" : "text-gray-600"
+          bold ? "text-[var(--color-ink-primary)] font-medium" : "text-[var(--color-ink-secondary)]"
         )}
       >
         {text}
@@ -231,31 +246,31 @@ export function RecruiterPricingCards() {
     <section className="relative pt-2 pb-20 md:pb-24 bg-white overflow-hidden">
       {/* Vertical rhythm lines — signature component */}
       <div
-        className="absolute inset-y-0 left-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+        className="absolute inset-y-0 left-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-y-0 right-8 w-px bg-gray-100 hidden lg:block pointer-events-none"
+        className="absolute inset-y-0 right-8 w-px bg-[var(--color-border-canon-subtle)] hidden lg:block pointer-events-none"
         aria-hidden="true"
       />
 
       <Container>
         {/* Billing Toggle */}
         <AnimatedSection className="flex justify-center mb-8">
-          <div className="inline-flex items-center bg-gray-100 p-1">
+          <div className="inline-flex items-center bg-[var(--color-surface-muted)] p-1 rounded-none">
             <button
               onClick={() => setBilling("monthly")}
               className={cn(
                 "relative px-6 py-2 text-sm font-medium transition-all duration-200",
                 billing === "monthly"
                   ? "text-white"
-                  : "text-gray-600 hover:text-gray-900"
+                  : "text-[var(--color-ink-secondary)] hover:text-[var(--color-ink-primary)]"
               )}
             >
               {billing === "monthly" && (
                 <motion.div
                   layoutId="recruiter-billing-pill"
-                  className="absolute inset-0 bg-[#0a0a0a]"
+                  className="absolute inset-0 bg-[var(--color-ink-primary)]"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
@@ -267,19 +282,19 @@ export function RecruiterPricingCards() {
                 "relative px-6 py-2 text-sm font-medium transition-all duration-200",
                 billing === "annual"
                   ? "text-white"
-                  : "text-gray-600 hover:text-gray-900"
+                  : "text-[var(--color-ink-secondary)] hover:text-[var(--color-ink-primary)]"
               )}
             >
               {billing === "annual" && (
                 <motion.div
                   layoutId="recruiter-billing-pill"
-                  className="absolute inset-0 bg-[#0a0a0a]"
+                  className="absolute inset-0 bg-[var(--color-ink-primary)]"
                   transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
                 />
               )}
               <span className="relative z-10 flex items-center gap-2">
                 Annual
-                <span className="inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-700">
+                <span className="inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-700 rounded-none">
                   Save up to 15%
                 </span>
               </span>
@@ -302,7 +317,7 @@ export function RecruiterPricingCards() {
         </StaggerContainer>
 
         {/* Footnote */}
-        <p className="mt-12 text-center text-xs text-gray-400 tracking-wide">
+        <p className="mt-12 text-center text-xs text-[var(--color-ink-faded)] tracking-wide">
           No setup fees. No contracts. Switch plans anytime.
         </p>
       </Container>

@@ -2,16 +2,18 @@
 
 import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
+import { TrackedLink } from "../ui/TrackedLink";
+import { TrackedButton } from "../ui/TrackedButton";
 import { useDemoModal } from "../ui/DemoModal";
 
 export function RecruiterPricingClosingCTA() {
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0a]">
-      {/* Cinematic tonal gradient — palette-matched deep purple → black */}
+    <section className="relative overflow-hidden bg-[var(--color-ink-midnight)]">
+      {/* Cinematic tonal gradient — palette-matched deep purple → midnight */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#1e1044] via-[#0a0a0a] to-black"
+        className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-primary)] via-[var(--color-ink-midnight)] to-black"
         aria-hidden="true"
       />
       {/* Soft radial vignette directing the eye to centered text */}
@@ -38,10 +40,10 @@ export function RecruiterPricingClosingCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
-            <p className="text-[11px] font-medium text-white/50 uppercase tracking-[0.22em] mb-8">
+            <p className="text-[11px] font-[var(--font-geist-mono)] text-white/50 uppercase tracking-[0.22em] mb-8">
               Sourcing talent worldwide
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-[-0.02em] leading-[1.1]">
+            <h2 className="font-geist font-bold text-4xl md:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]">
               Reach beyond your funnel.
               <br />
               <span className="text-indigo-300">Start sourcing smarter.</span>
@@ -53,9 +55,12 @@ export function RecruiterPricingClosingCTA() {
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
+              <TrackedLink
+                ctaId="recruiter_closing_get_started_free"
+                ctaLocation="recruiter_pricing_closing"
+                ctaVariant="primary"
                 href="https://app.yander.ai/sign-up?plan=free&product=recruiter"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#0a0a0a] font-medium text-base hover:bg-gray-100 transition-all group w-full sm:w-auto min-h-[52px]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--color-ink-primary)] font-medium text-base hover:bg-gray-100 transition-all group w-full sm:w-auto min-h-[52px] rounded-none"
               >
                 Get Started Free
                 <span
@@ -64,13 +69,17 @@ export function RecruiterPricingClosingCTA() {
                 >
                   →
                 </span>
-              </a>
-              <button
+              </TrackedLink>
+              <TrackedButton
+                ctaId="recruiter_closing_book_demo"
+                ctaLocation="recruiter_pricing_closing"
+                ctaDestination="demo_modal"
+                ctaVariant="link"
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center px-8 py-4 text-white font-medium text-base hover:text-white/80 transition-colors min-h-[52px] underline-offset-4 hover:underline"
+                className="inline-flex items-center justify-center px-8 py-4 text-white font-medium text-base hover:text-white/80 transition-colors min-h-[52px] underline-offset-4 hover:underline rounded-none"
               >
                 Book a demo
-              </button>
+              </TrackedButton>
             </div>
 
             {/* Tertiary trust line */}

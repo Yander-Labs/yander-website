@@ -35,7 +35,7 @@ const stats: ProofStat[] = [
 
 export function RecruiterPricingProof() {
   return (
-    <section className="relative py-24 md:py-32 bg-[#fafafa] border-y border-[#E4E7EC] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-[var(--color-surface-subtle)] border-y border-[var(--color-border-canon)] overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 max-w-6xl mx-auto items-start">
           {/* Left: editorial heading + supporting copy (5/12) */}
@@ -46,13 +46,13 @@ export function RecruiterPricingProof() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 lg:sticky lg:top-32"
           >
-            <p className="text-[11px] font-medium text-gray-500 uppercase tracking-[0.22em] mb-6">
+            <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-6">
               Beyond your hiring funnel
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0a0a0a] tracking-[-0.02em] leading-[1.1]">
+            <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               Find the talent your network can&apos;t reach.
             </h2>
-            <p className="mt-6 text-base text-gray-500 leading-relaxed max-w-md">
+            <p className="mt-6 text-base text-[var(--color-ink-secondary)] leading-relaxed max-w-md">
               Yander runs continuous outbound across markets and channels your
               team can&apos;t practically cover. You get pre-qualified
               candidates ready to interview — within days, not weeks.
@@ -68,15 +68,15 @@ export function RecruiterPricingProof() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="bg-white border border-[#E4E7EC] p-8 md:p-10 -mb-px"
+                className="bg-white border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-8 md:p-10 -mb-px"
               >
-                <span className="text-5xl md:text-6xl font-bold text-[#0a0a0a] tracking-tight leading-none">
+                <span className="font-geist font-bold text-5xl md:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-none">
                   {stat.headline}
                 </span>
-                <p className="mt-4 text-xs font-medium text-gray-500 uppercase tracking-[0.15em]">
+                <p className="mt-4 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
                   {stat.label}
                 </p>
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed max-w-md">
+                <p className="mt-2 text-sm text-[var(--color-ink-secondary)] leading-relaxed max-w-md">
                   {stat.detail}
                 </p>
               </motion.div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../ui/Container";
+import { TrackedButton } from "../ui/TrackedButton";
 import { ChevronDown } from "lucide-react";
 import { useDemoModal } from "../ui/DemoModal";
 import { recruiterFaqs } from "@/lib/faqs";
@@ -19,22 +20,22 @@ function FAQItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-[#e5e5e5] last:border-b-0">
+    <div className="border-b border-[var(--color-border-canon)] last:border-b-0">
       <button
         onClick={onToggle}
         className="w-full py-5 flex items-center justify-between text-left group"
       >
-        <span className="text-base font-medium text-[#171717] pr-4 md:pr-8 group-hover:text-gray-600 transition-colors">
+        <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
           {question}
         </span>
         <div
-          className={`w-8 h-8 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-            isOpen ? "bg-[#171717] border-[#171717]" : ""
+          className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+            isOpen ? "bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]" : ""
           }`}
         >
           <ChevronDown
             className={`w-4 h-4 transition-all duration-200 ${
-              isOpen ? "rotate-180 text-white" : "text-gray-500"
+              isOpen ? "rotate-180 text-white" : "text-[var(--color-ink-muted)]"
             }`}
           />
         </div>
@@ -48,7 +49,7 @@ function FAQItem({
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#737373] text-sm leading-relaxed pr-12">
+            <p className="pb-5 text-[var(--color-ink-muted)] text-sm leading-relaxed pr-12">
               {answer}
             </p>
           </motion.div>
@@ -76,23 +77,27 @@ export function RecruiterPricingFAQ() {
           >
             {/* Vertical rhythm rail */}
             <div
-              className="hidden lg:block absolute -left-6 top-0 bottom-0 w-px bg-gray-100"
+              className="hidden lg:block absolute -left-6 top-0 bottom-0 w-px bg-[var(--color-border-canon-subtle)]"
               aria-hidden="true"
             />
-            <p className="text-[11px] font-medium text-gray-500 uppercase tracking-[0.22em] mb-6">
+            <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-6">
               FAQ
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0a0a0a] tracking-[-0.02em] leading-[1.1]">
+            <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
               Questions?
             </h2>
-            <div className="mt-6 h-px w-12 bg-[#0a0a0a]" aria-hidden="true" />
-            <p className="mt-6 text-sm text-gray-500 leading-relaxed max-w-xs">
+            <div className="mt-6 h-px w-12 bg-[var(--color-ink-primary)]" aria-hidden="true" />
+            <p className="mt-6 text-sm text-[var(--color-ink-secondary)] leading-relaxed max-w-xs">
               Everything you need to know about Yander Recruiter pricing. Want
               to see it in action?
             </p>
-            <button
+            <TrackedButton
+              ctaId="recruiter_faq_book_demo"
+              ctaLocation="recruiter_pricing_faq"
+              ctaDestination="demo_modal"
+              ctaVariant="link"
               onClick={openDemoModal}
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[#0a0a0a] hover:opacity-60 transition-opacity group"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-ink-primary)] hover:opacity-60 transition-opacity group"
             >
               <span>Book a demo</span>
               <span
@@ -101,7 +106,7 @@ export function RecruiterPricingFAQ() {
               >
                 →
               </span>
-            </button>
+            </TrackedButton>
           </motion.div>
 
           {/* Right: accordion (8/12) */}
