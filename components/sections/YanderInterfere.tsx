@@ -6,6 +6,8 @@ import Link from "next/link"
 import { motion, type Variants } from "framer-motion"
 import { useDemoModal } from "@/components/ui/DemoModal"
 import { useWaitlistModal } from "@/components/ui/WaitlistModal"
+import { Navigation } from "@/components/Navigation"
+import { Footer as SiteFooter } from "@/components/Footer"
 import {
   ChevronDown,
   ArrowUpRight,
@@ -167,7 +169,7 @@ export function YanderInterfere() {
         letterSpacing: "-0.011em",
       }}
     >
-      <Nav />
+      <Navigation />
       <main className="relative">
         <TopGradientWash />
         <Hero />
@@ -182,7 +184,7 @@ export function YanderInterfere() {
         <ChangelogSection />
         <FinalCTA />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   )
 }
