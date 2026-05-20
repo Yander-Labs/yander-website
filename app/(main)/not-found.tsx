@@ -11,7 +11,7 @@ export default function NotFound() {
           <div className="mb-4 flex justify-center">
             <Eyebrow>404 Error</Eyebrow>
           </div>
-          <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Page not found
           </h1>
           <p className="text-lg text-[var(--color-ink-secondary)] mb-8 max-w-md mx-auto">

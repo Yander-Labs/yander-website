@@ -51,7 +51,7 @@ export default async function ComparisonsPage() {
             <div className="mb-4 flex justify-center">
               <Eyebrow>Comparisons</Eyebrow>
             </div>
-            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
               How Yander compares
             </h1>
             <p className="mt-4 text-base text-[var(--color-ink-muted)] max-w-xl mx-auto">
@@ -65,19 +65,19 @@ export default async function ComparisonsPage() {
                 <Link
                   key={comparison._id}
                   href={`/compare/${comparison.slug.current}`}
-                  className="group bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 hover:shadow-[var(--shadow-canon-card-hover)] hover:-translate-y-0.5 transition-all duration-150"
+                  className="group bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 hover:shadow-[var(--shadow-canon-card-hover)] hover:-translate-y-0.5 transition-all duration-150"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-md border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
                       <span className="text-xs font-semibold text-[var(--color-ink-primary)]">Y</span>
                     </div>
                     <span className="text-xs font-medium text-[var(--color-ink-faded)]">vs</span>
-                    <div className="w-8 h-8 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-md border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center">
                       <span className="text-xs font-semibold text-[var(--color-ink-faded)]">{comparison.competitorName[0]}</span>
                     </div>
                   </div>
 
-                  <h2 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2 group-hover:text-[var(--color-ink-secondary)] transition-colors">
+                  <h2 className="font-medium text-base text-[var(--color-ink-primary)] tracking-tight mb-2 group-hover:text-[var(--color-ink-secondary)] transition-colors">
                     Yander vs {comparison.competitorName}
                   </h2>
                   <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed line-clamp-2">

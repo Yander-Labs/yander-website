@@ -25,7 +25,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
         <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
           {question}
         </span>
-        <div className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
+        <div className={`w-8 h-8 rounded-md bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
           <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-[var(--color-ink-muted)]'}`} />
         </div>
       </button>
@@ -65,7 +65,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
               <Eyebrow>{page.industry}</Eyebrow>
             </div>
 
-            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mt-4">
+            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mt-4">
               {page.headline}
             </h1>
             <p className="mt-4 text-base md:text-lg text-[var(--color-ink-muted)] max-w-2xl mx-auto">
@@ -101,7 +101,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
+                  <p className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
                   <p className="text-sm text-[var(--color-ink-muted)] mt-1">{stat.label}</p>
                 </motion.div>
               ))}
@@ -116,7 +116,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
           <Container>
             <div className="text-center mb-12">
               <div className="flex justify-center mb-4"><Eyebrow number="01">The Problem</Eyebrow></div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                 Hiring challenges for {page.industry.toLowerCase()}
               </h2>
             </div>
@@ -129,9 +129,9 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
+                  className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
                 >
-                  <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{point.problem}</h3>
+                  <h3 className="font-medium text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{point.problem}</h3>
                   <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{point.solution}</p>
                 </motion.div>
               ))}
@@ -146,7 +146,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
           <Container>
             <div className="text-center mb-12">
               <div className="flex justify-center mb-4"><Eyebrow number="02">How Yander Helps</Eyebrow></div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                 Built for {page.industry.toLowerCase()}
               </h2>
             </div>
@@ -159,12 +159,12 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
+                  className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6"
                 >
-                  <div className="w-8 h-8 rounded-none bg-emerald-50 flex items-center justify-center mb-4">
+                  <div className="w-8 h-8 rounded-md bg-emerald-50 flex items-center justify-center mb-4">
                     <Check className="w-4 h-4 text-[var(--color-accent-alive)]" />
                   </div>
-                  <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{feat.feature}</h3>
+                  <h3 className="font-medium text-base text-[var(--color-ink-primary)] tracking-tight mb-2">{feat.feature}</h3>
                   <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{feat.description}</p>
                 </motion.div>
               ))}
@@ -184,7 +184,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <blockquote className="font-geist text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
+              <blockquote className="font-medium text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
                 &ldquo;{page.testimonial.quote}&rdquo;
               </blockquote>
               {page.testimonial.name && (
@@ -209,7 +209,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
                 <div className="flex justify-center mb-4"><Eyebrow number="03">FAQ</Eyebrow></div>
-                <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+                <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                   Frequently asked questions
                 </h2>
               </div>
@@ -219,7 +219,7 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
+                className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
               >
                 {page.faqs.map((faq, index) => (
                   <FAQItem
@@ -247,11 +247,11 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
             className="flex flex-col lg:flex-row items-center justify-between gap-8"
           >
             <div className="text-center lg:text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-none bg-white/5 border border-white/10 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
                 <Sparkles className="w-4 h-4 text-[var(--color-accent-alive)]" />
                 <span className="text-sm text-white/80">Built for {page.industry.toLowerCase()}</span>
               </div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.05]">
                 Start hiring smarter today
               </h2>
               <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
@@ -262,14 +262,14 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
             <div className="flex flex-col gap-3 w-full sm:w-auto">
               <a
                 href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <button
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
               >
                 Book a Demo
               </button>

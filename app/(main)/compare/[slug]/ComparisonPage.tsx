@@ -19,7 +19,7 @@ function YanderLogo({ size = 'md' }: { size?: 'sm' | 'md' }) {
   const dimensions = size === 'sm' ? 'w-10 h-10' : 'w-14 h-14 md:w-16 md:h-16'
   const imgSize = size === 'sm' ? 24 : 36
   return (
-    <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
+    <div className={`${dimensions} rounded-md border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
       <Image src="/logo.svg" alt="Yander" width={imgSize} height={imgSize} className="object-contain" />
     </div>
   )
@@ -31,7 +31,7 @@ function CompetitorLogo({ comparison, size = 'md' }: { comparison: Comparison; s
 
   if (comparison.competitorLogo) {
     return (
-      <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
+      <div className={`${dimensions} rounded-md border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
         <Image
           src={urlFor(comparison.competitorLogo).width(imgSize * 2).height(imgSize * 2).url()}
           alt={comparison.competitorName}
@@ -47,7 +47,7 @@ function CompetitorLogo({ comparison, size = 'md' }: { comparison: Comparison; s
   if (comparison.competitorUrl) {
     const domain = new URL(comparison.competitorUrl).hostname
     return (
-      <div className={`${dimensions} rounded-none border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
+      <div className={`${dimensions} rounded-md border border-[var(--color-border-canon)] bg-white flex items-center justify-center shadow-[var(--shadow-canon-subtle)] overflow-hidden p-2`}>
         <img
           src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
           alt={comparison.competitorName}
@@ -78,7 +78,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: {
         <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
           {question}
         </span>
-        <div className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
+        <div className={`w-8 h-8 rounded-md bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isOpen ? 'bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]' : ''}`}>
           <ChevronDown className={`w-4 h-4 transition-all duration-200 ${isOpen ? 'rotate-180 text-white' : 'text-[var(--color-ink-muted)]'}`} />
         </div>
       </button>
@@ -125,7 +125,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               <CompetitorLogo comparison={comparison} />
             </div>
 
-            <h1 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
               {comparison.headline}
             </h1>
             <p className="mt-4 text-base md:text-lg text-[var(--color-ink-muted)] max-w-2xl mx-auto">
@@ -156,12 +156,12 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
+              className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
             >
               <div className="mb-4">
                 <YanderLogo size="sm" />
               </div>
-              <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">Yander</h3>
+              <h3 className="font-medium text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">Yander</h3>
               <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.yanderSummary}</p>
             </motion.div>
 
@@ -170,12 +170,12 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
+              className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
             >
                 <div className="mb-4">
                 <CompetitorLogo comparison={comparison} size="sm" />
               </div>
-              <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">{comparison.competitorName}</h3>
+              <h3 className="font-medium text-lg text-[var(--color-ink-primary)] tracking-tight mb-2">{comparison.competitorName}</h3>
               <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.competitorSummary}</p>
             </motion.div>
           </div>
@@ -196,7 +196,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="text-center"
                 >
-                  <p className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
+                  <p className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight">{stat.value}</p>
                   <p className="text-sm text-[var(--color-ink-muted)] mt-1">{stat.label}</p>
                 </motion.div>
               ))}
@@ -213,7 +213,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               <div className="flex justify-center mb-4">
                 <Eyebrow number="01">Feature Comparison</Eyebrow>
               </div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                 How they compare
               </h2>
             </div>
@@ -223,7 +223,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto overflow-hidden rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)]"
+              className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)]"
             >
               {/* Table Header */}
               <div className="grid grid-cols-3 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-canon)]">
@@ -268,7 +268,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               <div className="flex justify-center mb-4">
                 <Eyebrow number="02">Decision Framework</Eyebrow>
               </div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                 Which one is right for you?
               </h2>
             </div>
@@ -281,9 +281,9 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
+                  className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
                 >
-                  <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose Yander if you...</h3>
+                  <h3 className="font-medium text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose Yander if you...</h3>
                   <ul className="space-y-3">
                     {comparison.chooseYander.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -304,9 +304,9 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
+                  className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
                 >
-                  <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose {comparison.competitorName} if you...</h3>
+                  <h3 className="font-medium text-lg text-[var(--color-ink-primary)] tracking-tight mb-6">Choose {comparison.competitorName} if you...</h3>
                   <ul className="space-y-3">
                     {comparison.chooseCompetitor.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -328,9 +328,9 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-8 max-w-3xl mx-auto bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
+                className="mt-8 max-w-3xl mx-auto bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-6 md:p-8"
               >
-                <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight mb-3">The bottom line</h3>
+                <h3 className="font-medium text-base text-[var(--color-ink-primary)] tracking-tight mb-3">The bottom line</h3>
                 <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed">{comparison.verdict}</p>
               </motion.div>
             )}
@@ -349,7 +349,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <blockquote className="font-geist text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
+              <blockquote className="font-medium text-xl md:text-2xl text-[var(--color-ink-primary)] leading-relaxed">
                 &ldquo;{comparison.testimonial.quote}&rdquo;
               </blockquote>
               {comparison.testimonial.name && (
@@ -376,7 +376,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                 <div className="flex justify-center mb-4">
                   <Eyebrow number="03">FAQ</Eyebrow>
                 </div>
-                <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+                <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                   Frequently asked questions
                 </h2>
               </div>
@@ -386,7 +386,7 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-white rounded-none border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
+                className="bg-white rounded-2xl border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] px-6 md:px-8"
               >
                 {comparison.faqs.map((faq, index) => (
                   <FAQItem
@@ -414,11 +414,11 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
             className="flex flex-col lg:flex-row items-center justify-between gap-8"
           >
             <div className="text-center lg:text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-none bg-white/5 border border-white/10 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
                 <Sparkles className="w-4 h-4 text-[var(--color-accent-alive)]" />
                 <span className="text-sm text-white/80">Ready to switch?</span>
               </div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.1]">
+              <h2 className="font-medium text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.05]">
                 See why teams choose Yander over {comparison.competitorName}
               </h2>
               <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
@@ -429,14 +429,14 @@ export function ComparisonPage({ comparison }: ComparisonPageProps) {
             <div className="flex flex-col gap-3 w-full sm:w-auto">
               <a
                 href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <button
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-none bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
               >
                 Book a Demo
               </button>

@@ -14,7 +14,7 @@ export default function SecurityPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Security
           </h1>
           <p className="text-sm text-[var(--color-ink-muted)] mb-8">
@@ -23,7 +23,7 @@ export default function SecurityPage() {
 
           <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Our Commitment
               </h2>
               <p className="leading-relaxed">
@@ -48,7 +48,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Infrastructure
               </h2>
               <p className="leading-relaxed">
@@ -68,7 +68,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Encryption
               </h2>
               <p className="leading-relaxed">
@@ -104,7 +104,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Authentication and Access Control
               </h2>
               <p className="leading-relaxed">
@@ -135,7 +135,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Tenant Isolation
               </h2>
               <p className="leading-relaxed">
@@ -161,7 +161,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Data Handling
               </h2>
               <p className="leading-relaxed">
@@ -198,7 +198,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Logging and Monitoring
               </h2>
               <p className="leading-relaxed">
@@ -222,7 +222,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Data Retention and Deletion
               </h2>
               <ul className="list-disc pl-5 space-y-2 mt-2">
@@ -248,7 +248,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Incident Response
               </h2>
               <p className="leading-relaxed">
@@ -276,7 +276,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Compliance
               </h2>
               <p className="leading-relaxed">
@@ -319,7 +319,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Sub-Processors
               </h2>
               <p className="leading-relaxed">
@@ -408,7 +408,7 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Responsible Disclosure
               </h2>
               <p className="leading-relaxed">
@@ -440,14 +440,14 @@ export default function SecurityPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Contact
               </h2>
               <p className="leading-relaxed">
                 Have questions about our security practices or need
                 documentation for your security review? We are here to help.
               </p>
-              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-none border border-[var(--color-border-canon)]">
+              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-2xl border border-[var(--color-border-canon)]">
                 <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>

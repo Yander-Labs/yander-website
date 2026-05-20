@@ -91,7 +91,7 @@ export function CalculatorClient() {
       <Container>
         <div className="py-20 md:py-28">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] mb-4 leading-[1.1] tracking-tight">
+            <h1 className="font-medium text-4xl md:text-5xl text-[var(--color-ink-primary)] mb-4 leading-[1.05] tracking-tight">
               Remote Hiring Cost Calculator
             </h1>
             <p className="text-lg text-[var(--color-ink-secondary)] leading-relaxed mb-3">
@@ -108,7 +108,7 @@ export function CalculatorClient() {
               {team.map((member) => (
                 <div
                   key={member.id}
-                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-4"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-2xl p-4"
                 >
                   {/* Count */}
                   <div className="flex items-center gap-2 sm:w-20">
@@ -118,7 +118,7 @@ export function CalculatorClient() {
                           count: Math.max(1, member.count - 1),
                         })
                       }
-                      className="w-8 h-8 flex items-center justify-center rounded-none border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
+                      className="w-8 h-8 flex items-center justify-center rounded-md border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
                     >
                       -
                     </button>
@@ -129,7 +129,7 @@ export function CalculatorClient() {
                       onClick={() =>
                         updateMember(member.id, { count: member.count + 1 })
                       }
-                      className="w-8 h-8 flex items-center justify-center rounded-none border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
+                      className="w-8 h-8 flex items-center justify-center rounded-md border border-[var(--color-border-canon-strong)] bg-white text-[var(--color-ink-secondary)] hover:bg-[var(--color-surface-subtle)] text-sm font-medium"
                     >
                       +
                     </button>
@@ -144,7 +144,7 @@ export function CalculatorClient() {
                           roleIndex: parseInt(e.target.value),
                         })
                       }
-                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
+                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-md bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
                     >
                       {roles.map((role, i) => (
                         <option key={role.slug} value={i}>
@@ -162,7 +162,7 @@ export function CalculatorClient() {
                       onChange={(e) =>
                         updateMember(member.id, { countryId: e.target.value })
                       }
-                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
+                      className="w-full appearance-none px-4 py-2.5 pr-10 text-sm border border-[var(--color-border-canon-strong)] rounded-md bg-white text-[var(--color-ink-primary)] outline-none focus:border-[var(--color-ink-primary)]"
                     >
                       {countries.map((country) => (
                         <option key={country.id} value={country.id}>
@@ -187,7 +187,7 @@ export function CalculatorClient() {
 
             <button
               onClick={addRole}
-              className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-[var(--color-ink-secondary)] border border-dashed border-[var(--color-border-canon-strong)] rounded-none hover:border-[var(--color-ink-primary)] hover:text-[var(--color-ink-primary)] transition-colors"
+              className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-[var(--color-ink-secondary)] border border-dashed border-[var(--color-border-canon-strong)] rounded-md hover:border-[var(--color-ink-primary)] hover:text-[var(--color-ink-primary)] transition-colors"
             >
               <Plus className="w-4 h-4" />
               Add Role
@@ -199,29 +199,29 @@ export function CalculatorClient() {
             <div className="max-w-3xl mx-auto">
               {/* Summary Cards — accent purple on "You Save" for the wow moment */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-5">
+                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-2xl p-5">
                   <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-1">
                     US Cost
                   </p>
-                  <p className="font-geist font-bold text-2xl text-[var(--color-ink-primary)] tracking-tight">
+                  <p className="font-medium text-2xl text-[var(--color-ink-primary)] tracking-tight">
                     {formatCurrencyShort(results.totalUS)}
                   </p>
                   <p className="text-xs text-[var(--color-ink-faded)] mt-1">per year</p>
                 </div>
-                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-5">
+                <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-2xl p-5">
                   <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-1">
                     Remote Cost
                   </p>
-                  <p className="font-geist font-bold text-2xl text-[var(--color-ink-primary)] tracking-tight">
+                  <p className="font-medium text-2xl text-[var(--color-ink-primary)] tracking-tight">
                     {formatCurrencyShort(results.totalOffshore)}
                   </p>
                   <p className="text-xs text-[var(--color-ink-faded)] mt-1">per year</p>
                 </div>
-                <div className="bg-[var(--color-accent-primary)] rounded-none p-5">
+                <div className="bg-[var(--color-accent-primary)] rounded-2xl p-5">
                   <p className="text-[11px] font-[var(--font-geist-mono)] text-white/60 uppercase tracking-[0.22em] mb-1">
                     You Save
                   </p>
-                  <p className="font-geist font-bold text-2xl text-white tracking-tight">
+                  <p className="font-medium text-2xl text-white tracking-tight">
                     {formatCurrencyShort(results.totalSavings)}
                   </p>
                   <p className="text-xs text-white/60 mt-1">
@@ -231,7 +231,7 @@ export function CalculatorClient() {
               </div>
 
               {/* Breakdown Table */}
-              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none overflow-hidden">
+              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-2xl overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>

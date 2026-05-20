@@ -43,7 +43,7 @@ export function BlogContent({
     <div className="space-y-6">
       {/* Header row: Title + Search + Filters */}
       <div className="flex flex-col md:flex-row gap-4 md:items-end">
-        <h1 className="font-geist font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] flex-shrink-0">
+        <h1 className="font-medium text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] flex-shrink-0">
           Yander Blog
           <span className="sr-only"> — AI recruiting, global hiring, and remote team insights</span>
         </h1>
@@ -69,7 +69,7 @@ export function BlogContent({
         <BlogTable posts={filteredPosts} />
       ) : (
         <div className="py-12 text-center">
-          <div className="w-10 h-10 rounded-none bg-[var(--color-surface-muted)] flex items-center justify-center mx-auto mb-3">
+          <div className="w-10 h-10 rounded-md bg-[var(--color-surface-muted)] flex items-center justify-center mx-auto mb-3">
             <FileText className="w-5 h-5 text-[var(--color-ink-faded)]" />
           </div>
           <h3 className="font-medium text-[var(--color-ink-primary)] text-sm mb-1">No posts found</h3>

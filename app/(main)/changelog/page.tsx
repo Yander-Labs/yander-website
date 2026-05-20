@@ -69,7 +69,7 @@ function ChangelogSkeleton() {
     <div>
       {/* Header skeleton */}
       <div className="mb-12 pb-8 border-b border-[var(--color-border-canon)]">
-        <div className="h-12 w-48 bg-gray-100 rounded-none animate-pulse mb-3" />
+        <div className="h-12 w-48 bg-gray-100 rounded-md animate-pulse mb-3" />
         <div className="h-6 w-72 max-w-full bg-gray-100 rounded animate-pulse" />
       </div>
 
@@ -78,7 +78,7 @@ function ChangelogSkeleton() {
         {[...Array(4)].map((_, i) => (
           <div
             key={i}
-            className={`rounded-none p-6 md:p-8 animate-pulse ${
+            className={`rounded-2xl p-6 md:p-8 animate-pulse ${
               i === 0 ? 'bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)]' : ''
             }`}
           >

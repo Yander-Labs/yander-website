@@ -14,7 +14,7 @@ export default function DpaPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Data Processing Agreement
           </h1>
           <p className="text-sm text-[var(--color-ink-muted)] mb-8">
@@ -23,7 +23,7 @@ export default function DpaPage() {
 
           <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 1. Introduction
               </h2>
               <p className="leading-relaxed">
@@ -55,7 +55,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 2. Definitions
               </h2>
               <p className="leading-relaxed">
@@ -112,7 +112,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 3. Scope and Roles
               </h2>
               <p className="leading-relaxed">
@@ -151,7 +151,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 4. Customer Obligations
               </h2>
               <p className="leading-relaxed">
@@ -191,7 +191,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 5. Yander&apos;s Obligations
               </h2>
               <p className="leading-relaxed">
@@ -285,7 +285,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 6. Sub-processors
               </h2>
               <p className="leading-relaxed">
@@ -406,7 +406,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 7. Data Security
               </h2>
               <p className="leading-relaxed">
@@ -461,7 +461,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 8. Data Breach Notification
               </h2>
               <p className="leading-relaxed">
@@ -506,7 +506,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 9. Data Subject Rights
               </h2>
               <p className="leading-relaxed">
@@ -551,7 +551,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 10. International Transfers
               </h2>
               <p className="leading-relaxed">
@@ -581,7 +581,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 11. Data Retention and Deletion
               </h2>
               <p className="leading-relaxed">
@@ -608,7 +608,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 12. Audit Rights
               </h2>
               <p className="leading-relaxed">
@@ -653,7 +653,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 13. Liability
               </h2>
               <p className="leading-relaxed">
@@ -673,7 +673,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 14. Term and Termination
               </h2>
               <p className="leading-relaxed">
@@ -696,7 +696,7 @@ export default function DpaPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 15. Contact
               </h2>
               <p className="leading-relaxed">

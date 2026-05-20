@@ -85,7 +85,7 @@ export default function AboutPage() {
             <div className="mb-4">
               <Eyebrow>About</Eyebrow>
             </div>
-            <h1 className="font-geist font-bold text-4xl md:text-5xl lg:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-medium text-4xl md:text-5xl lg:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-6">
               The first AI agent that recruits for you.
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-ink-secondary)] leading-relaxed max-w-2xl">
@@ -98,7 +98,7 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             <div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 What we believe
               </h2>
               <p className="text-base text-[var(--color-ink-secondary)] leading-relaxed">
@@ -109,7 +109,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Where we work
               </h2>
               <p className="text-base text-[var(--color-ink-secondary)] leading-relaxed">
@@ -119,7 +119,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <h2 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight mb-8">
+          <h2 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight mb-8">
             The team
           </h2>
           <div className="grid sm:grid-cols-2 gap-8 mb-16">
@@ -141,7 +141,7 @@ export default function AboutPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-geist font-bold text-lg text-[var(--color-ink-primary)] tracking-tight">
+                      <h3 className="font-medium text-lg text-[var(--color-ink-primary)] tracking-tight">
                         {member.name}
                       </h3>
                       <p className="text-sm text-[var(--color-ink-muted)]">{member.role}</p>
@@ -178,7 +178,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-[var(--color-border-canon)] pt-12">
-            <h2 className="font-geist font-bold text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+            <h2 className="font-medium text-2xl md:text-3xl text-[var(--color-ink-primary)] tracking-tight mb-3">
               Talk to us
             </h2>
             <p className="text-base text-[var(--color-ink-secondary)] leading-relaxed max-w-xl mb-6">

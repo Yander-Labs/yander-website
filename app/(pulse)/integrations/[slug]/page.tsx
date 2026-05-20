@@ -76,7 +76,7 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
           </Link>
 
           <div className="flex items-start gap-5">
-            <div className="flex-shrink-0 w-16 h-16 rounded-none border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center overflow-hidden p-2">
+            <div className="flex-shrink-0 w-16 h-16 rounded-md border border-[var(--color-border-canon)] bg-[var(--color-surface-subtle)] flex items-center justify-center overflow-hidden p-2">
               <Image
                 src={integration.logo}
                 alt={integration.name}
@@ -87,14 +87,14 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
             </div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+                <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
                   {integration.name}
                 </h1>
-                <span className="inline-flex items-center px-3 py-1 rounded-none text-xs font-medium bg-[var(--color-surface-muted)] text-[var(--color-ink-secondary)] border border-[var(--color-border-canon)]">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-surface-muted)] text-[var(--color-ink-secondary)] border border-[var(--color-border-canon)]">
                   {integration.categoryLabel}
                 </span>
                 {integration.isImportOnly && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-none text-xs font-medium bg-[var(--color-accent-primary)]/10 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/20">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-accent-primary)]/10 text-[var(--color-accent-primary)] border border-[var(--color-accent-primary)]/20">
                     Import Only
                   </span>
                 )}
@@ -110,7 +110,7 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
       {/* Features */}
       <section className="py-12 md:py-16 bg-[var(--color-surface-subtle)]">
         <Container>
-          <h2 className="font-geist font-bold text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
+          <h2 className="font-medium text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
             What Yander pulls from {integration.name}
           </h2>
           <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -129,19 +129,19 @@ export default async function IntegrationDetailPage({ params }: PageProps) {
       {/* How It Works */}
       <section className="py-12 md:py-16 bg-white">
         <Container>
-          <h2 className="font-geist font-bold text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
+          <h2 className="font-medium text-xl md:text-2xl text-[var(--color-ink-primary)] tracking-tight">
             How it works
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             {integration.howItWorks.map((step, idx) => (
               <div
                 key={idx}
-                className="rounded-none border border-[var(--color-border-canon)] bg-white shadow-[var(--shadow-canon-card)] p-6"
+                className="rounded-2xl border border-[var(--color-border-canon)] bg-white shadow-[var(--shadow-canon-card)] p-6"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-none bg-[var(--color-ink-primary)] text-white text-sm font-semibold mb-4 font-[var(--font-geist-mono)]">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-[var(--color-ink-primary)] text-white text-sm font-semibold mb-4 font-[var(--font-geist-mono)]">
                   {idx + 1}
                 </span>
-                <h3 className="font-geist font-bold text-base text-[var(--color-ink-primary)] tracking-tight">
+                <h3 className="font-medium text-base text-[var(--color-ink-primary)] tracking-tight">
                   {step.step}
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-ink-muted)]">

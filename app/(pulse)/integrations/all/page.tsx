@@ -42,7 +42,7 @@ export default function AllIntegrationsPage() {
               { name: "All integrations" },
             ]}
           />
-          <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+          <h1 className="font-medium text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
             All integrations
           </h1>
           <p className="mt-4 text-lg text-[var(--color-ink-secondary)] max-w-2xl">

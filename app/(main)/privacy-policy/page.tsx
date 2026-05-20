@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Privacy Policy
           </h1>
           <p className="text-sm text-[var(--color-ink-muted)] mb-8">
@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">1. Introduction</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">1. Introduction</h2>
               <p className="leading-relaxed">
                 Yander Labs, Inc. (&quot;Yander,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our remote team intelligence platform and related services (collectively, the &quot;Service&quot;).
               </p>
@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">2. Information We Collect</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">2. Information We Collect</h2>
 
               <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">2.1 Information You Provide</h3>
               <ul className="list-disc pl-5 space-y-2">
@@ -100,7 +100,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">3. How We Use Your Information</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">3. How We Use Your Information</h2>
               <p className="leading-relaxed">We use the information we collect to:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li>Provide, maintain, and improve our Service</li>
@@ -115,7 +115,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">4. Information Sharing and Disclosure</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">4. Information Sharing and Disclosure</h2>
               <p className="leading-relaxed">We do not sell your personal information. We may share your information in the following circumstances:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li><strong>With Your Organization:</strong> Aggregated team insights are shared with authorized administrators within your organization.</li>
@@ -127,7 +127,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">5. Data Security</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">5. Data Security</h2>
               <p className="leading-relaxed">
                 We implement industry-standard security measures to protect your information:
               </p>
@@ -144,14 +144,14 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">6. Data Retention</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">6. Data Retention</h2>
               <p className="leading-relaxed">
                 We retain your information for as long as your account is active or as needed to provide services. You may request deletion of your data at any time. We will delete or anonymize your information within 30 days of a verified request, unless retention is required by law.
               </p>
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">7. Your Rights and Choices</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">7. Your Rights and Choices</h2>
               <p className="leading-relaxed">Depending on your location, you may have the following rights:</p>
               <ul className="list-disc pl-5 space-y-2 mt-2">
                 <li><strong>Access:</strong> Request a copy of your personal data</li>
@@ -170,14 +170,14 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">8. International Data Transfers</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">8. International Data Transfers</h2>
               <p className="leading-relaxed">
                 Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place, including Standard Contractual Clauses approved by relevant authorities, to protect your data during international transfers.
               </p>
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">9. Cookies and Tracking Technologies</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">9. Cookies and Tracking Technologies</h2>
               <p className="leading-relaxed">
                 We use cookies and similar technologies to enhance your experience, analyze usage, and deliver relevant content. You can manage cookie preferences through your browser settings. Note that disabling cookies may affect Service functionality.
               </p>
@@ -195,21 +195,21 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">10. Third-Party Links</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">10. Third-Party Links</h2>
               <p className="leading-relaxed">
                 Our Service may contain links to third-party websites. We are not responsible for the privacy practices of these sites. We encourage you to review their privacy policies before providing any information.
               </p>
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">11. Children&apos;s Privacy</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">11. Children&apos;s Privacy</h2>
               <p className="leading-relaxed">
                 Our Service is not intended for individuals under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected data from a child, we will take steps to delete it promptly.
               </p>
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">12. California Privacy Rights</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">12. California Privacy Rights</h2>
               <p className="leading-relaxed">
                 If you are a California resident, you have the right under the California Consumer Privacy Act (CCPA) to request access to, deletion of, and information about the categories of personal information we collect. We do not sell personal information. To exercise your rights, contact us at{" "}
                 <a href="mailto:jordan@yanderlabs.com" className="text-[var(--color-ink-primary)] underline hover:no-underline">
@@ -219,14 +219,14 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">13. Changes to This Policy</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">13. Changes to This Policy</h2>
               <p className="leading-relaxed">
                 We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on this page and updating the &quot;Last updated&quot; date. Your continued use of the Service after changes constitutes acceptance of the updated policy.
               </p>
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">14. Legal Bases for Processing (GDPR)</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">14. Legal Bases for Processing (GDPR)</h2>
               <p className="leading-relaxed">
                 If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, we process your personal data on the following legal bases:
               </p>
@@ -245,12 +245,12 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">15. Sub-processors</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">15. Sub-processors</h2>
               <p className="leading-relaxed">
                 We use the following sub-processors to deliver our Service. Each sub-processor is bound by a data processing agreement and processes data only as necessary for the stated purpose.
               </p>
               <div className="mt-4 overflow-x-auto">
-                <table className="min-w-full text-sm border border-[var(--color-border-canon)] rounded-none">
+                <table className="min-w-full text-sm border border-[var(--color-border-canon)] rounded-2xl">
                   <thead>
                     <tr className="bg-[var(--color-surface-subtle)]">
                       <th className="text-left px-4 py-2.5 font-medium text-[var(--color-ink-primary)] border-b border-[var(--color-border-canon)]">Sub-processor</th>
@@ -306,7 +306,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">16. Data Processing Agreement</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">16. Data Processing Agreement</h2>
               <p className="leading-relaxed">
                 If your organization requires a Data Processing Agreement under GDPR Article 28 or similar legislation, our standard DPA is available at{" "}
                 <a href="/dpa" className="text-[var(--color-ink-primary)] underline hover:no-underline">
@@ -316,11 +316,11 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">17. Contact Us</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">17. Contact Us</h2>
               <p className="leading-relaxed">
                 If you have questions about this Privacy Policy or our data practices, please contact us:
               </p>
-              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-none border border-[var(--color-border-canon)]">
+              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-2xl border border-[var(--color-border-canon)]">
                 <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>

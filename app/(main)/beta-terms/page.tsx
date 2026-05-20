@@ -14,7 +14,7 @@ export default function BetaTermsPage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Beta Program Terms
           </h1>
           <p className="text-sm text-[var(--color-ink-muted)] mb-8">
@@ -23,7 +23,7 @@ export default function BetaTermsPage() {
 
           <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 What You&apos;re Agreeing To
               </h2>
               <p className="leading-relaxed">
@@ -35,7 +35,7 @@ export default function BetaTermsPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 What We May Access
               </h2>
               <ul className="list-disc pl-5 space-y-2 mt-2">
@@ -47,7 +47,7 @@ export default function BetaTermsPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 How We Use It
               </h2>
               <ul className="list-disc pl-5 space-y-2 mt-2">
@@ -59,7 +59,7 @@ export default function BetaTermsPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Your Data Is Protected
               </h2>
               <p className="leading-relaxed">
@@ -72,7 +72,7 @@ export default function BetaTermsPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Opting Out
               </h2>
               <p className="leading-relaxed">
@@ -90,14 +90,14 @@ export default function BetaTermsPage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">
                 Questions?
               </h2>
               <p className="leading-relaxed">
                 If you have any questions about the beta program or these terms,
                 please contact us:
               </p>
-              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-none border border-[var(--color-border-canon)]">
+              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-2xl border border-[var(--color-border-canon)]">
                 <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>

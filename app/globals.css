@@ -46,28 +46,35 @@
   /* ─────────────────────────────────────────────────────────────────
      CANONICAL DESIGN TOKENS — single source of truth (homepage-aligned)
      Reference: lib/design-tokens.ts
+     Repointed 2026-05-20 to the /yander-interfere DNA (now the root
+     homepage). Ink is #171717; secondary/muted/faded are alpha steps
+     of the same ink for a more cohesive feel; borders sit at 6-8%
+     pure black; shadows are the double-stop drop pattern.
      ───────────────────────────────────────────────────────────────── */
 
   /* Ink — text/border/dark fills */
-  --color-ink-primary: #242424;
-  --color-ink-midnight: #111111;
-  --color-ink-secondary: #525252;
-  --color-ink-muted: #737373;
-  --color-ink-faded: #898989;
-  --color-ink-disabled: #d4d4d4;
+  --color-ink-primary: #171717;
+  --color-ink-midnight: #0a0a0a;
+  --color-ink-secondary: rgba(23, 23, 23, 0.60);
+  --color-ink-muted: rgba(23, 23, 23, 0.50);
+  --color-ink-faded: rgba(23, 23, 23, 0.40);
+  --color-ink-disabled: rgba(23, 23, 23, 0.30);
 
-  /* Surface — backgrounds */
+  /* Surface — backgrounds (warmer cast matches Interfere palette) */
   --color-surface-white: #ffffff;
-  --color-surface-subtle: #fafafa;
-  --color-surface-muted: #f5f5f5;
+  --color-surface-subtle: #fafaf9;
+  --color-surface-muted: #F7F7F6;
 
-  /* Border — hairlines */
-  --color-border-canon: rgba(34, 42, 53, 0.08);
-  --color-border-canon-subtle: rgba(0, 0, 0, 0.06);
-  --color-border-canon-strong: rgba(0, 0, 0, 0.12);
+  /* Border — hairlines (now 6-8% pure black, no blue tint) */
+  --color-border-canon: rgba(0, 0, 0, 0.06);
+  --color-border-canon-subtle: rgba(0, 0, 0, 0.04);
+  --color-border-canon-strong: rgba(0, 0, 0, 0.08);
 
-  /* Accent — brand sparkle (use sparingly) */
-  --color-accent-primary: #1e1044;   /* Deep Yander purple */
+  /* Accent — brand sparkle.
+     NOTE: the /yander-interfere DNA has no purple. Charcoal #171717 is
+     the new primary CTA. The purple token below is kept for any legacy
+     usage that wants to opt back in. */
+  --color-accent-primary: #171717;   /* Charcoal (was #1e1044 purple) */
   --color-accent-rust: #E05000;      /* AI / sourced-by-Yander */
   --color-accent-alive: #22c55e;     /* live-dot, operational */
 
@@ -81,11 +88,10 @@
   --color-info: #1e40af;
   --color-info-bg: #dbeafe;
 
-  /* Homepage shadow stack — overrides the older peec.ai stack for
-     anything that aligns with the homepage. */
-  --shadow-canon-subtle: rgba(19,19,22,0.7) 0px 1px 5px -4px, rgba(34,42,53,0.08) 0px 0px 0px 1px, rgba(255,255,255,0.15) 0px 2px 0px inset;
-  --shadow-canon-card: rgba(19,19,22,0.7) 0px 1px 5px -4px, rgba(34,42,53,0.08) 0px 0px 0px 1px, rgba(34,42,53,0.05) 0px 4px 8px;
-  --shadow-canon-card-hover: rgba(19,19,22,0.7) 0px 2px 8px -4px, rgba(34,42,53,0.1) 0px 0px 0px 1px, rgba(34,42,53,0.08) 0px 8px 16px;
+  /* Shadow stack — double-stop drop (Interfere PreviewCards recipe). */
+  --shadow-canon-subtle: 0 1px 2px rgba(0,0,0,0.025);
+  --shadow-canon-card: 0 1px 2px rgba(0,0,0,0.025), 0 18px 48px -20px rgba(0,0,0,0.10);
+  --shadow-canon-card-hover: 0 1px 2px rgba(0,0,0,0.03), 0 28px 60px -20px rgba(0,0,0,0.14);
   --shadow-canon-mockup: 0 149px 199px rgba(0,0,0,0.07), 0 70px 96px rgba(0,0,0,0.05), 0 35px 48px rgba(0,0,0,0.04), 0 17px 24px rgba(0,0,0,0.03), 0 8px 12px rgba(0,0,0,0.02), 0 4px 6px rgba(0,0,0,0.015), inset 0 0 0 0.5px rgba(0,0,0,0.04);
 
   /* Easing & duration */

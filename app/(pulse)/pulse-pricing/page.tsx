@@ -56,7 +56,7 @@ export default function PricingPage() {
             <div className="mb-4 flex justify-center">
               <Eyebrow>Pulse Pricing</Eyebrow>
             </div>
-            <h1 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+            <h1 className="font-medium text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05]">
               One dashboard for your team's performance
             </h1>
           </AnimatedSection>

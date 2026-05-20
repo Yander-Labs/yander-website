@@ -41,7 +41,7 @@ export function PlaybookClient() {
       <main className="min-h-screen flex items-center">
         <Container size="narrow">
           <div className="py-24 md:py-32 text-center max-w-xl mx-auto">
-            <h2 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+            <h2 className="font-medium text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
               You&apos;re in.
             </h2>
             <p className="text-lg text-[var(--color-ink-secondary)] mb-10 leading-relaxed">
@@ -81,7 +81,7 @@ export function PlaybookClient() {
           <div className="flex flex-col md:flex-row md:gap-16 md:items-start">
             {/* Left: headline + subheadline (desktop) */}
             <div className="md:flex-1">
-              <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4 leading-[1.15] tracking-tight">
+              <h1 className="font-medium text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4 leading-[1.15] tracking-tight">
                 The Remote Offshore Talent Playbook
               </h1>
               <p className="text-lg text-[var(--color-ink-secondary)] mb-8 md:mb-6 leading-relaxed">
@@ -110,8 +110,8 @@ export function PlaybookClient() {
 
             {/* Right: form (desktop) */}
             <div className="md:flex-1 md:max-w-md">
-              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-none p-6 md:p-8 shadow-[var(--shadow-canon-card)]">
-                <div className="mb-6 rounded-none overflow-hidden border border-[var(--color-border-canon)]">
+              <div className="bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] rounded-2xl p-6 md:p-8 shadow-[var(--shadow-canon-card)]">
+                <div className="mb-6 rounded-xl overflow-hidden border border-[var(--color-border-canon)]">
                   <Image
                     src="/playbook-preview.png"
                     alt="Preview of The Remote Offshore Talent Playbook"
@@ -135,7 +135,7 @@ export function PlaybookClient() {
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="Your name"
                       required
-                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
+                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-md bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
                     />
                   </div>
                   <div className="mb-6">
@@ -152,7 +152,7 @@ export function PlaybookClient() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@company.com"
                       required
-                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-none bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
+                      className="w-full px-4 py-3 text-base border border-[var(--color-border-canon-strong)] rounded-md bg-white text-[var(--color-ink-primary)] outline-none transition-colors focus:border-[var(--color-ink-primary)] placeholder:text-[var(--color-ink-faded)]"
                     />
                   </div>
                   <Button

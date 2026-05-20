@@ -12,46 +12,55 @@
 
 // ─── Colors ─────────────────────────────────────────────────────────
 
-/** Ink — the dark palette used for text, primary buttons, borders. */
+/** Ink — the dark palette used for text, primary buttons, borders.
+ * Repointed 2026-05-20 to the /yander-interfere DNA: solid #171717 for
+ * primary, alpha steps of the same ink for secondary/muted/faded so the
+ * palette stays cohesive instead of drifting through gray-X stops. */
 export const ink = {
-  /** Headlines, primary buttons (#242424). Cal.com-charcoal. */
-  primary: "#242424",
-  /** Reserved for the darkest elements — final-CTA backgrounds (#111111). */
-  midnight: "#111111",
-  /** Body copy on light bg (#525252). */
-  secondary: "#525252",
-  /** De-emphasized body, caption text (#737373). */
-  muted: "#737373",
-  /** Tertiary labels, faded metadata (#898989). */
-  faded: "#898989",
-  /** Disabled state, dividers in subtle contexts (#d4d4d4). */
-  disabled: "#d4d4d4",
+  /** Headlines, primary buttons, borders (#171717). */
+  primary: "#171717",
+  /** Darkest elements — dark CTA backgrounds (#0a0a0a). */
+  midnight: "#0a0a0a",
+  /** Body copy on light bg — 60% black. */
+  secondary: "rgba(23, 23, 23, 0.60)",
+  /** De-emphasized body, caption text — 50% black. */
+  muted: "rgba(23, 23, 23, 0.50)",
+  /** Tertiary labels, faded metadata — 40% black. */
+  faded: "rgba(23, 23, 23, 0.40)",
+  /** Disabled state, dividers in subtle contexts — 30% black. */
+  disabled: "rgba(23, 23, 23, 0.30)",
 } as const
 
-/** Surface — backgrounds and panel fills. */
+/** Surface — backgrounds and panel fills. Slight warm cast to match
+ * the Interfere palette. */
 export const surface = {
   /** Default page bg. */
   white: "#ffffff",
-  /** Light neutral — section backgrounds, hover states (#fafafa). */
-  subtle: "#fafafa",
-  /** One step darker — comparison cards, inert panels (#f5f5f5). */
-  muted: "#f5f5f5",
+  /** Light neutral — section backgrounds, hover states. */
+  subtle: "#fafaf9",
+  /** One step darker — comparison cards, inert panels. */
+  muted: "#F7F7F6",
 } as const
 
-/** Borders — hairlines, dividers, container outlines. */
+/** Borders — hairlines, dividers, container outlines. Now 6-8% pure
+ * black (no blue tint). */
 export const border = {
-  /** Default — most cards and dividers (#e5e5e5 ~ rgba(0,0,0,0.07)). */
-  default: "rgba(34, 42, 53, 0.08)",
-  /** Lighter, used inside cards (#f5f5f5). */
-  subtle: "rgba(0, 0, 0, 0.06)",
+  /** Default — most cards and dividers. */
+  default: "rgba(0, 0, 0, 0.06)",
+  /** Lighter, used inside cards. */
+  subtle: "rgba(0, 0, 0, 0.04)",
   /** Stronger, for interactive button outlines. */
-  strong: "rgba(0, 0, 0, 0.12)",
+  strong: "rgba(0, 0, 0, 0.08)",
 } as const
 
-/** Accent — used sparingly for the brand "wow" moments. */
+/** Accent.
+ * NOTE: /yander-interfere has no purple — primary CTA is charcoal #171717.
+ * `accent.purple` is preserved as a legacy escape hatch only. */
 export const accent = {
-  /** Deep purple — Yander's primary brand accent (#1e1044). */
-  primary: "#1e1044",
+  /** Charcoal — primary CTA bg (#171717). */
+  primary: "#171717",
+  /** Legacy deep purple — opt-in only (#1e1044). */
+  purple: "#1e1044",
   /** Warm orange — AI/Sparkle / Yander-suggests / sourced-by-Yander. */
   rust: "#E05000",
   /** Live-dot green — "Available", "operational" indicators. */

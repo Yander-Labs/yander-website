@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
     <section className="py-20 md:py-28">
       <Container size="narrow">
         <div className="prose prose-gray max-w-none">
-          <h1 className="font-geist font-bold text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-4">
+          <h1 className="font-medium text-3xl md:text-4xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-4">
             Terms of Service
           </h1>
           <p className="text-sm text-[var(--color-ink-muted)] mb-8">
@@ -23,7 +23,7 @@ export default function TermsOfServicePage() {
 
           <div className="space-y-8 text-[var(--color-ink-secondary)]">
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">1. Acceptance of Terms</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">1. Acceptance of Terms</h2>
               <p className="leading-relaxed">
                 Welcome to Yander. These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and Yander Labs, Inc. (&quot;Yander,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) governing your access to and use of our remote team intelligence platform, website, and related services (collectively, the &quot;Service&quot;).
               </p>
@@ -33,7 +33,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">2. Description of Service</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">2. Description of Service</h2>
               <p className="leading-relaxed">
                 Yander provides a remote team intelligence platform that helps organizations understand team engagement, collaboration patterns, and workplace health through integration with existing workplace tools. Our Service processes data from connected workplace tools — including communication content, calendar details, and meeting transcripts — using AI to generate actionable insights for managers and team leads. Raw communication content is not displayed to users; only AI-extracted summaries and engagement scores are surfaced.
               </p>
@@ -43,7 +43,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">3. Account Registration</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">3. Account Registration</h2>
               <p className="leading-relaxed">
                 To use certain features of the Service, you must create an account. When registering, you agree to:
               </p>
@@ -60,7 +60,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">4. Subscription and Payment</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">4. Subscription and Payment</h2>
 
               <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">4.1 Subscription Plans</h3>
               <p className="leading-relaxed">
@@ -84,7 +84,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">5. Acceptable Use</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">5. Acceptable Use</h2>
               <p className="leading-relaxed">
                 You agree to use the Service only for lawful purposes and in accordance with these Terms. You agree not to:
               </p>
@@ -103,7 +103,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">6. Intellectual Property</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">6. Intellectual Property</h2>
 
               <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">6.1 Our Intellectual Property</h3>
               <p className="leading-relaxed">
@@ -122,7 +122,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">7. Your Data</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">7. Your Data</h2>
               <p className="leading-relaxed">
                 You retain ownership of any data you provide to the Service. By using the Service, you grant us a limited license to process your data solely to provide and improve the Service. Our collection and use of data is governed by our Privacy Policy.
               </p>
@@ -132,7 +132,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">8. Third-Party Integrations</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">8. Third-Party Integrations</h2>
               <p className="leading-relaxed">
                 The Service may integrate with third-party applications and services (such as Slack, Google Workspace, Zoom, Notion, and others). Your use of these integrations is subject to the terms and privacy policies of those third parties. We are not responsible for the availability, accuracy, or practices of third-party services.
               </p>
@@ -142,7 +142,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">9. Disclaimer of Warranties</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">9. Disclaimer of Warranties</h2>
               <p className="leading-relaxed">
                 THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
               </p>
@@ -152,7 +152,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">10. Limitation of Liability</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">10. Limitation of Liability</h2>
               <p className="leading-relaxed">
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, YANDER LABS, INC. AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR GOODWILL, ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICE.
               </p>
@@ -165,7 +165,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">11. Indemnification</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">11. Indemnification</h2>
               <p className="leading-relaxed">
                 You agree to indemnify, defend, and hold harmless Yander Labs, Inc. and its officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses (including reasonable attorneys&apos; fees) arising out of or related to:
               </p>
@@ -178,7 +178,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">12. Dispute Resolution</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">12. Dispute Resolution</h2>
 
               <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">12.1 Binding Arbitration</h3>
               <p className="leading-relaxed">
@@ -197,7 +197,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">13. Termination</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">13. Termination</h2>
               <p className="leading-relaxed">
                 You may terminate your account at any time by contacting us or through your account settings. We may suspend or terminate your access to the Service immediately, without prior notice, if we believe you have violated these Terms or for any other reason at our sole discretion.
               </p>
@@ -207,7 +207,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">14. Changes to Terms</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">14. Changes to Terms</h2>
               <p className="leading-relaxed">
                 We may update these Terms from time to time. We will notify you of material changes by posting the updated Terms on this page and updating the &quot;Last updated&quot; date. For significant changes, we may also notify you by email or through the Service.
               </p>
@@ -217,7 +217,7 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">15. General Provisions</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">15. General Provisions</h2>
 
               <h3 className="font-medium text-[var(--color-ink-primary)] mt-4 mb-2">15.1 Governing Law</h3>
               <p className="leading-relaxed">
@@ -246,11 +246,11 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-geist font-bold text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">16. Contact Us</h2>
+              <h2 className="font-medium text-xl text-[var(--color-ink-primary)] tracking-tight mb-3">16. Contact Us</h2>
               <p className="leading-relaxed">
                 If you have questions about these Terms of Service, please contact us:
               </p>
-              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-none border border-[var(--color-border-canon)]">
+              <div className="mt-3 p-4 bg-[var(--color-surface-subtle)] rounded-2xl border border-[var(--color-border-canon)]">
                 <p className="font-medium text-[var(--color-ink-primary)]">Yander Labs, Inc.</p>
                 <p className="mt-1">2261 Market Street STE 46212</p>
                 <p>San Francisco, CA 94114</p>

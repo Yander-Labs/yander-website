@@ -17,7 +17,7 @@ export function ChangelogContent({
     <div>
       {/* Page Header */}
       <div className="mb-12 pb-8 border-b border-[var(--color-border-canon)]">
-        <h1 className="font-geist font-bold text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1] mb-3">
+        <h1 className="font-medium text-4xl md:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.05] mb-3">
           Changelog
         </h1>
         <p className="text-lg text-[var(--color-ink-secondary)] max-w-2xl">
