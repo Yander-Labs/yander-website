@@ -6,22 +6,55 @@ import Image from "next/image";
 import { Container } from "./ui/Container";
 import { TrackedLink } from "./ui/TrackedLink";
 import { TrackedButton } from "./ui/TrackedButton";
+import { CTAButtons, DemoButton, GetStartedButton } from "./ui/CTAButtons";
 import { cn } from "@/lib/utils";
 import { X, Menu, ChevronDown } from "lucide-react";
 import { useDemoModal } from "./ui/DemoModal";
 
 const productLinks = [
-  { label: "Yander AI Recruiter", href: "/", description: "AI sourcing and vetting for global hires." },
-  { label: "Yander Pulse", href: "/pulse", description: "Real-time team performance intelligence." },
-  { label: "Integrations", href: "/integrations", description: "Slack, Notion, ClickUp, and more." },
-  { label: "Cost Calculator", href: "/calculator", description: "Compare global hiring costs." },
+  {
+    label: "Yander AI Recruiter",
+    href: "/",
+    description: "AI sourcing and vetting for global hires.",
+  },
+  {
+    label: "Yander Pulse",
+    href: "/pulse",
+    description: "Real-time team performance intelligence.",
+  },
+  {
+    label: "Integrations",
+    href: "/integrations",
+    description: "Slack, Notion, ClickUp, and more.",
+  },
+  {
+    label: "Cost Calculator",
+    href: "/calculator",
+    description: "Compare global hiring costs.",
+  },
 ];
 
 const resourcesLinks = [
-  { label: "Blog", href: "/blog", description: "AI recruiting and global hiring insights." },
-  { label: "Compare", href: "/compare", description: "Yander vs other hiring tools." },
-  { label: "Changelog", href: "/changelog", description: "Every product release." },
-  { label: "Remote Hiring Playbook", href: "/remote-hiring-playbook", description: "Free 2026 guide." },
+  {
+    label: "Blog",
+    href: "/blog",
+    description: "AI recruiting and global hiring insights.",
+  },
+  {
+    label: "Compare",
+    href: "/compare",
+    description: "Yander vs other hiring tools.",
+  },
+  {
+    label: "Changelog",
+    href: "/changelog",
+    description: "Every product release.",
+  },
+  {
+    label: "Remote Hiring Playbook",
+    href: "/remote-hiring-playbook",
+    description: "Free 2026 guide.",
+  },
 ];
 
 function DesktopDropdown({
@@ -56,7 +89,10 @@ function DesktopDropdown({
       >
         {label}
         <ChevronDown
-          className={cn("w-3.5 h-3.5 transition-transform", open && "rotate-180")}
+          className={cn(
+            "w-3.5 h-3.5 transition-transform",
+            open && "rotate-180",
+          )}
           aria-hidden
         />
       </button>
@@ -65,7 +101,7 @@ function DesktopDropdown({
           "absolute left-0 top-full pt-3 min-w-[280px] transition-all duration-150",
           open
             ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-1 pointer-events-none"
+            : "opacity-0 translate-y-1 pointer-events-none",
         )}
       >
         <div className="bg-white border border-[#E4E7EC] rounded-lg shadow-elevated overflow-hidden">
@@ -110,7 +146,7 @@ export function Navigation() {
           "fixed left-0 right-0 z-50 transition-all duration-200 top-0",
           scrolled
             ? "bg-white/95 backdrop-blur-md border-b border-[#E4E7EC] py-3"
-            : "bg-transparent py-5"
+            : "bg-transparent py-5",
         )}
       >
         <Container>
@@ -145,27 +181,9 @@ export function Navigation() {
               </div>
             </div>
 
-            {/* Right: CTAs */}
-            <div className="hidden md:flex items-center gap-3">
-              <TrackedButton
-                ctaId="nav_book_demo"
-                ctaLocation="nav"
-                ctaDestination="demo_modal"
-                ctaVariant="ghost"
-                onClick={openDemoModal}
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-4 py-2.5 text-sm min-h-[44px]"
-              >
-                Book a Demo
-              </TrackedButton>
-              <TrackedLink
-                ctaId="nav_try_free"
-                ctaLocation="nav"
-                ctaVariant="primary"
-                href="/pricing"
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-4 py-2.5 text-sm min-h-[44px]"
-              >
-                Try for free
-              </TrackedLink>
+            {/* Right: CTAs — uses canonical site-wide CTA pair */}
+            <div className="hidden md:flex items-center">
+              <CTAButtons ctaLocation="nav" />
             </div>
 
             {/* Mobile Menu Button */}
@@ -184,7 +202,9 @@ export function Navigation() {
       <div
         className={cn(
           "fixed inset-0 z-[70] md:hidden transition-opacity duration-300",
-          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          mobileMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
         )}
       >
         {/* Backdrop */}
@@ -197,7 +217,7 @@ export function Navigation() {
         <div
           className={cn(
             "absolute top-0 right-0 h-full w-[320px] max-w-[85vw] bg-white shadow-xl transition-transform duration-300 ease-out overflow-y-auto",
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
           <div className="flex flex-col h-full">
@@ -264,31 +284,19 @@ export function Navigation() {
               </Link>
             </div>
 
-            {/* Drawer Footer */}
+            {/* Drawer Footer — mobile CTAs (full-width, stacked) using
+                canonical site-wide CTA pair via the single-button variants. */}
             <div className="p-4 border-t border-[#E4E7EC] space-y-3">
-              <TrackedButton
-                ctaId="nav_book_demo"
+              <DemoButton
                 ctaLocation="nav_mobile"
-                ctaDestination="demo_modal"
-                ctaVariant="ghost"
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none text-gray-900 border border-transparent hover:border-gray-900 px-5 py-3 text-sm min-h-[44px] w-full"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openDemoModal();
-                }}
-              >
-                Book a Demo
-              </TrackedButton>
-              <TrackedLink
-                ctaId="nav_try_free"
-                ctaLocation="nav_mobile"
-                ctaVariant="primary"
-                href="/pricing"
+                className="w-full justify-center"
                 onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none bg-gray-900 text-white hover:bg-gray-800 px-5 py-3 text-sm min-h-[44px] w-full"
-              >
-                Try for free
-              </TrackedLink>
+              />
+              <GetStartedButton
+                ctaLocation="nav_mobile"
+                className="w-full justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              />
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion, type Variants } from "framer-motion"
 import { useDemoModal } from "@/components/ui/DemoModal"
 import { useWaitlistModal } from "@/components/ui/WaitlistModal"
+import { CTAButtons } from "@/components/ui/CTAButtons"
 import {
   ChevronDown,
   ArrowUpRight,
@@ -290,7 +291,6 @@ function YanderMark({ className }: { className?: string }) {
 /* ─────────────────────────────── HERO ─────────────────────────────── */
 
 function Hero() {
-  const { openModal: openDemoModal } = useDemoModal()
   return (
     <section className="relative">
       <div className="relative mx-auto max-w-[1240px] px-6 pt-24 pb-10 lg:pt-32 lg:pb-14">
@@ -319,20 +319,9 @@ function Hero() {
               animate="visible"
               variants={fadeUp}
               transition={{ delay: 0.7, duration: 0.7, ease: EASE_OUT }}
-              className="flex items-center gap-3"
             >
-              <button
-                onClick={openDemoModal}
-                className="inline-flex h-10 items-center rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-6 text-[13.5px] font-medium text-[#171717] transition-colors hover:border-[#171717]/30"
-              >
-                Book a demo
-              </button>
-              <Link
-                href="/pricing"
-                className="inline-flex h-10 items-center rounded-md bg-[#171717] px-6 text-[13.5px] font-medium text-white transition-colors hover:bg-black"
-              >
-                Get started free
-              </Link>
+              {/* Canonical site-wide CTA pair — same as nav, footer, every section */}
+              <CTAButtons ctaLocation="homepage_hero" />
             </motion.div>
           </div>
         </div>
@@ -1960,7 +1949,6 @@ function PreviewRubric() {
 /* ─────────────────────────────── FINAL CTA ─────────────────────────────── */
 
 function FinalCTA() {
-  const { openModal: openDemoModal } = useDemoModal()
   return (
     <section className="py-28 lg:py-36">
       <motion.div
@@ -1985,20 +1973,10 @@ function FinalCTA() {
         </motion.p>
         <motion.div
           variants={fadeUp}
-          className="mt-9 flex items-center justify-center gap-3"
+          className="mt-9 flex items-center justify-center"
         >
-          <button
-            onClick={openDemoModal}
-            className="inline-flex h-11 items-center rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-6 text-[14px] font-medium text-[#171717] transition-colors hover:border-[#171717]/30"
-          >
-            Book a demo
-          </button>
-          <Link
-            href="/pricing"
-            className="inline-flex h-11 items-center rounded-md bg-[#171717] px-6 text-[14px] font-medium text-white transition-colors hover:bg-black"
-          >
-            Get started free
-          </Link>
+          {/* Canonical CTA pair — size="lg" for the final CTA prominence */}
+          <CTAButtons ctaLocation="homepage_final_cta" size="lg" />
         </motion.div>
       </motion.div>
     </section>
