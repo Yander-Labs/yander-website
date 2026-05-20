@@ -25,13 +25,16 @@
  * directly. Keep deviation rare — consistency is the win.
  */
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import { useDemoModal } from "./DemoModal";
+import { useAuthState } from "@/components/AuthStateProvider";
 import { TrackedButton } from "./TrackedButton";
 import { TrackedLink } from "./TrackedLink";
+
+/** Destination for logged-in users — drops them straight on the product. */
+const DASHBOARD_HREF = "https://app.yander.ai/";
 
 export type CTAButtonsSize = "default" | "lg";
 
@@ -42,7 +45,11 @@ interface CTAButtonsProps {
   size?: CTAButtonsSize;
   /** Extra classes on the wrapping flex container (margin, alignment, etc.). */
   className?: string;
-  /** Override the destination of the primary "Get started free" button. Defaults to /pricing. */
+  /** Override the destination of the primary "Get started free" button.
+   * Defaults to the app sign-in page so users skip the pricing detour and
+   * land directly on Clerk auth (which handles sign-up + sign-in in one
+   * flow). Override per-surface only when a specific funnel needs a
+   * pricing handoff (e.g. plan-specific checkout flows). */
   getStartedHref?: string;
   /**
    * Optional override for the primary CTA label. ONLY use when there's a
@@ -74,12 +81,33 @@ export function CTAButtons({
   ctaLocation,
   size = "default",
   className,
-  getStartedHref = "/pricing",
+  getStartedHref = "https://app.yander.ai/sign-in",
   getStartedLabel = "Get started free",
   demoLabel = "Book a demo",
 }: CTAButtonsProps) {
   const { openModal: openDemoModal } = useDemoModal();
+  const { isLoggedIn } = useAuthState();
   const s = sizeStyles[size];
+
+  // Auth-aware swap: when the visitor already has an app.yander.ai session
+  // cookie on .yander.ai, collapse the "Book a demo + Get started free"
+  // pair into a single "Open dashboard" CTA that drops them right into
+  // the product. Server-rendered, no flash.
+  if (isLoggedIn) {
+    return (
+      <div className={cn("flex items-center", s.gap, className)}>
+        <TrackedLink
+          ctaId={`${ctaLocation}_open_dashboard`}
+          ctaLocation={ctaLocation}
+          ctaVariant="primary"
+          href={DASHBOARD_HREF}
+          className={cn(s.button, "bg-[#171717] text-white hover:bg-black")}
+        >
+          Open dashboard
+        </TrackedLink>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("flex items-center", s.gap, className)}>
@@ -134,7 +162,31 @@ export function DemoButton({
   onClick,
 }: SingleCTAProps) {
   const { openModal: openDemoModal } = useDemoModal();
+  const { isLoggedIn } = useAuthState();
   const s = sizeStyles[size];
+
+  // Logged-in users don't need a "Book a demo" CTA — they're already a
+  // customer. Swap to "Open dashboard" so the mobile drawer stays
+  // useful instead of showing a stale CTA.
+  if (isLoggedIn) {
+    return (
+      <TrackedLink
+        ctaId={`${ctaLocation}_open_dashboard`}
+        ctaLocation={ctaLocation}
+        ctaVariant="primary"
+        href={DASHBOARD_HREF}
+        onClick={onClick}
+        className={cn(
+          s.button,
+          "bg-[#171717] text-white hover:bg-black",
+          className,
+        )}
+      >
+        Open dashboard
+      </TrackedLink>
+    );
+  }
+
   return (
     <TrackedButton
       ctaId={`${ctaLocation}_book_demo`}
@@ -164,17 +216,27 @@ export function GetStartedButton({
   ctaLocation,
   size = "default",
   className,
-  href = "/pricing",
+  href = "https://app.yander.ai/sign-in",
   children = "Get started free",
   onClick,
 }: GetStartedButtonProps) {
+  const { isLoggedIn } = useAuthState();
   const s = sizeStyles[size];
+
+  // Logged-in: send to dashboard with "Open dashboard" label instead of
+  // a sign-in flow. Same shape, same charcoal styling.
+  const finalHref = isLoggedIn ? DASHBOARD_HREF : href;
+  const finalLabel = isLoggedIn ? "Open dashboard" : children;
+  const finalCtaId = isLoggedIn
+    ? `${ctaLocation}_open_dashboard`
+    : `${ctaLocation}_get_started`;
+
   return (
     <TrackedLink
-      ctaId={`${ctaLocation}_get_started`}
+      ctaId={finalCtaId}
       ctaLocation={ctaLocation}
       ctaVariant="primary"
-      href={href}
+      href={finalHref}
       onClick={onClick}
       className={cn(
         s.button,
@@ -182,7 +244,7 @@ export function GetStartedButton({
         className,
       )}
     >
-      {children}
+      {finalLabel}
     </TrackedLink>
   );
 }
