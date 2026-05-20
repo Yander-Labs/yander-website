@@ -53,13 +53,13 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-[#E4E7EC]">
+    <footer className="bg-[#fafaf9] border-t border-[rgba(0,0,0,0.06)]">
       <Container>
         <div className="py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
             {/* Brand Column */}
             <div className="col-span-2 md:col-span-1">
-              <Link href="/" className="flex items-center text-gray-900">
+              <Link href="/" className="flex items-center text-[#171717]">
                 <Image
                   src="/logo.svg"
                   alt="Yander"
@@ -68,7 +68,7 @@ export function Footer() {
                   className="h-7 w-auto"
                 />
               </Link>
-              <p className="mt-4 text-sm text-gray-500 max-w-xs">
+              <p className="mt-4 text-sm text-[#171717]/50 max-w-xs">
                 Find A-player talent worldwide with AI. Hire faster, spend less, and build teams that last.
               </p>
               <div className="mt-6 flex items-center gap-3">
@@ -76,7 +76,7 @@ export function Footer() {
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-9 h-9 rounded-none bg-white border border-[#E4E7EC] flex items-center justify-center text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-all"
+                    className="w-9 h-9 rounded-md bg-white border border-[rgba(0,0,0,0.06)] flex items-center justify-center text-[#171717]/50 hover:text-[#171717] hover:border-[#171717]/30 transition-all"
                     aria-label={social.label}
                   >
                     <social.icon className="w-4 h-4" />
@@ -87,7 +87,7 @@ export function Footer() {
 
             {/* Product Links */}
             <div>
-              <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+              <h4 className="text-xs font-medium text-[#171717]/40 uppercase tracking-wider mb-4">
                 Product
               </h4>
               <ul className="space-y-3">
@@ -95,7 +95,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                      className="text-sm text-[#171717]/60 hover:text-[#171717] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -106,7 +106,7 @@ export function Footer() {
 
             {/* Company Links */}
             <div>
-              <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+              <h4 className="text-xs font-medium text-[#171717]/40 uppercase tracking-wider mb-4">
                 Company
               </h4>
               <ul className="space-y-3">
@@ -120,7 +120,7 @@ export function Footer() {
                           ctaLocation="footer"
                           ctaVariant="link"
                           href={link.href}
-                          className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                          className="text-sm text-[#171717]/60 hover:text-[#171717] transition-colors"
                         >
                           {link.label}
                         </TrackedLink>
@@ -131,7 +131,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm text-[#171717]/60 hover:text-[#171717] transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -143,30 +143,30 @@ export function Footer() {
 
             {/* Resources Links */}
             <div>
-              <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+              <h4 className="text-xs font-medium text-[#171717]/40 uppercase tracking-wider mb-4">
                 Resources
               </h4>
               <ul className="space-y-3">
                 {footerLinks.resources.map((link) => (
                   <li key={link.label}>
                     {"comingSoon" in link && link.comingSoon ? (
-                      <span className="inline-flex items-center gap-2 text-sm text-gray-400 cursor-default">
+                      <span className="inline-flex items-center gap-2 text-sm text-[#171717]/40 cursor-default">
                         {link.label}
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-none bg-gray-100 text-gray-400 font-medium">
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-[#F7F7F6] text-[#171717]/40 font-medium">
                           Soon
                         </span>
                       </span>
                     ) : link.href.startsWith('/') ? (
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm text-[#171717]/60 hover:text-[#171717] transition-colors"
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <a
                         href={link.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm text-[#171717]/60 hover:text-[#171717] transition-colors"
                       >
                         {link.label}
                       </a>
@@ -179,33 +179,33 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-[#E4E7EC]">
+        <div className="py-6 border-t border-[rgba(0,0,0,0.06)]">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[#171717]/50">
               &copy; {new Date().getFullYear()} Yander. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link
                 href="/privacy-policy"
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                className="text-sm text-[#171717]/50 hover:text-[#171717] transition-colors"
               >
                 Privacy
               </Link>
               <Link
                 href="/terms-of-service"
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                className="text-sm text-[#171717]/50 hover:text-[#171717] transition-colors"
               >
                 Terms
               </Link>
               <Link
                 href="/dpa"
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                className="text-sm text-[#171717]/50 hover:text-[#171717] transition-colors"
               >
                 DPA
               </Link>
               <Link
                 href="/security"
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                className="text-sm text-[#171717]/50 hover:text-[#171717] transition-colors"
               >
                 Security
               </Link>

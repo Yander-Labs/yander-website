@@ -85,7 +85,7 @@ function DesktopDropdown({
         type="button"
         aria-haspopup="true"
         aria-expanded={open}
-        className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+        className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-[13px] font-medium text-[#171717]/60 transition-colors hover:text-[#171717]"
       >
         {label}
         <ChevronDown
@@ -104,17 +104,17 @@ function DesktopDropdown({
             : "opacity-0 translate-y-1 pointer-events-none",
         )}
       >
-        <div className="bg-white border border-[#E4E7EC] rounded-lg shadow-elevated overflow-hidden">
+        <div className="bg-white border border-[rgba(0,0,0,0.06)] rounded-lg shadow-elevated overflow-hidden">
           {items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="block px-4 py-3 hover:bg-gray-50 transition-colors group"
+              className="block px-4 py-3 hover:bg-[#F7F7F6] transition-colors group"
             >
-              <span className="block text-sm font-medium text-gray-900 group-hover:text-gray-700">
+              <span className="block text-sm font-medium text-[#171717] group-hover:text-[#171717]/70">
                 {item.label}
               </span>
-              <span className="block text-xs text-gray-500 mt-0.5">
+              <span className="block text-xs text-[#171717]/50 mt-0.5">
                 {item.description}
               </span>
             </Link>
@@ -145,7 +145,7 @@ export function Navigation() {
         className={cn(
           "fixed left-0 right-0 z-50 transition-all duration-200 top-0",
           scrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-[#E4E7EC] py-3"
+            ? "bg-white/95 backdrop-blur-md border-b border-[rgba(0,0,0,0.06)] py-3"
             : "bg-transparent py-5",
         )}
       >
@@ -153,7 +153,7 @@ export function Navigation() {
           <div className="flex items-center justify-between">
             {/* Left: Logo + primary links */}
             <div className="flex items-center gap-8">
-              <Link href="/" className="flex items-center text-gray-900">
+              <Link href="/" className="flex items-center text-[#171717]">
                 <Image
                   src="/logo.svg"
                   alt="Yander"
@@ -163,18 +163,18 @@ export function Navigation() {
                   priority
                 />
               </Link>
-              <div className="hidden md:flex items-center gap-6">
+              <div className="hidden md:flex items-center gap-1">
                 <DesktopDropdown label="Product" items={productLinks} />
                 <Link
                   href="/pricing"
-                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                  className="rounded-md px-3 py-1.5 text-[13px] font-medium text-[#171717]/60 transition-colors hover:text-[#171717]"
                 >
                   Pricing
                 </Link>
                 <DesktopDropdown label="Resources" items={resourcesLinks} />
                 <Link
                   href="/about"
-                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                  className="rounded-md px-3 py-1.5 text-[13px] font-medium text-[#171717]/60 transition-colors hover:text-[#171717]"
                 >
                   About
                 </Link>
@@ -189,7 +189,7 @@ export function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -mr-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-none transition-colors"
+              className="md:hidden p-2 -mr-2 text-[#171717]/60 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
@@ -222,11 +222,11 @@ export function Navigation() {
         >
           <div className="flex flex-col h-full">
             {/* Drawer Header */}
-            <div className="flex items-center justify-between p-4 border-b border-[#E4E7EC]">
-              <span className="text-sm font-semibold text-gray-900">Menu</span>
+            <div className="flex items-center justify-between p-4 border-b border-[rgba(0,0,0,0.06)]">
+              <span className="text-sm font-semibold text-[#171717]">Menu</span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 -mr-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-none transition-colors"
+                className="p-2 -mr-2 text-[#171717]/50 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -238,11 +238,11 @@ export function Navigation() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                className="block px-4 py-3 text-sm font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
               >
                 Home
               </Link>
-              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#171717]/40">
                 Product
               </p>
               {productLinks.map((item) => (
@@ -250,7 +250,7 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                  className="block px-4 py-2.5 text-sm font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -258,11 +258,11 @@ export function Navigation() {
               <Link
                 href="/pricing"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 mt-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                className="block px-4 py-3 mt-2 text-sm font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
               >
                 Pricing
               </Link>
-              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#171717]/40">
                 Resources
               </p>
               {resourcesLinks.map((item) => (
@@ -270,7 +270,7 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                  className="block px-4 py-2.5 text-sm font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -278,7 +278,7 @@ export function Navigation() {
               <Link
                 href="/about"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 mt-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-none transition-colors"
+                className="block px-4 py-3 mt-2 text-sm font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
               >
                 About
               </Link>
@@ -286,7 +286,7 @@ export function Navigation() {
 
             {/* Drawer Footer — mobile CTAs (full-width, stacked) using
                 canonical site-wide CTA pair via the single-button variants. */}
-            <div className="p-4 border-t border-[#E4E7EC] space-y-3">
+            <div className="p-4 border-t border-[rgba(0,0,0,0.06)] space-y-3">
               <DemoButton
                 ctaLocation="nav_mobile"
                 className="w-full justify-center"
