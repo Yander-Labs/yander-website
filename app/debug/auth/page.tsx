@@ -2,20 +2,22 @@ import { cookies } from "next/headers";
 import { headers } from "next/headers";
 
 // Debug page: shows exactly what cookies the marketing site is receiving
-// from your browser. Use this to verify whether the Clerk session cookie
-// from app.yander.ai is actually shared on the .yander.ai parent domain.
+// from your browser. Use this to verify whether the parent-domain
+// sign-in flag (`yander_signed_in`) written by app.yander.ai is reaching
+// this site.
 //
 // To debug:
 //   1. Sign in to app.yander.ai
 //   2. In the same browser, visit https://yander.ai/debug/auth
 //   3. Look at the "Cookies received" list:
-//      - If `__session` is in the list with a long JWT value → swap should
-//        work; if it doesn't, there's a code bug.
-//      - If `__session` is missing → Clerk satellite domain is not
-//        configured. Cookie is scoped to app.yander.ai only.
-//      - If only `__client_uat` is present → same thing; UAT can leak via
-//        parent domain in some Clerk configs but the real session JWT does
-//        not.
+//      - `yander_signed_in=1` present → swap should work; if it doesn't,
+//        there's a code bug on this site.
+//      - `yander_signed_in` missing entirely → app.yander.ai middleware
+//        isn't writing the flag. Check that the latest app.yander.ai
+//        build is deployed and that you're hitting it on a *.yander.ai
+//        host (preview deploys on vercel.app won't write the cookie).
+//      - `yander_signed_in=` (empty) or `=0` → middleware ran but saw
+//        no session. Sign in to app.yander.ai again and re-check.
 //
 // Robots: noindex so this never shows up in search.
 export const metadata = {
@@ -27,10 +29,8 @@ export default async function AuthDebugPage() {
   const headerStore = await headers();
 
   const allCookies = cookieStore.getAll();
-  const sessionCookie = cookieStore.get("__session");
-  const sessionIsValid = Boolean(
-    sessionCookie?.value && sessionCookie.value.length > 0,
-  );
+  const flagCookie = cookieStore.get("yander_signed_in");
+  const isSignedIn = flagCookie?.value === "1";
 
   const host = headerStore.get("host") ?? "(no host)";
   const userAgent = headerStore.get("user-agent")?.slice(0, 80) ?? "(none)";
@@ -44,12 +44,10 @@ export default async function AuthDebugPage() {
     >
       <div className="mx-auto max-w-3xl space-y-8">
         <div>
-          <h1 className="text-2xl font-medium tracking-tight">
-            Auth debug
-          </h1>
+          <h1 className="text-2xl font-medium tracking-tight">Auth debug</h1>
           <p className="mt-2 text-sm text-[#171717]/60">
-            Server-rendered. Shows exactly what cookies your browser is
-            sending to {host}.
+            Server-rendered. Shows exactly what cookies your browser is sending
+            to {host}.
           </p>
         </div>
 
@@ -58,7 +56,7 @@ export default async function AuthDebugPage() {
             Verdict
           </h2>
           <p className="mt-3 text-2xl font-medium">
-            {sessionIsValid ? (
+            {isSignedIn ? (
               <>
                 <span className="text-emerald-600">●</span> Logged in
               </>
@@ -69,37 +67,40 @@ export default async function AuthDebugPage() {
             )}
           </p>
           <p className="mt-2 text-sm text-[#171717]/60">
-            Based on <code>__session</code> cookie presence + non-empty
-            value.
+            Based on <code>yander_signed_in</code> cookie equal to{" "}
+            <code>1</code>.
           </p>
         </section>
 
         <section className="rounded-2xl border border-[rgba(0,0,0,0.06)] bg-white p-6">
           <h2 className="text-xs uppercase tracking-[0.18em] text-[#171717]/40">
-            __session cookie
+            yander_signed_in cookie
           </h2>
-          {sessionCookie ? (
+          {flagCookie ? (
             <dl className="mt-3 space-y-2 text-sm">
               <div>
                 <dt className="inline text-[#171717]/60">Present:</dt>{" "}
                 <dd className="inline">yes</dd>
               </div>
               <div>
-                <dt className="inline text-[#171717]/60">Value length:</dt>{" "}
-                <dd className="inline">{sessionCookie.value.length} chars</dd>
+                <dt className="inline text-[#171717]/60">Value:</dt>{" "}
+                <dd className="inline">
+                  <code>{flagCookie.value || "(empty)"}</code>
+                </dd>
               </div>
               <div>
-                <dt className="inline text-[#171717]/60">First 20 chars:</dt>{" "}
+                <dt className="inline text-[#171717]/60">Verdict:</dt>{" "}
                 <dd className="inline">
-                  <code>{sessionCookie.value.slice(0, 20)}...</code>
+                  {isSignedIn ? "signed in" : "signed out / cleared"}
                 </dd>
               </div>
             </dl>
           ) : (
             <p className="mt-3 text-sm">
-              Not present in request. Clerk satellite-domain config likely
-              missing on app.yander.ai → cookie is scoped to
-              app.yander.ai only.
+              Not present in request. app.yander.ai middleware hasn&apos;t
+              written the parent-domain flag — verify the latest build is
+              deployed and that you&apos;re hitting a *.yander.ai host (not a
+              preview URL).
             </p>
           )}
         </section>
@@ -126,8 +127,7 @@ export default async function AuthDebugPage() {
             </ul>
           ) : (
             <p className="mt-3 text-sm">
-              No cookies received. Browser is sending zero cookies for{" "}
-              {host}.
+              No cookies received. Browser is sending zero cookies for {host}.
             </p>
           )}
         </section>
@@ -154,19 +154,23 @@ export default async function AuthDebugPage() {
           </h2>
           <ul className="mt-3 space-y-2 text-[#171717]/70">
             <li>
-              <strong className="text-[#171717]">__session present + has value</strong>
-              {" "}→ swap should activate. If you also see &quot;Open dashboard&quot;
+              <strong className="text-[#171717]">yander_signed_in = 1</strong> →
+              swap should activate. If you also see &quot;Open dashboard&quot;
               in the nav, everything works.
             </li>
             <li>
-              <strong className="text-[#171717]">__session absent, but you ARE signed in on app.yander.ai</strong>
-              {" "}→ Clerk satellite-domain setup is incomplete. The cookie is
-              scoped to app.yander.ai only and the marketing site cannot
-              read it. See instructions below.
+              <strong className="text-[#171717]">
+                yander_signed_in absent, but you ARE signed in on app.yander.ai
+              </strong>{" "}
+              → app.yander.ai middleware isn&apos;t writing the parent-domain
+              flag. Confirm the latest build is deployed and that the host gate
+              (<code>*.yander.ai</code>) is matching.
             </li>
             <li>
-              <strong className="text-[#171717]">__session absent, you are NOT signed in</strong>
-              {" "}→ working as intended.
+              <strong className="text-[#171717]">
+                yander_signed_in absent or cleared, you are NOT signed in
+              </strong>{" "}
+              → working as intended.
             </li>
           </ul>
         </section>

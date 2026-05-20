@@ -4,31 +4,24 @@ import { Footer } from "@/components/Footer";
 import { MainClientProviders } from "@/components/MainClientProviders";
 
 /**
- * Reads the Clerk session cookie at the request boundary. Runs server-side
- * so the HTML ships with the right CTA state — no client-side flash.
+ * Reads the parent-domain sign-in flag at the request boundary. Runs
+ * server-side so the HTML ships with the right CTA state — no client-side
+ * flash.
  *
- * IMPORTANT: only `__session` is checked — and only when its VALUE is a
- * non-empty JWT. Clerk also sets these cookies but we deliberately ignore
- * them because they exist for anonymous visitors too:
+ * The flag (`yander_signed_in`) is written by app.yander.ai's Clerk
+ * middleware whenever it sees an active session. It's scoped to the
+ * `.yander.ai` parent domain so this site can read it. The cookie carries
+ * NO auth info — just "1" when signed in, expired/absent otherwise. Real
+ * auth lives in Clerk on app.yander.ai; this is purely a UI hint.
  *
- *   - `__client_uat`: "User Activity Timestamp". Set to "0" for never-
- *      logged-in users; non-zero only when a session exists. Checking
- *      `cookieStore.has()` returns true in both cases — false positive.
- *   - `__clerk_db_jwt`: dev-only proxy. Present for any visitor who's
- *      ever hit a Clerk-protected page, including anonymous ones.
- *
- * Cross-domain note: app.yander.ai's Clerk instance must be configured
- * with yander.ai as a satellite domain. That tells Clerk to scope the
- * `__session` cookie to the shared `.yander.ai` parent domain. Without
- * that config, the cookie is scoped to `app.yander.ai` only and this
- * always returns false (which is the safe default — no broken UX).
+ * Safe default: any unexpected value (missing, empty, "0", stale) reads
+ * as logged-out. Worst case is a user sees a "Sign in" CTA that's one
+ * click away from being correct — never the inverse.
  */
 async function getIsLoggedIn(): Promise<boolean> {
   const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get("__session");
-  // `__session` only exists with a real JWT value when actively signed in.
-  // An empty string or missing cookie both mean "not signed in".
-  return Boolean(sessionCookie?.value && sessionCookie.value.length > 0);
+  const flag = cookieStore.get("yander_signed_in");
+  return flag?.value === "1";
 }
 
 export default async function MainLayout({
