@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Button } from '@/components/ui/Button'
+import { CTAButtons } from '@/components/ui/CTAButtons'
 import { useDemoModal } from '@/components/ui/DemoModal'
-import { Check, ChevronDown, ArrowRight, Sparkles } from 'lucide-react'
+import { Check, ChevronDown, ArrowRight } from 'lucide-react'
 import type { IndustryPage } from '@/lib/types'
 
 interface IndustryPageContentProps {
@@ -236,43 +237,27 @@ export function IndustryPageContent({ page }: IndustryPageContentProps) {
         </section>
       )}
 
-      {/* CTA — homepage canon: dark #111111 flat section */}
-      <section className="py-20 md:py-28 bg-[var(--color-ink-midnight)] text-white">
+      {/* Final CTA — same shape as the homepage FinalCTA: white bg,
+          centered, Inter Medium, canonical CTAButtons (no dark gradient
+          panel, no per-page custom buttons). */}
+      <section className="py-28 lg:py-36 bg-white">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="flex flex-col lg:flex-row items-center justify-between gap-8"
+            className="mx-auto max-w-3xl text-center"
           >
-            <div className="text-center lg:text-left max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
-                <Sparkles className="w-4 h-4 text-[var(--color-accent-alive)]" />
-                <span className="text-sm text-white/80">Built for {page.industry.toLowerCase()}</span>
-              </div>
-              <h2 className="font-medium text-2xl md:text-3xl lg:text-4xl text-white tracking-tight leading-[1.05]">
-                Start hiring smarter today
-              </h2>
-              <p className="mt-4 text-base md:text-lg text-white/60 max-w-xl">
-                See how Yander helps you hire for {page.industry.toLowerCase()}. Join the waitlist for early access.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 w-full sm:w-auto">
-              <a
-                href="https://app.yander.ai/sign-up?plan=starter&billing=monthly"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-[var(--color-accent-primary)] text-white font-medium hover:opacity-90 transition-opacity group w-full sm:w-auto"
-              >
-                Get Started Free
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <button
-                onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base min-h-[52px] rounded-md bg-transparent text-white font-medium hover:bg-white/10 transition-colors border border-white/20 w-full sm:w-auto"
-              >
-                Book a Demo
-              </button>
+            <h2 className="mx-auto text-balance font-medium text-[#171717] text-[clamp(2.5rem,5.2vw,3.625rem)] leading-[0.97] tracking-[-0.025em]">
+              Start hiring smarter today.
+            </h2>
+            <p className="mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-[#171717]/60">
+              See how Yander helps you hire for {page.industry.toLowerCase()}.
+              Free to start, no placement fees, no contracts.
+            </p>
+            <div className="mt-9 flex items-center justify-center">
+              <CTAButtons ctaLocation={`industry_${page.slug.current}_final_cta`} size="lg" />
             </div>
           </motion.div>
         </Container>
