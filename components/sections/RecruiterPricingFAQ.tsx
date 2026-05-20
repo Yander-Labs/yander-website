@@ -25,11 +25,11 @@ function FAQItem({
         onClick={onToggle}
         className="w-full py-5 flex items-center justify-between text-left group"
       >
-        <span className="text-base font-medium text-[var(--color-ink-primary)] pr-4 md:pr-8 group-hover:text-[var(--color-ink-secondary)] transition-colors">
+        <span className="text-[15px] font-medium text-[#171717] pr-4 md:pr-8 group-hover:text-[#171717]/70 transition-colors">
           {question}
         </span>
         <div
-          className={`w-8 h-8 rounded-none bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+          className={`w-8 h-8 rounded-md bg-[var(--color-surface-subtle)] border border-[var(--color-border-canon)] flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
             isOpen ? "bg-[var(--color-ink-primary)] border-[var(--color-ink-primary)]" : ""
           }`}
         >
@@ -49,7 +49,7 @@ function FAQItem({
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[var(--color-ink-muted)] text-sm leading-relaxed pr-12">
+            <p className="pb-5 text-[14px] text-[#171717]/60 leading-[1.6] pr-12">
               {answer}
             </p>
           </motion.div>
@@ -73,21 +73,15 @@ export function RecruiterPricingFAQ() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start relative"
+            className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start"
           >
-            {/* Vertical rhythm rail */}
-            <div
-              className="hidden lg:block absolute -left-6 top-0 bottom-0 w-px bg-[var(--color-border-canon-subtle)]"
-              aria-hidden="true"
-            />
-            <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-6">
+            <p className="text-[11px] font-[var(--font-geist-mono)] text-[#171717]/40 uppercase tracking-[0.18em] mb-6">
               FAQ
             </p>
-            <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+            <h2 className="font-medium text-[#171717] text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.05] tracking-[-0.025em]">
               Questions?
             </h2>
-            <div className="mt-6 h-px w-12 bg-[var(--color-ink-primary)]" aria-hidden="true" />
-            <p className="mt-6 text-sm text-[var(--color-ink-secondary)] leading-relaxed max-w-xs">
+            <p className="mt-6 text-[15px] leading-relaxed text-[#171717]/60 max-w-xs">
               Everything you need to know about Yander Recruiter pricing. Want
               to see it in action?
             </p>
@@ -97,7 +91,7 @@ export function RecruiterPricingFAQ() {
               ctaDestination="demo_modal"
               ctaVariant="link"
               onClick={openDemoModal}
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-ink-primary)] hover:opacity-60 transition-opacity group"
+              className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#171717] hover:opacity-60 transition-opacity group"
             >
               <span>Book a demo</span>
               <span

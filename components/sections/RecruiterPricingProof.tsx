@@ -35,7 +35,7 @@ const stats: ProofStat[] = [
 
 export function RecruiterPricingProof() {
   return (
-    <section className="relative py-24 md:py-32 bg-[var(--color-surface-subtle)] border-y border-[var(--color-border-canon)] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-[#fafaf9] border-y border-[rgba(0,0,0,0.06)] overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 max-w-6xl mx-auto items-start">
           {/* Left: editorial heading + supporting copy (5/12) */}
@@ -46,21 +46,24 @@ export function RecruiterPricingProof() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 lg:sticky lg:top-32"
           >
-            <p className="text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em] mb-6">
+            <p className="text-[11px] font-[var(--font-geist-mono)] text-[#171717]/40 uppercase tracking-[0.18em] mb-6">
               Beyond your hiring funnel
             </p>
-            <h2 className="font-geist font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--color-ink-primary)] tracking-tight leading-[1.1]">
+            <h2 className="font-medium text-[#171717] text-[clamp(1.75rem,3.4vw,2.5rem)] leading-[1.05] tracking-[-0.025em]">
               Find the talent your network can&apos;t reach.
             </h2>
-            <p className="mt-6 text-base text-[var(--color-ink-secondary)] leading-relaxed max-w-md">
+            <p className="mt-6 text-[15px] text-[#171717]/60 leading-relaxed max-w-md">
               Yander runs continuous outbound across markets and channels your
               team can&apos;t practically cover. You get pre-qualified
-              candidates ready to interview — within days, not weeks.
+              candidates ready to interview within days, not weeks.
             </p>
           </motion.div>
 
-          {/* Right: 3 stat blocks (7/12) */}
-          <div className="lg:col-span-7 space-y-px">
+          {/* Right: 3 stat cards (7/12) — rounded-2xl with the canon
+              double-stop drop shadow, gap-3 between them so each reads
+              as its own moment instead of the prior connected-stack
+              flush rail. */}
+          <div className="lg:col-span-7 space-y-3">
             {stats.map((stat, idx) => (
               <motion.div
                 key={stat.label}
@@ -68,15 +71,15 @@ export function RecruiterPricingProof() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="bg-white border border-[var(--color-border-canon)] shadow-[var(--shadow-canon-card)] p-8 md:p-10 -mb-px"
+                className="rounded-2xl bg-white border border-[rgba(0,0,0,0.06)] shadow-[0_1px_2px_rgba(0,0,0,0.025),0_18px_48px_-20px_rgba(0,0,0,0.10)] p-8 md:p-10"
               >
-                <span className="font-geist font-bold text-5xl md:text-6xl text-[var(--color-ink-primary)] tracking-tight leading-none">
+                <span className="block font-medium text-[#171717] tracking-[-0.025em] leading-none text-[clamp(2.5rem,5vw,3.5rem)]">
                   {stat.headline}
                 </span>
-                <p className="mt-4 text-[11px] font-[var(--font-geist-mono)] text-[var(--color-ink-faded)] uppercase tracking-[0.22em]">
+                <p className="mt-4 text-[11px] font-[var(--font-geist-mono)] text-[#171717]/40 uppercase tracking-[0.18em]">
                   {stat.label}
                 </p>
-                <p className="mt-2 text-sm text-[var(--color-ink-secondary)] leading-relaxed max-w-md">
+                <p className="mt-2 text-[14px] text-[#171717]/60 leading-[1.6] max-w-md">
                   {stat.detail}
                 </p>
               </motion.div>
