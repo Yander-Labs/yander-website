@@ -45,13 +45,13 @@ function StarRating() {
 
 export function PulseTestimonials() {
   return (
-    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative">
+    <section className="py-20 md:py-28 bg-[#fafaf9] border-y border-[rgba(0,0,0,0.06)] relative">
       {/* Peec.ai signature gradient overlay */}
       <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="05" centered>Testimonials</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl text-gray-900 max-w-2xl mx-auto">
+          <h2 className="font-medium text-3xl md:text-4xl text-[#171717] max-w-2xl mx-auto">
             Trusted By Leaders Who Know Winning Starts With Their Team
           </h2>
         </AnimatedSection>
@@ -59,25 +59,25 @@ export function PulseTestimonials() {
         <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {testimonials.map((testimonial) => (
             <StaggerItem key={testimonial.name}>
-              <div className="bg-white rounded-[12px] p-6 border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-150 h-full flex flex-col">
+              <div className="bg-white rounded-2xl p-6 border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-150 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <StarRating />
                   <Quote className="w-5 h-5 text-gray-200" />
                 </div>
-                <blockquote className="text-sm text-gray-600 leading-relaxed flex-grow">
+                <blockquote className="text-sm text-[#171717]/60 leading-relaxed flex-grow">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
-                <div className="mt-6 pt-4 border-t border-[#e5e5e5] flex items-center gap-3">
+                <div className="mt-6 pt-4 border-t border-[rgba(0,0,0,0.06)] flex items-center gap-3">
                   <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-10 h-10 rounded-lg object-cover"
                   />
                   <div className="flex-1">
-                    <p className="font-medium text-gray-900 text-sm">
+                    <p className="font-medium text-[#171717] text-sm">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-gray-500">{testimonial.title}</p>
+                    <p className="text-xs text-[#171717]/50">{testimonial.title}</p>
                   </div>
                   {"companyLogo" in testimonial && testimonial.companyLogo ? (
                     <Image
@@ -86,7 +86,7 @@ export function PulseTestimonials() {
                       className={"logoClassName" in testimonial ? testimonial.logoClassName : "h-5 w-auto"}
                     />
                   ) : (
-                    <span className="text-xs font-medium text-gray-400">
+                    <span className="text-xs font-medium text-[#171717]/40">
                       {testimonial.company}
                     </span>
                   )}

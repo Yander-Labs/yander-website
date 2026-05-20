@@ -114,10 +114,10 @@ function TrendChart() {
   return (
     <div className="mt-4 pt-4 border-t border-[#f0f0f0] overflow-visible">
       <div className="flex items-center justify-between mb-3">
-        <span className="text-[11px] font-medium text-gray-500 uppercase tracking-wide">Trends</span>
-        <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 border border-gray-200 rounded text-[11px] font-medium text-gray-700">
+        <span className="text-[11px] font-medium text-[#171717]/50 uppercase tracking-wide">Trends</span>
+        <div className="flex items-center gap-1.5 px-2 py-1 bg-[#fafaf9] border border-[rgba(0,0,0,0.06)] rounded text-[11px] font-medium text-[#171717]/70">
           <span>Workload</span>
-          <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-3 h-3 text-[#171717]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
@@ -131,14 +131,14 @@ function TrendChart() {
       >
         {/* Tooltip - always visible, positioned above chart */}
         <div
-          className="absolute z-20 bg-gray-900 text-white rounded-lg px-3 py-2.5 shadow-xl pointer-events-none"
+          className="absolute z-20 bg-[#171717] text-white rounded-md px-3 py-2.5 shadow-xl pointer-events-none"
           style={{
             left: getTooltipLeft(),
             top: -8,
             transform: getTooltipTransform(),
           }}
         >
-          <p className="text-[11px] font-medium text-gray-300 mb-2">{trendDates[activeIndex]}</p>
+          <p className="text-[11px] font-medium text-white/40 mb-2">{trendDates[activeIndex]}</p>
           <div className="space-y-1.5">
             {trendData.map((series) => (
               <div key={series.name} className="flex items-center justify-between gap-4">
@@ -161,9 +161,9 @@ function TrendChart() {
         <div className="ml-8 mr-2 h-full relative">
           {/* Grid lines - behind the chart */}
           <div className="absolute inset-x-0 top-0 bottom-6 flex flex-col justify-between pointer-events-none z-0">
-            <div className="border-t border-gray-100" />
-            <div className="border-t border-gray-100" />
-            <div className="border-t border-gray-100" />
+            <div className="border-t border-[rgba(0,0,0,0.04)]" />
+            <div className="border-t border-[rgba(0,0,0,0.04)]" />
+            <div className="border-t border-[rgba(0,0,0,0.04)]" />
           </div>
 
           {/* SVG lines - on top of grid */}
@@ -203,7 +203,7 @@ function TrendChart() {
           </svg>
 
           {/* X-axis labels */}
-          <div className="flex justify-between text-[10px] text-gray-400 mt-1">
+          <div className="flex justify-between text-[10px] text-[#171717]/40 mt-1">
             {trendDates.map((date) => (
               <span key={date}>{date}</span>
             ))}
@@ -216,7 +216,7 @@ function TrendChart() {
         {trendData.map((series) => (
           <div key={series.name} className="flex items-center gap-2">
             <div className="w-3 h-0.5 rounded-full" style={{ backgroundColor: series.color }} />
-            <span className="text-[11px] text-gray-600">{series.name}</span>
+            <span className="text-[11px] text-[#171717]/60">{series.name}</span>
           </div>
         ))}
       </div>
@@ -233,18 +233,18 @@ function ProductMockup() {
       className="relative mt-16 mx-auto max-w-5xl"
     >
       {/* Main mockup container */}
-      <div className="relative bg-white rounded-2xl border border-[#e5e5e5] shadow-[0_8px_30px_rgba(0,0,0,0.06)] overflow-hidden">
+      <div className="relative bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] shadow-[0_8px_30px_rgba(0,0,0,0.06)] overflow-hidden">
         {/* Dashboard content */}
         <div className="p-4 sm:p-5 bg-white">
           {/* Header row */}
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#f0f0f0]">
             <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-gray-900">Team Dashboard</span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded bg-gray-100 text-[11px] font-medium text-gray-600">
+              <span className="text-sm font-medium text-[#171717]">Team Dashboard</span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded bg-[#F7F7F6] text-[11px] font-medium text-[#171717]/60">
                 Feb 1, 2026
               </span>
             </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
+            <div className="flex items-center gap-1.5 text-[11px] text-[#171717]/50">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
               Live
             </div>
@@ -253,7 +253,7 @@ function ProductMockup() {
           {/* Team members table */}
           <div className="rounded border border-[#f0f0f0] overflow-hidden overflow-x-auto">
             {/* Table header */}
-            <div className="grid grid-cols-[1fr_65px_65px_65px] sm:grid-cols-[1fr_80px_80px_80px_80px_95px] gap-2 px-3 py-2.5 bg-[#fafafa] border-b border-[#f0f0f0] text-[9px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wide min-w-[400px]">
+            <div className="grid grid-cols-[1fr_65px_65px_65px] sm:grid-cols-[1fr_80px_80px_80px_80px_95px] gap-2 px-3 py-2.5 bg-[#fafaf9] border-b border-[#f0f0f0] text-[9px] sm:text-[10px] font-medium text-[#171717]/50 uppercase tracking-wide min-w-[400px]">
               <span>Entity</span>
               <span className="text-center">Workload</span>
               <span className="text-center">Engagement</span>
@@ -266,12 +266,12 @@ function ProductMockup() {
               <div
                 key={member.name}
                 className={`grid grid-cols-[1fr_65px_65px_65px] sm:grid-cols-[1fr_80px_80px_80px_80px_95px] gap-2 px-3 py-2.5 items-center min-w-[400px] ${
-                  idx !== teamMembers.length - 1 ? "border-b border-[#f5f5f5]" : ""
+                  idx !== teamMembers.length - 1 ? "border-b border-[rgba(0,0,0,0.04)]" : ""
                 }`}
               >
                 <div className="min-w-0">
-                  <p className="text-[12px] sm:text-[13px] font-medium text-gray-900 truncate">{member.name}</p>
-                  <p className="text-[10px] sm:text-[11px] text-gray-400 truncate">{member.role}</p>
+                  <p className="text-[12px] sm:text-[13px] font-medium text-[#171717] truncate">{member.name}</p>
+                  <p className="text-[10px] sm:text-[11px] text-[#171717]/40 truncate">{member.role}</p>
                 </div>
                 <div className="flex justify-center">
                   <ScoreBadge score={member.workload} />
@@ -305,10 +305,24 @@ export function PulseHero() {
   const { openModal: openDemoModal } = useDemoModal();
 
   return (
-    <section className="relative pt-32 pb-8 md:pt-40 md:pb-12 overflow-hidden bg-[#fafafa]">
-      {/* Peec.ai signature gradient overlay */}
-      <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white pointer-events-none" />
+    <section className="relative pt-32 pb-8 md:pt-40 md:pb-12 overflow-hidden bg-white">
+      {/* Interfere-style rainbow gradient wash (orange→pink→purple→blue) +
+          warm cream tonal wash, matches the homepage hero exactly. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 overflow-hidden" style={{ height: "900px" }} aria-hidden>
+        <div className="absolute inset-x-0 top-0 h-[600px] bg-gradient-to-b from-[#fefaf6] from-50% to-transparent" />
+        <div
+          className="absolute left-1/2 -translate-x-1/2 rounded-[300px]"
+          style={{
+            top: "440px",
+            width: "1700px",
+            height: "560px",
+            backgroundImage:
+              "linear-gradient(90deg, rgba(255,59,0,0.20) 0%, rgba(246,0,157,0.20) 38%, rgba(151,62,198,0.20) 71%, rgba(0,142,255,0.20) 100%)",
+            filter: "blur(50px)",
+          }}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-white" />
+      </div>
 
       <Container>
         <div className="relative max-w-4xl mx-auto text-center">
@@ -316,10 +330,10 @@ export function PulseHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="font-serif text-[32px] sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.02em] text-[#171717] leading-[1.1]"
+            className="font-medium leading-[1] tracking-[-0.025em] text-[#171717] text-[clamp(2.25rem,5vw,3.25rem)]"
           >
             Real-time team performance{" "}
-            <span className="text-[#737373]">in one dashboard.</span>
+            <span className="text-[#171717]/40">in one dashboard.</span>
           </motion.h1>
 
           <motion.p
@@ -330,7 +344,7 @@ export function PulseHero() {
               delay: 0.1,
               ease: [0.21, 0.47, 0.32, 0.98],
             }}
-            className="mt-6 text-base md:text-lg text-[#737373] max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-[15px] md:text-base text-[#171717]/60 max-w-2xl mx-auto leading-relaxed"
           >
             Turns activity from the tools you use everyday into an accurate daily score for every employee.
           </motion.p>
@@ -345,25 +359,28 @@ export function PulseHero() {
             }}
             className="mt-8 flex flex-row items-center justify-center gap-3"
           >
+            {/* Pulse-specific CTA pair — waitlist mode, not the sign-in
+                funnel. Visual matches the YanderInterfere homepage hero
+                exactly (h-10 rounded-md charcoal). */}
+            <TrackedButton
+              ctaId="pulse_hero_book_demo"
+              ctaLocation="pulse_hero"
+              ctaDestination="demo_modal"
+              ctaVariant="ghost"
+              onClick={openDemoModal}
+              className="inline-flex h-10 items-center rounded-md border border-[rgba(0,0,0,0.08)] bg-white px-6 text-[13.5px] font-medium text-[#171717] transition-colors hover:border-[#171717]/30"
+            >
+              Book a demo
+            </TrackedButton>
             <TrackedButton
               ctaId="pulse_hero_join_waitlist"
               ctaLocation="pulse_hero"
               ctaDestination="waitlist_modal"
               ctaVariant="primary"
               onClick={openModal}
-              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900/20 bg-gray-900 text-white hover:bg-gray-800 px-6 py-3.5 text-base min-h-[48px]"
+              className="inline-flex h-10 items-center rounded-md bg-[#171717] px-6 text-[13.5px] font-medium text-white transition-colors hover:bg-black"
             >
-              Join Waitlist
-            </TrackedButton>
-            <TrackedButton
-              ctaId="pulse_hero_book_demo"
-              ctaLocation="pulse_hero"
-              ctaDestination="demo_modal"
-              ctaVariant="secondary"
-              onClick={openDemoModal}
-              className="inline-flex items-center justify-center font-medium transition-all duration-150 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900/20 bg-white text-gray-900 border border-[#e5e5e5] hover:bg-gray-50 hover:border-gray-300 px-6 py-3.5 text-base min-h-[48px]"
-            >
-              Book a Demo
+              Join waitlist
             </TrackedButton>
           </motion.div>
 
@@ -375,7 +392,7 @@ export function PulseHero() {
               delay: 0.3,
               ease: [0.21, 0.47, 0.32, 0.98],
             }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#737373]"
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[#171717]/60"
           >
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" />

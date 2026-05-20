@@ -99,13 +99,13 @@ function InsightsVisual() {
         { icon: AlertTriangle, label: "At Risk", value: "1", trend: "down", color: "text-amber-600 bg-amber-50" },
         { icon: Users, label: "Team Health", value: "Good", trend: "up", color: "text-blue-600 bg-blue-50" },
       ].map((item) => (
-        <div key={item.label} className="flex items-center gap-3 p-2 bg-white rounded-lg border border-[#e5e5e5]">
+        <div key={item.label} className="flex items-center gap-3 p-2 bg-white rounded-lg border border-[rgba(0,0,0,0.06)]">
           <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${item.color}`}>
             <item.icon className="w-3.5 h-3.5" />
           </div>
           <div className="flex-1">
-            <p className="text-[10px] text-gray-500">{item.label}</p>
-            <p className="text-sm font-semibold text-gray-900">{item.value}</p>
+            <p className="text-[10px] text-[#171717]/50">{item.label}</p>
+            <p className="text-sm font-semibold text-[#171717]">{item.value}</p>
           </div>
           <MiniChart
             data={item.trend === "up" ? [4, 5, 5, 6, 7, 7, 8] : [6, 5, 4, 3, 2, 2, 1]}
@@ -134,7 +134,7 @@ function StepVisual({ type }: { type: string }) {
 
 export function PulseHowItWorks() {
   return (
-    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-[#fafaf9] border-y border-[rgba(0,0,0,0.06)] relative overflow-hidden">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
 
@@ -144,7 +144,7 @@ export function PulseHowItWorks() {
           <SectionLabel number="02" centered>
             How It Works
           </SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
+          <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
             Start getting insights in a few minutes
           </h2>
         </div>
@@ -162,7 +162,7 @@ export function PulseHowItWorks() {
                   transition={{ delay: index * 0.15, duration: 0.5 }}
                 >
                   {/* Card */}
-                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
+                  <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6 h-full">
                     {/* Step number badge */}
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
@@ -171,12 +171,12 @@ export function PulseHowItWorks() {
                       <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
                     </div>
 
-                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
+                    <p className="text-sm text-[#171717]/60 mb-6 leading-relaxed">
                       {step.description}
                     </p>
 
                     {/* Visual */}
-                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
+                    <div className="bg-[#fafaf9] rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
                       <StepVisual type={step.visual} />
                     </div>
                   </div>
@@ -185,7 +185,7 @@ export function PulseHowItWorks() {
                 {/* Arrow connector (desktop) */}
                 {index < steps.length - 1 && (
                   <div className="flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] flex items-center justify-center">
                       <ArrowRight className="w-5 h-5 text-[#171717]" />
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export function PulseHowItWorks() {
                   transition={{ delay: index * 0.15, duration: 0.5 }}
                 >
                   {/* Card */}
-                  <div className="bg-white rounded-[16px] border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6">
+                  <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] p-6">
                     {/* Step number badge */}
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 rounded-full bg-[#171717] text-white flex items-center justify-center text-sm font-semibold">
@@ -214,12 +214,12 @@ export function PulseHowItWorks() {
                       <h3 className="text-lg font-semibold text-[#171717]">{step.title}</h3>
                     </div>
 
-                    <p className="text-sm text-[#737373] mb-6 leading-relaxed">
+                    <p className="text-sm text-[#171717]/60 mb-6 leading-relaxed">
                       {step.description}
                     </p>
 
                     {/* Visual */}
-                    <div className="bg-[#fafafa] rounded-xl p-4 border border-[#e5e5e5]">
+                    <div className="bg-[#fafaf9] rounded-xl p-4 border border-[rgba(0,0,0,0.06)]">
                       <StepVisual type={step.visual} />
                     </div>
                   </div>
@@ -228,8 +228,8 @@ export function PulseHowItWorks() {
                 {/* Arrow connector (mobile) */}
                 {index < steps.length - 1 && (
                   <div className="flex justify-center py-4">
-                    <div className="w-8 h-8 rounded-full bg-white border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_2px_2px_0px] flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-[#737373] rotate-90" />
+                    <div className="w-8 h-8 rounded-full bg-white border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_2px_2px_0px] flex items-center justify-center">
+                      <ArrowRight className="w-4 h-4 text-[#171717]/60 rotate-90" />
                     </div>
                   </div>
                 )}
@@ -246,12 +246,12 @@ export function PulseHowItWorks() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-full border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px]">
+          <div className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-full border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px]">
             <div className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping absolute" />
             </div>
-            <span className="text-sm text-[#737373]">
+            <span className="text-sm text-[#171717]/60">
               No surveys. No time tracking. Just <span className="text-[#171717] font-medium">intelligent signals</span>.
             </span>
           </div>

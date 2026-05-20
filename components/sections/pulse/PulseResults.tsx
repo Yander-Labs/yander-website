@@ -38,13 +38,13 @@ const stats = [
 
 export function PulseResults() {
   return (
-    <section className="py-20 md:py-28 bg-[#fafafa] border-y border-[#e5e5e5] overflow-hidden relative">
+    <section className="py-20 md:py-28 bg-[#fafaf9] border-y border-[rgba(0,0,0,0.06)] overflow-hidden relative">
       {/* Peec.ai signature gradient overlay */}
       <div className="absolute inset-0 bg-peec-gradient-subtle pointer-events-none" />
       <Container>
         <AnimatedSection className="text-center mb-14">
           <SectionLabel number="03" centered>Proven Results</SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl text-gray-900">
+          <h2 className="font-medium text-3xl md:text-4xl text-[#171717]">
             Real Teams. Real Results.
           </h2>
         </AnimatedSection>
@@ -52,7 +52,7 @@ export function PulseResults() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, idx) => (
             <StaggerItem key={stat.label}>
-              <div className="group relative bg-white rounded-[12px] p-8 text-center border border-[#e5e5e5] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+              <div className="group relative bg-white rounded-2xl p-8 text-center border border-[rgba(0,0,0,0.06)] shadow-[rgba(23,23,23,0.04)_0px_4px_4px_0px] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
                 {/* Background decoration */}
                 <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                   stat.color === "emerald" ? "bg-emerald-500/10" :
@@ -80,7 +80,7 @@ export function PulseResults() {
                     suffix={stat.suffix}
                     duration={1500}
                     delay={idx * 200}
-                    className={`font-serif text-5xl md:text-6xl tracking-tight ${
+                    className={`font-medium text-5xl md:text-6xl tracking-tight ${
                       stat.color === "emerald" ? "text-emerald-600" :
                       stat.color === "blue" ? "text-blue-600" :
                       "text-purple-600"
@@ -88,10 +88,10 @@ export function PulseResults() {
                   />
                 </div>
 
-                <p className="text-sm font-semibold text-gray-900 mb-2">
+                <p className="text-sm font-semibold text-[#171717] mb-2">
                   {stat.label}
                 </p>
-                <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                <p className="text-xs text-[#171717]/50 leading-relaxed mb-4">
                   {stat.description}
                 </p>
 

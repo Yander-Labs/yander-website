@@ -86,10 +86,10 @@ export function PulseUseCases() {
           <SectionLabel number="04" centered>
             Use Cases
           </SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
+          <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl text-[#171717] tracking-[-0.02em] max-w-3xl mx-auto">
             Built for teams that work remotely
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#171717]/60 max-w-2xl mx-auto">
             Whether you&apos;re a 10-person startup or a 500-person team, Yander
             helps you understand what&apos;s really happening with your team —
             without surveillance.
@@ -104,29 +104,29 @@ export function PulseUseCases() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-2xl border border-[#E4E7EC] bg-white p-8 hover:shadow-lg transition-shadow duration-300"
+              className="rounded-2xl border border-[rgba(0,0,0,0.06)] bg-white p-8 hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
-                  <useCase.icon className="w-6 h-6 text-gray-700" />
+                <div className="w-12 h-12 rounded-xl bg-[#F7F7F6] flex items-center justify-center">
+                  <useCase.icon className="w-6 h-6 text-[#171717]/70" />
                 </div>
-                <h3 className="font-serif text-2xl text-gray-900">
+                <h3 className="font-medium text-2xl text-[#171717]">
                   {useCase.title}
                 </h3>
               </div>
 
-              <p className="text-gray-600 mb-6">{useCase.description}</p>
+              <p className="text-[#171717]/60 mb-6">{useCase.description}</p>
 
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+                  <h4 className="text-sm font-medium text-[#171717]/50 uppercase tracking-wide mb-3">
                     Challenges
                   </h4>
                   <ul className="space-y-2">
                     {useCase.challenges.map((challenge) => (
                       <li
                         key={challenge}
-                        className="flex items-start gap-2 text-sm text-gray-600"
+                        className="flex items-start gap-2 text-sm text-[#171717]/60"
                       >
                         <AlertTriangle className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
                         {challenge}
@@ -136,14 +136,14 @@ export function PulseUseCases() {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3">
+                  <h4 className="text-sm font-medium text-[#171717]/50 uppercase tracking-wide mb-3">
                     Outcomes with Yander
                   </h4>
                   <ul className="space-y-2">
                     {useCase.outcomes.map((outcome) => (
                       <li
                         key={outcome}
-                        className="flex items-start gap-2 text-sm text-gray-600"
+                        className="flex items-start gap-2 text-sm text-[#171717]/60"
                       >
                         <BarChart3 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
                         {outcome}

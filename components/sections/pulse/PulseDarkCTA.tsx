@@ -19,27 +19,28 @@ export function PulseDarkCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#171717] via-[#1f1f1f] to-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
+          className="relative overflow-hidden rounded-2xl bg-[#171717] p-6 sm:p-8 md:p-12 lg:p-16"
         >
-          {/* Background decorations */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-amber-500/10 to-rose-500/10 rounded-full blur-3xl" />
-
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '32px 32px'
-          }} />
+          {/* Single subtle wash — drops the rainbow blurs for a cleaner
+              Interfere-style dark panel. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 right-0 w-[600px] h-[400px] rounded-full opacity-40 blur-3xl"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgba(255,59,0,0.10) 0%, rgba(246,0,157,0.10) 38%, rgba(151,62,198,0.10) 71%, rgba(0,142,255,0.10) 100%)",
+            }}
+          />
 
           <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Content */}
             <div className="text-center lg:text-left max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/80">Start your free trial today</span>
+                <span className="text-[13px] text-white/80">Start your free trial today</span>
               </div>
 
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-[42px] text-white tracking-[-0.02em] leading-tight">
+              <h2 className="font-medium text-3xl md:text-4xl lg:text-[42px] text-white tracking-[-0.025em] leading-[1.05]">
                 Sign up and get a stronger pulse on your team
               </h2>
 
@@ -48,47 +49,47 @@ export function PulseDarkCTA() {
                 burnout, and deliver better results.
               </p>
 
-              {/* Stats row */}
+              {/* Stats row — Inter Medium, tighter scale to match the new aesthetic */}
               <div className="mt-8 flex flex-wrap items-center justify-around sm:justify-center lg:justify-start w-full sm:w-auto gap-2 sm:gap-6 md:gap-8">
                 <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">30%</p>
-                  <p className="text-xs sm:text-sm text-white/50">Better Retention</p>
+                  <p className="font-medium text-xl sm:text-2xl md:text-3xl text-white tracking-[-0.025em]">30%</p>
+                  <p className="text-xs sm:text-[13px] text-white/50">Better Retention</p>
                 </div>
                 <div className="hidden sm:block w-px h-12 bg-white/10" />
                 <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">8hrs</p>
-                  <p className="text-xs sm:text-sm text-white/50">Saved Monthly</p>
+                  <p className="font-medium text-xl sm:text-2xl md:text-3xl text-white tracking-[-0.025em]">8hrs</p>
+                  <p className="text-xs sm:text-[13px] text-white/50">Saved Monthly</p>
                 </div>
                 <div className="hidden sm:block w-px h-12 bg-white/10" />
                 <div className="text-center lg:text-left">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-white">10min</p>
-                  <p className="text-xs sm:text-sm text-white/50">Setup Time</p>
+                  <p className="font-medium text-xl sm:text-2xl md:text-3xl text-white tracking-[-0.025em]">10min</p>
+                  <p className="text-xs sm:text-[13px] text-white/50">Setup Time</p>
                 </div>
               </div>
             </div>
 
-            {/* CTA buttons */}
+            {/* CTA buttons — on-dark variant of the canonical pair */}
             <div className="flex flex-col gap-3 w-full sm:w-auto">
               <TrackedButton
-                ctaId="pulse_dark_cta_get_started_free"
+                ctaId="pulse_dark_cta_join_waitlist"
                 ctaLocation="pulse_dark_cta"
                 ctaDestination="waitlist_modal"
                 ctaVariant="primary"
                 onClick={openWaitlistModal}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 rounded-[8px] font-medium text-base hover:bg-gray-100 transition-colors group"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-white px-6 text-[14px] font-medium text-[#171717] transition-colors hover:bg-[#F7F7F6] group w-full sm:w-auto"
               >
-                Get Started Free
+                Join waitlist
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </TrackedButton>
               <TrackedButton
                 ctaId="pulse_dark_cta_book_demo"
                 ctaLocation="pulse_dark_cta"
                 ctaDestination="demo_modal"
-                ctaVariant="outline"
+                ctaVariant="ghost"
                 onClick={openDemoModal}
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-[8px] font-medium text-base hover:bg-white/20 transition-colors border border-white/10"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-white/15 bg-transparent px-6 text-[14px] font-medium text-white transition-colors hover:bg-white/10"
               >
-                Book a Demo
+                Book a demo
               </TrackedButton>
             </div>
           </div>

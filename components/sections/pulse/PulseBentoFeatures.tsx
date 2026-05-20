@@ -65,7 +65,7 @@ function DashboardVisual() {
           </div>
           <div>
             <h4 className="text-sm font-medium text-white">Team Overview</h4>
-            <p className="text-[10px] text-gray-500">4 members · Last 7 days</p>
+            <p className="text-[10px] text-[#171717]/50">4 members · Last 7 days</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-500/10 rounded-md">
@@ -103,7 +103,7 @@ function DashboardVisual() {
                   </span>
                 )}
               </div>
-              <span className="text-[10px] text-gray-500">{member.role}</span>
+              <span className="text-[10px] text-[#171717]/50">{member.role}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className={`text-sm font-semibold ${
@@ -141,7 +141,7 @@ function PrivacyVisual() {
         </div>
         <div>
           <h4 className="text-sm font-semibold text-white">Privacy First</h4>
-          <p className="text-[11px] text-gray-500">Your team&apos;s trust matters</p>
+          <p className="text-[11px] text-[#171717]/50">Your team&apos;s trust matters</p>
         </div>
       </div>
 
@@ -183,7 +183,7 @@ function PrivacyVisual() {
           </div>
           <div>
             <span className="text-xs font-medium text-white">Role-Based Access</span>
-            <p className="text-[10px] text-gray-500">Only the right leaders see sensitive insights</p>
+            <p className="text-[10px] text-[#171717]/50">Only the right leaders see sensitive insights</p>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ function AlertsVisual() {
           <div className="p-3">
             <div className="flex gap-2.5">
               {/* Yander bot avatar */}
-              <div className="w-8 h-8 rounded bg-gray-900 flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 rounded bg-[#171717] flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-[10px] font-bold">Y</span>
               </div>
 
@@ -222,20 +222,20 @@ function AlertsVisual() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[12px] font-semibold text-white">Yander</span>
-                  <span className="text-[9px] px-1 py-0.5 bg-[#2a2a2a] rounded text-gray-400">APP</span>
-                  <span className="text-[9px] text-gray-500">2:34 PM</span>
+                  <span className="text-[9px] px-1 py-0.5 bg-[#2a2a2a] rounded text-[#171717]/40">APP</span>
+                  <span className="text-[9px] text-[#171717]/50">2:34 PM</span>
                 </div>
 
                 {/* Alert box */}
                 <div className="bg-amber-500/10 border-l-2 border-amber-500 rounded-r px-2.5 py-2">
                   <p className="text-[11px] text-amber-200 font-medium mb-0.5">⚠️ Low Engagement Detected</p>
-                  <p className="text-[10px] text-gray-400">
+                  <p className="text-[10px] text-[#171717]/40">
                     <span className="text-white font-medium">Marcus Johnson</span> has shown a 23% drop in engagement over the past 7 days.
                   </p>
                 </div>
 
                 {/* Action hint */}
-                <p className="text-[9px] text-gray-500 mt-2">
+                <p className="text-[9px] text-[#171717]/50 mt-2">
                   💡 Consider scheduling a 1:1 check-in
                 </p>
               </div>
@@ -253,7 +253,7 @@ function AIVisual() {
     <div className="flex-1 flex items-center justify-center p-4">
       <div className="relative">
         {/* Central AI icon */}
-        <div className="w-14 h-14 rounded-xl bg-gray-900 flex items-center justify-center">
+        <div className="w-14 h-14 rounded-xl bg-[#171717] flex items-center justify-center">
           <Zap className="w-7 h-7 text-white" />
         </div>
 
@@ -268,7 +268,7 @@ function AIVisual() {
           return (
             <div
               key={i}
-              className="absolute px-2 py-1 bg-[#2a2a2a] rounded-md text-[9px] text-gray-300 whitespace-nowrap border border-[#3a3a3a]"
+              className="absolute px-2 py-1 bg-[#2a2a2a] rounded-md text-[9px] text-[#171717]/30 whitespace-nowrap border border-[#3a3a3a]"
               style={{
                 left: `calc(50% + ${x}px - 30px)`,
                 top: `calc(50% + ${y}px - 10px)`,
@@ -291,14 +291,14 @@ function ChatVisual() {
       <div className="bg-[#1a1a1a] rounded-xl border border-[#2a2a2a] p-3">
         {/* Input area */}
         <div className="mb-3">
-          <p className="text-[13px] text-gray-500">Ask or search for anything</p>
+          <p className="text-[13px] text-[#171717]/50">Ask or search for anything</p>
         </div>
 
         {/* Bottom row */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* Attachment icon */}
-            <Paperclip className="w-4 h-4 text-gray-500" />
+            <Paperclip className="w-4 h-4 text-[#171717]/50" />
 
             {/* Model selector */}
             <div className="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-[#2a2a2a] cursor-pointer">
@@ -306,13 +306,13 @@ function ChatVisual() {
                 <span className="text-[8px] font-bold text-white">Y</span>
               </div>
               <span className="text-[12px] font-medium text-white">Yander AI</span>
-              <ChevronDown className="w-3 h-3 text-gray-400" />
+              <ChevronDown className="w-3 h-3 text-[#171717]/40" />
             </div>
           </div>
 
           {/* Send button */}
           <div className="w-8 h-8 rounded-full bg-[#2a2a2a] flex items-center justify-center">
-            <Send className="w-4 h-4 text-gray-400" />
+            <Send className="w-4 h-4 text-[#171717]/40" />
           </div>
         </div>
       </div>
@@ -322,14 +322,14 @@ function ChatVisual() {
 
 export function PulseBentoFeatures() {
   return (
-    <section className="py-20 md:py-28 bg-[#0a0a0a]">
+    <section className="py-20 md:py-28 bg-[#171717]">
       <Container>
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <SectionLabel number="01" centered className="text-gray-400">
+          <SectionLabel number="01" centered className="text-[#171717]/40">
             Key Features
           </SectionLabel>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
+          <h2 className="font-medium text-3xl md:text-4xl lg:text-5xl text-white tracking-[-0.02em] max-w-3xl mx-auto">
             Yander gives you the data you need to make better team decisions.
           </h2>
         </div>
@@ -350,7 +350,7 @@ export function PulseBentoFeatures() {
             <AlertsVisual />
             <div className="p-6 pt-0 mt-auto">
               <h3 className="text-lg font-semibold text-white">Slack Notifications</h3>
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-[#171717]/40 mt-1">
                 Get a Slack message whenever Yander detects a problem.
               </p>
             </div>
@@ -364,7 +364,7 @@ export function PulseBentoFeatures() {
             <AIVisual />
             <div className="p-6 pt-0 mt-auto">
               <h3 className="text-lg font-semibold text-white">AI Recommendations</h3>
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-[#171717]/40 mt-1">
                 Get suggestions that are proven to help with team engagement, communication, and more.
               </p>
             </div>
@@ -378,7 +378,7 @@ export function PulseBentoFeatures() {
             <ChatVisual />
             <div className="p-6 pt-0 mt-auto">
               <h3 className="text-lg font-semibold text-white">Immediate Insights</h3>
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-[#171717]/40 mt-1">
                 Ask the chat any team-related question and get the answers you need in seconds.
               </p>
             </div>
@@ -392,7 +392,7 @@ export function PulseBentoFeatures() {
             <PrivacyVisual />
             <div className="p-6 pt-0 mt-auto">
               <h3 className="text-lg font-semibold text-white">Privacy by Design</h3>
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-[#171717]/40 mt-1">
                 Built for trust, not surveillance. We analyze patterns, not keystrokes.
               </p>
             </div>
