@@ -957,7 +957,6 @@ function LogoStrip() {
     "Pacific IQ",
     "AcquisitionX",
     "ConversionLabs",
-    "Hunter Digital",
     "VisCap Media",
     "SkaleOS",
     "Magna",
