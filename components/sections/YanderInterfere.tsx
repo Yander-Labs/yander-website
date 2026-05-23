@@ -30,6 +30,8 @@ import {
   Building2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import arnelHeadshot from "@/components/images/Arnel headshot copy.jpeg"
+import loudfaceLogo from "@/components/images/Loudface Logo.png"
 
 const INK = {
   primary: "text-[#171717]",
@@ -175,7 +177,7 @@ export function YanderInterfere() {
         <TopGradientWash />
         <Hero />
         <CandidateMockup />
-        <LogoStrip />
+        {/* <LogoStrip /> hidden for now */}
         <ThreeStepPitch />
         <PreviewCards />
         <PullQuote />
@@ -1233,15 +1235,9 @@ function PreviewPulseMini() {
 
 function CapabilityLink({ children }: { children: React.ReactNode }) {
   return (
-    <a
-      href="#"
-      className="group inline-flex items-center gap-1.5 self-start tracking-[-0.005em] transition-colors hover:text-[#171717]"
-    >
-      <span>{children}</span>
-      <span className="text-[#171717]/30 transition-all group-hover:translate-x-0.5 group-hover:text-[#171717]/50">
-        ↗
-      </span>
-    </a>
+    <span className="inline-flex items-center self-start tracking-[-0.005em]">
+      {children}
+    </span>
   )
 }
 
@@ -1405,8 +1401,8 @@ function InboxMockup() {
       count: 6,
       tone: "text-[#78350f] bg-amber-50",
       rows: [
-        { id: "C-2814", name: "Maria Santos", role: "Senior Engineer", match: "96%", region: "BR" },
-        { id: "C-2813", name: "Raj Patel", role: "ML Engineer", match: "94%", region: "IN" },
+        { id: "C-2814", name: "Maria Santos", role: "Senior Engineer", match: "96%", region: "BR", avatar: "/avatars/maria-santos.jpg" },
+        { id: "C-2813", name: "Raj Patel", role: "ML Engineer", match: "94%", region: "IN", avatar: "/avatars/raj-patel.jpg" },
       ],
     },
     {
@@ -1414,8 +1410,8 @@ function InboxMockup() {
       count: 3,
       tone: "text-[#1e40af] bg-blue-50",
       rows: [
-        { id: "C-2790", name: "Lucas Ferreira", role: "Backend Engineer", match: "92%", region: "BR" },
-        { id: "C-2788", name: "Priya Sharma", role: "Product Designer", match: "89%", region: "IN" },
+        { id: "C-2790", name: "Lucas Ferreira", role: "Backend Engineer", match: "92%", region: "BR", avatar: "/avatars/lucas-ferreira.jpg" },
+        { id: "C-2788", name: "Priya Sharma", role: "Product Designer", match: "89%", region: "IN", avatar: "/avatars/priya-sharma.jpg" },
       ],
     },
     {
@@ -1423,7 +1419,7 @@ function InboxMockup() {
       count: 4,
       tone: "text-[#14532d] bg-emerald-50",
       rows: [
-        { id: "C-2701", name: "Sofia Martinez", role: "Performance Marketing", match: "91%", region: "CO" },
+        { id: "C-2701", name: "Sofia Martinez", role: "Performance Marketing", match: "91%", region: "CO", avatar: "/avatars/sofia-martinez.jpg" },
       ],
     },
   ]
@@ -1454,8 +1450,14 @@ function InboxMockup() {
                 <span className="font-[var(--font-geist-mono)] text-[10.5px] text-[#171717]/40 w-12 shrink-0">
                   {row.id}
                 </span>
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[9px] font-medium text-[#5a3a1a]">
-                  {row.name.split(" ").map((s) => s[0]).join("")}
+                <span className="block h-6 w-6 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src={row.avatar}
+                    alt={row.name}
+                    width={24}
+                    height={24}
+                    className="h-full w-full object-cover"
+                  />
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="truncate text-[13px] font-medium text-[#171717]">
@@ -1565,10 +1567,10 @@ function DiffMockup() {
 
 function PulseMockup() {
   const team = [
-    { name: "Sarah Chen", role: "Designer", score: 9, trend: "up" as const, tone: "rose" as const },
-    { name: "Marcus Johnson", role: "Strategist", score: 8, trend: "up" as const, tone: "amber" as const },
-    { name: "Emily Rodriguez", role: "PM", score: 5, trend: "down" as const, tone: "indigo" as const },
-    { name: "Ryan Peters", role: "Media Buyer", score: 9, trend: "up" as const, tone: "emerald" as const },
+    { name: "Sarah Chen", role: "Designer", score: 9, trend: "up" as const, avatar: "/avatars/Sarah-chen.png" },
+    { name: "Marcus Johnson", role: "Strategist", score: 8, trend: "up" as const, avatar: "/avatars/marcus-johnson.png" },
+    { name: "Emily Rodriguez", role: "PM", score: 5, trend: "down" as const, avatar: "/avatars/emily-rodriguez.png" },
+    { name: "Ryan Peters", role: "Media Buyer", score: 9, trend: "up" as const, avatar: "/avatars/ryan-peters.png" },
   ]
   return (
     <div
@@ -1589,7 +1591,15 @@ function PulseMockup() {
       <div className="divide-y divide-[rgba(0,0,0,0.06)]">
         {team.map((m) => (
           <div key={m.name} className="flex items-center gap-3 px-4 py-3">
-            <MiniAvatar tone={m.tone} letter={m.name[0]} />
+            <span className="block h-5 w-5 shrink-0 overflow-hidden rounded-full">
+              <Image
+                src={m.avatar}
+                alt={m.name}
+                width={20}
+                height={20}
+                className="h-full w-full object-cover"
+              />
+            </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-[13px] font-medium text-[#171717]">
                 {m.name}
@@ -1662,11 +1672,23 @@ function PullQuote() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-3">
               <span className="relative">
-                <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-rose-200 to-amber-200 text-[13px] font-medium text-[#5a3a1a]">
-                  AB
+                <span className="block h-10 w-10 overflow-hidden rounded-full ring-1 ring-[rgba(0,0,0,0.08)]">
+                  <Image
+                    src={arnelHeadshot}
+                    alt="Arnel Bukva"
+                    width={40}
+                    height={40}
+                    className="h-full w-full object-cover"
+                  />
                 </span>
-                <span className="absolute -bottom-0.5 -right-0.5 grid h-4 w-4 place-items-center rounded-full bg-[#171717] text-white ring-2 ring-white">
-                  <YanderMark className="h-2.5 w-2.5" />
+                <span className="absolute -bottom-1 -right-1 block h-6 w-6 overflow-hidden rounded-full bg-white ring-2 ring-white">
+                  <Image
+                    src={loudfaceLogo}
+                    alt="Loudface"
+                    width={48}
+                    height={48}
+                    className="h-full w-full object-contain"
+                  />
                 </span>
               </span>
               <div className="text-left">
@@ -1801,12 +1823,9 @@ function ChangelogSection() {
               The <AccentSerif>Latest</AccentSerif>
             </h2>
           </div>
-          <a
-            href="#"
-            className="inline-flex items-center gap-1 text-[13px] font-medium text-[#171717]/60 hover:text-[#171717]"
-          >
-            See all releases <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          <span className="inline-flex items-center text-[13px] font-medium text-[#171717]/60">
+            See all releases
+          </span>
         </div>
 
         <div className="mt-12 divide-y divide-[rgba(0,0,0,0.07)]">
@@ -1991,18 +2010,12 @@ function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3 text-[13px] text-[#171717]/60">
             <span>Ask about Yander on</span>
-            <a
-              href="#"
-              className="rounded border border-[rgba(0,0,0,0.08)] bg-white px-2 py-1 font-[var(--font-geist-mono)] text-[11px] hover:bg-[#f5f5f4]"
-            >
+            <span className="rounded border border-[rgba(0,0,0,0.08)] bg-white px-2 py-1 font-[var(--font-geist-mono)] text-[11px]">
               X
-            </a>
-            <a
-              href="#"
-              className="rounded border border-[rgba(0,0,0,0.08)] bg-white px-2 py-1 font-[var(--font-geist-mono)] text-[11px] hover:bg-[#f5f5f4]"
-            >
+            </span>
+            <span className="rounded border border-[rgba(0,0,0,0.08)] bg-white px-2 py-1 font-[var(--font-geist-mono)] text-[11px]">
               LinkedIn
-            </a>
+            </span>
           </div>
           <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(0,0,0,0.06)] bg-white px-3 py-1.5 text-[12px] text-[#171717]/60">
             <span className="relative grid place-items-center">
@@ -2055,11 +2068,7 @@ function FooterCol({ title, items }: { title: string; items: string[] }) {
       </p>
       <ul className="mt-4 space-y-2.5 text-[13px] text-[#171717]/60">
         {items.map((i) => (
-          <li key={i}>
-            <a href="#" className="hover:text-[#171717]">
-              {i}
-            </a>
-          </li>
+          <li key={i}>{i}</li>
         ))}
       </ul>
     </div>
