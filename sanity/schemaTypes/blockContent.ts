@@ -114,6 +114,62 @@ export default defineType({
           }
         }
       }
+    }),
+    defineArrayMember({
+      type: 'object',
+      name: 'comparisonTable',
+      title: 'Comparison Table',
+      fields: [
+        {
+          name: 'headers',
+          title: 'Headers',
+          type: 'array',
+          of: [{ type: 'string' }],
+          validation: (Rule) => Rule.min(2).max(8)
+        },
+        {
+          name: 'rows',
+          title: 'Rows',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              name: 'tableRow',
+              fields: [
+                {
+                  name: 'cells',
+                  title: 'Cells',
+                  type: 'array',
+                  of: [{ type: 'text', rows: 2 }]
+                }
+              ],
+              preview: {
+                select: { cells: 'cells' },
+                prepare({ cells }) {
+                  const first = Array.isArray(cells) && cells[0] ? cells[0] : 'Row'
+                  return { title: typeof first === 'string' ? first.slice(0, 60) : 'Row' }
+                }
+              }
+            }
+          ]
+        },
+        {
+          name: 'caption',
+          title: 'Caption (optional)',
+          type: 'string'
+        }
+      ],
+      preview: {
+        select: { headers: 'headers', rows: 'rows' },
+        prepare({ headers, rows }) {
+          const cols = Array.isArray(headers) ? headers.length : 0
+          const r = Array.isArray(rows) ? rows.length : 0
+          return {
+            title: 'Comparison Table',
+            subtitle: `${cols} columns × ${r} rows`
+          }
+        }
+      }
     })
   ]
 })

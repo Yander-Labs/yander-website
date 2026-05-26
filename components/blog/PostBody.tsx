@@ -190,7 +190,53 @@ function createComponents(headingIds: Map<string, string>): Partial<PortableText
         language={value.language}
         filename={value.filename}
       />
-    )
+    ),
+    comparisonTable: ({ value }) => {
+      const headers: string[] = Array.isArray(value?.headers) ? value.headers : []
+      const rows: { cells?: string[] }[] = Array.isArray(value?.rows) ? value.rows : []
+      const caption: string | undefined = value?.caption
+
+      if (headers.length === 0 || rows.length === 0) return null
+
+      return (
+        <figure className="my-8 -mx-4 md:mx-0 overflow-x-auto">
+          <table className="min-w-full text-sm border-collapse">
+            <thead>
+              <tr className="bg-gray-50">
+                {headers.map((h, i) => (
+                  <th
+                    key={i}
+                    className="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900 whitespace-nowrap first:rounded-tl-lg last:rounded-tr-lg"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => {
+                const cells: string[] = Array.isArray(row?.cells) ? row.cells : []
+                return (
+                  <tr key={i} className="odd:bg-white even:bg-gray-50/40 hover:bg-emerald-50/40 transition-colors">
+                    {cells.map((cell, j) => (
+                      <td
+                        key={j}
+                        className="border border-gray-200 px-4 py-3 align-top text-gray-700 leading-relaxed"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+          {caption && (
+            <figcaption className="mt-2 text-center text-sm text-gray-500">{caption}</figcaption>
+          )}
+        </figure>
+      )
+    }
   }
   }
 }
