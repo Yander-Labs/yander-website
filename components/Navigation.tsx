@@ -186,14 +186,22 @@ export function Navigation() {
               <CTAButtons ctaLocation="nav" />
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2 -mr-2 text-[#171717]/60 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
-              aria-label="Open menu"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile: inline Pricing + hamburger */}
+            <div className="flex items-center gap-1 md:hidden">
+              <Link
+                href="/pricing"
+                className="rounded-md px-3 py-1.5 text-[13px] font-medium text-[#171717]/70 hover:text-[#171717] hover:bg-[#F7F7F6] transition-colors"
+              >
+                Pricing
+              </Link>
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 -mr-2 text-[#171717]/60 hover:text-[#171717] hover:bg-[#F7F7F6] rounded-md transition-colors"
+                aria-label="Open menu"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </Container>
       </nav>
