@@ -384,6 +384,7 @@ export const landingPagesQuery = `*[_type == "landingPage"] | order(publishedAt 
 // Get single landing page by slug
 export const landingPageBySlugQuery = `*[_type == "landingPage" && slug.current == $slug][0] {
   _id,
+  _updatedAt,
   title,
   slug,
   pageType,
@@ -396,6 +397,7 @@ export const landingPageBySlugQuery = `*[_type == "landingPage" && slug.current 
   testimonial,
   faqs,
   publishedAt,
+  "author": author->{name, slug, image, role, bio, linkedinUrl, twitterUrl, expertise, yearsExperience, certifications},
   seo {
     metaTitle,
     metaDescription,

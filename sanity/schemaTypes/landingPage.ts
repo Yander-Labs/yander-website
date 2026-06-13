@@ -139,6 +139,14 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      group: 'content',
+      to: [{ type: 'author' }],
+      description: 'The person who wrote this page. Drives E-E-A-T Person schema in the live page.',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',

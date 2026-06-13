@@ -287,12 +287,14 @@ export interface LandingPageCard {
 }
 
 export interface LandingPage extends LandingPageCard {
+  _updatedAt?: string
   painPoints?: IndustryPainPoint[]
   features?: IndustryFeature[]
   stats?: ComparisonStat[]
   body?: PortableTextBlock[]
   testimonial?: Testimonial
   faqs?: ComparisonFAQ[]
+  author?: Author
   seo?: SEO
 }
 
